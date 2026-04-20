@@ -1,0 +1,819 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="SamsungLife_Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/cv" xmlns:p1="http://schemas.uipath.com/workflow/activities/ocr" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:uc="clr-namespace:UiPath.CV;assembly=UiPath.CV" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_BrowserUrl" Type="InArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>SamsungLife_Main_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Platform.SyncObjects</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>UiPath.CV</x:String>
+      <x:String>UiPath.CV.Activities</x:String>
+      <x:String>UiPath.CV.Activities.Interfaces</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>UiPath.CV.Activities</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="SamsungLife_Main" sap:VirtualizedContainerService.HintSize="856.4000000000001,3014.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="WEB_URL" />
+      <Variable x:TypeArguments="x:String" Name="SSL_URL" />
+      <Variable x:TypeArguments="ss:SecureString" Name="SSL_PW" />
+      <Variable x:TypeArguments="x:String" Name="SSL_OTP" />
+      <Variable x:TypeArguments="x:String" Name="SSL_UID" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="SSL_AST_URL" CacheStrategy="None" DisplayName="Get Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="486.4,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
+      <ui:GetRobotAsset.Value>
+        <OutArgument x:TypeArguments="x:String">[SSL_URL]</OutArgument>
+      </ui:GetRobotAsset.Value>
+    </ui:GetRobotAsset>
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="SSL_AST_OTP" CacheStrategy="None" DisplayName="Get Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="486.4,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+      <ui:GetRobotAsset.Value>
+        <OutArgument x:TypeArguments="x:String">[SSL_OTP]</OutArgument>
+      </ui:GetRobotAsset.Value>
+    </ui:GetRobotAsset>
+    <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="SSL_AST_LOGIN" CacheStrategy="None" DisplayName="Get Credential" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="486.4,175.2" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[SSL_PW]" Username="[SSL_UID]" />
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Edge 삼성생명 - GA영업포탈 로그인 관리" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" InteractionMode="DebuggerApi" ScopeGuid="6a8b7948-80f5-4016-bf9f-12781ed83c86" Version="V2">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,230.4" sap2010:WorkflowViewState.IdRef="Sequence_20">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_7" />
+            <p:CVScope ContinueOnError="{x:Null}" DelayBefore="{x:Null}" ScopeId="{x:Null}" ScrollOffset="{x:Null}" Server="{x:Null}" CvMethod="ElementDetection, OCR" DesignTimeCacheId="c736451f-69d3-4b23-90af-63f19099a2bf" DisplayName="CV Screen Scope 'pane'" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="CVScope_5" SendOnPremData="False" Version="V6">
+              <p:CVScope.Body>
+                <ActivityAction x:TypeArguments="x:Object">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:Object" Name="CVSessionData" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                    <p:CvClickWithDescriptor DelayBefore="{x:Null}" DelayMS="{x:Null}" DelayScreenshotAfterScroll="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" Descriptor="[&quot;Target: CloseButton (446,5,19,18)&quot; +&#xA;&quot;Anchor: MaximizeButton (399,4,20,20)&quot;]" DesignTimeCacheId="c736451f-69d3-4b23-90af-63f19099a2bf" DesignTimeScaleFactor="1.25" DisplayName="CV Click - 'CloseButton'" sap:VirtualizedContainerService.HintSize="400,209.6" sap2010:WorkflowViewState.IdRef="CvClickWithDescriptor_2" InformativeScreenshot="1a828394c784ca3ad7144786efc9358a" KeyModifiers="None" MouseButton="BTN_LEFT" NumberOfScrolls="2" ScrollDirection="None" Version="V6">
+                      <p:CvClickWithDescriptor.CursorPosition>
+                        <ui:CursorPosition Position="Center">
+                          <ui:CursorPosition.OffsetX>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:CursorPosition.OffsetX>
+                          <ui:CursorPosition.OffsetY>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:CursorPosition.OffsetY>
+                        </ui:CursorPosition>
+                      </p:CvClickWithDescriptor.CursorPosition>
+                      <p:CvClickWithDescriptor.DesignTimeDescriptor>
+                        <uc:CvDescriptor Id="f67cc393-30c4-4fa2-aed6-ef45b82c504f">
+                          <uc:CvDescriptor.Anchors>
+                            <x:Array Type="uc:CvElementDescriptor">
+                              <uc:CvElementDescriptor CellExtraInfo="{x:Null}" DesignTimeArea="399, 4, 20, 20" ElementType="MaximizeButton" />
+                            </x:Array>
+                          </uc:CvDescriptor.Anchors>
+                          <uc:CvDescriptor.Target>
+                            <uc:CvElementDescriptor CellExtraInfo="{x:Null}" DesignTimeArea="446, 5, 19, 18" ElementType="CloseButton" />
+                          </uc:CvDescriptor.Target>
+                        </uc:CvDescriptor>
+                      </p:CvClickWithDescriptor.DesignTimeDescriptor>
+                      <p:CvClickWithDescriptor.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="dbf50cf8-c5ab-4388-9ae4-48d995228c69">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                          <ui:Target.WaitForReady>
+                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                          </ui:Target.WaitForReady>
+                        </ui:Target>
+                      </p:CvClickWithDescriptor.Target>
+                    </p:CvClickWithDescriptor>
+                  </Sequence>
+                </ActivityAction>
+              </p:CVScope.Body>
+              <p:CVScope.DesignTimeCache>
+                <uc:CVCache CvUiElements="{x:Null}" OcrTexts="{x:Null}" DataSent="False" />
+              </p:CVScope.DesignTimeCache>
+              <p:CVScope.DesignTimeCacheContainer>
+                <uc:CvCacheContainer>
+                  <uc:CvCacheContainer.Caches>
+                    <scg:List x:TypeArguments="uc:CVCache" Capacity="1">
+                      <uc:CVCache DataSent="False" DisplayName="Screen CV Click - CloseButton (Main)" Id="c736451f-69d3-4b23-90af-63f19099a2bf" InformativeScreenshot="cf66879a7235b4390f975aca083d0393" LogicalPosition="1268, 56" OcrText="Q!x|=2l9X| A}8... _ X ANCO-GAggEg|ג25: &#xA; https://ga.samsunglife.com/gapopup.html &#xA; 9, |ג8 QX| 42|9x &#xA; TI8 H|2LICI. צ|ג 57| E8#N &#xA; ga.samsunglife.com0l(t) 87212 e X &#xA; 4C. &#xA; 5g 45939 .5 BAS 2OHA1 929 &#xA; 4R. &#xA; RE 88 &#xA; 0|5 ||ע0||0||A| eR| 5פ! &quot;*|E!&quot; 22l9 29, &#xA; ERI5E |ג! &quot;R|EP&quot; 22| &#xA; 1 URL es $ 7A E120|| 2/= AHE4| EA|S cls &#xA; a34|E93 9A5 cA| 88o2 &#xA; 1 https://na-testing.notyetsecure.com &#xA; Ina -testing.notyetsecure.com 8LS X &#xA; egol eee49, &gt; &#xA; Micresoft Purview &gt; &#xA; o( AO(5S qe AS ae &#xA; 2 I.g ME03 RAL^ 648NIA1 SRPIMD &#xA; P/ 9 ADoLS 4099 689 &#xA; 6IR5BA] SRDlMa &#xA; ©| AO(EO qe SR ' &#xA; RBplec &#xA; ngs CP/4ו &#xA; Q= 65 Sx|" Position="1268, 56" ScaleFactor="1.25" ScreenshotGuid="265f1b66-3064-4787-9aff-249769631725" ServerVersion="24.10">
+                        <uc:CVCache.CvAnchorRelations>
+                          <scg:List x:TypeArguments="uc:AnchorRelationInfo" Capacity="4">
+                            <uc:AnchorRelationInfo IsTargetText="False" Target="4">
+                              <uc:AnchorRelationInfo.Anchors>
+                                <x:Array Type="x:Int32">
+                                  <x:Int32>94</x:Int32>
+                                  <x:Int32>95</x:Int32>
+                                  <x:Int32>96</x:Int32>
+                                </x:Array>
+                              </uc:AnchorRelationInfo.Anchors>
+                            </uc:AnchorRelationInfo>
+                          </scg:List>
+                        </uc:CVCache.CvAnchorRelations>
+                        <uc:CVCache.CvUiElements>
+                          <scg:List x:TypeArguments="uc:CvElementInfo" Capacity="64">
+                            <uc:CvElementInfo Category="Icon" Description="Icon" Region="41, 108, 58, 59" />
+                            <uc:CvElementInfo Category="Button" Description="Button" Region="294, 286, 49, 31" />
+                            <uc:CvElementInfo Category="Icon" Description="Icon" Region="0, 4, 20, 21" />
+                            <uc:CvElementInfo Category="MinimizeButton" Description="MinimizeButton" Region="352, 5, 20, 18" />
+                            <uc:CvElementInfo Category="CheckBox" Description="Checkbox" Region="328, 701, 15, 14" />
+                            <uc:CvElementInfo Category="Button" Description="Button" Region="344, 283, 56, 38" />
+                            <uc:CvElementInfo Category="CloseButton" Description="CloseButton" Region="376, 204, 20, 19" />
+                            <uc:CvElementInfo Category="CloseButton" Description="CloseButton" Region="446, 5, 19, 18" />
+                            <uc:CvElementInfo Category="ArrowButton" Description="ArrowButton" Region="330, 556, 14, 16" />
+                            <uc:CvElementInfo Category="ArrowButton" Description="ArrowButton" Region="330, 532, 13, 16" />
+                            <uc:CvElementInfo Category="MaximizeButton" Description="MaximizeButton" Region="399, 4, 20, 20" />
+                            <uc:CvElementInfo Category="Icon" Description="lock icon" Region="5, 35, 19, 19" />
+                            <uc:CvElementInfo Category="Icon" Description="Icon" Region="154, 238, 21, 20" />
+                            <uc:CvElementInfo Category="Icon" Description="Icon" Region="26, 373, 24, 24" />
+                            <uc:CvElementInfo Category="Icon" Description="Icon" Region="26, 404, 25, 24" />
+                            <uc:CvElementInfo Category="Icon" Description="Icon" Region="451, 34, 23, 21" />
+                            <uc:CvElementInfo Category="CloseButton" Description="CloseButton" Region="328, 511, 16, 16" />
+                            <uc:CvElementInfo Category="Icon" Description="Icon" Region="136, 644, 16, 15" />
+                            <uc:CvElementInfo Category="Icon" Description="Icon" Region="136, 580, 16, 16" />
+                            <uc:CvElementInfo Category="Icon" Description="Icon" Region="136, 556, 16, 16" />
+                            <uc:CvElementInfo Category="Icon" Description="lock icon" Region="136, 533, 15, 15" />
+                            <uc:CvElementInfo Category="Icon" Description="Icon" Region="115, 593, 31, 31" />
+                            <uc:CvElementInfo Category="Icon" Description="Icon" Region="128, 491, 17, 18" />
+                            <uc:CvElementInfo Category="Icon" Description="Icon" Region="56, 457, 17, 18" />
+                            <uc:CvElementInfo Description="{x:Null}" Category="Icon" Confidence="Runtime" Region="92, 484, 35, 34" />
+                            <uc:CvElementInfo Description="{x:Null}" Category="Icon" Confidence="Runtime" Region="55, 436, 18, 18" />
+                            <uc:CvElementInfo Description="{x:Null}" Category="Icon" Confidence="Runtime" Region="226, 646, 14, 12" />
+                            <uc:CvElementInfo Description="{x:Null}" Category="Button" Confidence="Runtime" Region="237, 598, 105, 20" />
+                            <uc:CvElementInfo Description="{x:Null}" Category="Button" Confidence="Runtime" Region="240, 635, 101, 22" />
+                            <uc:CvElementInfo Description="{x:Null}" Category="Button" Confidence="Runtime" Region="56, 458, 16, 17" />
+                            <uc:CvElementInfo Description="{x:Null}" Category="Icon" Confidence="Runtime" Region="154, 646, 11, 12" />
+                            <uc:CvElementInfo Description="{x:Null}" Category="Icon" Confidence="Runtime" Region="154, 581, 11, 12" />
+                            <uc:CvElementInfo Description="{x:Null}" Category="InputBox" Confidence="Runtime" Region="0, 31, 479, 28" />
+                            <uc:CvElementInfo Description="{x:Null}" Category="Button" Confidence="Runtime" Region="240, 618, 102, 20" />
+                            <uc:CvElementInfo Description="{x:Null}" Category="Button" Confidence="Runtime" Region="27, 404, 24, 24" />
+                            <uc:CvElementInfo Description="{x:Null}" Category="Button" Confidence="Runtime" Region="139, 597, 93, 20" />
+                            <uc:CvElementInfo Description="{x:Null}" Category="Button" Confidence="Runtime" Region="239, 655, 104, 22" />
+                            <uc:CvElementInfo Description="{x:Null}" Category="Button" Confidence="Runtime" Region="128, 490, 17, 19" />
+                            <uc:CvElementInfo Description="{x:Null}" Category="Icon" Confidence="Runtime" Region="268, 110, 26, 26" />
+                            <uc:CvElementInfo Description="{x:Null}" Category="CheckBox" Confidence="Runtime" Region="330, 512, 12, 13" />
+                            <uc:CvElementInfo Description="{x:Null}" Category="ArrowButton" Confidence="Runtime" Region="136, 645, 15, 15" />
+                            <uc:CvElementInfo Description="{x:Null}" Category="Icon" Confidence="Runtime" Region="330, 512, 13, 14" />
+                            <uc:CvElementInfo Description="{x:Null}" Category="RadioButton" Confidence="Runtime" Region="137, 534, 13, 14" />
+                            <uc:CvElementInfo Description="{x:Null}" Category="Icon" Confidence="Runtime" Region="171, 623, 10, 12" />
+                            <uc:CvElementInfo Description="{x:Null}" Category="InputBox" Confidence="Runtime" Region="237, 598, 105, 20" />
+                            <uc:CvElementInfo Category="ArrowButton" Description="ArrowButton" Region="324, 601, 14, 14" />
+                          </scg:List>
+                        </uc:CVCache.CvUiElements>
+                        <uc:CVCache.OcrTexts>
+                          <scg:List x:TypeArguments="uc:OcrTextInfo" Capacity="97">
+                            <uc:OcrTextInfo Region="208, 4, 85, 17" Text="Q!x|=2l9X|" />
+                            <uc:OcrTextInfo Region="294, 4, 41, 16" Text="A}8..." />
+                            <uc:OcrTextInfo Region="354, 4, 16, 14" Text="_" />
+                            <uc:OcrTextInfo Region="448, 8, 14, 13" Text="X" />
+                            <uc:OcrTextInfo Region="21, 4, 184, 18" Text="ANCO-GAggEg|ג25:" />
+                            <uc:OcrTextInfo Region="28, 37, 262, 17" Text="https://ga.samsunglife.com/gapopup.html" />
+                            <uc:OcrTextInfo Region="268, 110, 25, 26" Text="9," />
+                            <uc:OcrTextInfo Region="228, 109, 38, 25" Text="|ג8" />
+                            <uc:OcrTextInfo Region="112, 110, 38, 24" Text="QX|" />
+                            <uc:OcrTextInfo Region="153, 109, 72, 24" Text="42|9x" />
+                            <uc:OcrTextInfo Region="280, 148, 37, 18" Text="TI8" />
+                            <uc:OcrTextInfo Region="362, 142, 77, 24" Text="H|2LICI." />
+                            <uc:OcrTextInfo Region="228, 142, 42, 24" Text="צ|ג" />
+                            <uc:OcrTextInfo Region="112, 142, 37, 24" Text="57|" />
+                            <uc:OcrTextInfo Region="153, 142, 72, 24" Text="E8#N" />
+                            <uc:OcrTextInfo Region="156, 205, 152, 16" Text="ga.samsunglife.com0l(t)" />
+                            <uc:OcrTextInfo Region="312, 205, 40, 14" Text="87212" />
+                            <uc:OcrTextInfo Region="353, 204, 14, 16" Text="e" />
+                            <uc:OcrTextInfo Region="376, 206, 16, 16" Text="X" />
+                            <uc:OcrTextInfo Region="156, 224, 30, 14" Text="4C." />
+                            <uc:OcrTextInfo Region="178, 240, 24, 14" Text="5g" />
+                            <uc:OcrTextInfo Region="204, 241, 56, 13" Text="45939" />
+                            <uc:OcrTextInfo Region="260, 241, 24, 13" Text=".5" />
+                            <uc:OcrTextInfo Region="286, 241, 33, 13" Text="BAS" />
+                            <uc:OcrTextInfo Region="322, 241, 33, 13" Text="2OHA1" />
+                            <uc:OcrTextInfo Region="358, 241, 32, 13" Text="929" />
+                            <uc:OcrTextInfo Region="180, 256, 25, 13" Text="4R." />
+                            <uc:OcrTextInfo Region="305, 293, 25, 14" Text="RE" />
+                            <uc:OcrTextInfo Region="360, 293, 24, 16" Text="88" />
+                            <uc:OcrTextInfo Region="376, 376, 36, 20" Text="0|5" />
+                            <uc:OcrTextInfo Region="286, 376, 86, 20" Text="||ע0||0||A|" />
+                            <uc:OcrTextInfo Region="248, 376, 36, 20" Text="eR|" />
+                            <uc:OcrTextInfo Region="208, 376, 37, 21" Text="5פ" />
+                            <uc:OcrTextInfo Region="36, 378, 5, 13" Text="!" />
+                            <uc:OcrTextInfo Region="52, 376, 53, 20" Text="&quot;*|E!&quot;" />
+                            <uc:OcrTextInfo Region="108, 376, 54, 20" Text="22l9" />
+                            <uc:OcrTextInfo Region="164, 376, 41, 20" Text="29," />
+                            <uc:OcrTextInfo Region="169, 406, 69, 21" Text="ERI5E" />
+                            <uc:OcrTextInfo Region="146, 406, 20, 20" Text="|ג" />
+                            <uc:OcrTextInfo Region="34, 408, 6, 14" Text="!" />
+                            <uc:OcrTextInfo Region="52, 406, 53, 20" Text="&quot;R|EP&quot;" />
+                            <uc:OcrTextInfo Region="108, 406, 37, 20" Text="22|" />
+                            <uc:OcrTextInfo Region="60, 440, 6, 12" Text="1" />
+                            <uc:OcrTextInfo Region="73, 437, 30, 16" Text="URL" />
+                            <uc:OcrTextInfo Region="105, 436, 28, 18" Text="es" />
+                            <uc:OcrTextInfo Region="136, 436, 16, 18" Text="$" />
+                            <uc:OcrTextInfo Region="152, 436, 42, 18" Text="7A" />
+                            <uc:OcrTextInfo Region="196, 436, 41, 17" Text="E120||" />
+                            <uc:OcrTextInfo Region="240, 436, 28, 18" Text="2/=" />
+                            <uc:OcrTextInfo Region="268, 436, 42, 18" Text="AHE4|" />
+                            <uc:OcrTextInfo Region="312, 436, 41, 18" Text="EA|S" />
+                            <uc:OcrTextInfo Region="384, 436, 29, 18" Text="cls" />
+                            <uc:OcrTextInfo Region="73, 457, 80, 17" Text="a34|E93" />
+                            <uc:OcrTextInfo Region="156, 456, 54, 18" Text="9A5" />
+                            <uc:OcrTextInfo Region="212, 457, 28, 17" Text="cA|" />
+                            <uc:OcrTextInfo Region="241, 457, 56, 18" Text="88o2" />
+                            <uc:OcrTextInfo Region="102, 492, 12, 18" Text="1" />
+                            <uc:OcrTextInfo Region="142, 493, 133, 12" Text="https://na-testing.notyetsecure.com" />
+                            <uc:OcrTextInfo Region="136, 513, 14, 9" Text="Ina" />
+                            <uc:OcrTextInfo Region="148, 514, 101, 10" Text="-testing.notyetsecure.com" />
+                            <uc:OcrTextInfo Region="249, 513, 17, 10" Text="8LS" />
+                            <uc:OcrTextInfo Region="330, 513, 10, 9" Text="X" />
+                            <uc:OcrTextInfo Region="154, 536, 24, 10" Text="egol" />
+                            <uc:OcrTextInfo Region="178, 536, 37, 10" Text="eee49," />
+                            <uc:OcrTextInfo Region="332, 534, 8, 12" Text="&gt;" />
+                            <uc:OcrTextInfo Region="154, 560, 34, 9" Text="Micresoft" />
+                            <uc:OcrTextInfo Region="188, 560, 28, 8" Text="Purview" />
+                            <uc:OcrTextInfo Region="332, 558, 8, 10" Text="&gt;" />
+                            <uc:OcrTextInfo Region="154, 581, 9, 10" Text="o(" />
+                            <uc:OcrTextInfo Region="164, 582, 29, 9" Text="AO(5S" />
+                            <uc:OcrTextInfo Region="193, 582, 16, 9" Text="qe" />
+                            <uc:OcrTextInfo Region="210, 581, 16, 10" Text="AS" />
+                            <uc:OcrTextInfo Region="226, 581, 16, 10" Text="ae" />
+                            <uc:OcrTextInfo Region="122, 598, 14, 18" Text="2" />
+                            <uc:OcrTextInfo Region="156, 602, 14, 10" Text="I.g" />
+                            <uc:OcrTextInfo Region="172, 604, 29, 8" Text="ME03" />
+                            <uc:OcrTextInfo Region="200, 604, 22, 9" Text="RAL^" />
+                            <uc:OcrTextInfo Region="248, 602, 30, 10" Text="648NIA1" />
+                            <uc:OcrTextInfo Region="277, 602, 42, 10" Text="SRPIMD" />
+                            <uc:OcrTextInfo Region="156, 624, 16, 9" Text="P/" />
+                            <uc:OcrTextInfo Region="172, 624, 8, 9" Text="9" />
+                            <uc:OcrTextInfo Region="180, 624, 22, 9" Text="ADoLS" />
+                            <uc:OcrTextInfo Region="204, 624, 22, 9" Text="4099" />
+                            <uc:OcrTextInfo Region="262, 624, 24, 10" Text="689" />
+                            <uc:OcrTextInfo Region="262, 641, 29, 9" Text="6IR5BA]" />
+                            <uc:OcrTextInfo Region="293, 641, 40, 10" Text="SRDlMa" />
+                            <uc:OcrTextInfo Region="154, 646, 9, 10" Text="©|" />
+                            <uc:OcrTextInfo Region="164, 646, 29, 10" Text="AO(EO" />
+                            <uc:OcrTextInfo Region="193, 646, 16, 10" Text="qe" />
+                            <uc:OcrTextInfo Region="210, 646, 16, 10" Text="SR" />
+                            <uc:OcrTextInfo Region="226, 648, 13, 9" Text="'" />
+                            <uc:OcrTextInfo Region="264, 660, 40, 12" Text="RBplec" />
+                            <uc:OcrTextInfo Region="192, 668, 24, 10" Text="ngs" />
+                            <uc:OcrTextInfo Region="154, 668, 36, 10" Text="CP/4ו" />
+                            <uc:OcrTextInfo Region="344, 701, 28, 16" Text="Q=" />
+                            <uc:OcrTextInfo Region="373, 701, 28, 16" Text="65" />
+                            <uc:OcrTextInfo Region="404, 701, 28, 16" Text="Sx|" />
+                          </scg:List>
+                        </uc:CVCache.OcrTexts>
+                      </uc:CVCache>
+                    </scg:List>
+                  </uc:CvCacheContainer.Caches>
+                </uc:CvCacheContainer>
+              </p:CVScope.DesignTimeCacheContainer>
+              <p:CVScope.OCREngine>
+                <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
+                  <ActivityFunc.Argument>
+                    <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                  </ActivityFunc.Argument>
+                  <p1:UiPathScreenOCR ApiKey="{x:Null}" Endpoint="{x:Null}" Output="{x:Null}" PredictionId="{x:Null}" Text="{x:Null}" UseAccents="{x:Null}" UseLocalServer="{x:Null}" ComputeSkewAngle="False" ExtractWords="True" sap:VirtualizedContainerService.HintSize="400,24.8" sap2010:WorkflowViewState.IdRef="UiPathScreenOCR_5" Image="[Image]" Language="en" NoopExecution="False" Profile="Screen" Scale="1" Timeout="100000" UseSeparateOcrProcess="True" />
+                </ActivityFunc>
+              </p:CVScope.OCREngine>
+              <p:CVScope.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="8deb09e2-4c6e-42cc-ad53-1413f9501480" InformativeScreenshot="5d78590a9b20e82e5749dad4de77a12b" Selector="&lt;wnd app='msedge.exe' cls='Chrome_WidgetWin_1' title='삼성생명-GA영업포탈시스템: 엣지브라우저 사용안내-edge - Work - Microsoft​ Edge' /&gt;&lt;ctrl name='삼성생명-GA영업포탈시스템: 엣지브라우저 사용안내-edge - Microsoft Edge' role='pane' /&gt;&lt;ctrl idx='2' role='pane' /&gt;" WaitForReady="INTERACTIVE">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                </ui:Target>
+              </p:CVScope.Target>
+              <p:CVScope.UseLocalServer>
+                <InArgument x:TypeArguments="x:Boolean" />
+              </p:CVScope.UseLocalServer>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </p:CVScope>
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.OCREngine>
+        <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
+          <ActivityFunc.Argument>
+            <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+          </ActivityFunc.Argument>
+        </ActivityFunc>
+      </uix:NApplicationCard.OCREngine>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="0, 0, 1920, 1020" BrowserType="Edge" ContentHash="JjL4iMJnOUGtLUPD2eDFRg" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAGgSURBVDhPnZBBSwJhEIa/0/4MIwgiugRleJClzhK0SFSHgqhu3vRSB5EgaIlAg/AHVBAEdYwKhDIsy8paDTeDgiIjXMN2U0NlYibdNtGoBh6Y75133lmW8aLM8aLs40VZ4UUZfkmmssMx62zCa51NwD+ZYxbPlWLxXME/UVjXtASIsCBDIJYFrVAmsEdtwHsN1RpZuiGvEdbhvID+uQS85kq6ESujFsE+L4N/+0nX1kNpQL8R1u44g93oCxn241nomZYI20wccJZ8zNMs/16Gt0IZzM4o6VVY6+QJqPnP61ZXFPBdxeaOkZ58zMHa3jP17uW7bx7WMnqkfyL2Rnwb96Qvbj5Av1uiXrrVvnlY81BID8D+MJ7V342qb+qCvAhrsh+AWvmB5oljGKxc+qlWd1KAewgzCUHYOkzTIHCagc6xMHSPh6nHwhl6kLbhEGj5EoE9ahTQ64hAVivW3AHScFYNQFa2UzSb8ie/ApAeR4SuabkSgT1qxmXE5jqngMsbVQ9Qak1/QMEAb53BbxExgDMJQZ9JCGbqGBqBXtzhPgCCgcz5+SY7kQAAAABJRU5ErkJggg==" InformativeScreenshot="ac78520d2e846ae9f5ec3a3fcb55897b.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/D_9FeN1nGEyAaVyMEqrQMQ" Selector="&lt;html app='msedge.exe' title='삼성생명 - GA영업포탈 로그인 관리' /&gt;" Url="[SSL_URL]" Version="V2">
+          <uix:TargetApp.Arguments>
+            <InArgument x:TypeArguments="x:String" />
+          </uix:TargetApp.Arguments>
+          <uix:TargetApp.WorkingDirectory>
+            <InArgument x:TypeArguments="x:String" />
+          </uix:TargetApp.WorkingDirectory>
+        </uix:TargetApp>
+      </uix:NApplicationCard.TargetApp>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </uix:NApplicationCard>
+    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" DisplayName="Edge 삼성생명 - GA영업포탈 로그인 관리(1)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="486.4,2360.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="04473ef6-4f7b-4145-97d6-301ce5da1526" Version="V2" WindowResize="Maximize">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="484.8,2158.4" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:String" Name="variable1" />
+              <Variable x:TypeArguments="x:String" Name="CurrentUrl" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="Delay_6">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </Delay>
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '사원번호'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_4" InteractionMode="SameAsCard" ScopeIdentifier="04473ef6-4f7b-4145-97d6-301ce5da1526" Text="[SSL_UID]" Version="V5">
+              <uix:NTypeInto.Target>
+                <uix:TargetAnchorable BrowserURL="nconnectplus.samsunglife.com/gasso/login" CVScreenId="cc121ee4-015a-4423-a7d5-4ddc82503ca4" ContentHash="VTaXHjsZV0S0TCrRAOiHuw" CvElementArea="1123, 391, 467, 64" CvType="InputBox" DesignTimeRectangle="1126, 394, 463, 62" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='uid' tag='INPUT' type='text' class='user02_id user_id' placeholder='사원번호 입력' aaname='' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="9156985f-3198-40cc-8d46-8c3bde3d914f" InformativeScreenshot="3b959549e67dc8d1f765375e658b644b.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/T1rNU2HPlkKk65vWlfolCA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='삼성생명 - GA영업포탈 로그인 관리' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target CVScreenId="cc121ee4-015a-4423-a7d5-4ddc82503ca4" CvElementArea="1123, 391, 467, 64" CvType="InputBox" DesignTimeRectangle="1176, 416, 75, 18" ElementType="Text" FuzzySelectorArgument="&lt;webctrl parentid='uid-section' tag='LABEL' type='' class='' aaname='사원번호' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='사원번호' /&gt;" Guid="fd32bb46-dab9-4bcb-9bed-4cf8749b72c3" SearchSteps="FuzzySelector, CV" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NTypeInto.Target>
+              <uix:NTypeInto.VerifyOptions>
+                <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                  <uix:VerifyExecutionTypeIntoOptions.Retry>
+                    <InArgument x:TypeArguments="x:Boolean" />
+                  </uix:VerifyExecutionTypeIntoOptions.Retry>
+                  <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                    <InArgument x:TypeArguments="x:Double" />
+                  </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                </uix:VerifyExecutionTypeIntoOptions>
+              </uix:NTypeInto.VerifyOptions>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </uix:NTypeInto>
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '비밀번호'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="SameAsCard" ScopeIdentifier="04473ef6-4f7b-4145-97d6-301ce5da1526" SecureText="[SSL_PW]" Version="V5">
+              <uix:NTypeInto.Target>
+                <uix:TargetAnchorable BrowserURL="nconnectplus.samsunglife.com/gasso/login" CVScreenId="baefe3ab-d24f-4621-a46e-bb35ffb8eecf" ContentHash="Gi460FvXhESNs-GRhwambQ" CvElementArea="1133, 476, 465, 64" CvTextArea="1182, 495, 367, 23" CvTextArgument="H|9#S 92,5+5xNI 20 8~12A(21" CvType="Button" DesignTimeRectangle="1135, 478, 462, 62" ElementType="InputBoxPassword" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='upwd' tag='INPUT' type='password' class='user02_pw user_pw' placeholder='영문,특수문자,숫자 혼합 8~12자리' aaname='' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="63d8de40-c134-499a-a223-e80114583dee" InformativeScreenshot="97101352f37700ab480c8e032a5cecc0.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/r1Ahq3ptqkWNah2bWXIYvA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='삼성생명 - GA영업포탈 로그인 관리' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target CVScreenId="baefe3ab-d24f-4621-a46e-bb35ffb8eecf" CvElementArea="1133, 476, 465, 64" CvTextArea="1182, 495, 75, 23" CvTextArgument="H|9#S" CvType="Button" DesignTimeRectangle="1185, 500, 75, 18" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='비밀번호' parentid='uid-section' tag='LABEL' type='' class='' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='비밀번호' /&gt;" Guid="af43a66d-453e-4bd9-b592-aa95968758ef" SearchSteps="FuzzySelector, CV" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NTypeInto.Target>
+              <uix:NTypeInto.VerifyOptions>
+                <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                  <uix:VerifyExecutionTypeIntoOptions.Retry>
+                    <InArgument x:TypeArguments="x:Boolean" />
+                  </uix:VerifyExecutionTypeIntoOptions.Retry>
+                  <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                    <InArgument x:TypeArguments="x:Double" />
+                  </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                </uix:VerifyExecutionTypeIntoOptions>
+              </uix:NTypeInto.VerifyOptions>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </uix:NTypeInto>
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '본인인증'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_3" InteractionMode="SameAsCard" ScopeIdentifier="04473ef6-4f7b-4145-97d6-301ce5da1526" Text="[SSL_OTP]" Version="V5">
+              <uix:NTypeInto.Target>
+                <uix:TargetAnchorable BrowserURL="nconnectplus.samsunglife.com/gasso/login" CVScreenId="baefe3ab-d24f-4621-a46e-bb35ffb8eecf" ContentHash="vY4An2IEDUKY-HgDkiPwPg" CvElementArea="1133, 550, 466, 66" CvType="Button" DesignTimeRectangle="1135, 553, 462, 62" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='ubirth' tag='INPUT' type='text' class='user02_birth user_birth' placeholder='추가인증(생년월일, 예:19950101)' aaname='' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="89dd490c-b08f-4e93-b38e-efff2f3bd730" InformativeScreenshot="38a6271aa0b49bec1242f03369978259.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/phP7NqPzLEmtJSF97Np_HQ" ScopeSelectorArgument="&lt;html app='msedge.exe' title='삼성생명 - GA영업포탈 로그인 관리' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target CVScreenId="baefe3ab-d24f-4621-a46e-bb35ffb8eecf" CvElementArea="1133, 550, 466, 66" CvTextArea="1182, 570, 75, 23" CvTextArgument="e99a" CvType="Button" DesignTimeRectangle="1185, 575, 75, 18" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='본인인증' parentid='uid-section' tag='LABEL' type='' class='' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='본인인증' /&gt;" Guid="fd300b8d-05bb-4043-94e3-5e579d762168" SearchSteps="FuzzySelector, CV" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NTypeInto.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </uix:NTypeInto>
+            <uix:NCheck Action="Check" DisplayName="Check/Uncheck 'unchecked'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NCheck_1" ScopeIdentifier="04473ef6-4f7b-4145-97d6-301ce5da1526" Version="V5">
+              <uix:NCheck.Target>
+                <uix:TargetAnchorable BrowserURL="nconnectplus.samsunglife.com/gasso/login" CVScreenId="7925c3db-7538-4561-a92b-30d846bfd814" ContentHash="-N5OofOLuk-4TEcFCfGHSg" DesignTimeRectangle="1155, 629, 118, 23" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='사원번호 저장' parentid='uid-section' tag='LABEL' /&gt;" Guid="8debff21-47b5-4b75-9015-86a227be2c69" InformativeScreenshot="8c29555f99b00eb12808e9b7fd89e8d7.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/Nki9YYsJC0-DBuQ4S-h5fA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='삼성생명 - GA영업포탈 로그인 관리' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+              </uix:NCheck.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </uix:NCheck>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '로그인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="04473ef6-4f7b-4145-97d6-301ce5da1526" Version="V5">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="nconnectplus.samsunglife.com/gasso/login" CVScreenId="d73d77c4-e26b-43fd-8e6a-bdc5fd60c44b" ContentHash="U0AxKRGOOkuRJBzBzTR5ow" CvElementArea="1133, 675, 465, 79" CvTextArea="1331, 702, 66, 23" CvTextArgument="eוوב" CvType="Button" DesignTimeRectangle="1135, 678, 462, 75" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='uidsso' tag='BUTTON' /&gt;" Guid="ef0be845-1fc1-4b34-bc2e-ce6e0bad8c8a" InformativeScreenshot="da600f30b80e6e6717409d3885f65d5c.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/nBsp29mNXE675FqApvrqqA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='삼성생명 - GA영업포탈 로그인 관리' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
+              </uix:NClick.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </uix:NClick>
+            <Delay Duration="00:00:10" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_1">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </Delay>
+            <uix:NCheckState DisplayName="Check App State '확인'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_2" ScopeIdentifier="04473ef6-4f7b-4145-97d6-301ce5da1526" Version="V5">
+              <uix:NCheckState.IfExists>
+                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,367.2" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_3" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="04473ef6-4f7b-4145-97d6-301ce5da1526" Version="V5">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable BrowserURL="ga.samsunglife.com/websquare/websquare.html" ContentHash="rYFPbvXWcE2n5L8Utd1fuA" DesignTimeRectangle="732, 662, 472, 50" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='확인' idx='2' tag='INPUT' type='button' /&gt;" Guid="4e37e98f-5901-48d9-81c5-e6b525b0e43d" InformativeScreenshot="880fd8ac6964e66f02e44ea1337c150c.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/rNduDNQd_02cyJt2EMeLWQ" ScopeSelectorArgument="&lt;html app='msedge.exe' title='삼성생명 - GA영업포탈시스템　　　　　　　　　　　　　　　_WebDRM[wDs]' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                    </uix:NClick.Target>
+                  </uix:NClick>
+                  <Delay Duration="00:00:10" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="Delay_2" />
+                </Sequence>
+              </uix:NCheckState.IfExists>
+              <uix:NCheckState.IfNotExists>
+                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </uix:NCheckState.IfNotExists>
+              <uix:NCheckState.Target>
+                <uix:TargetAnchorable BrowserURL="ga.samsunglife.com/websquare/websquare.html" ContentHash="vuPF746i5kC1nz34GLxvzQ" DesignTimeRectangle="732, 662, 472, 50" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='확인' idx='2' tag='INPUT' type='button' /&gt;" Guid="63ef294b-5f2b-445c-9b38-39210f117d29" InformativeScreenshot="880fd8ac6964e66f02e44ea1337c150c.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/G-FC0Qn5mUqOGlxU8uYjjQ" ScopeSelectorArgument="&lt;html app='msedge.exe' title='삼성생명 - GA영업포탈시스템　　　　　　　　　　　　　　　_WebDRM[wDs]' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+              </uix:NCheckState.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </uix:NCheckState>
+            <uix:NCheckState DisplayName="Check App State '최종 사용자 정보접속 계정000193083…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_3" ScopeIdentifier="04473ef6-4f7b-4145-97d6-301ce5da1526" Version="V5">
+              <uix:NCheckState.IfExists>
+                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인(2)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_4" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="04473ef6-4f7b-4145-97d6-301ce5da1526" Version="V5">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable BrowserURL="ga.samsunglife.com/websquare/websquare.html" ContentHash="6xhwwNarsEiWNvH-Uifueg" DesignTimeRectangle="1192, 727, 125, 37" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='확인' tag='INPUT' type='button' /&gt;" Guid="e055ee2e-fdca-450c-b1eb-296135562fb7" InformativeScreenshot="5eff24e24eaa7cba3a185398d259ea07.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/A1lGPaQW9kyeyLRaf08Aag" ScopeSelectorArgument="&lt;html app='msedge.exe' title='삼성생명 - GA영업포탈시스템　　　　　　　　　　　　　　　_WebDRM[wDs]' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                    </uix:NClick.Target>
+                  </uix:NClick>
+                  <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="Delay_3" />
+                </Sequence>
+              </uix:NCheckState.IfExists>
+              <uix:NCheckState.IfNotExists>
+                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </uix:NCheckState.IfNotExists>
+              <uix:NCheckState.Target>
+                <uix:TargetAnchorable BrowserURL="ga.samsunglife.com/websquare/websquare.html" ContentHash="W87yTDl1bUSQ8bdw0h0Bhw" DesignTimeRectangle="594, 379, 748, 410" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' tag='DIV' /&gt;" Guid="16a1e3e3-6a55-48ec-be2f-f67a80e9ec6a" InformativeScreenshot="a4b6f9aa8215b2ea310d67d3d24ac1fc.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/nNQVFNip20W00ZGVqyR0-Q" ScopeSelectorArgument="&lt;html app='msedge.exe' title='삼성생명 - GA영업포탈시스템　　　　　　　　　　　　　　　_WebDRM[wDs]' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+              </uix:NCheckState.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </uix:NCheckState>
+            <uix:NCheckState DisplayName="Check App State '최종 사용자 정보접속 계정000193083…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,679.2" sap2010:WorkflowViewState.IdRef="NCheckState_8" ScopeIdentifier="04473ef6-4f7b-4145-97d6-301ce5da1526" Version="V5">
+              <uix:NCheckState.IfExists>
+                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_8" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="04473ef6-4f7b-4145-97d6-301ce5da1526" Version="V5">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable BrowserURL="ga.samsunglife.com/websquare/websquare.html" ContentHash="GjRDftY_NUOnctOverKFUQ" DesignTimeRectangle="1192, 727, 125, 37" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='확인' tag='INPUT' type='button' /&gt;" Guid="9d482aab-7111-4e90-ba58-b1266ca9efe2" InformativeScreenshot="5eff24e24eaa7cba3a185398d259ea07.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/x-SjnjlYwkuC22h_n1H6nw" ScopeSelectorArgument="&lt;html app='msedge.exe' title='삼성생명 - GA영업포탈시스템　　　　　　　　　　　　　　　_WebDRM[8Mw]' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                    </uix:NClick.Target>
+                  </uix:NClick>
+                </Sequence>
+              </uix:NCheckState.IfExists>
+              <uix:NCheckState.IfNotExists>
+                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </uix:NCheckState.IfNotExists>
+              <uix:NCheckState.Target>
+                <uix:TargetAnchorable BrowserURL="ga.samsunglife.com/websquare/websquare.html" ContentHash="QFIS3CoahE6nedOo6myoAw" DesignTimeRectangle="594, 379, 748, 410" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' tag='DIV' /&gt;" Guid="541d225e-a844-4e7b-a7fe-fee56de109c4" InformativeScreenshot="a4b6f9aa8215b2ea310d67d3d24ac1fc.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/u529lWA8h0easPJBwUdgqw" ScopeSelectorArgument="&lt;html app='msedge.exe' title='삼성생명 - GA영업포탈시스템　　　　　　　　　　　　　　　_WebDRM[8Mw]' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+              </uix:NCheckState.Target>
+            </uix:NCheckState>
+            <uix:NCheckState DisplayName="Check App State '확인(3)'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_4" ScopeIdentifier="04473ef6-4f7b-4145-97d6-301ce5da1526" Version="V5">
+              <uix:NCheckState.IfExists>
+                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인(4)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_5" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="04473ef6-4f7b-4145-97d6-301ce5da1526" Version="V5">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable BrowserURL="ga.samsunglife.com/websquare/websquare.html" ContentHash="hdz4hwS3K0qiYD4ro3iFjA" DesignTimeRectangle="732, 662, 472, 50" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='확인' idx='2' tag='INPUT' type='button' /&gt;" Guid="aef27ca7-df1b-43ac-98b2-073656a55bf4" InformativeScreenshot="880fd8ac6964e66f02e44ea1337c150c.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/OWpmt74yxU21ns7zDewB2w" ScopeSelectorArgument="&lt;html app='msedge.exe' title='삼성생명 - GA영업포탈시스템　　　　　　　　　　　　　　　_WebDRM[D4q]' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                    </uix:NClick.Target>
+                  </uix:NClick>
+                </Sequence>
+              </uix:NCheckState.IfExists>
+              <uix:NCheckState.IfNotExists>
+                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </uix:NCheckState.IfNotExists>
+              <uix:NCheckState.Target>
+                <uix:TargetAnchorable BrowserURL="ga.samsunglife.com/websquare/websquare.html" ContentHash="4T1gqz-kUUiU5pxbhlhTTg" DesignTimeRectangle="732, 662, 472, 50" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='확인' idx='2' tag='INPUT' type='button' /&gt;" Guid="e7fbfca7-8883-435a-87a2-4f69e97e0aed" InformativeScreenshot="880fd8ac6964e66f02e44ea1337c150c.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/9EGUxCK3jEeXICPAEDRE9w" ScopeSelectorArgument="&lt;html app='msedge.exe' title='삼성생명 - GA영업포탈시스템　　　　　　　　　　　　　　　_WebDRM[D4q]' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+              </uix:NCheckState.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </uix:NCheckState>
+            <uix:NCheckState DisplayName="Check App State '확인(5)'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_6" ScopeIdentifier="04473ef6-4f7b-4145-97d6-301ce5da1526" Version="V5">
+              <uix:NCheckState.IfExists>
+                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인(6)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_7" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="04473ef6-4f7b-4145-97d6-301ce5da1526" Version="V5">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable BrowserURL="nconnectplus.samsunglife.com/gasso/authz" CVScreenId="3856665e-a56e-4f5a-98ce-46521989a185" ContentHash="Cm2XfT-L4UCNtI1xYB5umw" CvTextArea="947, 685, 40, 25" CvTextArgument="2321" CvType="Text" DesignTimeRectangle="732, 678, 475, 38" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ok-button' tag='BUTTON' /&gt;" Guid="e00f641b-feb1-4bcb-8590-22da87af9405" InformativeScreenshot="9fb78ebdece32ca33571cfd4ea971e11.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/i8cOxl-pfEG60q37P1C2Xg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='삼성생명 - GA영업포탈 로그인 관리' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
+                    </uix:NClick.Target>
+                  </uix:NClick>
+                  <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="Delay_5" />
+                </Sequence>
+              </uix:NCheckState.IfExists>
+              <uix:NCheckState.IfNotExists>
+                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </uix:NCheckState.IfNotExists>
+              <uix:NCheckState.Target>
+                <uix:TargetAnchorable BrowserURL="nconnectplus.samsunglife.com/gasso/authz" CVScreenId="3856665e-a56e-4f5a-98ce-46521989a185" ContentHash="PeCtuy3H5Ei8ayXR28_VoA" CvTextArea="947, 685, 40, 25" CvTextArgument="2321" CvType="Text" DesignTimeRectangle="732, 678, 475, 38" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ok-button' tag='BUTTON' /&gt;" Guid="581237a2-3c3f-44ae-84df-e0478b193fa7" InformativeScreenshot="cb11c4a10a8c50f13eddef6904ed4d89.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/nZyf2P6_Rk28DydGS0Lw4A" ScopeSelectorArgument="&lt;html app='msedge.exe' title='삼성생명 - GA영업포탈 로그인 관리' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
+              </uix:NCheckState.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </uix:NCheckState>
+            <uix:NGetUrl CurrentUrl="[WEB_URL]" DisplayName="Get URL" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NGetUrl_1" ScopeIdentifier="04473ef6-4f7b-4145-97d6-301ce5da1526" Version="V5" />
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_NewContrast - Invoke Workflow File (Workflows\SamsungLifeInsurance\Download\Download_NewContrast.xaml)" sap:VirtualizedContainerService.HintSize="451.2,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Workflows\SamsungLifeInsurance\Download\Download_NewContract.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InArgument x:TypeArguments="x:String" x:Key="in_BrowserUrl">[WEB_URL]</InArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_ExistingContract - Invoke Workflow File (Workflows\SamsungLifeInsurance\Download\Download_ExistingContract.xaml)" sap:VirtualizedContainerService.HintSize="451.2,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Workflows\SamsungLifeInsurance\Download\Download_ExistingContract.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InArgument x:TypeArguments="x:String" x:Key="in_BrowserUrl">[WEB_URL]</InArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
+            <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts '유지관리리스트GPSIC305M대외비GA사업…'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,320" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_1" InteractionMode="HardwareEvents" ScopeIdentifier="04473ef6-4f7b-4145-97d6-301ce5da1526" Shortcuts="[d(hk)][d(ctrl)]w[u(ctrl)][u(hk)]" Version="V5">
+              <uix:NKeyboardShortcuts.Target>
+                <uix:TargetAnchorable BrowserURL="ga.samsunglife.com/websquare/websquare.html" ContentHash="apcHgthllkiWgNtYu4Cogg" DesignTimeRectangle="14, 253, 1893, 754" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;div&amp;gt;section&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='2' tag='DIV' /&gt;" Guid="a00a8247-63ba-4ee5-826d-fa80cadc07d1" InformativeScreenshot="1e8f23b48cf6f6478253b62ee65c8101.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/584ddlku0U-2117Vt1bGaA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='삼성생명 - GA영업포탈시스템　　　　　　　　　　　　　　　_WebDRM[zg5]' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+              </uix:NKeyboardShortcuts.Target>
+            </uix:NKeyboardShortcuts>
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.OCREngine>
+        <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
+          <ActivityFunc.Argument>
+            <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+          </ActivityFunc.Argument>
+        </ActivityFunc>
+      </uix:NApplicationCard.OCREngine>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="-9, -9, 1938, 1038" BrowserType="Edge" ContentHash="eRLgD7MpsEm4rOvksHwCGA" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAGgSURBVDhPnZBBSwJhEIa/0/4MIwgiugRleJClzhK0SFSHgqhu3vRSB5EgaIlAg/AHVBAEdYwKhDIsy8paDTeDgiIjXMN2U0NlYibdNtGoBh6Y75133lmW8aLM8aLs40VZ4UUZfkmmssMx62zCa51NwD+ZYxbPlWLxXME/UVjXtASIsCBDIJYFrVAmsEdtwHsN1RpZuiGvEdbhvID+uQS85kq6ESujFsE+L4N/+0nX1kNpQL8R1u44g93oCxn241nomZYI20wccJZ8zNMs/16Gt0IZzM4o6VVY6+QJqPnP61ZXFPBdxeaOkZ58zMHa3jP17uW7bx7WMnqkfyL2Rnwb96Qvbj5Av1uiXrrVvnlY81BID8D+MJ7V342qb+qCvAhrsh+AWvmB5oljGKxc+qlWd1KAewgzCUHYOkzTIHCagc6xMHSPh6nHwhl6kLbhEGj5EoE9ahTQ64hAVivW3AHScFYNQFa2UzSb8ie/ApAeR4SuabkSgT1qxmXE5jqngMsbVQ9Qak1/QMEAb53BbxExgDMJQZ9JCGbqGBqBXtzhPgCCgcz5+SY7kQAAAABJRU5ErkJggg==" InformativeScreenshot="335448d86850d8ef09e60010ba8100c9.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/3QXq0XsCNUiSYPup5Z21jA" Selector="&lt;html app='msedge.exe' title='삼성생명 - GA영업포탈 로그인 관리' /&gt;" Url="[SSL_URL]" Version="V2">
+          <uix:TargetApp.Arguments>
+            <InArgument x:TypeArguments="x:String" />
+          </uix:TargetApp.Arguments>
+          <uix:TargetApp.WorkingDirectory>
+            <InArgument x:TypeArguments="x:String" />
+          </uix:TargetApp.WorkingDirectory>
+        </uix:TargetApp>
+      </uix:NApplicationCard.TargetApp>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </uix:NApplicationCard>
+    <uix:NCheckState DisplayName="Check App State 'pane'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="486.4,48" sap2010:WorkflowViewState.IdRef="NCheckState_5" Version="V5">
+      <uix:NCheckState.IfExists>
+        <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_11">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Edge 삼성생명-GA영업포탈시스템 엣지브라우저 사용안내-edge" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="451.2,438.4" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="DebuggerApi" ScopeGuid="3895fad1-1e10-4fde-9166-098e024ea646" Version="V2">
+            <uix:NApplicationCard.Body>
+              <ActivityAction x:TypeArguments="x:Object">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Close'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_6" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="3895fad1-1e10-4fde-9166-098e024ea646" Version="V5">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable BrowserURL="ga.samsunglife.com/gapopup.html" CVScreenId="cdaed593-ae0f-422a-b76f-30aed52253c6" ContentHash="PyLqHCv4iUOO4lQFzVQYMQ" CvElementArea="567, 7, 24, 23" CvType="CloseButton" DesignTimeRectangle="552, 2, 58, 38" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='삼성생명-GA영업포탈시스템: 엣지브라우저 사용안내-edge - Microsoft Edge' role='pane' /&gt;&lt;ctrl name='Close' role='push button' /&gt;" Guid="400c15d0-3f26-4154-940e-ca7a85b8085b" InformativeScreenshot="5e70f9518237fec770bf55dd6945199d.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/Q97w-pUB_U-JQZlSTVGKHQ" ScopeSelectorArgument="&lt;wnd app='msedge.exe' cls='Chrome_WidgetWin_1' title='삼성생명-GA영업포탈시스템: 엣지브라우저 사용안내-edge - Work - Microsoft​ Edge' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
+                    </uix:NClick.Target>
+                  </uix:NClick>
+                </Sequence>
+              </ActivityAction>
+            </uix:NApplicationCard.Body>
+            <uix:NApplicationCard.OCREngine>
+              <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
+                <ActivityFunc.Argument>
+                  <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                </ActivityFunc.Argument>
+              </ActivityFunc>
+            </uix:NApplicationCard.OCREngine>
+            <uix:NApplicationCard.TargetApp>
+              <uix:TargetApp Area="1258, 56, 618, 964" BrowserType="Edge" ContentHash="ONPfeK78yUmaQ3iCdaro9Q" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAhMSURBVFhHndnVr3RLEcbhH+7uDsFdAsHt4B4ggcAF7u7u7u7B3d3dXQMk6A38A3BHuIE8Q/XOOvPtnI99Kll71qxZ3f1W1VvSvetYOWV12urUe89PVV2sunn1sOol1furb1R/qv5Z/Weuf1S/qj5Zvad6U/XU6sbVafbmJdbz3NpHklPM4PNUV69uW92nekr1+uqz1Q+qX8z1ywHm/nvVlwbkO6vnVfecec5fnXnm/r8FmH0NzlhdvrpL9czqtdVrqleN9RY4QF9ZPW0u9x+rvlt9u/pI9brqRfP7g6s7VFesTr+3Jk/t4ziQ7Q8GXrm691iLK39WfW0WZx3gvlk9t7p+de653D9n3v159ZUBSZGvVp8eRXnjsps1yTEA99Ey+yXHnU8Y/nyg+ui46wsDlnU+V724uuUet9wbz2oU+HH1rRlLuQ9V7x2PPLS6YXWp8dhWePUY0l64um/1tuqLA+wZ1R3n4iYAWYLbWQun9kVA3bV6Y/WT6kcDCA89f9Jwc7n/QdVlNuOB2wXq6eYBSwJ7veoVo7nLvegz4KzDH8A/XN1uMyHxzk7rkQvOwpRh8cfPM166TvXs6vOzzhuqWw211hzcvQMI3DknIHDuLdUHqxeM+84yA85bPXpcTWscPZ7caCzFvY+bjEAAofgLq09N0D18Auds884OKHBAXqm6V/XyccuTZ4Izzcusd+v5nfWkDWOOJ1cbEHj3/KHE4r1UY06GePdQAAaGOlEeBoK7BMSXq7dOhNGG9XAMkQXNu8a6AN6sumh1keHuJeZy7+LOm0yUs5B5Wela89vZq2tWjxiA1mYcXJcNDgQA0fSd6g8TYQ+sbjELIPVjhydILapZ8v6j2G2q21d3nsu9Zy4B97JR6uMTfE+s7lbddCwINAV+N3mTIa66vIcLsjvCqgR/GQAIDaRPqeQdwz25DEjWZhm/46VJ0cLl/jHzKR/Ko8YIFhnAPQUpTUlzAKhk/mYSPeVkgh2Jhb4BX59oe/tkfBNwpe8iV/nyjgW4gmXwBwifUpDLvXG4RzmVh1eAk9xZiUuNe+SUToH00+qH4ymW572ePpaQTvwgwxvIAg8Y6yCvqmByn6KcxVmLu1jAp9zmcr++i1yWZACJfVUfawEHiDUoBqTmggXNrSnZaWZB2iIrbuCcWikIcMRCLGhylYBlvYPM3nPh3fb+TvM7V6kq8qG1JG0pBwB574R5/+6T4swt2lmdl3aR876pCiZSci5eXWiCR7QZrH6qq/iEFiLXOz7X/fZa0W38BarrVq8egPIeQ3h+vs37q51TuaQl5XE3gFVYSbDslz4i2kSgZoF2Fj2qGIOXeGa9Hb8OEQaCheH+6sHfh1c4Q4vDhMVYUK+He5L2UUXOw21zsKC8epioNLB8fxrf/jVWxIlVhvYFV7RXvx8LKotb2e+IDntmjOg2h7mU0MPkXIOFpf/tgRb91xPqJlGglRnXukdiVv7jRJuavN5RJs+w+b4uz/y2vhtjrDmkKnNu11gXDLCwNGy7P74sgNuXtwBNugCy9MkBKCeeFED35xgsjLYDyIzMyawnqn8b4Y7lYm46uS5Gj+VitDlMKA8L2qHfjogqBGLS8jARJIjN0pI6wh9VBNYqp+Yy52Ei1YhilPqbB2ovjTy89P7bI9KM1LDSjLx1VJHztmnGnPuikb3GWNA7tgq7sqPTkBx1LzSQboCQRE0sUdPa5EqhpOu53CYZr/e31zaB+5RWNLmUNJc5jVcMvKM4MJDu6FlTPBhu15XI8CyjzGgYDUZiZQhXaKTUAbhasdVOKWfK2n6pW/d+X+2a/Y1qpNTxmDKqnHrPO9ZVbgWi8mutXS8mahRoHYa2yguPmkKuoCvsyg7+KPi6GA2CRmC/OVjfVwNBOdyzoHYLQPzSgGgSNCQaE0mcd6ylccF1jcyOC/ebwqzVET26CqCBM1AXrUXSLGiZVschbWgycGu/3VotGGXMrUWTXgQkb2jhjGNZrZ3vWj3v6Hy0gLtAwjlNgu5BsyhPaR5ZB3ATGGCBtd10r2kAYtucbhtW1mFFlkCjtXHX9PIS5bZNsSZZwPISDuoLdqcO2mrtNdew0m8HoF4MR1hY58Fd2nVNg6BiGRRYXDys5Ud4HTMFAbDZothq1zQMAhNIfLPdsO14yATogUjQiL42TVyImzY0Mrsos9HxzMaHAixjAZG4NknbTdOKbkHAlQCiDmuJaNFrQ2ZjZoNmXmvDwKNrN7kTZeYK0zBKBQDiDwvaGhKVwZZRtOvVcM+W8nhiawqgMS+drLC6ISBsbdECT1laFjFm7dcPdvE2y7RZOyy5CkhEXSdQyhBuIrnAMfnx5Cqj9CcmM6yOieLcaw2UEeUMZE+sLK79+v+OFwYoIDQU6hK4lIKw155GljsFgEiUKhyDbJvX/aMP9/iIe3Kf91nPc4qzmMBbRyyOXbYHmTuA3Lud1AEO0tLaxHgjgJBa6HuuBEna+OL5YY2uSnODUXBtN0XuOoSS4yRuwAWfgMPdrey6+y044ghM243IIllCFWHAqo8OeyRtp1U0Bxipt6elJuYJgHhBZHoXNaQZwAQN3vGI8Y789k9cjzknXO5ecrnRTIb/zFjCp5wm4lZVkA9Zax1guhcYQEnuairlJGG1mDWlG5xzALU9Zd1v0w7kMIAGiii1En8chIteVgOSZWR/uXF7BCzprz2w6iToPKMoj9hBOlaWOfYPLeHY9+pJCrOLOIlTWrnHWAc3RTpL2uAAo19UCdYFHKCCTumU77hTlRDN5j4SGEIDHNrnAxFQoo8l3zzctNvTnmt8178h/Eviz8NVXFN18NmeV2nd95R5rXeMe/8L+zIXclTupfwAAAAASUVORK5CYII=" InformativeScreenshot="648596896858577e7ae34c9ae864faba.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/uu-XF5Iy9kKZXGToATdmRQ" Selector="&lt;html app='msedge.exe' title='삼성생명-GA영업포탈시스템: 엣지브라우저 사용안내-edge' /&gt;" Url="https://ga.samsunglife.com/gapopup.html" Version="V2" />
+            </uix:NApplicationCard.TargetApp>
+          </uix:NApplicationCard>
+        </Sequence>
+      </uix:NCheckState.IfExists>
+      <uix:NCheckState.IfNotExists>
+        <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_12">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Sequence>
+      </uix:NCheckState.IfNotExists>
+      <uix:NCheckState.Target>
+        <uix:TargetAnchorable ContentHash="PMb9RARwo0aZ2k6Yy-NI5g" DesignTimeRectangle="10, 0, 600, 955" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='삼성생명-GA영업포탈시스템: 엣지브라우저 사용안내-edge - Microsoft Edge' role='pane' /&gt;&lt;ctrl idx='3' role='pane' /&gt;" Guid="8331a474-1f1d-4d90-a06d-5f902dc80f71" InformativeScreenshot="f0b30138e68d5266cf26cb5d8b6e4e0f.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/5f-Y_9EBZU-2uAht4gxy0Q" ScopeSelectorArgument="&lt;wnd app='msedge.exe' cls='Chrome_WidgetWin_1' title='삼성생명-GA영업포탈시스템: 엣지브라우저 사용안내-edge - Work - Microsoft​ Edge' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+      </uix:NCheckState.Target>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </uix:NCheckState>
+  </Sequence>
+</Activity>
