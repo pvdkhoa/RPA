@@ -1,4 +1,11 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="BNP_Main" VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="BNP_Main_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="BNP_Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="contractType" Type="InArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>BNP_Main_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -36,6 +43,8 @@
       <x:String>System.Security</x:String>
       <x:String>System.ComponentModel</x:String>
       <x:String>System.Reflection</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Models</x:String>
+      <x:String>System.Linq.Expressions</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -83,9 +92,19 @@
       <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
       <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="BNP_Main" sap:VirtualizedContainerService.HintSize="879.2,6739.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="BNP_Main" sap:VirtualizedContainerService.HintSize="855.6,4270.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="CDL_OTP" />
       <Variable x:TypeArguments="ss:SecureString" Name="CDL_PW" />
@@ -97,31 +116,31 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="CDL_AST_URL" CacheStrategy="None" DisplayName="Get Asset" FolderPath="openga_rpa_1@quintet.co.kr's workspace" sap:VirtualizedContainerService.HintSize="879.2,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="CDL_AST_URL" CacheStrategy="None" DisplayName="Get Asset" FolderPath="openga_rpa_1@quintet.co.kr's workspace" sap:VirtualizedContainerService.HintSize="505.6,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
       <ui:GetRobotAsset.Value>
         <OutArgument x:TypeArguments="x:String">[CDL_URL]</OutArgument>
       </ui:GetRobotAsset.Value>
     </ui:GetRobotAsset>
-    <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="CDL_AST_LOGIN" CacheStrategy="None" DisplayName="Get Credential" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="879.2,175.2" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[CDL_PW]" Username="[CDL_UID]" />
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome BNP 파리바 카디프생명" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="879.2,6365.6" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V2" WindowResize="Maximize">
+    <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="CDL_AST_LOGIN" CacheStrategy="None" DisplayName="Get Credential" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="505.6,175.2" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[CDL_PW]" Username="[CDL_UID]" />
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome BNP 파리바 카디프생명" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="505.6,3896.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V2" WindowResize="Maximize">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="877.6,6172" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="504,3703.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="844,122.4" sap2010:WorkflowViewState.IdRef="Delay_3" />
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '당사인증'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="844,193.6" sap2010:WorkflowViewState.IdRef="NClick_7" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
+            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="470.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_3" />
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '당사인증'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="470.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_7" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/login/loginForm.do" CVScreenId="978c7443-e32e-4c15-aedc-c37491e26ff7" ContentHash="5jwEQ7rmxkKPh45FCCpPKg" CvElementArea="698, 586, 263, 58" CvTextArea="794, 605, 71, 21" CvTextArgument="BAbDIE" CvType="Button" DesignTimeRectangle="701, 587, 259, 55" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='당사인증' parentid='loginForm' tag='A' /&gt;" Guid="b324f810-f8f4-4e6f-93ac-65ea370adb9d" InformativeScreenshot="6cd17c78f0b439475e63d39c6fd6df82.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/4GaBRloBDU664SNeyKBk3A" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
-            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'B73C'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="844,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="HardwareEvents" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Text="[CDL_UID]" Version="V5">
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'B73C'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="470.4,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="HardwareEvents" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Text="[CDL_UID]" Version="V5">
               <uix:NTypeInto.Target>
                 <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/login/loginForm.do" CVScreenId="b883ec22-8962-458b-9708-a15bdec3bdd4" ContentHash="hR0F3v6K90GjolmbnbOHUQ" CvElementArea="701, 654, 526, 52" CvType="InputBox" DesignTimeRectangle="701, 652, 525, 53" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='user_id' tag='INPUT' type='text' class='' placeholder='설계사코드' aaname='설계사코드' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="087a5822-b969-4728-a164-55c9cd532ebe" InformativeScreenshot="35ec5f02ff601b35dbfaa0efe4f2f695.jpg" IsResponsive="True" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/sx9f1rCULECeeIX4ibYEag" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
                   <uix:TargetAnchorable.Anchors>
@@ -132,7 +151,7 @@
                 </uix:TargetAnchorable>
               </uix:NTypeInto.Target>
             </uix:NTypeInto>
-            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '89W5'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="844,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="HardwareEvents" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" SecureText="[CDL_PW]" Version="V5">
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '89W5'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="470.4,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="HardwareEvents" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" SecureText="[CDL_PW]" Version="V5">
               <uix:NTypeInto.Target>
                 <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/login/loginForm.do" CVScreenId="c89abdb4-2aa4-4ee1-8276-1742cfafd11e" ContentHash="1LG9lTasnkuXPi_3x0JcPA" CvTextArea="719, 726, 73, 22" CvTextArgument="8|9W5" CvType="Text" DesignTimeRectangle="701, 712, 525, 53" ElementType="InputBoxPassword" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='user_password' tag='INPUT' /&gt;" Guid="db33fa0e-b0c1-4ee3-a4dc-925376411f05" InformativeScreenshot="69b0bcc6159681e027c255de269bdb7b.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/95ssfP_kuEyTNpMqBkLiTA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
                   <uix:TargetAnchorable.Anchors>
@@ -143,18 +162,18 @@
                 </uix:TargetAnchorable>
               </uix:NTypeInto.Target>
             </uix:NTypeInto>
-            <uix:NCheck Action="Check" DisplayName="Check/Uncheck 'Checkbox'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="844,194.4" sap2010:WorkflowViewState.IdRef="NCheck_1" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
+            <uix:NCheck Action="Check" DisplayName="Check/Uncheck 'Checkbox'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,194.4" sap2010:WorkflowViewState.IdRef="NCheck_1" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
               <uix:NCheck.Target>
                 <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/login/loginForm.do" CVScreenId="c2668123-9367-4a35-8c67-5ba479c38d43" ContentHash="MNr8H67u4E-QEH4h5r2kKg" CvElementArea="698, 653, 29, 29" CvTextArea="727, 657, 88, 20" CvTextArgument="00c AE" CvType="CheckBox" DesignTimeRectangle="701, 651, 114, 25" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl tag='LABEL' /&gt;" Guid="da5d1843-3588-427a-b20c-48cdfe2b8742" InformativeScreenshot="929d038308806511a025042284900e9c.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/bfAMRQ7smkyr1di-K04MzQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NCheck.Target>
             </uix:NCheck>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '로그인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="844,193.6" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '로그인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/login/loginForm.do" CVScreenId="26322fb9-8959-48a6-a842-487463056482" ContentHash="-7SgYSf9F0iDJCIwhtp4kg" CvElementArea="700, 700, 526, 62" CvTextArea="929, 719, 66, 26" CvTextArgument="ج1مl" CvType="Button" DesignTimeRectangle="701, 701, 525, 60" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='btnActionLogin' tag='BUTTON' /&gt;" Guid="312f8b77-48cd-4bae-b318-c9e7dac00d30" InformativeScreenshot="a95817197f519fc6458158660e0ec469.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/8pnCb9f-7kq5aZEOd6NKgg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
-            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="844,122.4" sap2010:WorkflowViewState.IdRef="Delay_1" />
-            <uix:NCheckState DisplayName="Check App State 'ga.cardif.co.kr says OT…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="844,679.2" sap2010:WorkflowViewState.IdRef="NCheckState_6" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_1" />
+            <uix:NCheckState DisplayName="Check App State 'ga.cardif.co.kr says OT…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_6" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
               <uix:NCheckState.IfExists>
                 <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_13">
                   <sap:WorkflowViewStateService.ViewState>
@@ -181,8 +200,14 @@
               <uix:NCheckState.Target>
                 <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/login/loginForm.do" ContentHash="OzbE6A8fk0CNkwtQ5fatuw" DesignTimeRectangle="680, 107, 578, 201" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='ga.cardif.co.kr says' role='dialog' /&gt;&lt;ctrl idx='2' role='pane' /&gt;" Guid="7f819c85-7254-48e3-bed2-2f273e7ae88c" InformativeScreenshot="d87d29770f817c7e20b151d896700a4f.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/cJmIX_oZ802A0cEF0CsxXg" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='BNP 파리바 카디프생명 - Google Chrome' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NCheckState.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
             </uix:NCheckState>
-            <uix:NCheckState DisplayName="Check App State 'ga.cardif.co.kr 내용 OTP…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="844,1905.6" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
+            <uix:NCheckState DisplayName="Check App State 'ga.cardif.co.kr 내용 OTP…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
               <uix:NCheckState.IfExists>
                 <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="484.8,1471.2" sap2010:WorkflowViewState.IdRef="Sequence_3">
                   <sap:WorkflowViewStateService.ViewState>
@@ -285,12 +310,12 @@
               </uix:NCheckState.Target>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </uix:NCheckState>
-            <uix:NCheckState DisplayName="Check App State '공지사항[공지] 포인트몰 상품 취소 안내이…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="844,679.2" sap2010:WorkflowViewState.IdRef="NCheckState_3" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
+            <uix:NCheckState DisplayName="Check App State '공지사항[공지] 포인트몰 상품 취소 안내이…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="470.4,679.2" sap2010:WorkflowViewState.IdRef="NCheckState_3" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
               <uix:NCheckState.IfExists>
                 <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_7">
                   <sap:WorkflowViewStateService.ViewState>
@@ -324,7 +349,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </uix:NCheckState>
-            <uix:NCheckState DisplayName="Check App State '공지사항[공지] 3월 심사마감 안내 서소영…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="844,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_4" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
+            <uix:NCheckState DisplayName="Check App State '공지사항[공지] 3월 심사마감 안내 서소영…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="470.4,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_4" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
               <uix:NCheckState.IfExists>
                 <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_9">
                   <sap:WorkflowViewStateService.ViewState>
@@ -358,7 +383,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </uix:NCheckState>
-            <uix:NCheckState DisplayName="Check App State 'DIV popupActive'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="844,679.2" sap2010:WorkflowViewState.IdRef="NCheckState_5" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
+            <uix:NCheckState DisplayName="Check App State 'DIV popupActive'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="470.4,679.2" sap2010:WorkflowViewState.IdRef="NCheckState_5" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
               <uix:NCheckState.IfExists>
                 <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_11">
                   <sap:WorkflowViewStateService.ViewState>
@@ -392,18 +417,50 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </uix:NCheckState>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_NewContract - Invoke Workflow File (Workflows\BNPParibasCardifInsurance\Download\Download_NewContract.xaml)" sap:VirtualizedContainerService.HintSize="844,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Workflows\BNPParibasCardifInsurance\Download\Download_NewContract.xaml">
-              <ui:InvokeWorkflowFile.Arguments>
-                <scg:Dictionary x:TypeArguments="x:String, Argument" />
-              </ui:InvokeWorkflowFile.Arguments>
-            </ui:InvokeWorkflowFile>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_ExistingContract - Invoke Workflow File (Workflows\BNPParibasCardifInsurance\Download\Download_ExistingContract.xaml)" sap:VirtualizedContainerService.HintSize="844,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Workflows\BNPParibasCardifInsurance\Download\Download_ExistingContract.xaml">
-              <ui:InvokeWorkflowFile.Arguments>
-                <scg:Dictionary x:TypeArguments="x:String, Argument" />
-              </ui:InvokeWorkflowFile.Arguments>
-            </ui:InvokeWorkflowFile>
-            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="844,122.4" sap2010:WorkflowViewState.IdRef="Delay_5" />
-            <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts '청약청약 현황 조회수정심사진행상태조회계약…'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,320" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_1" InteractionMode="HardwareEvents" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Shortcuts="[d(hk)][d(ctrl)]w[u(ctrl)][u(hk)]" Version="V5">
+            <If Condition="[contractType = &quot;NEW&quot;]" sap:VirtualizedContainerService.HintSize="470.4,354.4" sap2010:WorkflowViewState.IdRef="If_1">
+              <If.Then>
+                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,108" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_NewContract - Invoke Workflow File (Workflows\BNPParibasCardifInsurance\Download\Download_NewContract.xaml)" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Workflows\BNPParibasCardifInsurance\Download\Download_NewContract.xaml">
+                    <ui:InvokeWorkflowFile.Arguments>
+                      <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                    </ui:InvokeWorkflowFile.Arguments>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:InvokeWorkflowFile>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,108" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_ExistingContract - Invoke Workflow File (Workflows\BNPParibasCardifInsurance\Download\Download_ExistingContract.xaml)" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Workflows\BNPParibasCardifInsurance\Download\Download_ExistingContract.xaml">
+                    <ui:InvokeWorkflowFile.Arguments>
+                      <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                    </ui:InvokeWorkflowFile.Arguments>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:InvokeWorkflowFile>
+                </Sequence>
+              </If.Else>
+            </If>
+            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="470.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_5" />
+            <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts '청약청약 현황 조회수정심사진행상태조회계약…'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="470.4,320" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_1" InteractionMode="HardwareEvents" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Shortcuts="[d(hk)][d(ctrl)]w[u(ctrl)][u(hk)]" Version="V5">
               <uix:NKeyboardShortcuts.Target>
                 <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/cuntmgr/cuntMgrDB.do" ContentHash="Nagd5rR3gEmiQjqMOhh6Ig" DesignTimeRectangle="9, 223, 1908, 132" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='header_wrap' parentid='header' tag='DIV' /&gt;" Guid="493cacdd-8468-4527-bfb5-4301c48f8a71" InformativeScreenshot="a619085354bf3134eb3dafa64b1d3813.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/pQzmCQwClEyRFEsQiNDAZw" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NKeyboardShortcuts.Target>
