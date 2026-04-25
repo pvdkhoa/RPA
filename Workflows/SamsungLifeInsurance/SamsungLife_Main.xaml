@@ -50,6 +50,11 @@
       <x:String>System.Linq.Expressions</x:String>
       <x:String>UiPath.UIAutomationNext.Contracts</x:String>
       <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>UiPath.Vision.OCR</x:String>
+      <x:String>UiPath.OCR.Contracts</x:String>
+      <x:String>UiPath.OCR.Activities</x:String>
+      <x:String>UiPath.OCR.Contracts.Activities</x:String>
+      <x:String>UiPath.Shared.Telemetry</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -109,9 +114,13 @@
       <AssemblyReference>System.Memory.Data</AssemblyReference>
       <AssemblyReference>NPOI.Core</AssemblyReference>
       <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Core</AssemblyReference>
+      <AssemblyReference>UiPath.Vision.Core</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Contracts</AssemblyReference>
+      <AssemblyReference>UiPath.Python.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="SamsungLife_Main" sap:VirtualizedContainerService.HintSize="855.6,2744.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="SamsungLife_Main" sap:VirtualizedContainerService.HintSize="847.6,3606.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="WEB_URL" />
       <Variable x:TypeArguments="x:String" Name="SSL_URL" />
@@ -135,265 +144,288 @@
       </ui:GetRobotAsset.Value>
     </ui:GetRobotAsset>
     <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="SSL_AST_LOGIN" CacheStrategy="None" DisplayName="Get Credential" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="486.4,175.2" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[SSL_PW]" Username="[SSL_UID]" />
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Edge 삼성생명 - GA영업포탈 로그인 관리" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" InteractionMode="DebuggerApi" ScopeGuid="6a8b7948-80f5-4016-bf9f-12781ed83c86" Version="V2">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Edge 삼성생명 - GA영업포탈 로그인 관리" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="486.4,918.4" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" InteractionMode="DebuggerApi" ScopeGuid="6a8b7948-80f5-4016-bf9f-12781ed83c86" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,230.4" sap2010:WorkflowViewState.IdRef="Sequence_20">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="484.8,716" sap2010:WorkflowViewState.IdRef="Sequence_20">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_7" />
-            <p:CVScope ContinueOnError="{x:Null}" DelayBefore="{x:Null}" ScopeId="{x:Null}" ScrollOffset="{x:Null}" Server="{x:Null}" CvMethod="ElementDetection, OCR" DesignTimeCacheId="c736451f-69d3-4b23-90af-63f19099a2bf" DisplayName="CV Screen Scope 'pane'" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="CVScope_5" SendOnPremData="False" Version="V6">
-              <p:CVScope.Body>
-                <ActivityAction x:TypeArguments="x:Object">
-                  <ActivityAction.Argument>
-                    <DelegateInArgument x:TypeArguments="x:Object" Name="CVSessionData" />
-                  </ActivityAction.Argument>
-                  <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_21">
-                    <p:CvClickWithDescriptor DelayBefore="{x:Null}" DelayMS="{x:Null}" DelayScreenshotAfterScroll="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" Descriptor="[&quot;Target: CloseButton (446,5,19,18)&quot; +&#xA;&quot;Anchor: MaximizeButton (399,4,20,20)&quot;]" DesignTimeCacheId="c736451f-69d3-4b23-90af-63f19099a2bf" DesignTimeScaleFactor="1.25" DisplayName="CV Click - 'CloseButton'" sap:VirtualizedContainerService.HintSize="400,209.6" sap2010:WorkflowViewState.IdRef="CvClickWithDescriptor_2" InformativeScreenshot="1a828394c784ca3ad7144786efc9358a" KeyModifiers="None" MouseButton="BTN_LEFT" NumberOfScrolls="2" ScrollDirection="None" Version="V6">
-                      <p:CvClickWithDescriptor.CursorPosition>
-                        <ui:CursorPosition Position="Center">
-                          <ui:CursorPosition.OffsetX>
-                            <InArgument x:TypeArguments="x:Int32" />
-                          </ui:CursorPosition.OffsetX>
-                          <ui:CursorPosition.OffsetY>
-                            <InArgument x:TypeArguments="x:Int32" />
-                          </ui:CursorPosition.OffsetY>
-                        </ui:CursorPosition>
-                      </p:CvClickWithDescriptor.CursorPosition>
-                      <p:CvClickWithDescriptor.DesignTimeDescriptor>
-                        <uc:CvDescriptor Id="f67cc393-30c4-4fa2-aed6-ef45b82c504f">
-                          <uc:CvDescriptor.Anchors>
-                            <x:Array Type="uc:CvElementDescriptor">
-                              <uc:CvElementDescriptor CellExtraInfo="{x:Null}" DesignTimeArea="399, 4, 20, 20" ElementType="MaximizeButton" />
-                            </x:Array>
-                          </uc:CvDescriptor.Anchors>
-                          <uc:CvDescriptor.Target>
-                            <uc:CvElementDescriptor CellExtraInfo="{x:Null}" DesignTimeArea="446, 5, 19, 18" ElementType="CloseButton" />
-                          </uc:CvDescriptor.Target>
-                        </uc:CvDescriptor>
-                      </p:CvClickWithDescriptor.DesignTimeDescriptor>
-                      <p:CvClickWithDescriptor.Target>
-                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="dbf50cf8-c5ab-4388-9ae4-48d995228c69">
-                          <ui:Target.TimeoutMS>
-                            <InArgument x:TypeArguments="x:Int32" />
-                          </ui:Target.TimeoutMS>
-                          <ui:Target.WaitForReady>
-                            <InArgument x:TypeArguments="ui:WaitForReady" />
-                          </ui:Target.WaitForReady>
-                        </ui:Target>
-                      </p:CvClickWithDescriptor.Target>
-                    </p:CvClickWithDescriptor>
-                  </Sequence>
-                </ActivityAction>
-              </p:CVScope.Body>
-              <p:CVScope.DesignTimeCache>
-                <uc:CVCache CvUiElements="{x:Null}" OcrTexts="{x:Null}" DataSent="False" />
-              </p:CVScope.DesignTimeCache>
-              <p:CVScope.DesignTimeCacheContainer>
-                <uc:CvCacheContainer>
-                  <uc:CvCacheContainer.Caches>
-                    <scg:List x:TypeArguments="uc:CVCache" Capacity="1">
-                      <uc:CVCache DataSent="False" DisplayName="Screen CV Click - CloseButton (Main)" Id="c736451f-69d3-4b23-90af-63f19099a2bf" InformativeScreenshot="cf66879a7235b4390f975aca083d0393" LogicalPosition="1268, 56" OcrText="Q!x|=2l9X| A}8... _ X ANCO-GAggEg|ג25: &#xA; https://ga.samsunglife.com/gapopup.html &#xA; 9, |ג8 QX| 42|9x &#xA; TI8 H|2LICI. צ|ג 57| E8#N &#xA; ga.samsunglife.com0l(t) 87212 e X &#xA; 4C. &#xA; 5g 45939 .5 BAS 2OHA1 929 &#xA; 4R. &#xA; RE 88 &#xA; 0|5 ||ע0||0||A| eR| 5פ! &quot;*|E!&quot; 22l9 29, &#xA; ERI5E |ג! &quot;R|EP&quot; 22| &#xA; 1 URL es $ 7A E120|| 2/= AHE4| EA|S cls &#xA; a34|E93 9A5 cA| 88o2 &#xA; 1 https://na-testing.notyetsecure.com &#xA; Ina -testing.notyetsecure.com 8LS X &#xA; egol eee49, &gt; &#xA; Micresoft Purview &gt; &#xA; o( AO(5S qe AS ae &#xA; 2 I.g ME03 RAL^ 648NIA1 SRPIMD &#xA; P/ 9 ADoLS 4099 689 &#xA; 6IR5BA] SRDlMa &#xA; ©| AO(EO qe SR ' &#xA; RBplec &#xA; ngs CP/4ו &#xA; Q= 65 Sx|" Position="1268, 56" ScaleFactor="1.25" ScreenshotGuid="265f1b66-3064-4787-9aff-249769631725" ServerVersion="24.10">
-                        <uc:CVCache.CvAnchorRelations>
-                          <scg:List x:TypeArguments="uc:AnchorRelationInfo" Capacity="4">
-                            <uc:AnchorRelationInfo IsTargetText="False" Target="4">
-                              <uc:AnchorRelationInfo.Anchors>
-                                <x:Array Type="x:Int32">
-                                  <x:Int32>94</x:Int32>
-                                  <x:Int32>95</x:Int32>
-                                  <x:Int32>96</x:Int32>
-                                </x:Array>
-                              </uc:AnchorRelationInfo.Anchors>
-                            </uc:AnchorRelationInfo>
+            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_7" />
+            <uix:NCheckState DisplayName="Check App State 'Close'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,533.6" sap2010:WorkflowViewState.IdRef="NCheckState_9" IsLoose="True" Version="V5">
+              <uix:NCheckState.IfExists>
+                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,108" sap2010:WorkflowViewState.IdRef="Sequence_28">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <p:CVScope ContinueOnError="{x:Null}" DelayBefore="{x:Null}" ScopeId="{x:Null}" ScrollOffset="{x:Null}" Server="{x:Null}" CvMethod="ElementDetection, OCR" DesignTimeCacheId="c736451f-69d3-4b23-90af-63f19099a2bf" DisplayName="CV Screen Scope 'pane'" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="CVScope_5" SendOnPremData="False" Version="V6">
+                    <p:CVScope.Body>
+                      <ActivityAction x:TypeArguments="x:Object">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="x:Object" Name="CVSessionData" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                          <p:CvClickWithDescriptor DelayBefore="{x:Null}" DelayMS="{x:Null}" DelayScreenshotAfterScroll="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" Descriptor="[&quot;Target: CloseButton (446,5,19,18)&quot; +&#xA;&quot;Anchor: MaximizeButton (399,4,20,20)&quot;]" DesignTimeCacheId="c736451f-69d3-4b23-90af-63f19099a2bf" DesignTimeScaleFactor="1.25" DisplayName="CV Click - 'CloseButton'" sap:VirtualizedContainerService.HintSize="400,209.6" sap2010:WorkflowViewState.IdRef="CvClickWithDescriptor_2" InformativeScreenshot="1a828394c784ca3ad7144786efc9358a" KeyModifiers="None" MouseButton="BTN_LEFT" NumberOfScrolls="2" ScrollDirection="None" Version="V6">
+                            <p:CvClickWithDescriptor.CursorPosition>
+                              <ui:CursorPosition Position="Center">
+                                <ui:CursorPosition.OffsetX>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:CursorPosition.OffsetX>
+                                <ui:CursorPosition.OffsetY>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:CursorPosition.OffsetY>
+                              </ui:CursorPosition>
+                            </p:CvClickWithDescriptor.CursorPosition>
+                            <p:CvClickWithDescriptor.DesignTimeDescriptor>
+                              <uc:CvDescriptor Id="f67cc393-30c4-4fa2-aed6-ef45b82c504f">
+                                <uc:CvDescriptor.Anchors>
+                                  <x:Array Type="uc:CvElementDescriptor">
+                                    <uc:CvElementDescriptor CellExtraInfo="{x:Null}" DesignTimeArea="399, 4, 20, 20" ElementType="MaximizeButton" />
+                                  </x:Array>
+                                </uc:CvDescriptor.Anchors>
+                                <uc:CvDescriptor.Target>
+                                  <uc:CvElementDescriptor CellExtraInfo="{x:Null}" DesignTimeArea="446, 5, 19, 18" ElementType="CloseButton" />
+                                </uc:CvDescriptor.Target>
+                              </uc:CvDescriptor>
+                            </p:CvClickWithDescriptor.DesignTimeDescriptor>
+                            <p:CvClickWithDescriptor.Target>
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="dbf50cf8-c5ab-4388-9ae4-48d995228c69">
+                                <ui:Target.TimeoutMS>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:Target.TimeoutMS>
+                                <ui:Target.WaitForReady>
+                                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                                </ui:Target.WaitForReady>
+                              </ui:Target>
+                            </p:CvClickWithDescriptor.Target>
+                          </p:CvClickWithDescriptor>
+                        </Sequence>
+                      </ActivityAction>
+                    </p:CVScope.Body>
+                    <p:CVScope.DesignTimeCache>
+                      <uc:CVCache CvUiElements="{x:Null}" OcrTexts="{x:Null}" DataSent="False" />
+                    </p:CVScope.DesignTimeCache>
+                    <p:CVScope.DesignTimeCacheContainer>
+                      <uc:CvCacheContainer>
+                        <uc:CvCacheContainer.Caches>
+                          <scg:List x:TypeArguments="uc:CVCache" Capacity="1">
+                            <uc:CVCache DataSent="False" DisplayName="Screen CV Click - CloseButton (Main)" Id="c736451f-69d3-4b23-90af-63f19099a2bf" InformativeScreenshot="cf66879a7235b4390f975aca083d0393" LogicalPosition="1268, 56" OcrText="Q!x|=2l9X| A}8... _ X ANCO-GAggEg|ג25: &#xA; https://ga.samsunglife.com/gapopup.html &#xA; 9, |ג8 QX| 42|9x &#xA; TI8 H|2LICI. צ|ג 57| E8#N &#xA; ga.samsunglife.com0l(t) 87212 e X &#xA; 4C. &#xA; 5g 45939 .5 BAS 2OHA1 929 &#xA; 4R. &#xA; RE 88 &#xA; 0|5 ||ע0||0||A| eR| 5פ! &quot;*|E!&quot; 22l9 29, &#xA; ERI5E |ג! &quot;R|EP&quot; 22| &#xA; 1 URL es $ 7A E120|| 2/= AHE4| EA|S cls &#xA; a34|E93 9A5 cA| 88o2 &#xA; 1 https://na-testing.notyetsecure.com &#xA; Ina -testing.notyetsecure.com 8LS X &#xA; egol eee49, &gt; &#xA; Micresoft Purview &gt; &#xA; o( AO(5S qe AS ae &#xA; 2 I.g ME03 RAL^ 648NIA1 SRPIMD &#xA; P/ 9 ADoLS 4099 689 &#xA; 6IR5BA] SRDlMa &#xA; ©| AO(EO qe SR ' &#xA; RBplec &#xA; ngs CP/4ו &#xA; Q= 65 Sx|" Position="1268, 56" ScaleFactor="1.25" ScreenshotGuid="265f1b66-3064-4787-9aff-249769631725" ServerVersion="24.10">
+                              <uc:CVCache.CvAnchorRelations>
+                                <scg:List x:TypeArguments="uc:AnchorRelationInfo" Capacity="4">
+                                  <uc:AnchorRelationInfo IsTargetText="False" Target="4">
+                                    <uc:AnchorRelationInfo.Anchors>
+                                      <x:Array Type="x:Int32">
+                                        <x:Int32>94</x:Int32>
+                                        <x:Int32>95</x:Int32>
+                                        <x:Int32>96</x:Int32>
+                                      </x:Array>
+                                    </uc:AnchorRelationInfo.Anchors>
+                                  </uc:AnchorRelationInfo>
+                                </scg:List>
+                              </uc:CVCache.CvAnchorRelations>
+                              <uc:CVCache.CvUiElements>
+                                <scg:List x:TypeArguments="uc:CvElementInfo" Capacity="64">
+                                  <uc:CvElementInfo Category="Icon" Description="Icon" Region="41, 108, 58, 59" />
+                                  <uc:CvElementInfo Category="Button" Description="Button" Region="294, 286, 49, 31" />
+                                  <uc:CvElementInfo Category="Icon" Description="Icon" Region="0, 4, 20, 21" />
+                                  <uc:CvElementInfo Category="MinimizeButton" Description="MinimizeButton" Region="352, 5, 20, 18" />
+                                  <uc:CvElementInfo Category="CheckBox" Description="Checkbox" Region="328, 701, 15, 14" />
+                                  <uc:CvElementInfo Category="Button" Description="Button" Region="344, 283, 56, 38" />
+                                  <uc:CvElementInfo Category="CloseButton" Description="CloseButton" Region="376, 204, 20, 19" />
+                                  <uc:CvElementInfo Category="CloseButton" Description="CloseButton" Region="446, 5, 19, 18" />
+                                  <uc:CvElementInfo Category="ArrowButton" Description="ArrowButton" Region="330, 556, 14, 16" />
+                                  <uc:CvElementInfo Category="ArrowButton" Description="ArrowButton" Region="330, 532, 13, 16" />
+                                  <uc:CvElementInfo Category="MaximizeButton" Description="MaximizeButton" Region="399, 4, 20, 20" />
+                                  <uc:CvElementInfo Category="Icon" Description="lock icon" Region="5, 35, 19, 19" />
+                                  <uc:CvElementInfo Category="Icon" Description="Icon" Region="154, 238, 21, 20" />
+                                  <uc:CvElementInfo Category="Icon" Description="Icon" Region="26, 373, 24, 24" />
+                                  <uc:CvElementInfo Category="Icon" Description="Icon" Region="26, 404, 25, 24" />
+                                  <uc:CvElementInfo Category="Icon" Description="Icon" Region="451, 34, 23, 21" />
+                                  <uc:CvElementInfo Category="CloseButton" Description="CloseButton" Region="328, 511, 16, 16" />
+                                  <uc:CvElementInfo Category="Icon" Description="Icon" Region="136, 644, 16, 15" />
+                                  <uc:CvElementInfo Category="Icon" Description="Icon" Region="136, 580, 16, 16" />
+                                  <uc:CvElementInfo Category="Icon" Description="Icon" Region="136, 556, 16, 16" />
+                                  <uc:CvElementInfo Category="Icon" Description="lock icon" Region="136, 533, 15, 15" />
+                                  <uc:CvElementInfo Category="Icon" Description="Icon" Region="115, 593, 31, 31" />
+                                  <uc:CvElementInfo Category="Icon" Description="Icon" Region="128, 491, 17, 18" />
+                                  <uc:CvElementInfo Category="Icon" Description="Icon" Region="56, 457, 17, 18" />
+                                  <uc:CvElementInfo Description="{x:Null}" Category="Icon" Confidence="Runtime" Region="92, 484, 35, 34" />
+                                  <uc:CvElementInfo Description="{x:Null}" Category="Icon" Confidence="Runtime" Region="55, 436, 18, 18" />
+                                  <uc:CvElementInfo Description="{x:Null}" Category="Icon" Confidence="Runtime" Region="226, 646, 14, 12" />
+                                  <uc:CvElementInfo Description="{x:Null}" Category="Button" Confidence="Runtime" Region="237, 598, 105, 20" />
+                                  <uc:CvElementInfo Description="{x:Null}" Category="Button" Confidence="Runtime" Region="240, 635, 101, 22" />
+                                  <uc:CvElementInfo Description="{x:Null}" Category="Button" Confidence="Runtime" Region="56, 458, 16, 17" />
+                                  <uc:CvElementInfo Description="{x:Null}" Category="Icon" Confidence="Runtime" Region="154, 646, 11, 12" />
+                                  <uc:CvElementInfo Description="{x:Null}" Category="Icon" Confidence="Runtime" Region="154, 581, 11, 12" />
+                                  <uc:CvElementInfo Description="{x:Null}" Category="InputBox" Confidence="Runtime" Region="0, 31, 479, 28" />
+                                  <uc:CvElementInfo Description="{x:Null}" Category="Button" Confidence="Runtime" Region="240, 618, 102, 20" />
+                                  <uc:CvElementInfo Description="{x:Null}" Category="Button" Confidence="Runtime" Region="27, 404, 24, 24" />
+                                  <uc:CvElementInfo Description="{x:Null}" Category="Button" Confidence="Runtime" Region="139, 597, 93, 20" />
+                                  <uc:CvElementInfo Description="{x:Null}" Category="Button" Confidence="Runtime" Region="239, 655, 104, 22" />
+                                  <uc:CvElementInfo Description="{x:Null}" Category="Button" Confidence="Runtime" Region="128, 490, 17, 19" />
+                                  <uc:CvElementInfo Description="{x:Null}" Category="Icon" Confidence="Runtime" Region="268, 110, 26, 26" />
+                                  <uc:CvElementInfo Description="{x:Null}" Category="CheckBox" Confidence="Runtime" Region="330, 512, 12, 13" />
+                                  <uc:CvElementInfo Description="{x:Null}" Category="ArrowButton" Confidence="Runtime" Region="136, 645, 15, 15" />
+                                  <uc:CvElementInfo Description="{x:Null}" Category="Icon" Confidence="Runtime" Region="330, 512, 13, 14" />
+                                  <uc:CvElementInfo Description="{x:Null}" Category="RadioButton" Confidence="Runtime" Region="137, 534, 13, 14" />
+                                  <uc:CvElementInfo Description="{x:Null}" Category="Icon" Confidence="Runtime" Region="171, 623, 10, 12" />
+                                  <uc:CvElementInfo Description="{x:Null}" Category="InputBox" Confidence="Runtime" Region="237, 598, 105, 20" />
+                                  <uc:CvElementInfo Category="ArrowButton" Description="ArrowButton" Region="324, 601, 14, 14" />
+                                </scg:List>
+                              </uc:CVCache.CvUiElements>
+                              <uc:CVCache.OcrTexts>
+                                <scg:List x:TypeArguments="uc:OcrTextInfo" Capacity="97">
+                                  <uc:OcrTextInfo Region="208, 4, 85, 17" Text="Q!x|=2l9X|" />
+                                  <uc:OcrTextInfo Region="294, 4, 41, 16" Text="A}8..." />
+                                  <uc:OcrTextInfo Region="354, 4, 16, 14" Text="_" />
+                                  <uc:OcrTextInfo Region="448, 8, 14, 13" Text="X" />
+                                  <uc:OcrTextInfo Region="21, 4, 184, 18" Text="ANCO-GAggEg|ג25:" />
+                                  <uc:OcrTextInfo Region="28, 37, 262, 17" Text="https://ga.samsunglife.com/gapopup.html" />
+                                  <uc:OcrTextInfo Region="268, 110, 25, 26" Text="9," />
+                                  <uc:OcrTextInfo Region="228, 109, 38, 25" Text="|ג8" />
+                                  <uc:OcrTextInfo Region="112, 110, 38, 24" Text="QX|" />
+                                  <uc:OcrTextInfo Region="153, 109, 72, 24" Text="42|9x" />
+                                  <uc:OcrTextInfo Region="280, 148, 37, 18" Text="TI8" />
+                                  <uc:OcrTextInfo Region="362, 142, 77, 24" Text="H|2LICI." />
+                                  <uc:OcrTextInfo Region="228, 142, 42, 24" Text="צ|ג" />
+                                  <uc:OcrTextInfo Region="112, 142, 37, 24" Text="57|" />
+                                  <uc:OcrTextInfo Region="153, 142, 72, 24" Text="E8#N" />
+                                  <uc:OcrTextInfo Region="156, 205, 152, 16" Text="ga.samsunglife.com0l(t)" />
+                                  <uc:OcrTextInfo Region="312, 205, 40, 14" Text="87212" />
+                                  <uc:OcrTextInfo Region="353, 204, 14, 16" Text="e" />
+                                  <uc:OcrTextInfo Region="376, 206, 16, 16" Text="X" />
+                                  <uc:OcrTextInfo Region="156, 224, 30, 14" Text="4C." />
+                                  <uc:OcrTextInfo Region="178, 240, 24, 14" Text="5g" />
+                                  <uc:OcrTextInfo Region="204, 241, 56, 13" Text="45939" />
+                                  <uc:OcrTextInfo Region="260, 241, 24, 13" Text=".5" />
+                                  <uc:OcrTextInfo Region="286, 241, 33, 13" Text="BAS" />
+                                  <uc:OcrTextInfo Region="322, 241, 33, 13" Text="2OHA1" />
+                                  <uc:OcrTextInfo Region="358, 241, 32, 13" Text="929" />
+                                  <uc:OcrTextInfo Region="180, 256, 25, 13" Text="4R." />
+                                  <uc:OcrTextInfo Region="305, 293, 25, 14" Text="RE" />
+                                  <uc:OcrTextInfo Region="360, 293, 24, 16" Text="88" />
+                                  <uc:OcrTextInfo Region="376, 376, 36, 20" Text="0|5" />
+                                  <uc:OcrTextInfo Region="286, 376, 86, 20" Text="||ע0||0||A|" />
+                                  <uc:OcrTextInfo Region="248, 376, 36, 20" Text="eR|" />
+                                  <uc:OcrTextInfo Region="208, 376, 37, 21" Text="5פ" />
+                                  <uc:OcrTextInfo Region="36, 378, 5, 13" Text="!" />
+                                  <uc:OcrTextInfo Region="52, 376, 53, 20" Text="&quot;*|E!&quot;" />
+                                  <uc:OcrTextInfo Region="108, 376, 54, 20" Text="22l9" />
+                                  <uc:OcrTextInfo Region="164, 376, 41, 20" Text="29," />
+                                  <uc:OcrTextInfo Region="169, 406, 69, 21" Text="ERI5E" />
+                                  <uc:OcrTextInfo Region="146, 406, 20, 20" Text="|ג" />
+                                  <uc:OcrTextInfo Region="34, 408, 6, 14" Text="!" />
+                                  <uc:OcrTextInfo Region="52, 406, 53, 20" Text="&quot;R|EP&quot;" />
+                                  <uc:OcrTextInfo Region="108, 406, 37, 20" Text="22|" />
+                                  <uc:OcrTextInfo Region="60, 440, 6, 12" Text="1" />
+                                  <uc:OcrTextInfo Region="73, 437, 30, 16" Text="URL" />
+                                  <uc:OcrTextInfo Region="105, 436, 28, 18" Text="es" />
+                                  <uc:OcrTextInfo Region="136, 436, 16, 18" Text="$" />
+                                  <uc:OcrTextInfo Region="152, 436, 42, 18" Text="7A" />
+                                  <uc:OcrTextInfo Region="196, 436, 41, 17" Text="E120||" />
+                                  <uc:OcrTextInfo Region="240, 436, 28, 18" Text="2/=" />
+                                  <uc:OcrTextInfo Region="268, 436, 42, 18" Text="AHE4|" />
+                                  <uc:OcrTextInfo Region="312, 436, 41, 18" Text="EA|S" />
+                                  <uc:OcrTextInfo Region="384, 436, 29, 18" Text="cls" />
+                                  <uc:OcrTextInfo Region="73, 457, 80, 17" Text="a34|E93" />
+                                  <uc:OcrTextInfo Region="156, 456, 54, 18" Text="9A5" />
+                                  <uc:OcrTextInfo Region="212, 457, 28, 17" Text="cA|" />
+                                  <uc:OcrTextInfo Region="241, 457, 56, 18" Text="88o2" />
+                                  <uc:OcrTextInfo Region="102, 492, 12, 18" Text="1" />
+                                  <uc:OcrTextInfo Region="142, 493, 133, 12" Text="https://na-testing.notyetsecure.com" />
+                                  <uc:OcrTextInfo Region="136, 513, 14, 9" Text="Ina" />
+                                  <uc:OcrTextInfo Region="148, 514, 101, 10" Text="-testing.notyetsecure.com" />
+                                  <uc:OcrTextInfo Region="249, 513, 17, 10" Text="8LS" />
+                                  <uc:OcrTextInfo Region="330, 513, 10, 9" Text="X" />
+                                  <uc:OcrTextInfo Region="154, 536, 24, 10" Text="egol" />
+                                  <uc:OcrTextInfo Region="178, 536, 37, 10" Text="eee49," />
+                                  <uc:OcrTextInfo Region="332, 534, 8, 12" Text="&gt;" />
+                                  <uc:OcrTextInfo Region="154, 560, 34, 9" Text="Micresoft" />
+                                  <uc:OcrTextInfo Region="188, 560, 28, 8" Text="Purview" />
+                                  <uc:OcrTextInfo Region="332, 558, 8, 10" Text="&gt;" />
+                                  <uc:OcrTextInfo Region="154, 581, 9, 10" Text="o(" />
+                                  <uc:OcrTextInfo Region="164, 582, 29, 9" Text="AO(5S" />
+                                  <uc:OcrTextInfo Region="193, 582, 16, 9" Text="qe" />
+                                  <uc:OcrTextInfo Region="210, 581, 16, 10" Text="AS" />
+                                  <uc:OcrTextInfo Region="226, 581, 16, 10" Text="ae" />
+                                  <uc:OcrTextInfo Region="122, 598, 14, 18" Text="2" />
+                                  <uc:OcrTextInfo Region="156, 602, 14, 10" Text="I.g" />
+                                  <uc:OcrTextInfo Region="172, 604, 29, 8" Text="ME03" />
+                                  <uc:OcrTextInfo Region="200, 604, 22, 9" Text="RAL^" />
+                                  <uc:OcrTextInfo Region="248, 602, 30, 10" Text="648NIA1" />
+                                  <uc:OcrTextInfo Region="277, 602, 42, 10" Text="SRPIMD" />
+                                  <uc:OcrTextInfo Region="156, 624, 16, 9" Text="P/" />
+                                  <uc:OcrTextInfo Region="172, 624, 8, 9" Text="9" />
+                                  <uc:OcrTextInfo Region="180, 624, 22, 9" Text="ADoLS" />
+                                  <uc:OcrTextInfo Region="204, 624, 22, 9" Text="4099" />
+                                  <uc:OcrTextInfo Region="262, 624, 24, 10" Text="689" />
+                                  <uc:OcrTextInfo Region="262, 641, 29, 9" Text="6IR5BA]" />
+                                  <uc:OcrTextInfo Region="293, 641, 40, 10" Text="SRDlMa" />
+                                  <uc:OcrTextInfo Region="154, 646, 9, 10" Text="©|" />
+                                  <uc:OcrTextInfo Region="164, 646, 29, 10" Text="AO(EO" />
+                                  <uc:OcrTextInfo Region="193, 646, 16, 10" Text="qe" />
+                                  <uc:OcrTextInfo Region="210, 646, 16, 10" Text="SR" />
+                                  <uc:OcrTextInfo Region="226, 648, 13, 9" Text="'" />
+                                  <uc:OcrTextInfo Region="264, 660, 40, 12" Text="RBplec" />
+                                  <uc:OcrTextInfo Region="192, 668, 24, 10" Text="ngs" />
+                                  <uc:OcrTextInfo Region="154, 668, 36, 10" Text="CP/4ו" />
+                                  <uc:OcrTextInfo Region="344, 701, 28, 16" Text="Q=" />
+                                  <uc:OcrTextInfo Region="373, 701, 28, 16" Text="65" />
+                                  <uc:OcrTextInfo Region="404, 701, 28, 16" Text="Sx|" />
+                                </scg:List>
+                              </uc:CVCache.OcrTexts>
+                            </uc:CVCache>
                           </scg:List>
-                        </uc:CVCache.CvAnchorRelations>
-                        <uc:CVCache.CvUiElements>
-                          <scg:List x:TypeArguments="uc:CvElementInfo" Capacity="64">
-                            <uc:CvElementInfo Category="Icon" Description="Icon" Region="41, 108, 58, 59" />
-                            <uc:CvElementInfo Category="Button" Description="Button" Region="294, 286, 49, 31" />
-                            <uc:CvElementInfo Category="Icon" Description="Icon" Region="0, 4, 20, 21" />
-                            <uc:CvElementInfo Category="MinimizeButton" Description="MinimizeButton" Region="352, 5, 20, 18" />
-                            <uc:CvElementInfo Category="CheckBox" Description="Checkbox" Region="328, 701, 15, 14" />
-                            <uc:CvElementInfo Category="Button" Description="Button" Region="344, 283, 56, 38" />
-                            <uc:CvElementInfo Category="CloseButton" Description="CloseButton" Region="376, 204, 20, 19" />
-                            <uc:CvElementInfo Category="CloseButton" Description="CloseButton" Region="446, 5, 19, 18" />
-                            <uc:CvElementInfo Category="ArrowButton" Description="ArrowButton" Region="330, 556, 14, 16" />
-                            <uc:CvElementInfo Category="ArrowButton" Description="ArrowButton" Region="330, 532, 13, 16" />
-                            <uc:CvElementInfo Category="MaximizeButton" Description="MaximizeButton" Region="399, 4, 20, 20" />
-                            <uc:CvElementInfo Category="Icon" Description="lock icon" Region="5, 35, 19, 19" />
-                            <uc:CvElementInfo Category="Icon" Description="Icon" Region="154, 238, 21, 20" />
-                            <uc:CvElementInfo Category="Icon" Description="Icon" Region="26, 373, 24, 24" />
-                            <uc:CvElementInfo Category="Icon" Description="Icon" Region="26, 404, 25, 24" />
-                            <uc:CvElementInfo Category="Icon" Description="Icon" Region="451, 34, 23, 21" />
-                            <uc:CvElementInfo Category="CloseButton" Description="CloseButton" Region="328, 511, 16, 16" />
-                            <uc:CvElementInfo Category="Icon" Description="Icon" Region="136, 644, 16, 15" />
-                            <uc:CvElementInfo Category="Icon" Description="Icon" Region="136, 580, 16, 16" />
-                            <uc:CvElementInfo Category="Icon" Description="Icon" Region="136, 556, 16, 16" />
-                            <uc:CvElementInfo Category="Icon" Description="lock icon" Region="136, 533, 15, 15" />
-                            <uc:CvElementInfo Category="Icon" Description="Icon" Region="115, 593, 31, 31" />
-                            <uc:CvElementInfo Category="Icon" Description="Icon" Region="128, 491, 17, 18" />
-                            <uc:CvElementInfo Category="Icon" Description="Icon" Region="56, 457, 17, 18" />
-                            <uc:CvElementInfo Description="{x:Null}" Category="Icon" Confidence="Runtime" Region="92, 484, 35, 34" />
-                            <uc:CvElementInfo Description="{x:Null}" Category="Icon" Confidence="Runtime" Region="55, 436, 18, 18" />
-                            <uc:CvElementInfo Description="{x:Null}" Category="Icon" Confidence="Runtime" Region="226, 646, 14, 12" />
-                            <uc:CvElementInfo Description="{x:Null}" Category="Button" Confidence="Runtime" Region="237, 598, 105, 20" />
-                            <uc:CvElementInfo Description="{x:Null}" Category="Button" Confidence="Runtime" Region="240, 635, 101, 22" />
-                            <uc:CvElementInfo Description="{x:Null}" Category="Button" Confidence="Runtime" Region="56, 458, 16, 17" />
-                            <uc:CvElementInfo Description="{x:Null}" Category="Icon" Confidence="Runtime" Region="154, 646, 11, 12" />
-                            <uc:CvElementInfo Description="{x:Null}" Category="Icon" Confidence="Runtime" Region="154, 581, 11, 12" />
-                            <uc:CvElementInfo Description="{x:Null}" Category="InputBox" Confidence="Runtime" Region="0, 31, 479, 28" />
-                            <uc:CvElementInfo Description="{x:Null}" Category="Button" Confidence="Runtime" Region="240, 618, 102, 20" />
-                            <uc:CvElementInfo Description="{x:Null}" Category="Button" Confidence="Runtime" Region="27, 404, 24, 24" />
-                            <uc:CvElementInfo Description="{x:Null}" Category="Button" Confidence="Runtime" Region="139, 597, 93, 20" />
-                            <uc:CvElementInfo Description="{x:Null}" Category="Button" Confidence="Runtime" Region="239, 655, 104, 22" />
-                            <uc:CvElementInfo Description="{x:Null}" Category="Button" Confidence="Runtime" Region="128, 490, 17, 19" />
-                            <uc:CvElementInfo Description="{x:Null}" Category="Icon" Confidence="Runtime" Region="268, 110, 26, 26" />
-                            <uc:CvElementInfo Description="{x:Null}" Category="CheckBox" Confidence="Runtime" Region="330, 512, 12, 13" />
-                            <uc:CvElementInfo Description="{x:Null}" Category="ArrowButton" Confidence="Runtime" Region="136, 645, 15, 15" />
-                            <uc:CvElementInfo Description="{x:Null}" Category="Icon" Confidence="Runtime" Region="330, 512, 13, 14" />
-                            <uc:CvElementInfo Description="{x:Null}" Category="RadioButton" Confidence="Runtime" Region="137, 534, 13, 14" />
-                            <uc:CvElementInfo Description="{x:Null}" Category="Icon" Confidence="Runtime" Region="171, 623, 10, 12" />
-                            <uc:CvElementInfo Description="{x:Null}" Category="InputBox" Confidence="Runtime" Region="237, 598, 105, 20" />
-                            <uc:CvElementInfo Category="ArrowButton" Description="ArrowButton" Region="324, 601, 14, 14" />
-                          </scg:List>
-                        </uc:CVCache.CvUiElements>
-                        <uc:CVCache.OcrTexts>
-                          <scg:List x:TypeArguments="uc:OcrTextInfo" Capacity="97">
-                            <uc:OcrTextInfo Region="208, 4, 85, 17" Text="Q!x|=2l9X|" />
-                            <uc:OcrTextInfo Region="294, 4, 41, 16" Text="A}8..." />
-                            <uc:OcrTextInfo Region="354, 4, 16, 14" Text="_" />
-                            <uc:OcrTextInfo Region="448, 8, 14, 13" Text="X" />
-                            <uc:OcrTextInfo Region="21, 4, 184, 18" Text="ANCO-GAggEg|ג25:" />
-                            <uc:OcrTextInfo Region="28, 37, 262, 17" Text="https://ga.samsunglife.com/gapopup.html" />
-                            <uc:OcrTextInfo Region="268, 110, 25, 26" Text="9," />
-                            <uc:OcrTextInfo Region="228, 109, 38, 25" Text="|ג8" />
-                            <uc:OcrTextInfo Region="112, 110, 38, 24" Text="QX|" />
-                            <uc:OcrTextInfo Region="153, 109, 72, 24" Text="42|9x" />
-                            <uc:OcrTextInfo Region="280, 148, 37, 18" Text="TI8" />
-                            <uc:OcrTextInfo Region="362, 142, 77, 24" Text="H|2LICI." />
-                            <uc:OcrTextInfo Region="228, 142, 42, 24" Text="צ|ג" />
-                            <uc:OcrTextInfo Region="112, 142, 37, 24" Text="57|" />
-                            <uc:OcrTextInfo Region="153, 142, 72, 24" Text="E8#N" />
-                            <uc:OcrTextInfo Region="156, 205, 152, 16" Text="ga.samsunglife.com0l(t)" />
-                            <uc:OcrTextInfo Region="312, 205, 40, 14" Text="87212" />
-                            <uc:OcrTextInfo Region="353, 204, 14, 16" Text="e" />
-                            <uc:OcrTextInfo Region="376, 206, 16, 16" Text="X" />
-                            <uc:OcrTextInfo Region="156, 224, 30, 14" Text="4C." />
-                            <uc:OcrTextInfo Region="178, 240, 24, 14" Text="5g" />
-                            <uc:OcrTextInfo Region="204, 241, 56, 13" Text="45939" />
-                            <uc:OcrTextInfo Region="260, 241, 24, 13" Text=".5" />
-                            <uc:OcrTextInfo Region="286, 241, 33, 13" Text="BAS" />
-                            <uc:OcrTextInfo Region="322, 241, 33, 13" Text="2OHA1" />
-                            <uc:OcrTextInfo Region="358, 241, 32, 13" Text="929" />
-                            <uc:OcrTextInfo Region="180, 256, 25, 13" Text="4R." />
-                            <uc:OcrTextInfo Region="305, 293, 25, 14" Text="RE" />
-                            <uc:OcrTextInfo Region="360, 293, 24, 16" Text="88" />
-                            <uc:OcrTextInfo Region="376, 376, 36, 20" Text="0|5" />
-                            <uc:OcrTextInfo Region="286, 376, 86, 20" Text="||ע0||0||A|" />
-                            <uc:OcrTextInfo Region="248, 376, 36, 20" Text="eR|" />
-                            <uc:OcrTextInfo Region="208, 376, 37, 21" Text="5פ" />
-                            <uc:OcrTextInfo Region="36, 378, 5, 13" Text="!" />
-                            <uc:OcrTextInfo Region="52, 376, 53, 20" Text="&quot;*|E!&quot;" />
-                            <uc:OcrTextInfo Region="108, 376, 54, 20" Text="22l9" />
-                            <uc:OcrTextInfo Region="164, 376, 41, 20" Text="29," />
-                            <uc:OcrTextInfo Region="169, 406, 69, 21" Text="ERI5E" />
-                            <uc:OcrTextInfo Region="146, 406, 20, 20" Text="|ג" />
-                            <uc:OcrTextInfo Region="34, 408, 6, 14" Text="!" />
-                            <uc:OcrTextInfo Region="52, 406, 53, 20" Text="&quot;R|EP&quot;" />
-                            <uc:OcrTextInfo Region="108, 406, 37, 20" Text="22|" />
-                            <uc:OcrTextInfo Region="60, 440, 6, 12" Text="1" />
-                            <uc:OcrTextInfo Region="73, 437, 30, 16" Text="URL" />
-                            <uc:OcrTextInfo Region="105, 436, 28, 18" Text="es" />
-                            <uc:OcrTextInfo Region="136, 436, 16, 18" Text="$" />
-                            <uc:OcrTextInfo Region="152, 436, 42, 18" Text="7A" />
-                            <uc:OcrTextInfo Region="196, 436, 41, 17" Text="E120||" />
-                            <uc:OcrTextInfo Region="240, 436, 28, 18" Text="2/=" />
-                            <uc:OcrTextInfo Region="268, 436, 42, 18" Text="AHE4|" />
-                            <uc:OcrTextInfo Region="312, 436, 41, 18" Text="EA|S" />
-                            <uc:OcrTextInfo Region="384, 436, 29, 18" Text="cls" />
-                            <uc:OcrTextInfo Region="73, 457, 80, 17" Text="a34|E93" />
-                            <uc:OcrTextInfo Region="156, 456, 54, 18" Text="9A5" />
-                            <uc:OcrTextInfo Region="212, 457, 28, 17" Text="cA|" />
-                            <uc:OcrTextInfo Region="241, 457, 56, 18" Text="88o2" />
-                            <uc:OcrTextInfo Region="102, 492, 12, 18" Text="1" />
-                            <uc:OcrTextInfo Region="142, 493, 133, 12" Text="https://na-testing.notyetsecure.com" />
-                            <uc:OcrTextInfo Region="136, 513, 14, 9" Text="Ina" />
-                            <uc:OcrTextInfo Region="148, 514, 101, 10" Text="-testing.notyetsecure.com" />
-                            <uc:OcrTextInfo Region="249, 513, 17, 10" Text="8LS" />
-                            <uc:OcrTextInfo Region="330, 513, 10, 9" Text="X" />
-                            <uc:OcrTextInfo Region="154, 536, 24, 10" Text="egol" />
-                            <uc:OcrTextInfo Region="178, 536, 37, 10" Text="eee49," />
-                            <uc:OcrTextInfo Region="332, 534, 8, 12" Text="&gt;" />
-                            <uc:OcrTextInfo Region="154, 560, 34, 9" Text="Micresoft" />
-                            <uc:OcrTextInfo Region="188, 560, 28, 8" Text="Purview" />
-                            <uc:OcrTextInfo Region="332, 558, 8, 10" Text="&gt;" />
-                            <uc:OcrTextInfo Region="154, 581, 9, 10" Text="o(" />
-                            <uc:OcrTextInfo Region="164, 582, 29, 9" Text="AO(5S" />
-                            <uc:OcrTextInfo Region="193, 582, 16, 9" Text="qe" />
-                            <uc:OcrTextInfo Region="210, 581, 16, 10" Text="AS" />
-                            <uc:OcrTextInfo Region="226, 581, 16, 10" Text="ae" />
-                            <uc:OcrTextInfo Region="122, 598, 14, 18" Text="2" />
-                            <uc:OcrTextInfo Region="156, 602, 14, 10" Text="I.g" />
-                            <uc:OcrTextInfo Region="172, 604, 29, 8" Text="ME03" />
-                            <uc:OcrTextInfo Region="200, 604, 22, 9" Text="RAL^" />
-                            <uc:OcrTextInfo Region="248, 602, 30, 10" Text="648NIA1" />
-                            <uc:OcrTextInfo Region="277, 602, 42, 10" Text="SRPIMD" />
-                            <uc:OcrTextInfo Region="156, 624, 16, 9" Text="P/" />
-                            <uc:OcrTextInfo Region="172, 624, 8, 9" Text="9" />
-                            <uc:OcrTextInfo Region="180, 624, 22, 9" Text="ADoLS" />
-                            <uc:OcrTextInfo Region="204, 624, 22, 9" Text="4099" />
-                            <uc:OcrTextInfo Region="262, 624, 24, 10" Text="689" />
-                            <uc:OcrTextInfo Region="262, 641, 29, 9" Text="6IR5BA]" />
-                            <uc:OcrTextInfo Region="293, 641, 40, 10" Text="SRDlMa" />
-                            <uc:OcrTextInfo Region="154, 646, 9, 10" Text="©|" />
-                            <uc:OcrTextInfo Region="164, 646, 29, 10" Text="AO(EO" />
-                            <uc:OcrTextInfo Region="193, 646, 16, 10" Text="qe" />
-                            <uc:OcrTextInfo Region="210, 646, 16, 10" Text="SR" />
-                            <uc:OcrTextInfo Region="226, 648, 13, 9" Text="'" />
-                            <uc:OcrTextInfo Region="264, 660, 40, 12" Text="RBplec" />
-                            <uc:OcrTextInfo Region="192, 668, 24, 10" Text="ngs" />
-                            <uc:OcrTextInfo Region="154, 668, 36, 10" Text="CP/4ו" />
-                            <uc:OcrTextInfo Region="344, 701, 28, 16" Text="Q=" />
-                            <uc:OcrTextInfo Region="373, 701, 28, 16" Text="65" />
-                            <uc:OcrTextInfo Region="404, 701, 28, 16" Text="Sx|" />
-                          </scg:List>
-                        </uc:CVCache.OcrTexts>
-                      </uc:CVCache>
-                    </scg:List>
-                  </uc:CvCacheContainer.Caches>
-                </uc:CvCacheContainer>
-              </p:CVScope.DesignTimeCacheContainer>
-              <p:CVScope.OCREngine>
-                <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
-                  <ActivityFunc.Argument>
-                    <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
-                  </ActivityFunc.Argument>
-                  <p1:UiPathScreenOCR ApiKey="{x:Null}" Endpoint="{x:Null}" Output="{x:Null}" PredictionId="{x:Null}" Text="{x:Null}" UseAccents="{x:Null}" UseLocalServer="{x:Null}" ComputeSkewAngle="False" ExtractWords="True" sap:VirtualizedContainerService.HintSize="400,24.8" sap2010:WorkflowViewState.IdRef="UiPathScreenOCR_5" Image="[Image]" Language="en" NoopExecution="False" Profile="Screen" Scale="1" Timeout="100000" UseSeparateOcrProcess="True" />
-                </ActivityFunc>
-              </p:CVScope.OCREngine>
-              <p:CVScope.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="8deb09e2-4c6e-42cc-ad53-1413f9501480" InformativeScreenshot="5d78590a9b20e82e5749dad4de77a12b" Selector="&lt;wnd app='msedge.exe' cls='Chrome_WidgetWin_1' title='삼성생명-GA영업포탈시스템: 엣지브라우저 사용안내-edge - Work - Microsoft​ Edge' /&gt;&lt;ctrl name='삼성생명-GA영업포탈시스템: 엣지브라우저 사용안내-edge - Microsoft Edge' role='pane' /&gt;&lt;ctrl idx='2' role='pane' /&gt;" WaitForReady="INTERACTIVE">
-                  <ui:Target.TimeoutMS>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:Target.TimeoutMS>
-                </ui:Target>
-              </p:CVScope.Target>
-              <p:CVScope.UseLocalServer>
-                <InArgument x:TypeArguments="x:Boolean" />
-              </p:CVScope.UseLocalServer>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </p:CVScope>
+                        </uc:CvCacheContainer.Caches>
+                      </uc:CvCacheContainer>
+                    </p:CVScope.DesignTimeCacheContainer>
+                    <p:CVScope.OCREngine>
+                      <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
+                        <ActivityFunc.Argument>
+                          <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                        </ActivityFunc.Argument>
+                        <p1:UiPathScreenOCR ApiKey="{x:Null}" Endpoint="{x:Null}" Output="{x:Null}" PredictionId="{x:Null}" Text="{x:Null}" UseAccents="{x:Null}" UseLocalServer="{x:Null}" ComputeSkewAngle="False" ExtractWords="True" sap:VirtualizedContainerService.HintSize="400,24.8" sap2010:WorkflowViewState.IdRef="UiPathScreenOCR_5" Image="[Image]" Language="en" NoopExecution="False" Profile="Screen" Scale="1" Timeout="100000" UseSeparateOcrProcess="True" />
+                      </ActivityFunc>
+                    </p:CVScope.OCREngine>
+                    <p:CVScope.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="8deb09e2-4c6e-42cc-ad53-1413f9501480" InformativeScreenshot="5d78590a9b20e82e5749dad4de77a12b" Selector="&lt;wnd app='msedge.exe' cls='Chrome_WidgetWin_1' title='삼성생명-GA영업포탈시스템: 엣지브라우저 사용안내-edge - Work - Microsoft​ Edge' /&gt;&lt;ctrl name='삼성생명-GA영업포탈시스템: 엣지브라우저 사용안내-edge - Microsoft Edge' role='pane' /&gt;&lt;ctrl idx='2' role='pane' /&gt;" WaitForReady="INTERACTIVE">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                      </ui:Target>
+                    </p:CVScope.Target>
+                    <p:CVScope.UseLocalServer>
+                      <InArgument x:TypeArguments="x:Boolean" />
+                    </p:CVScope.UseLocalServer>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </p:CVScope>
+                </Sequence>
+              </uix:NCheckState.IfExists>
+              <uix:NCheckState.IfNotExists>
+                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_29">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </uix:NCheckState.IfNotExists>
+              <uix:NCheckState.Target>
+                <uix:TargetAnchorable BrowserURL="nconnectplus.samsunglife.com/gasso/login" ContentHash="5iBKSik5V0WMVaoL2rkNIA" DesignTimeRectangle="552, 2, 58, 38" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='삼성생명-GA영업포탈시스템: 엣지브라우저 사용안내-edge - Microsoft Edge' role='pane' /&gt;&lt;ctrl name='Close' role='push button' /&gt;" Guid="0d7b5c08-7991-43ed-bbe9-307fcd6e3d6b" InformativeScreenshot="081a95009dac009bc099a77f9948aed4.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/8C5QcewYy0O6rl8OYunx0g" ScopeSelectorArgument="&lt;wnd app='msedge.exe' cls='Chrome_WidgetWin_1' title='삼성생명-GA영업포탈시스템: 엣지브라우저 사용안내-edge - Work - Microsoft​ Edge' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+              </uix:NCheckState.Target>
+            </uix:NCheckState>
           </Sequence>
         </ActivityAction>
       </uix:NApplicationCard.Body>
@@ -405,7 +437,7 @@
         </ActivityFunc>
       </uix:NApplicationCard.OCREngine>
       <uix:NApplicationCard.TargetApp>
-        <uix:TargetApp Area="0, 0, 1920, 1020" BrowserType="Edge" ContentHash="JjL4iMJnOUGtLUPD2eDFRg" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAGgSURBVDhPnZBBSwJhEIa/0/4MIwgiugRleJClzhK0SFSHgqhu3vRSB5EgaIlAg/AHVBAEdYwKhDIsy8paDTeDgiIjXMN2U0NlYibdNtGoBh6Y75133lmW8aLM8aLs40VZ4UUZfkmmssMx62zCa51NwD+ZYxbPlWLxXME/UVjXtASIsCBDIJYFrVAmsEdtwHsN1RpZuiGvEdbhvID+uQS85kq6ESujFsE+L4N/+0nX1kNpQL8R1u44g93oCxn241nomZYI20wccJZ8zNMs/16Gt0IZzM4o6VVY6+QJqPnP61ZXFPBdxeaOkZ58zMHa3jP17uW7bx7WMnqkfyL2Rnwb96Qvbj5Av1uiXrrVvnlY81BID8D+MJ7V342qb+qCvAhrsh+AWvmB5oljGKxc+qlWd1KAewgzCUHYOkzTIHCagc6xMHSPh6nHwhl6kLbhEGj5EoE9ahTQ64hAVivW3AHScFYNQFa2UzSb8ie/ApAeR4SuabkSgT1qxmXE5jqngMsbVQ9Qak1/QMEAb53BbxExgDMJQZ9JCGbqGBqBXtzhPgCCgcz5+SY7kQAAAABJRU5ErkJggg==" InformativeScreenshot="ac78520d2e846ae9f5ec3a3fcb55897b.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/D_9FeN1nGEyAaVyMEqrQMQ" Selector="&lt;html app='msedge.exe' title='삼성생명 - GA영업포탈 로그인 관리' /&gt;" Url="[SSL_URL]" Version="V2">
+        <uix:TargetApp Area="0, 0, 1920, 1020" BrowserType="Edge" ContentHash="B1OqKfDjSUusNtgir8ghbA" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAGgSURBVDhPnZBBSwJhEIa/0/4MIwgiugRleJClzhK0SFSHgqhu3vRSB5EgaIlAg/AHVBAEdYwKhDIsy8paDTeDgiIjXMN2U0NlYibdNtGoBh6Y75133lmW8aLM8aLs40VZ4UUZfkmmssMx62zCa51NwD+ZYxbPlWLxXME/UVjXtASIsCBDIJYFrVAmsEdtwHsN1RpZuiGvEdbhvID+uQS85kq6ESujFsE+L4N/+0nX1kNpQL8R1u44g93oCxn241nomZYI20wccJZ8zNMs/16Gt0IZzM4o6VVY6+QJqPnP61ZXFPBdxeaOkZ58zMHa3jP17uW7bx7WMnqkfyL2Rnwb96Qvbj5Av1uiXrrVvnlY81BID8D+MJ7V342qb+qCvAhrsh+AWvmB5oljGKxc+qlWd1KAewgzCUHYOkzTIHCagc6xMHSPh6nHwhl6kLbhEGj5EoE9ahTQ64hAVivW3AHScFYNQFa2UzSb8ie/ApAeR4SuabkSgT1qxmXE5jqngMsbVQ9Qak1/QMEAb53BbxExgDMJQZ9JCGbqGBqBXtzhPgCCgcz5+SY7kQAAAABJRU5ErkJggg==" InformativeScreenshot="ac78520d2e846ae9f5ec3a3fcb55897b.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/dbp_JQkTNU680BTIIO3lpQ" Selector="&lt;html app='msedge.exe' title='삼성생명 - GA영업포탈 로그인 관리' /&gt;" Url="[SSL_URL]" Version="V2">
           <uix:TargetApp.Arguments>
             <InArgument x:TypeArguments="x:String" />
           </uix:TargetApp.Arguments>
@@ -416,7 +448,7 @@
       </uix:NApplicationCard.TargetApp>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
