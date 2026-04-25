@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Run_Program" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Run_Program" this:Run_Program.path="C:\Users\RPA02\Desktop\release_v1.0.86" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="contractType" Type="InArgument(x:String)" />
     <x:Property Name="path" Type="InArgument(x:String)" />
@@ -110,33 +110,35 @@
       <AssemblyReference>System.Memory.Data</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Run_Program" sap:VirtualizedContainerService.HintSize="847.6,860" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Run_Program" sap:VirtualizedContainerService.HintSize="847.6,1102.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:StartProcess WorkingDirectory="{x:Null}" Arguments="[&quot;-Command &quot;&quot;Unblock-File -Path '&quot; &amp; path &amp; &quot;'&quot;&quot;&quot;]" DisplayName="Start Process" FileName="powershell.exe" sap:VirtualizedContainerService.HintSize="451.2,120" sap2010:WorkflowViewState.IdRef="StartProcess_1" />
-    <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_3" />
-    <If Condition="[contractType = &quot;NEW&quot;]" sap:VirtualizedContainerService.HintSize="451.2,480.8" sap2010:WorkflowViewState.IdRef="If_1">
+    <If Condition="[contractType = &quot;NEW&quot;]" sap:VirtualizedContainerService.HintSize="451.2,965.6" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
-        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,171.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,413.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
+          <ui:StartProcess WorkingDirectory="{x:Null}" Arguments="[&quot;-Command &quot;&quot;Unblock-File -Path '&quot; &amp; path &amp; &quot;'&quot;&quot;&quot;]" DisplayName="Start Process" FileName="powershell.exe" sap:VirtualizedContainerService.HintSize="416,120" sap2010:WorkflowViewState.IdRef="StartProcess_4" />
+          <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_5" />
           <ui:StartProcess WorkingDirectory="{x:Null}" Arguments="[&quot;-Command &quot;&quot;Set-Location '&quot; &amp; path &amp; &quot;'; &amp; '.\run.bat' --target 'ALL:ALL:ALL'&quot;&quot;&quot;]" DisplayName="Start Process" FileName="powershell.exe" sap:VirtualizedContainerService.HintSize="416,111.2" sap2010:WorkflowViewState.IdRef="StartProcess_2" />
         </Sequence>
       </If.Then>
       <If.Else>
-        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,171.2" sap2010:WorkflowViewState.IdRef="Sequence_3">
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,413.6" sap2010:WorkflowViewState.IdRef="Sequence_3">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:StartProcess WorkingDirectory="{x:Null}" Arguments="[&quot;-Command &quot;&quot;Set-Location '&quot; &amp; path &amp; &quot;'; &amp; '.\run.bat' --target 'ALL:ALL:ALL -- upload true/false'&quot;&quot;&quot;]" DisplayName="Start Process" FileName="powershell.exe" sap:VirtualizedContainerService.HintSize="416,111.2" sap2010:WorkflowViewState.IdRef="StartProcess_3" />
+          <ui:StartProcess WorkingDirectory="{x:Null}" Arguments="[&quot;-Command &quot;&quot;Unblock-File -Path '&quot; &amp; path &amp; &quot;'&quot;&quot;&quot;]" DisplayName="Start Process" FileName="powershell.exe" sap:VirtualizedContainerService.HintSize="416,120" sap2010:WorkflowViewState.IdRef="StartProcess_5" />
+          <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_6" />
+          <ui:StartProcess WorkingDirectory="{x:Null}" Arguments="[&quot;-Command &quot;&quot;Set-Location '&quot; &amp; path &amp; &quot;'; &amp; '.\run.bat' --target 'ALL:ALL:ALL --upload false'&quot;&quot;&quot;]" DisplayName="Start Process" FileName="powershell.exe" sap:VirtualizedContainerService.HintSize="416,111.2" sap2010:WorkflowViewState.IdRef="StartProcess_3" />
         </Sequence>
       </If.Else>
     </If>
