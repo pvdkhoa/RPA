@@ -1,5 +1,6 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="InitiAllSettings" this:InitiAllSettings.in_ConfigFile="C:\Users\RPA02\Documents\UiPath\REF_RPA\Data\Config.xlsx" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
+    <x:Property Name="runId" Type="InArgument(x:String)" />
     <x:Property Name="config_compcode" Type="InOutArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="in_ContractType" Type="InArgument(x:String)" />
     <x:Property Name="io_dt_TransactionData" Type="OutArgument(sd:DataTable)" />
@@ -52,6 +53,7 @@
       <x:String>UiPath.DataTableUtilities</x:String>
       <x:String>UiPath.Activities.System.Date</x:String>
       <x:String>UiPath.Core.Activities.DateTimeUtilities</x:String>
+      <x:String>UiPath.Core.Activities.Orchestrator</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -121,7 +123,7 @@
       <AssemblyReference>System.Memory.Data</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Initialize, populate and output a configuration Dictionary to be used throughout the project. &#xA;Settings and constants are read from the local configuration file, and assets are fetched from Orchestrator. &#xA;Asset values overwrite settings and constant values if they are defined with the same name." DisplayName="Initialize All Settings" sap:VirtualizedContainerService.HintSize="847.6,4865.6" sap2010:WorkflowViewState.IdRef="Sequence_18">
+  <Sequence sap2010:Annotation.AnnotationText="Initialize, populate and output a configuration Dictionary to be used throughout the project. &#xA;Settings and constants are read from the local configuration file, and assets are fetched from Orchestrator. &#xA;Asset values overwrite settings and constant values if they are defined with the same name." DisplayName="Initialize All Settings" sap:VirtualizedContainerService.HintSize="832.4000000000001,5691.2" sap2010:WorkflowViewState.IdRef="Sequence_18">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:List(x:String)" Name="listType" />
       <Variable x:TypeArguments="scg:List(x:String)" Name="listComp" />
@@ -164,6 +166,33 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ReadRange>
+    <If Condition="[in_RunType = &quot;CHECK&quot;]" DisplayName="If (Checking Process  - Create JSON EXCEL File)" sap:VirtualizedContainerService.HintSize="486.4,825.6" sap2010:WorkflowViewState.IdRef="If_9">
+      <If.Then>
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,597.6" sap2010:WorkflowViewState.IdRef="Sequence_31">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ====== Tạo RunID ======&#xA;runId = DateTime.Now.ToString(&quot;yyyyMMdd_HHmmss&quot;)&#xA;&#xA;' ====== Tạo thư mục nếu chưa tồn tại ======&#xA;Dim outputDir As String = &quot;C:\RPA\CheckAvailableComp&quot;&#xA;If Not System.IO.Directory.Exists(outputDir) Then&#xA;    System.IO.Directory.CreateDirectory(outputDir)&#xA;End If&#xA;&#xA;' ====== Tạo đường dẫn file ======&#xA;Dim jsonPath  As String = System.IO.Path.Combine(outputDir, &quot;result_&quot; &amp; runId &amp; &quot;.json&quot;)&#xA;Dim excelPath As String = System.IO.Path.Combine(outputDir, &quot;Report_&quot; &amp; runId &amp; &quot;.xlsx&quot;)&#xA;&#xA;' ====== Khởi tạo 14 công ty vào JSON ======&#xA;Dim jsonArray As New Newtonsoft.Json.Linq.JArray()&#xA;&#xA;Dim companies As New System.Collections.Generic.List(Of String()) From {&#xA;    New String() {&quot;SSL&quot;, &quot;삼성생명&quot;},&#xA;    New String() {&quot;LNF&quot;, &quot;라이나생명&quot;},&#xA;    New String() {&quot;DBL&quot;, &quot;DB생명&quot;},&#xA;    New String() {&quot;MTL&quot;, &quot;메트라이프&quot;},&#xA;    New String() {&quot;KBL&quot;, &quot;KB라이프&quot;},&#xA;    New String() {&quot;CDL&quot;, &quot;카디프생명&quot;},&#xA;    New String() {&quot;MRF&quot;, &quot;메리츠화재&quot;},&#xA;    New String() {&quot;HDG&quot;, &quot;현대해상&quot;},&#xA;    New String() {&quot;DBG&quot;, &quot;DB손보&quot;},&#xA;    New String() {&quot;KBG&quot;, &quot;KB손보&quot;},&#xA;    New String() {&quot;LTG&quot;, &quot;롯데손보&quot;},&#xA;    New String() {&quot;HKF&quot;, &quot;흥국화재&quot;},&#xA;    New String() {&quot;SSF&quot;, &quot;삼성화재&quot;},&#xA;    New String() {&quot;HWG&quot;, &quot;한화손보&quot;}&#xA;}&#xA;&#xA;For Each comp As String() In companies&#xA;    Dim item As New Newtonsoft.Json.Linq.JObject()&#xA;    item(&quot;compCode&quot;)     = comp(0)&#xA;    item(&quot;companyName&quot;)  = comp(1)&#xA;    item(&quot;isLogined&quot;)    = &quot;&quot;&#xA;    item(&quot;processTime&quot;)  = &quot;&quot;&#xA;    jsonArray.Add(item)&#xA;Next&#xA;&#xA;' ====== Ghi file JSON ======&#xA;System.IO.File.WriteAllText(jsonPath, jsonArray.ToString(), System.Text.Encoding.UTF8)&#xA;&#xA;' ====== Tạo file Excel với sheet &quot;Result&quot; ======&#xA;Dim workbook As New ClosedXML.Excel.XLWorkbook()&#xA;workbook.Worksheets.Add(&quot;Result&quot;)&#xA;workbook.SaveAs(excelPath)&#xA;workbook.Dispose()" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_5">
+            <ui:InvokeCode.Arguments>
+              <OutArgument x:TypeArguments="x:String" x:Key="runId">[runId]</OutArgument>
+            </ui:InvokeCode.Arguments>
+          </ui:InvokeCode>
+          <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_1" />
+          <ui:SetAsset TimeoutMS="{x:Null}" AssetName="CHECKING_ID" DisplayName="Set Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="416,218.4" sap2010:WorkflowViewState.IdRef="SetAsset_1" Value="[runId]" />
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_32">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Sequence>
+      </If.Else>
+    </If>
     <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[Dt_Setting]" DisplayName="For each configuration row" sap:VirtualizedContainerService.HintSize="486.4,652.8" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
@@ -517,17 +546,11 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ForEach>
-    <ui:InvokeCode ContinueOnError="{x:Null}" Code="If compCode.Trim.ToUpper = &quot;ALL&quot; Then&#xD;&#xA;    dt.Rows.Add(&quot;RUN_JAVA&quot;, &quot;DOWNLOAD&quot;, contractType, &quot;True&quot;)&#xD;&#xA;End If" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="486.4,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_3">
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="If compCode.Trim.ToUpper = &quot;ALL&quot; Then&#xA;    dt.Rows.Add(&quot;RUN_JAVA&quot;, &quot;DOWNLOAD&quot;, contractType, &quot;True&quot;)&#xA;End If" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="486.4,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_3">
       <ui:InvokeCode.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="compCode">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_CompCode" />
-        </InArgument>
-        <InArgument x:TypeArguments="sd:DataTable" x:Key="dt">
-          <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="io_dt_TransactionData" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="contractType">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_ContractType" />
-        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="compCode">[in_CompCode]</InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="dt">[io_dt_TransactionData]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
       </ui:InvokeCode.Arguments>
     </ui:InvokeCode>
     <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="WriteLine_3" Text="[String.Join(&quot;, &quot;, config_compcode.Keys.ToArray)]">
