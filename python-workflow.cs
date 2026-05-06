@@ -35,7 +35,7 @@ namespace REF_RPA
                 throw new Exception("Working Directory Error " + scriptPath);
             }
 
-            string logDir = @"C:\Users\RPA02\UIPathScript\log";
+            string logDir = @"C:\UipathScript\log";
             Directory.CreateDirectory(logDir);
 
             string stdoutPath = Path.Combine(logDir, "uipath_python_stdout.txt");
