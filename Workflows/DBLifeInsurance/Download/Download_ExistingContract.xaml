@@ -122,8 +122,11 @@
       <AssemblyReference>System.Memory.Data</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Download_ExistingContract" sap:VirtualizedContainerService.HintSize="847.6,7786.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Download_ExistingContract" sap:VirtualizedContainerService.HintSize="912.4000000000001,6997.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="IS_MANUAL" />
+      <Variable x:TypeArguments="x:String" Name="START_PERIOD" />
+      <Variable x:TypeArguments="x:String" Name="END_PERIOD" />
       <Variable x:TypeArguments="x:String" Name="latestFilePath" />
       <Variable x:TypeArguments="x:String" Name="newFilePath" />
     </Sequence.Variables>
@@ -132,13 +135,46 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Edge DBLIFE(1)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="556.8,7763.2" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V2">
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="START_DATE_DOWNLOAD" CacheStrategy="None" DisplayName="Get Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="521.6,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+      <ui:GetRobotAsset.Value>
+        <OutArgument x:TypeArguments="x:String">[START_PERIOD]</OutArgument>
+      </ui:GetRobotAsset.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:GetRobotAsset>
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="END_DATE_DOWNLOAD" CacheStrategy="None" DisplayName="Get Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="521.6,56.8" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
+      <ui:GetRobotAsset.Value>
+        <OutArgument x:TypeArguments="x:String">[END_PERIOD]</OutArgument>
+      </ui:GetRobotAsset.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:GetRobotAsset>
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="IS_MANUAL" CacheStrategy="None" DisplayName="Get Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="521.6,56.8" sap2010:WorkflowViewState.IdRef="GetRobotAsset_3">
+      <ui:GetRobotAsset.Value>
+        <OutArgument x:TypeArguments="x:String">[IS_MANUAL]</OutArgument>
+      </ui:GetRobotAsset.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:GetRobotAsset>
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Edge DBLIFE(1)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="521.6,6685.6" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="555.2,7569.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="520,6492" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Name="dateTo" />
               <Variable x:TypeArguments="x:String" Name="dateFrom" />
@@ -150,20 +186,20 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="521.6,122.4" sap2010:WorkflowViewState.IdRef="Delay_2" />
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''영업관리''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="521.6,193.6" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V5">
+            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_2" />
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''영업관리''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="etopia.idblife.com/index.html" DesignTimeRectangle="573, 146, 85, 25" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='영업관리' tag='DIV' /&gt;" Guid="9a713099-b928-4953-abcc-9f53014529b2" InformativeScreenshot="d657fbb23a95ae2813760abb12db8248.jpg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='eTopia' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
-            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="521.6,122.4" sap2010:WorkflowViewState.IdRef="Delay_3" />
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '모집인 기준수금인 기준'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="521.6,193.6" sap2010:WorkflowViewState.IdRef="NClick_4" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V5">
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_3" />
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '모집인 기준수금인 기준'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_4" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="etopia.idblife.com/index.html" DesignTimeRectangle="225, 313, 220, 19" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='GA업적조회' class='cl-text' tag='DIV' /&gt;" Guid="e28fd177-94ad-47f9-aa97-0ab826b5fb9c" InformativeScreenshot="798aaa5d0656d0dbdde2c56689cabd26.jpg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='eTopia' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
-            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="521.6,122.4" sap2010:WorkflowViewState.IdRef="Delay_5" />
-            <uix:NCheckState DisplayName="Check App State '확인'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="521.6,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_2" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V5">
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_5" />
+            <uix:NCheckState DisplayName="Check App State '확인'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_2" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V5">
               <uix:NCheckState.IfExists>
                 <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_10">
                   <sap:WorkflowViewStateService.ViewState>
@@ -197,7 +233,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </uix:NCheckState>
-            <uix:NCheckState DisplayName="Check App State '알림사업단 조회에 실패했습니다.확인취소'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="521.6,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_3" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V5">
+            <uix:NCheckState DisplayName="Check App State '알림사업단 조회에 실패했습니다.확인취소'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_3" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V5">
               <uix:NCheckState.IfExists>
                 <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_12">
                   <sap:WorkflowViewStateService.ViewState>
@@ -231,7 +267,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </uix:NCheckState>
-            <uix:NCheckState DisplayName="Check App State '알림채널 조회에 실패했습니다.확인취소'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="521.6,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_4" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V5">
+            <uix:NCheckState DisplayName="Check App State '알림채널 조회에 실패했습니다.확인취소'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_4" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V5">
               <uix:NCheckState.IfExists>
                 <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_14">
                   <sap:WorkflowViewStateService.ViewState>
@@ -265,7 +301,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </uix:NCheckState>
-            <uix:NCheckState DisplayName="Check App State '알림사용자 세션 유효 시간이 만료되었습니다…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="521.6,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_5" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V5">
+            <uix:NCheckState DisplayName="Check App State '알림사용자 세션 유효 시간이 만료되었습니다…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_5" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V5">
               <uix:NCheckState.IfExists>
                 <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_16">
                   <sap:WorkflowViewStateService.ViewState>
@@ -299,80 +335,101 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </uix:NCheckState>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '모집인 기준'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="521.6,193.6" sap2010:WorkflowViewState.IdRef="NClick_15" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V5">
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '모집인 기준'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_15" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="etopia.idblife.com/index.html" ContentHash="mnTkjyK3dUmxlQbbBF_6Eg" DesignTimeRectangle="98, 595, 705, 33" ElementType="DropDown" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-label='모집인 기준' aria-role='combobox' tag='DIV' /&gt;" Guid="2b2da52b-0500-4d2d-8e59-094e208f7f25" InformativeScreenshot="3e9d87787ca4613326af2cfcee44e2de.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/j-hHc48CikyyCAETXj-hFw" ScopeSelectorArgument="&lt;html app='chrome.exe' title='eTopia' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
-            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="521.6,122.4" sap2010:WorkflowViewState.IdRef="Delay_11" />
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '수금인 기준'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="521.6,193.6" sap2010:WorkflowViewState.IdRef="NClick_16" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V5">
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_11" />
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '수금인 기준'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_16" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="etopia.idblife.com/index.html" ContentHash="CZ8VAHKZQUq4jYWsMcSKjg" DesignTimeRectangle="84, 667, 754, 38" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-role='option' class='cl-combobox-item' tag='DIV' /&gt;" Guid="efaceea2-fca9-4146-9e85-4ac6eda4d96b" InformativeScreenshot="9060b7c2021c34876ebf9fccbe32b1e5.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/1IW3r-S-O0y2a2m3nwExgw" ScopeSelectorArgument="&lt;html app='chrome.exe' title='eTopia' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
-            <Assign sap:VirtualizedContainerService.HintSize="521.6,174.4" sap2010:WorkflowViewState.IdRef="Assign_1">
-              <Assign.To>
-                <OutArgument x:TypeArguments="x:Int32">[StartYear]</OutArgument>
-              </Assign.To>
-              <Assign.Value>
-                <InArgument x:TypeArguments="x:Int32">[2008]</InArgument>
-              </Assign.Value>
-            </Assign>
-            <ui:InterruptibleWhile CurrentIndex="{x:Null}" Condition="[StartYear &lt;= Now.Year]" DisplayName="While" sap:VirtualizedContainerService.HintSize="521.6,5844" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
-              <ui:InterruptibleWhile.Body>
-                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="520,5722.4" sap2010:WorkflowViewState.IdRef="Sequence_5">
+            <If Condition="[IS_MANUAL = &quot;TRUE&quot;]" sap:VirtualizedContainerService.HintSize="486.4,4940.8" sap2010:WorkflowViewState.IdRef="If_2">
+              <If.Then>
+                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="484.8,2112" sap2010:WorkflowViewState.IdRef="Sequence_20">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <Assign sap:VirtualizedContainerService.HintSize="486.4,174.4" sap2010:WorkflowViewState.IdRef="Assign_2">
-                    <Assign.To>
-                      <OutArgument x:TypeArguments="x:Int32">[EndYear]</OutArgument>
-                    </Assign.To>
-                    <Assign.Value>
-                      <InArgument x:TypeArguments="x:Int32">[StartYear + 1]</InArgument>
-                    </Assign.Value>
-                  </Assign>
-                  <Assign sap:VirtualizedContainerService.HintSize="486.4,174.4" sap2010:WorkflowViewState.IdRef="Assign_3">
+                  <Assign sap:VirtualizedContainerService.HintSize="451.2,174.4" sap2010:WorkflowViewState.IdRef="Assign_8">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[dateFrom]</OutArgument>
                     </Assign.To>
                     <Assign.Value>
-                      <InArgument x:TypeArguments="x:String">[New DateTime(StartYear, 1, 1).ToString("yyyy-MM-dd")]</InArgument>
+                      <InArgument x:TypeArguments="x:String">[START_PERIOD]</InArgument>
                     </Assign.Value>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
                   </Assign>
-                  <Assign sap:VirtualizedContainerService.HintSize="486.4,174.4" sap2010:WorkflowViewState.IdRef="Assign_4">
+                  <Assign sap:VirtualizedContainerService.HintSize="451.2,174.4" sap2010:WorkflowViewState.IdRef="Assign_9">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[dateTo]</OutArgument>
                     </Assign.To>
                     <Assign.Value>
-                      <InArgument x:TypeArguments="x:String">[New DateTime(EndYear, 12, 31).ToString("yyyy-MM-dd")]</InArgument>
+                      <InArgument x:TypeArguments="x:String">[END_PERIOD]</InArgument>
                     </Assign.Value>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
                   </Assign>
-                  <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;from : &quot; + dateFrom + &quot; to : &quot; + dateTo]" />
-                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '조직정보GA서울사업단선릉지점미래에셋금융서비…(3)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_19" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V5">
+                  <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[&quot;from : &quot; + dateFrom + &quot; to : &quot; + dateTo]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </WriteLine>
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '조직정보GA서울사업단선릉지점미래에셋금융서비…(3)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NClick_20" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V5">
                     <uix:NClick.Target>
                       <uix:TargetAnchorable BrowserURL="etopia.idblife.com/index.html" ContentHash="BSLHeqkhM0e7zTZ1ShEKpg" DesignTimeRectangle="82, 634, 125, 35" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='계약일자' class='cl-text' tag='DIV' /&gt;" Guid="eb98edde-921b-4cc5-8672-39a318fce746" InformativeScreenshot="81caab41e2559052fc474f64e0925802.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/cPI8cdG-g0Wk9RmIoDmERA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='eTopia' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                     </uix:NClick.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
                   </uix:NClick>
-                  <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_15" />
-                  <ui:SetToClipboard DisplayName="Set To Clipboard" sap:VirtualizedContainerService.HintSize="486.4,92" sap2010:WorkflowViewState.IdRef="SetToClipboard_2" Text="[dateFrom]" />
-                  <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_17" />
-                  <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts '조직정보GA서울사업단선릉지점미래에셋금융서비…(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,328.8" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_1" InteractionMode="HardwareEvents" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Shortcuts="[d(hk)][k(Tab)][u(hk)][d(hk)][d(ctrl)]v[u(ctrl)][u(hk)]" Version="V5">
+                  <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_18" />
+                  <ui:SetToClipboard DisplayName="Set To Clipboard" sap:VirtualizedContainerService.HintSize="451.2,92" sap2010:WorkflowViewState.IdRef="SetToClipboard_3" Text="[dateFrom]" />
+                  <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_19" />
+                  <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts '조직정보GA서울사업단선릉지점미래에셋금융서비…(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_4" InteractionMode="HardwareEvents" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Shortcuts="[d(hk)][k(Tab)][u(hk)][d(hk)][d(ctrl)]v[u(ctrl)][u(hk)]" Version="V5">
                     <uix:NKeyboardShortcuts.Target>
                       <uix:TargetAnchorable BrowserURL="etopia.idblife.com/index.html" ContentHash="kQMPqp7q2UGnbzfMrCdFFA" DesignTimeRectangle="82, 634, 125, 35" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='계약일자' class='cl-text' tag='DIV' /&gt;" Guid="eb98fd46-1585-4dd6-842b-bfebe6d3c3eb" InformativeScreenshot="448977b60eaa0c3d2231511d237b146a.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/KLIHw_k0I0OXTgnoeY5DLw" ScopeSelectorArgument="&lt;html app='chrome.exe' title='eTopia' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                     </uix:NKeyboardShortcuts.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
                   </uix:NKeyboardShortcuts>
-                  <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_12" />
-                  <ui:SetToClipboard DisplayName="Set To Clipboard" sap:VirtualizedContainerService.HintSize="486.4,92" sap2010:WorkflowViewState.IdRef="SetToClipboard_1" Text="[dateTo]" />
-                  <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts '조직정보GA서울사업단선릉지점미래에셋금융서비…(2)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,328.8" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_2" InteractionMode="HardwareEvents" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Shortcuts="[d(hk)][k(Tab)][u(hk)][d(hk)][d(ctrl)]v[u(ctrl)][u(hk)]" Version="V5">
+                  <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_20" />
+                  <ui:SetToClipboard DisplayName="Set To Clipboard" sap:VirtualizedContainerService.HintSize="451.2,92" sap2010:WorkflowViewState.IdRef="SetToClipboard_4" Text="[dateTo]" />
+                  <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts '조직정보GA서울사업단선릉지점미래에셋금융서비…(2)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_5" InteractionMode="HardwareEvents" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Shortcuts="[d(hk)][k(Tab)][u(hk)][d(hk)][d(ctrl)]v[u(ctrl)][u(hk)]" Version="V5">
                     <uix:NKeyboardShortcuts.Target>
                       <uix:TargetAnchorable BrowserURL="etopia.idblife.com/index.html" ContentHash="y2-bEIkHw06_u5jW7g0tTQ" DesignTimeRectangle="82, 634, 125, 35" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='계약일자' class='cl-text' tag='DIV' /&gt;" Guid="71e3c784-dc64-4986-9a8f-f3f6ee8a71fc" InformativeScreenshot="db75092193cedfa48190362205198bb9.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/nmmOu50c00aePnyNiqgzdg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='eTopia' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                     </uix:NKeyboardShortcuts.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
                   </uix:NKeyboardShortcuts>
-                  <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_16" />
-                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '조회'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_6" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V5">
+                  <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_21" />
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '조회'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_21" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V5">
                     <uix:NClick.Target>
                       <uix:TargetAnchorable BrowserURL="etopia.idblife.com/index.html" DesignTimeRectangle="1721, 349, 125, 35" ElementType="Button" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='uuid-735' tag='DIV' type='' class='cl-control cl-button cl-unselectable cl-even-column cl-last-column cl-odd-row cl-first-row cl-last-row btn orange' aaname='' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='조회' /&gt;" Guid="19a56bb3-7c6b-4539-89ae-dcd24107a3c6" InformativeScreenshot="39c9fd5a8a6c99d6f3cebd05ed930b41.jpg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='eTopia' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
                         <uix:TargetAnchorable.Anchors>
@@ -389,8 +446,8 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </uix:NClick>
-                  <Delay Duration="00:00:20" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_6" />
-                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '엑셀저장'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_9" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V5">
+                  <Delay Duration="00:00:20" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_22" />
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '엑셀저장'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_22" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V5">
                     <uix:NClick.Target>
                       <uix:TargetAnchorable BrowserURL="etopia.idblife.com/index.html" DesignTimeRectangle="1764, 975, 125, 45" ElementType="Button" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl aria-role='button' type='' tabindex='0' tag='DIV' class='cl-control cl-button cl-unselectable cl-first cl-last btn' aaname='' matching:aria-role='fuzzy' fuzzylevel:aria-role='0.0' matching:tabindex='fuzzy' fuzzylevel:tabindex='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='엑셀저장' /&gt;" Guid="a94eb74a-52dc-46f6-91c2-03381538f173" InformativeScreenshot="0affd2270e6bc7fdec5738d14d339f90.jpg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='eTopia' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
                         <uix:TargetAnchorable.Anchors>
@@ -401,30 +458,30 @@
                       </uix:TargetAnchorable>
                     </uix:NClick.Target>
                   </uix:NClick>
-                  <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_7" />
-                  <uix:NCheckState DisplayName="Check App State '알림창 엑셀저장 하시겠습니까 확인 취소'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="486.4,2572" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V5">
+                  <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_23" />
+                  <uix:NCheckState DisplayName="Check App State '알림창 엑셀저장 하시겠습니까 확인 취소'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_7" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V5">
                     <uix:NCheckState.IfExists>
-                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="484.8,2137.6" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="484.8,2137.6" sap2010:WorkflowViewState.IdRef="Sequence_26">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_10" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V5">
+                        <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_23" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V5">
                           <uix:NClick.Target>
                             <uix:TargetAnchorable BrowserURL="etopia.idblife.com/index.html" DesignTimeRectangle="950, 701, 106, 43" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='cl-text-wrapper' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='8' tag='DIV' /&gt;" Guid="0cb0bbb8-cadb-499e-8de9-a5e7dfb2fd18" InformativeScreenshot="539579fab0ee4f15233676efa47053f8.jpg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='eTopia' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                           </uix:NClick.Target>
                         </uix:NClick>
-                        <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_8" />
-                        <uix:NCheckState DisplayName="Check App State 'Intermediate D3D Window'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,814.4" sap2010:WorkflowViewState.IdRef="NCheckState_6" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V5">
+                        <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_25" />
+                        <uix:NCheckState DisplayName="Check App State 'Intermediate D3D Window'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,814.4" sap2010:WorkflowViewState.IdRef="NCheckState_8" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V5">
                           <uix:NCheckState.IfExists>
-                            <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,380" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                            <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,380" sap2010:WorkflowViewState.IdRef="Sequence_22">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts 'Intermediate D3D Window(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,320" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_3" InteractionMode="HardwareEvents" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Shortcuts="[d(hk)][k(Esc)][u(hk)]" Version="V5">
+                              <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts 'Intermediate D3D Window(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,320" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_6" InteractionMode="HardwareEvents" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Shortcuts="[d(hk)][k(Esc)][u(hk)]" Version="V5">
                                 <uix:NKeyboardShortcuts.Target>
                                   <uix:TargetAnchorable BrowserURL="etopia.idblife.com/index.html" ContentHash="DmbmAPasB0-B52M_ig-sAQ" DesignTimeRectangle="0, 0, 419, 695" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd cls='Intermediate D3D Window' /&gt;" Guid="b9e932e3-3b1e-41fa-9e82-0665d39d28fd" InformativeScreenshot="d9fa868e90ff1a26053f31eed83ae4b3.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/HRr0zI2J60iR7c42qQb02w" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='최근 다운로드 기록' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                                 </uix:NKeyboardShortcuts.Target>
@@ -432,7 +489,7 @@
                             </Sequence>
                           </uix:NCheckState.IfExists>
                           <uix:NCheckState.IfNotExists>
-                            <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                            <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_23">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -444,7 +501,7 @@
                             <uix:TargetAnchorable BrowserURL="etopia.idblife.com/index.html" ContentHash="NV4G1SDkPEOnNPqhMkuaZw" DesignTimeRectangle="0, 0, 419, 695" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd cls='Intermediate D3D Window' /&gt;" Guid="bd696ede-18b6-4d01-ac27-2e3f39be3dbe" InformativeScreenshot="8fa52b95ecdc0f7a184ef3e44cff9f72.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/y72srJ0Zuky0mpMMzt2Wlg" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='최근 다운로드 기록' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                           </uix:NCheckState.Target>
                         </uix:NCheckState>
-                        <Assign sap:VirtualizedContainerService.HintSize="451.2,174.4" sap2010:WorkflowViewState.IdRef="Assign_6">
+                        <Assign sap:VirtualizedContainerService.HintSize="451.2,174.4" sap2010:WorkflowViewState.IdRef="Assign_10">
                           <Assign.To>
                             <OutArgument x:TypeArguments="x:String">[latestFilePath]</OutArgument>
                           </Assign.To>
@@ -458,7 +515,7 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                         </Assign>
-                        <If Condition="[String.IsNullOrEmpty(latestFilePath)]" sap:VirtualizedContainerService.HintSize="451.2,772.8" sap2010:WorkflowViewState.IdRef="If_1">
+                        <If Condition="[String.IsNullOrEmpty(latestFilePath)]" sap:VirtualizedContainerService.HintSize="451.2,772.8" sap2010:WorkflowViewState.IdRef="If_3">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -466,23 +523,23 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                           <If.Then>
-                            <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,225.6" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                            <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,225.6" sap2010:WorkflowViewState.IdRef="Sequence_24">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Not Found FileName&quot;]" />
+                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;Not Found FileName&quot;]" />
                             </Sequence>
                           </If.Then>
                           <If.Else>
-                            <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,417.6" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                            <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,417.6" sap2010:WorkflowViewState.IdRef="Sequence_25">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <Assign sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="Assign_7">
+                              <Assign sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="Assign_11">
                                 <Assign.To>
                                   <OutArgument x:TypeArguments="x:String">[newFilePath]</OutArgument>
                                 </Assign.To>
@@ -490,7 +547,7 @@
                                   <InArgument x:TypeArguments="x:String">[Path.Combine("C:\RPA\TempDownload", "DBL_EXT_LIF_" &amp; DateTime.Now.ToString("yyyyMMdd_HHmmss") &amp; "_" &amp; Path.GetFileName(latestFilePath))]</InArgument>
                                 </Assign.Value>
                               </Assign>
-                              <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[newFilePath]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="416,183.2" sap2010:WorkflowViewState.IdRef="MoveFile_1" Path="[latestFilePath]">
+                              <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[newFilePath]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="416,183.2" sap2010:WorkflowViewState.IdRef="MoveFile_2" Path="[latestFilePath]">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -504,7 +561,7 @@
                       </Sequence>
                     </uix:NCheckState.IfExists>
                     <uix:NCheckState.IfNotExists>
-                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="484.8,89.6" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="484.8,89.6" sap2010:WorkflowViewState.IdRef="Sequence_27">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -517,29 +574,285 @@
                     </uix:NCheckState.Target>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </uix:NCheckState>
-                  <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_10" />
-                  <Assign sap:VirtualizedContainerService.HintSize="486.4,165.6" sap2010:WorkflowViewState.IdRef="Assign_5">
+                  <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="451.2,113.6" sap2010:WorkflowViewState.IdRef="Delay_24" />
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="484.8,2699.2" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Assign sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="Assign_1">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:Int32">[StartYear]</OutArgument>
                     </Assign.To>
                     <Assign.Value>
-                      <InArgument x:TypeArguments="x:Int32">[StartYear + 2]</InArgument>
+                      <InArgument x:TypeArguments="x:Int32">[2008]</InArgument>
                     </Assign.Value>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
                   </Assign>
+                  <ui:InterruptibleWhile CurrentIndex="{x:Null}" Condition="[StartYear &lt;= Now.Year]" DisplayName="While" sap:VirtualizedContainerService.HintSize="451.2,2582.4" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
+                    <ui:InterruptibleWhile.Body>
+                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="449.6,2460.8" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Assign sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="Assign_2">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Int32">[EndYear]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Int32">[StartYear + 1]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="Assign_3">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[dateFrom]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">[New DateTime(StartYear, 1, 1).ToString("yyyy-MM-dd")]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="Assign_4">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[dateTo]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">[New DateTime(EndYear, 12, 31).ToString("yyyy-MM-dd")]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;from : &quot; + dateFrom + &quot; to : &quot; + dateTo]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </WriteLine>
+                        <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '조직정보GA서울사업단선릉지점미래에셋금융서비…(3)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NClick_19" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V5">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable BrowserURL="etopia.idblife.com/index.html" ContentHash="BSLHeqkhM0e7zTZ1ShEKpg" DesignTimeRectangle="82, 634, 125, 35" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='계약일자' class='cl-text' tag='DIV' /&gt;" Guid="eb98edde-921b-4cc5-8672-39a318fce746" InformativeScreenshot="81caab41e2559052fc474f64e0925802.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/cPI8cdG-g0Wk9RmIoDmERA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='eTopia' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                          </uix:NClick.Target>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </uix:NClick>
+                        <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_15" />
+                        <ui:SetToClipboard DisplayName="Set To Clipboard" sap:VirtualizedContainerService.HintSize="416,92" sap2010:WorkflowViewState.IdRef="SetToClipboard_2" Text="[dateFrom]" />
+                        <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_17" />
+                        <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts '조직정보GA서울사업단선릉지점미래에셋금융서비…(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_1" InteractionMode="HardwareEvents" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Shortcuts="[d(hk)][k(Tab)][u(hk)][d(hk)][d(ctrl)]v[u(ctrl)][u(hk)]" Version="V5">
+                          <uix:NKeyboardShortcuts.Target>
+                            <uix:TargetAnchorable BrowserURL="etopia.idblife.com/index.html" ContentHash="kQMPqp7q2UGnbzfMrCdFFA" DesignTimeRectangle="82, 634, 125, 35" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='계약일자' class='cl-text' tag='DIV' /&gt;" Guid="eb98fd46-1585-4dd6-842b-bfebe6d3c3eb" InformativeScreenshot="448977b60eaa0c3d2231511d237b146a.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/KLIHw_k0I0OXTgnoeY5DLw" ScopeSelectorArgument="&lt;html app='chrome.exe' title='eTopia' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                          </uix:NKeyboardShortcuts.Target>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </uix:NKeyboardShortcuts>
+                        <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_12" />
+                        <ui:SetToClipboard DisplayName="Set To Clipboard" sap:VirtualizedContainerService.HintSize="416,92" sap2010:WorkflowViewState.IdRef="SetToClipboard_1" Text="[dateTo]" />
+                        <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts '조직정보GA서울사업단선릉지점미래에셋금융서비…(2)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_2" InteractionMode="HardwareEvents" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Shortcuts="[d(hk)][k(Tab)][u(hk)][d(hk)][d(ctrl)]v[u(ctrl)][u(hk)]" Version="V5">
+                          <uix:NKeyboardShortcuts.Target>
+                            <uix:TargetAnchorable BrowserURL="etopia.idblife.com/index.html" ContentHash="y2-bEIkHw06_u5jW7g0tTQ" DesignTimeRectangle="82, 634, 125, 35" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='계약일자' class='cl-text' tag='DIV' /&gt;" Guid="71e3c784-dc64-4986-9a8f-f3f6ee8a71fc" InformativeScreenshot="db75092193cedfa48190362205198bb9.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/nmmOu50c00aePnyNiqgzdg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='eTopia' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                          </uix:NKeyboardShortcuts.Target>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </uix:NKeyboardShortcuts>
+                        <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_16" />
+                        <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '조회'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_6" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V5">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable BrowserURL="etopia.idblife.com/index.html" DesignTimeRectangle="1721, 349, 125, 35" ElementType="Button" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='uuid-735' tag='DIV' type='' class='cl-control cl-button cl-unselectable cl-even-column cl-last-column cl-odd-row cl-first-row cl-last-row btn orange' aaname='' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='조회' /&gt;" Guid="19a56bb3-7c6b-4539-89ae-dcd24107a3c6" InformativeScreenshot="39c9fd5a8a6c99d6f3cebd05ed930b41.jpg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='eTopia' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target DesignTimeRectangle="1730, 357, 106, 19" ElementType="Text" FuzzySelectorArgument="&lt;webctrl class='cl-text' parentid='uuid-735' tag='DIV' type='' aaname='조회' matching:class='fuzzy' fuzzylevel:class='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='조회' /&gt;" Guid="0c7648ef-162e-4cc4-bf1c-8958aeb19ed3" SearchSteps="FuzzySelector" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NClick.Target>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </uix:NClick>
+                        <Delay Duration="00:00:20" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_6" />
+                        <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '엑셀저장'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_9" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V5">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable BrowserURL="etopia.idblife.com/index.html" DesignTimeRectangle="1764, 975, 125, 45" ElementType="Button" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl aria-role='button' type='' tabindex='0' tag='DIV' class='cl-control cl-button cl-unselectable cl-first cl-last btn' aaname='' matching:aria-role='fuzzy' fuzzylevel:aria-role='0.0' matching:tabindex='fuzzy' fuzzylevel:tabindex='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='엑셀저장' /&gt;" Guid="a94eb74a-52dc-46f6-91c2-03381538f173" InformativeScreenshot="0affd2270e6bc7fdec5738d14d339f90.jpg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='eTopia' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target DesignTimeRectangle="1780, 988, 93, 19" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='엑셀저장' class='cl-text' tag='DIV' type='' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='엑셀저장' /&gt;" Guid="60c5ccae-239f-4b52-bd59-00f86115bd3c" SearchSteps="FuzzySelector" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NClick.Target>
+                        </uix:NClick>
+                        <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_7" />
+                        <uix:NCheckState DisplayName="Check App State '알림창 엑셀저장 하시겠습니까 확인 취소'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V5">
+                          <uix:NCheckState.IfExists>
+                            <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="484.8,2137.6" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_10" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V5">
+                                <uix:NClick.Target>
+                                  <uix:TargetAnchorable BrowserURL="etopia.idblife.com/index.html" DesignTimeRectangle="950, 701, 106, 43" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='cl-text-wrapper' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='8' tag='DIV' /&gt;" Guid="0cb0bbb8-cadb-499e-8de9-a5e7dfb2fd18" InformativeScreenshot="539579fab0ee4f15233676efa47053f8.jpg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='eTopia' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                                </uix:NClick.Target>
+                              </uix:NClick>
+                              <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_8" />
+                              <uix:NCheckState DisplayName="Check App State 'Intermediate D3D Window'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,814.4" sap2010:WorkflowViewState.IdRef="NCheckState_6" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V5">
+                                <uix:NCheckState.IfExists>
+                                  <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,380" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts 'Intermediate D3D Window(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,320" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_3" InteractionMode="HardwareEvents" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Shortcuts="[d(hk)][k(Esc)][u(hk)]" Version="V5">
+                                      <uix:NKeyboardShortcuts.Target>
+                                        <uix:TargetAnchorable BrowserURL="etopia.idblife.com/index.html" ContentHash="DmbmAPasB0-B52M_ig-sAQ" DesignTimeRectangle="0, 0, 419, 695" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd cls='Intermediate D3D Window' /&gt;" Guid="b9e932e3-3b1e-41fa-9e82-0665d39d28fd" InformativeScreenshot="d9fa868e90ff1a26053f31eed83ae4b3.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/HRr0zI2J60iR7c42qQb02w" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='최근 다운로드 기록' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                                      </uix:NKeyboardShortcuts.Target>
+                                    </uix:NKeyboardShortcuts>
+                                  </Sequence>
+                                </uix:NCheckState.IfExists>
+                                <uix:NCheckState.IfNotExists>
+                                  <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                  </Sequence>
+                                </uix:NCheckState.IfNotExists>
+                                <uix:NCheckState.Target>
+                                  <uix:TargetAnchorable BrowserURL="etopia.idblife.com/index.html" ContentHash="NV4G1SDkPEOnNPqhMkuaZw" DesignTimeRectangle="0, 0, 419, 695" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd cls='Intermediate D3D Window' /&gt;" Guid="bd696ede-18b6-4d01-ac27-2e3f39be3dbe" InformativeScreenshot="8fa52b95ecdc0f7a184ef3e44cff9f72.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/y72srJ0Zuky0mpMMzt2Wlg" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='최근 다운로드 기록' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                                </uix:NCheckState.Target>
+                              </uix:NCheckState>
+                              <Assign sap:VirtualizedContainerService.HintSize="451.2,174.4" sap2010:WorkflowViewState.IdRef="Assign_6">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[latestFilePath]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">[Directory.GetFiles("C:\RPA\TempDownload", "*.xlsx").OrderByDescending(Function(f) New FileInfo(f).LastWriteTime).FirstOrDefault()]</InArgument>
+                                </Assign.Value>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </Assign>
+                              <If Condition="[String.IsNullOrEmpty(latestFilePath)]" sap:VirtualizedContainerService.HintSize="451.2,772.8" sap2010:WorkflowViewState.IdRef="If_1">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <If.Then>
+                                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,225.6" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Not Found FileName&quot;]" />
+                                  </Sequence>
+                                </If.Then>
+                                <If.Else>
+                                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,417.6" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <Assign sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="Assign_7">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:String">[newFilePath]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:String">[Path.Combine("C:\RPA\TempDownload", "DBL_EXT_LIF_" &amp; DateTime.Now.ToString("yyyyMMdd_HHmmss") &amp; "_" &amp; Path.GetFileName(latestFilePath))]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[newFilePath]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="416,183.2" sap2010:WorkflowViewState.IdRef="MoveFile_1" Path="[latestFilePath]">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </ui:MoveFile>
+                                  </Sequence>
+                                </If.Else>
+                              </If>
+                            </Sequence>
+                          </uix:NCheckState.IfExists>
+                          <uix:NCheckState.IfNotExists>
+                            <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="484.8,89.6" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </Sequence>
+                          </uix:NCheckState.IfNotExists>
+                          <uix:NCheckState.Target>
+                            <uix:TargetAnchorable BrowserURL="etopia.idblife.com/index.html" DesignTimeRectangle="707, 500, 525, 280" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-role='dialog' tag='DIV' /&gt;" Guid="1d70d83c-ccc8-41d8-bc5a-2c905a5ec490" InformativeScreenshot="2e70d57081c569ea1e655eb503752854.jpg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='eTopia' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                          </uix:NCheckState.Target>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </uix:NCheckState>
+                        <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_10" />
+                        <Assign sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="Assign_5">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Int32">[StartYear]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Int32">[StartYear + 2]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </ui:InterruptibleWhile.Body>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:InterruptibleWhile>
                 </Sequence>
-              </ui:InterruptibleWhile.Body>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </ui:InterruptibleWhile>
+              </If.Else>
+            </If>
           </Sequence>
         </ActivityAction>
       </uix:NApplicationCard.Body>
