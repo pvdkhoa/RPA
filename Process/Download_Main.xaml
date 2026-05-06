@@ -1,5 +1,10 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="Download_Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
+    <x:Property Name="io_LastRunType" Type="InOutArgument(x:String)" />
+    <x:Property Name="io_LastContractType" Type="InOutArgument(x:String)" />
+    <x:Property Name="io_LastCompCode" Type="InOutArgument(x:String)" />
+    <x:Property Name="io_LastScreenshotPath" Type="InOutArgument(x:String)" />
+    <x:Property Name="io_LastException" Type="InOutArgument(s:Exception)" />
     <x:Property Name="in_RunType" Type="InArgument(x:String)" />
     <x:Property Name="in_StartTime" Type="InArgument(s:DateTime)" />
     <x:Property Name="in_IsAll" Type="InArgument(x:String)" />
@@ -40,6 +45,7 @@
       <x:String>System.Reflection</x:String>
       <x:String>System.Runtime.Serialization</x:String>
       <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -86,321 +92,490 @@
       <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
       <AssemblyReference>System.Linq.Expressions</AssemblyReference>
       <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Download_Main" sap:VirtualizedContainerService.HintSize="832.4000000000001,1954.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Download_Main" sap:VirtualizedContainerService.HintSize="912.4000000000001,3322.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="screenshotPath" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="472,122.4" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[&quot;path program : &quot; + in_Config(&quot;ProgramPath&quot;).ToString]" />
-    <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[in_CompCode]" sap:VirtualizedContainerService.HintSize="472,1808.8" sap2010:WorkflowViewState.IdRef="Switch`1_1">
-      <Switch.Default>
-        <Sequence DisplayName="Default" sap:VirtualizedContainerService.HintSize="468.8,89.6" sap2010:WorkflowViewState.IdRef="Sequence_16">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-        </Sequence>
-      </Switch.Default>
-      <Sequence x:Key="SSL" DisplayName="Body" sap:VirtualizedContainerService.HintSize="470.4,284" sap2010:WorkflowViewState.IdRef="Sequence_2">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_SSL - Invoke Workflow File (Process\Download\Download_SSL.xaml)" sap:VirtualizedContainerService.HintSize="436.8,224" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Process\Download\Download_SSL.xaml">
-          <ui:InvokeWorkflowFile.Arguments>
-            <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="isAll">[in_IsAll]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="path">[in_Config("ProgramPath").ToString]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="runType">[in_RunType]</InArgument>
-          </ui:InvokeWorkflowFile.Arguments>
-        </ui:InvokeWorkflowFile>
-      </Sequence>
-      <Sequence x:Key="LNF" DisplayName="Body" sap:VirtualizedContainerService.HintSize="470.4,24.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_LNF - Invoke Workflow File (Process\Download\Download_LNF.xaml)" sap:VirtualizedContainerService.HintSize="451.2,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Process\Download\Download_LNF.xaml">
-          <ui:InvokeWorkflowFile.Arguments>
-            <InArgument x:TypeArguments="x:String" x:Key="path">[in_Config("ProgramPath").ToString]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="isAll">[in_IsAll]</InArgument>
-            <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="runType">[in_RunType]</InArgument>
-          </ui:InvokeWorkflowFile.Arguments>
-        </ui:InvokeWorkflowFile>
-      </Sequence>
-      <Sequence x:Key="DBL" DisplayName="Body" sap:VirtualizedContainerService.HintSize="470.4,24.8" sap2010:WorkflowViewState.IdRef="Sequence_4">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-        <If Condition="[in_ContractType = &quot;EXIST&quot;]" sap:VirtualizedContainerService.HintSize="470.4,48" sap2010:WorkflowViewState.IdRef="If_1">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <If.Then>
-            <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,227.2" sap2010:WorkflowViewState.IdRef="Sequence_32">
+    <Sequence sap:VirtualizedContainerService.HintSize="520,3299.2" sap2010:WorkflowViewState.IdRef="Sequence_34">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="486.4,3216" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+        <TryCatch.Try>
+          <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="484.8,1895.2" sap2010:WorkflowViewState.IdRef="Sequence_35">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[in_CompCode]" sap:VirtualizedContainerService.HintSize="451.2,1835.2" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+              <Switch.Default>
+                <Sequence DisplayName="Default" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </Switch.Default>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_DBL - Invoke Workflow File (Process\Download\Download_DBL.xaml)" sap:VirtualizedContainerService.HintSize="416,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Process\Download\Download_DBL.xaml">
-                <ui:InvokeWorkflowFile.Arguments>
-                  <InArgument x:TypeArguments="x:String" x:Key="path">[in_Config("ProgramPath").ToString]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="isAll">[in_IsAll]</InArgument>
-                  <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="runType">[in_RunType]</InArgument>
-                </ui:InvokeWorkflowFile.Arguments>
+              <Sequence x:Key="SSL" DisplayName="Body" sap:VirtualizedContainerService.HintSize="449.6,227.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-              </ui:InvokeWorkflowFile>
-            </Sequence>
-          </If.Then>
-          <If.Else>
-            <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_33">
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_SSL - Invoke Workflow File (Process\Download\Download_SSL.xaml)" sap:VirtualizedContainerService.HintSize="416,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Process\Download\Download_SSL.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="isAll">[in_IsAll]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="path">[in_Config("ProgramPath").ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="runType">[in_RunType]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="compCode">[in_CompCode]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:InvokeWorkflowFile>
+              </Sequence>
+              <Sequence x:Key="LNF" DisplayName="Body" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_LNF - Invoke Workflow File (Process\Download\Download_LNF.xaml)" sap:VirtualizedContainerService.HintSize="451.2,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Process\Download\Download_LNF.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="path">[in_Config("ProgramPath").ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="isAll">[in_IsAll]</InArgument>
+                    <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="runType">[in_RunType]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+              </Sequence>
+              <Sequence x:Key="DBL" DisplayName="Body" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If Condition="[in_ContractType = &quot;EXIST&quot;]" sap:VirtualizedContainerService.HintSize="470.4,48" sap2010:WorkflowViewState.IdRef="If_1">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If.Then>
+                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,227.2" sap2010:WorkflowViewState.IdRef="Sequence_32">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_DBL - Invoke Workflow File (Process\Download\Download_DBL.xaml)" sap:VirtualizedContainerService.HintSize="416,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Process\Download\Download_DBL.xaml">
+                        <ui:InvokeWorkflowFile.Arguments>
+                          <InArgument x:TypeArguments="x:String" x:Key="path">[in_Config("ProgramPath").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="isAll">[in_IsAll]</InArgument>
+                          <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="runType">[in_RunType]</InArgument>
+                        </ui:InvokeWorkflowFile.Arguments>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:InvokeWorkflowFile>
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_33">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Sequence>
+                  </If.Else>
+                </If>
+              </Sequence>
+              <Sequence x:Key="MTL" DisplayName="Body" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_MTL - Invoke Workflow File (Process\Download\Download_MTL.xaml)" sap:VirtualizedContainerService.HintSize="470.4,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Process\Download\Download_MTL.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="path">[in_Config("ProgramPath").ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="isAll">[in_IsAll]</InArgument>
+                    <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="runType">[in_RunType]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+              </Sequence>
+              <Sequence x:Key="KBL" DisplayName="Body" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_KBL - Invoke Workflow File (Process\Download\Download_KBL.xaml)" sap:VirtualizedContainerService.HintSize="470.4,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Process\Download\Download_KBL.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="path">[in_Config("ProgramPath").ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="isAll">[in_IsAll]</InArgument>
+                    <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="runType">[in_RunType]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+              </Sequence>
+              <Sequence x:Key="CDL" DisplayName="Body" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_CDL - Invoke Workflow File (Process\Download\Download_CDL.xaml)" sap:VirtualizedContainerService.HintSize="470.4,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Process\Download\Download_CDL.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="path">[in_Config("ProgramPath").ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="isAll">[in_IsAll]</InArgument>
+                    <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="runType">[in_RunType]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+              </Sequence>
+              <Sequence x:Key="SSF" DisplayName="Body" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_SSF - Invoke Workflow File (Process\Download\Download_SSF.xaml)" sap:VirtualizedContainerService.HintSize="470.4,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Process\Download\Download_SSF.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="path">[in_Config("ProgramPath").ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="isAll">[in_IsAll]</InArgument>
+                    <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="runType">[in_RunType]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+              </Sequence>
+              <Sequence x:Key="MRF" DisplayName="Body" sap:VirtualizedContainerService.HintSize="449.6,108" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_MRF - Invoke Workflow File (Process\Download\Download_MRF.xaml)" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="Process\Download\Download_MRF.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="path">[in_Config("ProgramPath").ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="isAll">[in_IsAll]</InArgument>
+                    <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="runType">[in_RunType]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:InvokeWorkflowFile>
+              </Sequence>
+              <Sequence x:Key="HDG" DisplayName="Body" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_HDG - Invoke Workflow File (Process\Download\Download_HDG.xaml)" sap:VirtualizedContainerService.HintSize="470.4,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Process\Download\Download_HDG.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="path">[in_Config("ProgramPath").ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="isAll">[in_IsAll]</InArgument>
+                    <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="runType">[in_RunType]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+              </Sequence>
+              <Sequence x:Key="HWG" DisplayName="Body" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_HWG - Invoke Workflow File (Process\Download\Download_HWG.xaml)" sap:VirtualizedContainerService.HintSize="433.6,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="Process\Download\Download_HWG.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="path">[in_Config("ProgramPath").ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="isAll">[in_IsAll]</InArgument>
+                    <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="runType">[in_RunType]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+              </Sequence>
+              <Sequence x:Key="DBG" DisplayName="Body" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_DBG - Invoke Workflow File (Process\Download\Download_DBG.xaml)" sap:VirtualizedContainerService.HintSize="430.4,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_11" UnSafe="False" WorkflowFileName="Process\Download\Download_DBG.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="path">[in_Config("ProgramPath").ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="isAll">[in_IsAll]</InArgument>
+                    <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="runType">[in_RunType]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+              </Sequence>
+              <Sequence x:Key="KBG" DisplayName="Body" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_KBG - Invoke Workflow File (Process\Download\Download_KBG.xaml)" sap:VirtualizedContainerService.HintSize="436.8,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" UnSafe="False" WorkflowFileName="Process\Download\Download_KBG.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="path">[in_Config("ProgramPath").ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="isAll">[in_IsAll]</InArgument>
+                    <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="runType">[in_RunType]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+              </Sequence>
+              <Sequence x:Key="LTG" DisplayName="Body" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_LTG - Invoke Workflow File (Process\Download\Download_LTG.xaml)" sap:VirtualizedContainerService.HintSize="433.6,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_13" UnSafe="False" WorkflowFileName="Process\Download\Download_LTG.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="path">[in_Config("ProgramPath").ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="isAll">[in_IsAll]</InArgument>
+                    <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="runType">[in_RunType]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+              </Sequence>
+              <Sequence x:Key="HKF" DisplayName="Body" sap:VirtualizedContainerService.HintSize="449.6,227.2" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_HKF - Invoke Workflow File (Process\Download\Download_HKF.xaml)" sap:VirtualizedContainerService.HintSize="416,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_14" UnSafe="False" WorkflowFileName="Process\Download\Download_HKF.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="path">[in_Config("ProgramPath").ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="isAll">[in_IsAll]</InArgument>
+                    <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="runType">[in_RunType]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+              </Sequence>
+              <Sequence x:Key="RUN_JAVA" DisplayName="Body" sap:VirtualizedContainerService.HintSize="449.6,164.8" sap2010:WorkflowViewState.IdRef="Sequence_31">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Delay Duration="00:00:15" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_1">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Delay>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Run_Program - Invoke Workflow File (Utils\Run_Program.xaml)" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_30" UnSafe="False" WorkflowFileName="Utils\Run_Program.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="path">[in_Config("ProgramPath").ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:InvokeWorkflowFile>
+              </Sequence>
+            </Switch>
+          </Sequence>
+        </TryCatch.Try>
+        <TryCatch.Catches>
+          <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+            <ActivityAction x:TypeArguments="s:Exception">
+              <ActivityAction.Argument>
+                <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+              </ActivityAction.Argument>
+              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="484.8,928.8" sap2010:WorkflowViewState.IdRef="Sequence_36">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Invoke TakeScreenshot workflow" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_33" UnSafe="False" WorkflowFileName="Framework\TakeScreenshot.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_Folder">C:\Users\RPA02\Documents\UiPath\REF_RPA\Exceptions_Screenshots</InArgument>
+                    <InOutArgument x:TypeArguments="x:String" x:Key="io_FilePath">[ScreenShotPath]</InOutArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:InvokeWorkflowFile>
+                <Assign sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="Assign_5">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[io_LastScreenshotPath]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[screenshotPath]</InArgument>
+                  </Assign.Value>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Assign>
+                <Assign sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="Assign_4">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="s:Exception">[io_LastException]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="s:Exception">[exception]</InArgument>
+                  </Assign.Value>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Assign>
+                <Assign sap:VirtualizedContainerService.HintSize="451.2,174.4" sap2010:WorkflowViewState.IdRef="Assign_3">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[io_LastCompCode]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[in_CompCode]</InArgument>
+                  </Assign.Value>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Assign>
+                <Assign sap:VirtualizedContainerService.HintSize="451.2,174.4" sap2010:WorkflowViewState.IdRef="Assign_2">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[io_LastContractType]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[in_ContractType]</InArgument>
+                  </Assign.Value>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Assign>
+                <Assign sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="Assign_1">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[io_LastRunType]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[in_RunType]</InArgument>
+                  </Assign.Value>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Assign>
+                <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_2">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Delay>
+                <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;[Download_Main Catch] io_LastException = &quot; &amp; If(io_LastException Is Nothing, &quot;NOTHING&quot;, io_LastException.Message) &amp; &quot; | io_LastScreenshotPath = &quot; &amp; io_LastScreenshotPath &amp; &quot; | io_LastCompCode = &quot; &amp; io_LastCompCode]" />
+                <Rethrow sap:VirtualizedContainerService.HintSize="451.2,48" sap2010:WorkflowViewState.IdRef="Rethrow_1" />
+              </Sequence>
+            </ActivityAction>
+          </Catch>
+        </TryCatch.Catches>
+        <TryCatch.Finally>
+          <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="484.8,227.2" sap2010:WorkflowViewState.IdRef="Sequence_37">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="KillAllProcesses - Invoke Workflow File (Framework\KillAllProcesses.xaml)" sap:VirtualizedContainerService.HintSize="451.2,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_34" UnSafe="False" WorkflowFileName="Framework\KillAllProcesses.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <scg:Dictionary x:TypeArguments="x:String, Argument" />
+              </ui:InvokeWorkflowFile.Arguments>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-            </Sequence>
-          </If.Else>
-        </If>
-      </Sequence>
-      <Sequence x:Key="MTL" DisplayName="Body" sap:VirtualizedContainerService.HintSize="470.4,24.8" sap2010:WorkflowViewState.IdRef="Sequence_5">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_MTL - Invoke Workflow File (Process\Download\Download_MTL.xaml)" sap:VirtualizedContainerService.HintSize="470.4,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Process\Download\Download_MTL.xaml">
-          <ui:InvokeWorkflowFile.Arguments>
-            <InArgument x:TypeArguments="x:String" x:Key="path">[in_Config("ProgramPath").ToString]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="isAll">[in_IsAll]</InArgument>
-            <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="runType">[in_RunType]</InArgument>
-          </ui:InvokeWorkflowFile.Arguments>
-        </ui:InvokeWorkflowFile>
-      </Sequence>
-      <Sequence x:Key="KBL" DisplayName="Body" sap:VirtualizedContainerService.HintSize="470.4,24.8" sap2010:WorkflowViewState.IdRef="Sequence_6">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_KBL - Invoke Workflow File (Process\Download\Download_KBL.xaml)" sap:VirtualizedContainerService.HintSize="470.4,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Process\Download\Download_KBL.xaml">
-          <ui:InvokeWorkflowFile.Arguments>
-            <InArgument x:TypeArguments="x:String" x:Key="path">[in_Config("ProgramPath").ToString]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="isAll">[in_IsAll]</InArgument>
-            <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="runType">[in_RunType]</InArgument>
-          </ui:InvokeWorkflowFile.Arguments>
-        </ui:InvokeWorkflowFile>
-      </Sequence>
-      <Sequence x:Key="CDL" DisplayName="Body" sap:VirtualizedContainerService.HintSize="470.4,24.8" sap2010:WorkflowViewState.IdRef="Sequence_7">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_CDL - Invoke Workflow File (Process\Download\Download_CDL.xaml)" sap:VirtualizedContainerService.HintSize="470.4,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Process\Download\Download_CDL.xaml">
-          <ui:InvokeWorkflowFile.Arguments>
-            <InArgument x:TypeArguments="x:String" x:Key="path">[in_Config("ProgramPath").ToString]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="isAll">[in_IsAll]</InArgument>
-            <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="runType">[in_RunType]</InArgument>
-          </ui:InvokeWorkflowFile.Arguments>
-        </ui:InvokeWorkflowFile>
-      </Sequence>
-      <Sequence x:Key="SSF" DisplayName="Body" sap:VirtualizedContainerService.HintSize="470.4,24.8" sap2010:WorkflowViewState.IdRef="Sequence_8">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_SSF - Invoke Workflow File (Process\Download\Download_SSF.xaml)" sap:VirtualizedContainerService.HintSize="470.4,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Process\Download\Download_SSF.xaml">
-          <ui:InvokeWorkflowFile.Arguments>
-            <InArgument x:TypeArguments="x:String" x:Key="path">[in_Config("ProgramPath").ToString]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="isAll">[in_IsAll]</InArgument>
-            <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="runType">[in_RunType]</InArgument>
-          </ui:InvokeWorkflowFile.Arguments>
-        </ui:InvokeWorkflowFile>
-      </Sequence>
-      <Sequence x:Key="MRF" DisplayName="Body" sap:VirtualizedContainerService.HintSize="470.4,24.8" sap2010:WorkflowViewState.IdRef="Sequence_9">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_MRF - Invoke Workflow File (Process\Download\Download_MRF.xaml)" sap:VirtualizedContainerService.HintSize="470.4,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="Process\Download\Download_MRF.xaml">
-          <ui:InvokeWorkflowFile.Arguments>
-            <InArgument x:TypeArguments="x:String" x:Key="path">[in_Config("ProgramPath").ToString]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="isAll">[in_IsAll]</InArgument>
-            <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="runType">[in_RunType]</InArgument>
-          </ui:InvokeWorkflowFile.Arguments>
-        </ui:InvokeWorkflowFile>
-      </Sequence>
-      <Sequence x:Key="HDG" DisplayName="Body" sap:VirtualizedContainerService.HintSize="470.4,24.8" sap2010:WorkflowViewState.IdRef="Sequence_10">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_HDG - Invoke Workflow File (Process\Download\Download_HDG.xaml)" sap:VirtualizedContainerService.HintSize="470.4,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Process\Download\Download_HDG.xaml">
-          <ui:InvokeWorkflowFile.Arguments>
-            <InArgument x:TypeArguments="x:String" x:Key="path">[in_Config("ProgramPath").ToString]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="isAll">[in_IsAll]</InArgument>
-            <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="runType">[in_RunType]</InArgument>
-          </ui:InvokeWorkflowFile.Arguments>
-        </ui:InvokeWorkflowFile>
-      </Sequence>
-      <Sequence x:Key="HWG" DisplayName="Body" sap:VirtualizedContainerService.HintSize="470.4,24.8" sap2010:WorkflowViewState.IdRef="Sequence_11">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_HWG - Invoke Workflow File (Process\Download\Download_HWG.xaml)" sap:VirtualizedContainerService.HintSize="433.6,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="Process\Download\Download_HWG.xaml">
-          <ui:InvokeWorkflowFile.Arguments>
-            <InArgument x:TypeArguments="x:String" x:Key="path">[in_Config("ProgramPath").ToString]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="isAll">[in_IsAll]</InArgument>
-            <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="runType">[in_RunType]</InArgument>
-          </ui:InvokeWorkflowFile.Arguments>
-        </ui:InvokeWorkflowFile>
-      </Sequence>
-      <Sequence x:Key="DBG" DisplayName="Body" sap:VirtualizedContainerService.HintSize="470.4,24.8" sap2010:WorkflowViewState.IdRef="Sequence_12">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_DBG - Invoke Workflow File (Process\Download\Download_DBG.xaml)" sap:VirtualizedContainerService.HintSize="430.4,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_11" UnSafe="False" WorkflowFileName="Process\Download\Download_DBG.xaml">
-          <ui:InvokeWorkflowFile.Arguments>
-            <InArgument x:TypeArguments="x:String" x:Key="path">[in_Config("ProgramPath").ToString]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="isAll">[in_IsAll]</InArgument>
-            <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="runType">[in_RunType]</InArgument>
-          </ui:InvokeWorkflowFile.Arguments>
-        </ui:InvokeWorkflowFile>
-      </Sequence>
-      <Sequence x:Key="KBG" DisplayName="Body" sap:VirtualizedContainerService.HintSize="468.8,24.8" sap2010:WorkflowViewState.IdRef="Sequence_13">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_KBG - Invoke Workflow File (Process\Download\Download_KBG.xaml)" sap:VirtualizedContainerService.HintSize="436.8,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" UnSafe="False" WorkflowFileName="Process\Download\Download_KBG.xaml">
-          <ui:InvokeWorkflowFile.Arguments>
-            <InArgument x:TypeArguments="x:String" x:Key="path">[in_Config("ProgramPath").ToString]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="isAll">[in_IsAll]</InArgument>
-            <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="runType">[in_RunType]</InArgument>
-          </ui:InvokeWorkflowFile.Arguments>
-        </ui:InvokeWorkflowFile>
-      </Sequence>
-      <Sequence x:Key="LTG" DisplayName="Body" sap:VirtualizedContainerService.HintSize="468.8,24.8" sap2010:WorkflowViewState.IdRef="Sequence_14">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_LTG - Invoke Workflow File (Process\Download\Download_LTG.xaml)" sap:VirtualizedContainerService.HintSize="433.6,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_13" UnSafe="False" WorkflowFileName="Process\Download\Download_LTG.xaml">
-          <ui:InvokeWorkflowFile.Arguments>
-            <InArgument x:TypeArguments="x:String" x:Key="path">[in_Config("ProgramPath").ToString]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="isAll">[in_IsAll]</InArgument>
-            <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="runType">[in_RunType]</InArgument>
-          </ui:InvokeWorkflowFile.Arguments>
-        </ui:InvokeWorkflowFile>
-      </Sequence>
-      <Sequence x:Key="HKF" DisplayName="Body" sap:VirtualizedContainerService.HintSize="468.8,227.2" sap2010:WorkflowViewState.IdRef="Sequence_15">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_HKF - Invoke Workflow File (Process\Download\Download_HKF.xaml)" sap:VirtualizedContainerService.HintSize="435.2,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_14" UnSafe="False" WorkflowFileName="Process\Download\Download_HKF.xaml">
-          <ui:InvokeWorkflowFile.Arguments>
-            <InArgument x:TypeArguments="x:String" x:Key="path">[in_Config("ProgramPath").ToString]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="isAll">[in_IsAll]</InArgument>
-            <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="runType">[in_RunType]</InArgument>
-          </ui:InvokeWorkflowFile.Arguments>
-        </ui:InvokeWorkflowFile>
-      </Sequence>
-      <Sequence x:Key="RUN_JAVA" DisplayName="Body" sap:VirtualizedContainerService.HintSize="468.8,164.8" sap2010:WorkflowViewState.IdRef="Sequence_31">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-        <Delay Duration="00:00:15" sap:VirtualizedContainerService.HintSize="435.2,56.8" sap2010:WorkflowViewState.IdRef="Delay_1">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-        </Delay>
-        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Run_Program - Invoke Workflow File (Utils\Run_Program.xaml)" sap:VirtualizedContainerService.HintSize="435.2,48" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_30" UnSafe="False" WorkflowFileName="Utils\Run_Program.xaml">
-          <ui:InvokeWorkflowFile.Arguments>
-            <InArgument x:TypeArguments="x:String" x:Key="path">[in_Config("ProgramPath").ToString]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
-          </ui:InvokeWorkflowFile.Arguments>
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-        </ui:InvokeWorkflowFile>
-      </Sequence>
-    </Switch>
+            </ui:InvokeWorkflowFile>
+          </Sequence>
+        </TryCatch.Finally>
+      </TryCatch>
+    </Sequence>
   </Sequence>
 </Activity>

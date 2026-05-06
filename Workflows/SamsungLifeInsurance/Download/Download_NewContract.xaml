@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Download_NewContrast" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Download_NewContrast" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_BrowserUrl" Type="InArgument(x:String)" />
   </x:Members>
@@ -51,6 +51,7 @@
       <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
       <x:String>UiPath.CV.Activities.Interfaces</x:String>
       <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>System.Globalization</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -116,6 +117,10 @@
       <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
       <AssemblyReference>NPOI.Core</AssemblyReference>
       <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.CodeDom</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <sap:WorkflowViewStateService.ViewState>
@@ -123,19 +128,59 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="Download_NewContrast" sap:VirtualizedContainerService.HintSize="855.6,8340" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Download_NewContrast" sap:VirtualizedContainerService.HintSize="912.4000000000001,9591.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="resultStart" />
+      <Variable x:TypeArguments="s:DateTime" Name="dt" />
+      <Variable x:TypeArguments="x:String" Name="IS_MANUAL" />
+      <Variable x:TypeArguments="x:String" Name="END_PERIOD" />
+      <Variable x:TypeArguments="x:String" Name="START_PERIOD" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Edge 삼성생명 - GA영업포탈시스템　　　　　　　　　　　　　　　_WebDRM[w" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="533.6,8316.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OpenMode="[UiPath.UIAutomationNext.Enums.NAppOpenMode.IfNotOpen]" ScopeGuid="dc009fad-d27f-42be-a16a-4614ab10c7b6" Version="V2">
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="START_DATE_DOWNLOAD" CacheStrategy="None" DisplayName="Get Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="557.6,56.8" sap2010:WorkflowViewState.IdRef="GetRobotAsset_4">
+      <ui:GetRobotAsset.Value>
+        <OutArgument x:TypeArguments="x:String">[START_PERIOD]</OutArgument>
+      </ui:GetRobotAsset.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:GetRobotAsset>
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="END_DATE_DOWNLOAD" CacheStrategy="None" DisplayName="Get Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="557.6,56.8" sap2010:WorkflowViewState.IdRef="GetRobotAsset_5">
+      <ui:GetRobotAsset.Value>
+        <OutArgument x:TypeArguments="x:String">[END_PERIOD]</OutArgument>
+      </ui:GetRobotAsset.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:GetRobotAsset>
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="IS_MANUAL" CacheStrategy="None" DisplayName="Get Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="557.6,56.8" sap2010:WorkflowViewState.IdRef="GetRobotAsset_6">
+      <ui:GetRobotAsset.Value>
+        <OutArgument x:TypeArguments="x:String">[IS_MANUAL]</OutArgument>
+      </ui:GetRobotAsset.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:GetRobotAsset>
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Edge 삼성생명 - GA영업포탈시스템　　　　　　　　　　　　　　　_WebDRM[w" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="557.6,9397.6" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OpenMode="[UiPath.UIAutomationNext.Enums.NAppOpenMode.IfNotOpen]" ScopeGuid="dc009fad-d27f-42be-a16a-4614ab10c7b6" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="532,8123.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="556,9204" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Name="newFilelPath" />
               <Variable x:TypeArguments="x:String" Name="latestFilePath" />
@@ -146,7 +191,7 @@
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <uix:NCheckState DisplayName="Check App State '확인(2)'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="498.4,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_3" ScopeIdentifier="dc009fad-d27f-42be-a16a-4614ab10c7b6" Version="V5">
+            <uix:NCheckState DisplayName="Check App State '확인(2)'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="522.4,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_3" ScopeIdentifier="dc009fad-d27f-42be-a16a-4614ab10c7b6" Version="V5">
               <uix:NCheckState.IfExists>
                 <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_7">
                   <sap:WorkflowViewStateService.ViewState>
@@ -180,7 +225,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </uix:NCheckState>
-            <uix:NCheckState DisplayName="Check App State '확인(6)'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="498.4,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_7" ScopeIdentifier="dc009fad-d27f-42be-a16a-4614ab10c7b6" Version="V5">
+            <uix:NCheckState DisplayName="Check App State '확인(6)'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="522.4,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_7" ScopeIdentifier="dc009fad-d27f-42be-a16a-4614ab10c7b6" Version="V5">
               <uix:NCheckState.IfExists>
                 <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_15">
                   <sap:WorkflowViewStateService.ViewState>
@@ -214,7 +259,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </uix:NCheckState>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '영업관리'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="498.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_15" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="dc009fad-d27f-42be-a16a-4614ab10c7b6" Version="V5">
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '영업관리'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="522.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_15" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="dc009fad-d27f-42be-a16a-4614ab10c7b6" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="ga.samsunglife.com/websquare/websquare.html" ContentHash="yGdFQkGFRE2lDEzp8MbtZg" DesignTimeRectangle="612, 180, 70, 22" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl parentid='mf_wfm_header_wq_uuid_450' tag='A' /&gt;" Guid="15b58c1b-9555-4aa9-925c-e1cc419a4233" InformativeScreenshot="187696b6dc1128538aaf55b5a0657f81.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/Z5TMwhDXG0ePVnvgWYqJ7w" ScopeSelectorArgument="&lt;html app='msedge.exe' title='삼성생명 - GA영업포탈시스템　　　　　　　　　　　　　　　_WebDRM[wDs]' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
@@ -225,7 +270,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </uix:NClick>
-            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="498.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_1">
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="522.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_1">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -233,7 +278,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </Delay>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '유지관리리스트'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="498.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="dc009fad-d27f-42be-a16a-4614ab10c7b6" Version="V5">
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '유지관리리스트'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="522.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="dc009fad-d27f-42be-a16a-4614ab10c7b6" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="ga.samsunglife.com/websquare/websquare.html" ContentHash="kd2rwDjzPUuZuksSLmppmg" DesignTimeRectangle="977, 391, 250, 23" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl parentid='mf_wfm_header_wq_uuid_496' tag='A' /&gt;" Guid="22b8013d-9c9f-4cd1-90d0-ee98650f4ee5" InformativeScreenshot="1b434875f8046d1412d572301be4a534.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/2kbGPyQQzkKWH0IXqKKGRQ" ScopeSelectorArgument="&lt;html app='msedge.exe' title='삼성생명 - GA영업포탈시스템　　　　　　　　　　　　　　　_WebDRM[wDs]' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
@@ -244,7 +289,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </uix:NClick>
-            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="498.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_2">
+            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="522.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_2">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -252,7 +297,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </Delay>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'TD'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="498.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_3" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="dc009fad-d27f-42be-a16a-4614ab10c7b6" Version="V5">
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'TD'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="522.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_3" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="dc009fad-d27f-42be-a16a-4614ab10c7b6" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="ga.samsunglife.com/websquare/websquare.html" ContentHash="O3H7_oJ_L0KIkzaESfBbjg" DesignTimeRectangle="869, 357, 25, 32" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl idx='3' tableRow='1' tag='TABLE' /&gt;&lt;webctrl aria-labelledby='mf_tac_layout_contents_GPSIC305M_body_wfm_commOrgCmb3_sbx_agncOrgNo_itemTable' tableRow='1' tag='TD' /&gt;" Guid="6ba3bbf2-390a-4725-bbe0-10631c0223a8" InformativeScreenshot="6c590ca9bddafdb3d911314da8d80b88.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/DlWl0VqJJ0i4GBBVcalLZw" ScopeSelectorArgument="&lt;html app='msedge.exe' title='삼성생명 - GA영업포탈시스템　　　　　　　　　　　　　　　_WebDRM[WD9]' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
@@ -263,7 +308,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </uix:NClick>
-            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="498.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_3">
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="522.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_3">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -271,7 +316,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </Delay>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'GA지사 입력 또는 선택'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="498.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_4" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="dc009fad-d27f-42be-a16a-4614ab10c7b6" Version="V5">
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'GA지사 입력 또는 선택'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="522.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_4" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="dc009fad-d27f-42be-a16a-4614ab10c7b6" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="ga.samsunglife.com/websquare/websquare.html" ContentHash="XnklyJJJf0Gcl306gZLLwg" DesignTimeRectangle="589, 391, 363, 35" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;table' tag='TABLE' /&gt;&lt;webctrl tableRow='1' tag='TD' /&gt;" Guid="b373b505-0874-483f-a648-3022b9d1297f" InformativeScreenshot="ea8e18f4fd7b0c51170a1c6438b2e274.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/JUGaGp9xCk2wqxkeIZNFNA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='삼성생명 - GA영업포탈시스템　　　　　　　　　　　　　　　_WebDRM[WD9]' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
@@ -282,7 +327,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </uix:NClick>
-            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="498.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_4">
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="522.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_4">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -290,47 +335,138 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </Delay>
-            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '조회기간'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="498.4,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="SameAsCard" ScopeIdentifier="dc009fad-d27f-42be-a16a-4614ab10c7b6" Text="[DateTime.Now.ToString(&quot;yyyy-MM&quot;)]" Version="V5">
-              <uix:NTypeInto.Target>
-                <uix:TargetAnchorable BrowserURL="ga.samsunglife.com/websquare/websquare.html" ContentHash="-D2M6Zkbz0-yVFignc-n3Q" DesignTimeRectangle="202, 404, 150, 38" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl aaname='조회기간' tag='TABLE' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;&lt;webctrl type='' tag='INPUT' class='w2inputCalendar_divInput' aaname='' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="6bc41445-3a81-4d9b-840a-e3fd51288074" InformativeScreenshot="6d04907b86c073787ec110fc8be509ab.jpg" IsResponsive="True" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/8CZfi57oMkWta2uONm8EAg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='삼성생명 - GA영업포탈시스템　　　　　　　　　　　　　　　_WebDRM[XfP]' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
-                  <uix:TargetAnchorable.Anchors>
-                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                      <uix:Target DesignTimeRectangle="77, 411, 67, 23" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='조회기간' tag='TABLE' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;&lt;webctrl type='' tag='DIV' class='w2textbox ' aaname='조회기간' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='조회기간' /&gt;" Guid="ac8db41b-4ce2-4247-aec9-5650e4017bed" SearchSteps="FuzzySelector" />
-                    </scg:List>
-                  </uix:TargetAnchorable.Anchors>
-                </uix:TargetAnchorable>
-              </uix:NTypeInto.Target>
+            <If Condition="[IS_MANUAL = &quot;TRUE&quot;]" sap:VirtualizedContainerService.HintSize="522.4,1572" sap2010:WorkflowViewState.IdRef="If_2">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-            </uix:NTypeInto>
-            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'Label'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="498.4,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_3" InteractionMode="SameAsCard" ScopeIdentifier="dc009fad-d27f-42be-a16a-4614ab10c7b6" Text="[DateTime.Now.ToString(&quot;yyyy-MM&quot;)]" Version="V5">
-              <uix:NTypeInto.Target>
-                <uix:TargetAnchorable BrowserURL="ga.samsunglife.com/websquare/websquare.html" ContentHash="kbAA1LTACE-699z1ZBLVaw" DesignTimeRectangle="376, 404, 150, 38" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl aaname='조회기간' tag='TABLE' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;&lt;webctrl name='mf_tac_layout_contents_GPSIC305M_body_cal_actulYmTo_input' type='' tag='INPUT' class='w2inputCalendar_divInput' aaname='' matching:name='fuzzy' fuzzylevel:name='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="8c76440a-b167-4688-94e5-d10a8d44c8c9" InformativeScreenshot="6d04907b86c073787ec110fc8be509ab.jpg" IsResponsive="True" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/VYdZK6T3kEmhl-SH7M-FPw" ScopeSelectorArgument="&lt;html app='msedge.exe' title='삼성생명 - GA영업포탈시스템　　　　　　　　　　　　　　　_WebDRM[XfP]' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
-                  <uix:TargetAnchorable.Anchors>
-                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                      <uix:Target DesignTimeRectangle="358, 408, 11, 23" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='조회기간' tag='TABLE' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;&lt;webctrl type='' tag='SPAN' class='w2textbox ' aaname='~' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='~' /&gt;" Guid="b23ecc0e-a202-45d0-8f3a-a964ea6d1b22" SearchSteps="FuzzySelector" />
-                    </scg:List>
-                  </uix:TargetAnchorable.Anchors>
-                </uix:TargetAnchorable>
-              </uix:NTypeInto.Target>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </uix:NTypeInto>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '조회'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="498.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_5" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="dc009fad-d27f-42be-a16a-4614ab10c7b6" Version="V5">
+              <If.Then>
+                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,891.2" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="x:String" Name="resultEnd" />
+                  </Sequence.Variables>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Assign sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="Assign_3">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[resultStart]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String" xml:space="preserve">[If(DateTime.TryParseExact(START_PERIOD, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture, Globalization.DateTimeStyles.None, dt),
+            dt.ToString("yyyyMM"),
+            Now.ToString("yyyyMM"))]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="Assign_4">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[resultEnd]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String" xml:space="preserve">[If(DateTime.TryParseExact(END_PERIOD, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture, Globalization.DateTimeStyles.None, dt),
+            dt.ToString("yyyyMM"),
+            Now.ToString("yyyyMM"))]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '조회기간'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_4" InteractionMode="SameAsCard" ScopeIdentifier="dc009fad-d27f-42be-a16a-4614ab10c7b6" Text="[resultStart]" Version="V5">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable BrowserURL="ga.samsunglife.com/websquare/websquare.html" ContentHash="2f4lrESUe0qlDJ0WuFbjUw" DesignTimeRectangle="202, 404, 150, 38" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl aaname='조회기간' tag='TABLE' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;&lt;webctrl type='' tag='INPUT' class='w2inputCalendar_divInput' aaname='' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="4952e97e-508c-443d-875a-98fd26f29425" InformativeScreenshot="6d04907b86c073787ec110fc8be509ab.jpg" IsResponsive="True" Reference="5HjwgH8OmEa1VO6GnukQ2g/JAm3ahhNxkuLvOapxOpqGg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='삼성생명 - GA영업포탈시스템　　　　　　　　　　　　　　　_WebDRM[X3R]' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                            <uix:Target DesignTimeRectangle="77, 411, 67, 23" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='조회기간' tag='TABLE' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;&lt;webctrl type='' tag='DIV' class='w2textbox ' aaname='조회기간' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='조회기간' /&gt;" Guid="0f3f56e8-2e3b-4607-abcd-a78043fb21fd" SearchSteps="FuzzySelector" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NTypeInto.Target>
+                    <uix:NTypeInto.VerifyOptions>
+                      <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                        <uix:VerifyExecutionTypeIntoOptions.Retry>
+                          <InArgument x:TypeArguments="x:Boolean" />
+                        </uix:VerifyExecutionTypeIntoOptions.Retry>
+                        <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                          <InArgument x:TypeArguments="x:Double" />
+                        </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                      </uix:VerifyExecutionTypeIntoOptions>
+                    </uix:NTypeInto.VerifyOptions>
+                  </uix:NTypeInto>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'Label'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,236.8" sap2010:WorkflowViewState.IdRef="NTypeInto_5" InteractionMode="SameAsCard" ScopeIdentifier="dc009fad-d27f-42be-a16a-4614ab10c7b6" Text="[resultEnd]" Version="V5">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable BrowserURL="ga.samsunglife.com/websquare/websquare.html" ContentHash="ktKiKOHzo0OfSSz69qycuA" DesignTimeRectangle="376, 404, 150, 38" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl aaname='조회기간' tag='TABLE' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;&lt;webctrl name='mf_tac_layout_contents_GPSIC305M_body_cal_actulYmTo_input' type='' tag='INPUT' class='w2inputCalendar_divInput' aaname='' matching:name='fuzzy' fuzzylevel:name='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="f657cd7b-84cb-4192-a09d-03d280e3a1c2" InformativeScreenshot="6d04907b86c073787ec110fc8be509ab.jpg" IsResponsive="True" Reference="5HjwgH8OmEa1VO6GnukQ2g/Zjv7bbqtKUGA9GWPFQXzEw" ScopeSelectorArgument="&lt;html app='msedge.exe' title='삼성생명 - GA영업포탈시스템　　　　　　　　　　　　　　　_WebDRM[X3R]' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                            <uix:Target DesignTimeRectangle="358, 408, 11, 23" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='조회기간' tag='TABLE' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;&lt;webctrl type='' tag='SPAN' class='w2textbox ' aaname='~' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='~' /&gt;" Guid="57b94705-c9b0-498a-a67a-1924db7b9c66" SearchSteps="FuzzySelector" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NTypeInto.Target>
+                    <uix:NTypeInto.VerifyOptions>
+                      <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                        <uix:VerifyExecutionTypeIntoOptions.Retry>
+                          <InArgument x:TypeArguments="x:Boolean" />
+                        </uix:VerifyExecutionTypeIntoOptions.Retry>
+                        <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                          <InArgument x:TypeArguments="x:Double" />
+                        </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                      </uix:VerifyExecutionTypeIntoOptions>
+                    </uix:NTypeInto.VerifyOptions>
+                  </uix:NTypeInto>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,542.4" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '조회기간'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="SameAsCard" ScopeIdentifier="dc009fad-d27f-42be-a16a-4614ab10c7b6" Text="[DateTime.Now.ToString(&quot;yyyy-MM&quot;)]" Version="V5">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable BrowserURL="ga.samsunglife.com/websquare/websquare.html" ContentHash="-D2M6Zkbz0-yVFignc-n3Q" DesignTimeRectangle="202, 404, 150, 38" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl aaname='조회기간' tag='TABLE' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;&lt;webctrl type='' tag='INPUT' class='w2inputCalendar_divInput' aaname='' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="6bc41445-3a81-4d9b-840a-e3fd51288074" InformativeScreenshot="6d04907b86c073787ec110fc8be509ab.jpg" IsResponsive="True" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/8CZfi57oMkWta2uONm8EAg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='삼성생명 - GA영업포탈시스템　　　　　　　　　　　　　　　_WebDRM[XfP]' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                            <uix:Target DesignTimeRectangle="77, 411, 67, 23" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='조회기간' tag='TABLE' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;&lt;webctrl type='' tag='DIV' class='w2textbox ' aaname='조회기간' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='조회기간' /&gt;" Guid="ac8db41b-4ce2-4247-aec9-5650e4017bed" SearchSteps="FuzzySelector" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NTypeInto.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uix:NTypeInto>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'Label'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,236.8" sap2010:WorkflowViewState.IdRef="NTypeInto_3" InteractionMode="SameAsCard" ScopeIdentifier="dc009fad-d27f-42be-a16a-4614ab10c7b6" Text="[DateTime.Now.ToString(&quot;yyyy-MM&quot;)]" Version="V5">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable BrowserURL="ga.samsunglife.com/websquare/websquare.html" ContentHash="kbAA1LTACE-699z1ZBLVaw" DesignTimeRectangle="376, 404, 150, 38" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl aaname='조회기간' tag='TABLE' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;&lt;webctrl name='mf_tac_layout_contents_GPSIC305M_body_cal_actulYmTo_input' type='' tag='INPUT' class='w2inputCalendar_divInput' aaname='' matching:name='fuzzy' fuzzylevel:name='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="8c76440a-b167-4688-94e5-d10a8d44c8c9" InformativeScreenshot="6d04907b86c073787ec110fc8be509ab.jpg" IsResponsive="True" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/VYdZK6T3kEmhl-SH7M-FPw" ScopeSelectorArgument="&lt;html app='msedge.exe' title='삼성생명 - GA영업포탈시스템　　　　　　　　　　　　　　　_WebDRM[XfP]' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                            <uix:Target DesignTimeRectangle="358, 408, 11, 23" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='조회기간' tag='TABLE' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;&lt;webctrl type='' tag='SPAN' class='w2textbox ' aaname='~' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='~' /&gt;" Guid="b23ecc0e-a202-45d0-8f3a-a964ea6d1b22" SearchSteps="FuzzySelector" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NTypeInto.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uix:NTypeInto>
+                </Sequence>
+              </If.Else>
+            </If>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '조회'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="522.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_5" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="dc009fad-d27f-42be-a16a-4614ab10c7b6" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="ga.samsunglife.com/websquare/websquare.html" ContentHash="HQYND8DEEk-elTiSn_2Ntg" DesignTimeRectangle="1816, 404, 58, 37" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='조회' tag='INPUT' type='button' /&gt;" Guid="8ab084fd-a14d-48bf-88c1-ab2d463fddbf" InformativeScreenshot="e4622d2253a85b3d9f0937b66a987a44.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/5cX43mE8xEihClA4jRsZrw" ScopeSelectorArgument="&lt;html app='msedge.exe' title='삼성생명 - GA영업포탈시스템　　　　　　　　　　　　　　　_WebDRM[WD9]' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
-            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="498.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_5" />
-            <uix:NCheckState DisplayName="Check App State '확인(4)'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="498.4,679.2" sap2010:WorkflowViewState.IdRef="NCheckState_6" ScopeIdentifier="dc009fad-d27f-42be-a16a-4614ab10c7b6" Version="V5">
+            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="522.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_5" />
+            <uix:NCheckState DisplayName="Check App State '확인(4)'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="522.4,679.2" sap2010:WorkflowViewState.IdRef="NCheckState_6" ScopeIdentifier="dc009fad-d27f-42be-a16a-4614ab10c7b6" Version="V5">
               <uix:NCheckState.IfExists>
                 <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_13">
                   <sap:WorkflowViewStateService.ViewState>
@@ -621,7 +757,7 @@
         </ActivityFunc>
       </uix:NApplicationCard.OCREngine>
       <uix:NApplicationCard.TargetApp>
-        <uix:TargetApp Area="-9, -9, 1938, 1038" BrowserType="Edge" ContentHash="ISfSU3kmiUamKrQ4FOzYbw" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAGgSURBVDhPnZBBSwJhEIa/0/4MIwgiugRleJClzhK0SFSHgqhu3vRSB5EgaIlAg/AHVBAEdYwKhDIsy8paDTeDgiIjXMN2U0NlYibdNtGoBh6Y75133lmW8aLM8aLs40VZ4UUZfkmmssMx62zCa51NwD+ZYxbPlWLxXME/UVjXtASIsCBDIJYFrVAmsEdtwHsN1RpZuiGvEdbhvID+uQS85kq6ESujFsE+L4N/+0nX1kNpQL8R1u44g93oCxn241nomZYI20wccJZ8zNMs/16Gt0IZzM4o6VVY6+QJqPnP61ZXFPBdxeaOkZ58zMHa3jP17uW7bx7WMnqkfyL2Rnwb96Qvbj5Av1uiXrrVvnlY81BID8D+MJ7V342qb+qCvAhrsh+AWvmB5oljGKxc+qlWd1KAewgzCUHYOkzTIHCagc6xMHSPh6nHwhl6kLbhEGj5EoE9ahTQ64hAVivW3AHScFYNQFa2UzSb8ie/ApAeR4SuabkSgT1qxmXE5jqngMsbVQ9Qak1/QMEAb53BbxExgDMJQZ9JCGbqGBqBXtzhPgCCgcz5+SY7kQAAAABJRU5ErkJggg==" InformativeScreenshot="6fe8a7f77e00cd28bbdbc3575c5e7bfe.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/qAWbPdkvAUGZdxoMKfJcvA" Selector="&lt;html app='msedge.exe' title='삼성생명 - GA영업포탈시스템*' /&gt;" Url="[in_BrowserUrl]" Version="V2">
+        <uix:TargetApp Area="-9, -9, 1938, 1038" BrowserType="Edge" ContentHash="AD6MOcx0806Kp7hkyWMlmg" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAGgSURBVDhPnZBBSwJhEIa/0/4MIwgiugRleJClzhK0SFSHgqhu3vRSB5EgaIlAg/AHVBAEdYwKhDIsy8paDTeDgiIjXMN2U0NlYibdNtGoBh6Y75133lmW8aLM8aLs40VZ4UUZfkmmssMx62zCa51NwD+ZYxbPlWLxXME/UVjXtASIsCBDIJYFrVAmsEdtwHsN1RpZuiGvEdbhvID+uQS85kq6ESujFsE+L4N/+0nX1kNpQL8R1u44g93oCxn241nomZYI20wccJZ8zNMs/16Gt0IZzM4o6VVY6+QJqPnP61ZXFPBdxeaOkZ58zMHa3jP17uW7bx7WMnqkfyL2Rnwb96Qvbj5Av1uiXrrVvnlY81BID8D+MJ7V342qb+qCvAhrsh+AWvmB5oljGKxc+qlWd1KAewgzCUHYOkzTIHCagc6xMHSPh6nHwhl6kLbhEGj5EoE9ahTQ64hAVivW3AHScFYNQFa2UzSb8ie/ApAeR4SuabkSgT1qxmXE5jqngMsbVQ9Qak1/QMEAb53BbxExgDMJQZ9JCGbqGBqBXtzhPgCCgcz5+SY7kQAAAABJRU5ErkJggg==" InformativeScreenshot="6fe8a7f77e00cd28bbdbc3575c5e7bfe.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/wZhzXwaAoUq4fyrPziFsRw" Selector="&lt;html app='msedge.exe' title='삼성생명 - GA영업포탈시스템*' /&gt;" Url="[in_BrowserUrl]" Version="V2">
           <uix:TargetApp.Arguments>
             <InArgument x:TypeArguments="x:String" />
           </uix:TargetApp.Arguments>
