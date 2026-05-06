@@ -1,4 +1,4 @@
-﻿<Activity xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd2="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:uasj="clr-namespace:UiPath.Activities.System.Jobs;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" mc:Ignorable="sap sap2010" x:Class="MRF_NEW_GEN_Search_ExtraData" VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="MRF_NEW_GEN_Search_ExtraData_1">
+<Activity mc:Ignorable="sap sap2010" x:Class="MRF_NEW_GEN" VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="MRF_NEW_GEN_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/python" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd2="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:uasj="clr-namespace:UiPath.Activities.System.Jobs;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -32,6 +32,8 @@
       <x:String>System.Linq.Expressions</x:String>
       <x:String>UiPath.Platform.ResourceHandling</x:String>
       <x:String>System.Numerics</x:String>
+      <x:String>UiPath.Python</x:String>
+      <x:String>UiPath.Python.Activities</x:String>
       <x:String>UiPath.Shared.Activities</x:String>
       <x:String>UiPath.DataTableUtilities</x:String>
       <x:String>UiPath.UIAutomationNext.Enums</x:String>
@@ -115,6 +117,8 @@
       <AssemblyReference>System.Collections.Immutable</AssemblyReference>
       <AssemblyReference>System.Linq.Parallel</AssemblyReference>
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>UiPath.Python</AssemblyReference>
+      <AssemblyReference>UiPath.Python.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
       <AssemblyReference>UiPath.GSuite.Activities</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
@@ -126,21 +130,21 @@
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="MRF_NEW_GEN Sequence" sap:VirtualizedContainerService.HintSize="712.4000000000001,9249.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="x:String" Default="MRF_NEW_GEN_" Name="MRF_NEW_GEN_prefix_file_name"/>
-      <Variable x:TypeArguments="x:String" Default="C:\RPA\TempDownload" Name="MRF_NEW_GEN_download_path"/>
-      <Variable x:TypeArguments="x:String" Default="C:\RPA\TempExtraData" Name="MRF_NEW_GEN_target_path"/>
-      <Variable x:TypeArguments="x:String" Default="C:\RPA_Template_Extra_Data\RPA_Template_Extra_Data.xlsx" Name="MRF_NEW_GEN_template_file"/>
-      <Variable x:TypeArguments="sd:DataTable" Default="[New DataTable()]" Name="MRF_NEW_GEN_data_table_rule3"/>
-      <Variable x:TypeArguments="x:String" Default="MRF_NEW_GEN_*.xlsx" Name="MRF_NEW_GEN_identify_file_name"/>
-      <Variable x:TypeArguments="x:String" Name="MRF_NEW_GEN_download_file"/>
-      <Variable x:TypeArguments="x:String" Name="MRF_NEW_GEN_coppied_file_path"/>
-      <Variable x:TypeArguments="sd:DataTable" Default="[New DataTable()]" Name="MRF_NEW_GEN_data_table_rule4"/>
-      <Variable x:TypeArguments="x:String" Name="status"/>
-      <Variable x:TypeArguments="x:String" Name="MRF_NEW_GEN_time"/>
-      <Variable x:TypeArguments="x:String" Name="MRF_NEW_GEN_cost"/>
+      <Variable x:TypeArguments="x:String" Default="MRF_NEW_GEN_" Name="MRF_NEW_GEN_prefix_file_name" />
+      <Variable x:TypeArguments="x:String" Default="C:\RPA\TempDownload" Name="MRF_NEW_GEN_download_path" />
+      <Variable x:TypeArguments="x:String" Default="C:\RPA\TempExtraData" Name="MRF_NEW_GEN_target_path" />
+      <Variable x:TypeArguments="x:String" Default="C:\RPA_Template_Extra_Data\RPA_Template_Extra_Data.xlsx" Name="MRF_NEW_GEN_template_file" />
+      <Variable x:TypeArguments="sd:DataTable" Default="[New DataTable()]" Name="MRF_NEW_GEN_data_table_rule3" />
+      <Variable x:TypeArguments="x:String" Default="MRF_NEW_GEN_*.xlsx" Name="MRF_NEW_GEN_identify_file_name" />
+      <Variable x:TypeArguments="x:String" Name="MRF_NEW_GEN_download_file" />
+      <Variable x:TypeArguments="x:String" Name="MRF_NEW_GEN_coppied_file_path" />
+      <Variable x:TypeArguments="sd:DataTable" Default="[New DataTable()]" Name="MRF_NEW_GEN_data_table_rule4" />
+      <Variable x:TypeArguments="x:String" Name="status" />
+      <Variable x:TypeArguments="x:String" Name="MRF_NEW_GEN_time" />
+      <Variable x:TypeArguments="x:String" Name="MRF_NEW_GEN_cost" />
       <Variable x:TypeArguments="x:Int32" Name="rowIndex">
         <Variable.Default>
-          <Literal x:TypeArguments="x:Int32"/>
+          <Literal x:TypeArguments="x:Int32" />
         </Variable.Default>
       </Variable>
     </Sequence.Variables>
@@ -171,7 +175,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim dt_rule3 As New DataTable()&#10;dt_rule3.Columns.Add(&quot;Rule&quot;, GetType(String))&#10;dt_rule3.Columns.Add(&quot;Search Data&quot;, GetType(String))&#10;dt_rule3.Columns.Add(&quot;Change Column Name&quot;, GetType(String))&#10;dt_rule3.Columns.Add(&quot;Before Column Data&quot;, GetType(String))&#10;dt_rule3.Columns.Add(&quot;After Column Data&quot;, GetType(String))&#10;dt_rule3.Columns.Add(&quot;Required Action&quot;, GetType(String))&#10;&#10;Dim dt_rule4 As New DataTable()&#10;dt_rule4.Columns.Add(&quot;Rule&quot;, GetType(String))&#10;dt_rule4.Columns.Add(&quot;Search Data&quot;, GetType(String))&#10;dt_rule4.Columns.Add(&quot;Change Column Name&quot;, GetType(String))&#10;dt_rule4.Columns.Add(&quot;Before Column Data&quot;, GetType(String))&#10;dt_rule4.Columns.Add(&quot;After Column Data&quot;, GetType(String))&#10;dt_rule4.Columns.Add(&quot;Required Action&quot;, GetType(String))&#10;&#10;Using workbook As New ClosedXML.Excel.XLWorkbook(MRF_NEW_GEN_download_file)&#10;    Dim worksheet As ClosedXML.Excel.IXLWorksheet = workbook.Worksheet(1)&#10;    Dim rowsList = worksheet.RowsUsed().Skip(1).ToList()&#10;&#10;    ' Rule 3&#10;    For Each row In rowsList&#10;        Dim valD_NaBi As String = row.Cell(4).Value.ToString().Trim()&#10;        If valD_NaBi &lt;&gt; &quot;월납&quot; AndAlso valD_NaBi &lt;&gt; &quot;일시납&quot; Then&#10;            dt_rule3.Rows.Add(&quot;3&quot;, row.Cell(2).Value.ToString().Trim(), &quot;보험료&quot;, &quot;&quot;, &quot;&quot;, &quot;UPD&quot;)&#10;        End If&#10;    Next&#10;&#10;    ' Rule 4&#10;    For Each row In rowsList&#10;        Dim valG_YongShou As String = row.Cell(7).Value.ToString().Trim()&#10;        If valG_YongShou = &quot;신계약&quot; Then&#10;            dt_rule4.Rows.Add(&quot;4&quot;, row.Cell(2).Value.ToString().Trim(), &quot;보험기간 시작일&quot;, &quot;&quot;, &quot;&quot;, &quot;ADD&quot;)&#10;        End If&#10;    Next&#10;End Using&#10;&#10;MRF_NEW_GEN_data_table_rule3 = dt_rule3&#10;MRF_NEW_GEN_data_table_rule4 = dt_rule4" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,188" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+            <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim dt_rule3 As New DataTable()&#xA;dt_rule3.Columns.Add(&quot;Rule&quot;, GetType(String))&#xA;dt_rule3.Columns.Add(&quot;Search Data&quot;, GetType(String))&#xA;dt_rule3.Columns.Add(&quot;Change Column Name&quot;, GetType(String))&#xA;dt_rule3.Columns.Add(&quot;Before Column Data&quot;, GetType(String))&#xA;dt_rule3.Columns.Add(&quot;After Column Data&quot;, GetType(String))&#xA;dt_rule3.Columns.Add(&quot;Required Action&quot;, GetType(String))&#xA;&#xA;Dim dt_rule4 As New DataTable()&#xA;dt_rule4.Columns.Add(&quot;Rule&quot;, GetType(String))&#xA;dt_rule4.Columns.Add(&quot;Search Data&quot;, GetType(String))&#xA;dt_rule4.Columns.Add(&quot;Change Column Name&quot;, GetType(String))&#xA;dt_rule4.Columns.Add(&quot;Before Column Data&quot;, GetType(String))&#xA;dt_rule4.Columns.Add(&quot;After Column Data&quot;, GetType(String))&#xA;dt_rule4.Columns.Add(&quot;Required Action&quot;, GetType(String))&#xA;&#xA;Using workbook As New ClosedXML.Excel.XLWorkbook(MRF_NEW_GEN_download_file)&#xA;    Dim worksheet As ClosedXML.Excel.IXLWorksheet = workbook.Worksheet(1)&#xA;    Dim rowsList = worksheet.RowsUsed().Skip(1).ToList()&#xA;&#xA;    ' Rule 3&#xA;    For Each row In rowsList&#xA;        Dim valD_NaBi As String = row.Cell(4).Value.ToString().Trim()&#xA;        If valD_NaBi &lt;&gt; &quot;월납&quot; AndAlso valD_NaBi &lt;&gt; &quot;일시납&quot; Then&#xA;            dt_rule3.Rows.Add(&quot;3&quot;, row.Cell(2).Value.ToString().Trim(), &quot;보험료&quot;, &quot;&quot;, &quot;&quot;, &quot;UPD&quot;)&#xA;        End If&#xA;    Next&#xA;&#xA;    ' Rule 4&#xA;    For Each row In rowsList&#xA;        Dim valG_YongShou As String = row.Cell(7).Value.ToString().Trim()&#xA;        If valG_YongShou = &quot;신계약&quot; Then&#xA;            dt_rule4.Rows.Add(&quot;4&quot;, row.Cell(2).Value.ToString().Trim(), &quot;보험기간 시작일&quot;, &quot;&quot;, &quot;&quot;, &quot;ADD&quot;)&#xA;        End If&#xA;    Next&#xA;End Using&#xA;&#xA;MRF_NEW_GEN_data_table_rule3 = dt_rule3&#xA;MRF_NEW_GEN_data_table_rule4 = dt_rule4" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,188" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
               <ui:InvokeCode.Arguments>
                 <InArgument x:TypeArguments="x:String" x:Key="MRF_NEW_GEN_download_file">[MRF_NEW_GEN_download_file]</InArgument>
                 <OutArgument x:TypeArguments="sd:DataTable" x:Key="MRF_NEW_GEN_data_table_rule3">[MRF_NEW_GEN_data_table_rule3]</OutArgument>
@@ -187,7 +191,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="None Have File Download"/>
+            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="None Have File Download" />
           </Sequence>
         </If.Else>
       </If>
@@ -212,7 +216,29 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="python-workflow - Invoke Workflow File (python-workflow.cs)" sap:VirtualizedContainerService.HintSize="521.6,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="python-workflow.cs"><ui:InvokeWorkflowFile.Arguments><InArgument x:TypeArguments="x:String" x:Key="scriptPath">C:\UipathScript\MeritzFireMarine\ExtraData\meritz_start_gen_extra_data_process.py</InArgument><InArgument x:TypeArguments="x:String" x:Key="mode"/></ui:InvokeWorkflowFile.Arguments></ui:InvokeWorkflowFile>
+            <p:PythonScope OperationTimeout="{x:Null}" DisplayName="Python Scope" sap:VirtualizedContainerService.HintSize="521.6,459.2" sap2010:WorkflowViewState.IdRef="PythonScope_1" LibraryPath="C:\Users\RPA02\AppData\Local\Programs\Python\Python311\python311.dll" Path="C:\Users\RPA02\AppData\Local\Programs\Python\Python311">
+              <p:PythonScope.Body>
+                <ActivityAction x:TypeArguments="x:Object">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:Object" Name="PythonEngineSessionProperty" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,225.6" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <p:RunScript Code="{x:Null}" DisplayName="Run Python Script" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="RunScript_1" ScriptFile="C:\UipathScript\MeritzFireMarine\ExtraData\meritz_start_gen_extra_data_process.py" />
+                  </Sequence>
+                </ActivityAction>
+              </p:PythonScope.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </p:PythonScope>
             <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="521.6,56.8" sap2010:WorkflowViewState.IdRef="Delay_1">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -225,7 +251,7 @@
               <ui:ForEachRow.Body>
                 <ActivityAction x:TypeArguments="sd:DataRow">
                   <ActivityAction.Argument>
-                    <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow"/>
+                    <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
                   </ActivityAction.Argument>
                   <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="520,3460.8" sap2010:WorkflowViewState.IdRef="Sequence_10">
                     <sap:WorkflowViewStateService.ViewState>
@@ -233,13 +259,35 @@
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:SetToClipboard DisplayName="Set To Clipboard" sap:VirtualizedContainerService.HintSize="486.4,92" sap2010:WorkflowViewState.IdRef="SetToClipboard_1" Text="[CurrentRow(&quot;Search Data&quot;).ToString()]"/>
-                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="python-workflow - Invoke Workflow File (python-workflow.cs)" sap:VirtualizedContainerService.HintSize="486.4,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="python-workflow.cs"><ui:InvokeWorkflowFile.Arguments><InArgument x:TypeArguments="x:String" x:Key="scriptPath">C:\UipathScript\MeritzFireMarine\ExtraData\meritz_gen_click_clear.py</InArgument><InArgument x:TypeArguments="x:String" x:Key="mode"/></ui:InvokeWorkflowFile.Arguments></ui:InvokeWorkflowFile>
+                    <ui:SetToClipboard DisplayName="Set To Clipboard" sap:VirtualizedContainerService.HintSize="486.4,92" sap2010:WorkflowViewState.IdRef="SetToClipboard_1" Text="[CurrentRow(&quot;Search Data&quot;).ToString()]" />
+                    <p:PythonScope OperationTimeout="{x:Null}" DisplayName="Python Click And Clear" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="PythonScope_2" LibraryPath="C:\Users\RPA02\AppData\Local\Programs\Python\Python311\python311.dll" Path="C:\Users\RPA02\AppData\Local\Programs\Python\Python311">
+                      <p:PythonScope.Body>
+                        <ActivityAction x:TypeArguments="x:Object">
+                          <ActivityAction.Argument>
+                            <DelegateInArgument x:TypeArguments="x:Object" Name="PythonEngineSessionProperty" />
+                          </ActivityAction.Argument>
+                          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,225.6" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <p:RunScript Code="{x:Null}" DisplayName="Run Python Script" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="RunScript_2" ScriptFile="C:\UipathScript\MeritzFireMarine\ExtraData\meritz_gen_click_clear.py" />
+                          </Sequence>
+                        </ActivityAction>
+                      </p:PythonScope.Body>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </p:PythonScope>
                     <uix:NApplicationCard AttachMode="ByInstance" DisplayName="메리츠화재 GA포탈" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="486.4,1144" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" ScopeGuid="109cf16d-c046-465b-b4d4-ecc0a094dfbc" Version="V2">
                       <uix:NApplicationCard.Body>
                         <ActivityAction x:TypeArguments="x:Object">
                           <ActivityAction.Argument>
-                            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData"/>
+                            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
                           </ActivityAction.Argument>
                           <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="484.8,889.6" sap2010:WorkflowViewState.IdRef="Sequence_15">
                             <sap:WorkflowViewStateService.ViewState>
@@ -247,26 +295,48 @@
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <uix:NKeyboardShortcuts ActivateBefore="{x:Null}" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,256.8" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_1" InteractionMode="HardwareEvents" ScopeIdentifier="109cf16d-c046-465b-b4d4-ecc0a094dfbc" Shortcuts="[d(hk)][d(ctrl)]v[u(ctrl)][u(hk)]" Version="V5"/>
-                            <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_2"/>
-                            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="python-workflow - Invoke Workflow File (python-workflow.cs)" sap:VirtualizedContainerService.HintSize="451.2,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="python-workflow.cs"><ui:InvokeWorkflowFile.Arguments><InArgument x:TypeArguments="x:String" x:Key="scriptPath">C:\UipathScript\MeritzFireMarine\ExtraData\meritz_gen_search_extra.py</InArgument><InArgument x:TypeArguments="x:String" x:Key="mode"/></ui:InvokeWorkflowFile.Arguments></ui:InvokeWorkflowFile>
+                            <uix:NKeyboardShortcuts ActivateBefore="{x:Null}" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,256.8" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_1" InteractionMode="HardwareEvents" ScopeIdentifier="109cf16d-c046-465b-b4d4-ecc0a094dfbc" Shortcuts="[d(hk)][d(ctrl)]v[u(ctrl)][u(hk)]" Version="V5" />
+                            <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_2" />
+                            <p:PythonScope OperationTimeout="{x:Null}" DisplayName="Python Click Search" sap:VirtualizedContainerService.HintSize="451.2,450.4" sap2010:WorkflowViewState.IdRef="PythonScope_3" LibraryPath="C:\Users\RPA02\AppData\Local\Programs\Python\Python311\python311.dll" Path="C:\Users\RPA02\AppData\Local\Programs\Python\Python311">
+                              <p:PythonScope.Body>
+                                <ActivityAction x:TypeArguments="x:Object">
+                                  <ActivityAction.Argument>
+                                    <DelegateInArgument x:TypeArguments="x:Object" Name="PythonEngineSessionProperty" />
+                                  </ActivityAction.Argument>
+                                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,225.6" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <p:RunScript Code="{x:Null}" DisplayName="Run Python Script" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="RunScript_3" ScriptFile="C:\UipathScript\MeritzFireMarine\ExtraData\meritz_gen_search_extra.py" />
+                                  </Sequence>
+                                </ActivityAction>
+                              </p:PythonScope.Body>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </p:PythonScope>
                           </Sequence>
                         </ActivityAction>
                       </uix:NApplicationCard.Body>
                       <uix:NApplicationCard.OCREngine>
                         <ActivityFunc x:TypeArguments="sd1:Image, scg:IEnumerable(scg:KeyValuePair(sd2:Rectangle, x:String))">
                           <ActivityFunc.Argument>
-                            <DelegateInArgument x:TypeArguments="sd1:Image" Name="Image"/>
+                            <DelegateInArgument x:TypeArguments="sd1:Image" Name="Image" />
                           </ActivityFunc.Argument>
                         </ActivityFunc>
                       </uix:NApplicationCard.OCREngine>
                       <uix:NApplicationCard.TargetApp>
                         <uix:TargetApp Area="180, 0, 1559, 1080" ContentHash="j-Maj0fqAkugghm6cGjiHg" FilePath="C:\Program Files (x86)\TOBESOFT\XPLATFORM\MeritzFireBSR\xplatform.exe" IconBase64="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" InformativeScreenshot="8631dcbc06844f6b94efa2e96d0fdfdd.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/qEKtYBFDA0aiGLi_A4-Lkg" Selector="&lt;wnd app='xplatform.exe' cls='CyWindowClass' title='메리츠화재 GA포탈 *' /&gt;" Version="V2">
                           <uix:TargetApp.Arguments>
-                            <InArgument x:TypeArguments="x:String"/>
+                            <InArgument x:TypeArguments="x:String" />
                           </uix:TargetApp.Arguments>
                           <uix:TargetApp.WorkingDirectory>
-                            <InArgument x:TypeArguments="x:String"/>
+                            <InArgument x:TypeArguments="x:String" />
                           </uix:TargetApp.WorkingDirectory>
                         </uix:TargetApp>
                       </uix:NApplicationCard.TargetApp>
@@ -288,13 +358,13 @@
                           </sap:WorkflowViewStateService.ViewState>
                           <uasj:RunJob Account="{x:Null}" ContinueOnError="{x:Null}" Job="{x:Null}" DisplayName="Run RPA: OCR_RPA" ExecutionMode="Busy" FailWhenFaulted="True" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="RunJob_5" Machine="Machine_OCR" ProcessName="OCR_RPA" TimeoutMS="600000">
                             <uasj:RunJob.Arguments>
-                              <scg:Dictionary x:TypeArguments="x:String, Argument"/>
+                              <scg:Dictionary x:TypeArguments="x:String, Argument" />
                             </uasj:RunJob.Arguments>
                             <uasj:RunJob.Input>
-                              <InArgument x:TypeArguments="x:Object"/>
+                              <InArgument x:TypeArguments="x:Object" />
                             </uasj:RunJob.Input>
                             <uasj:RunJob.Output>
-                              <OutArgument x:TypeArguments="x:String"/>
+                              <OutArgument x:TypeArguments="x:String" />
                             </uasj:RunJob.Output>
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -316,8 +386,8 @@
                               <OutArgument x:TypeArguments="x:String">[status]</OutArgument>
                             </ui:GetRobotAsset.Value>
                           </ui:GetRobotAsset>
-                          <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_3"/>
-                          <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="WriteLine_5" Text="Dang trong loop"/>
+                          <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_3" />
+                          <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="WriteLine_5" Text="Dang trong loop" />
                         </Sequence>
                       </ui:InterruptibleDoWhile.Body>
                       <sap:WorkflowViewStateService.ViewState>
@@ -332,8 +402,8 @@
                         <OutArgument x:TypeArguments="x:String">[MRF_NEW_GEN_cost]</OutArgument>
                       </ui:GetRobotAsset.Value>
                     </ui:GetRobotAsset>
-                    <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_4"/>
-                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="WriteLine_3" Text="[&quot;COSt&quot; + MRF_NEW_GEN_cost]"/>
+                    <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_4" />
+                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="WriteLine_3" Text="[&quot;COSt&quot; + MRF_NEW_GEN_cost]" />
                     <Assign DisplayName="Assign Rule" sap:VirtualizedContainerService.HintSize="486.4,174.4" sap2010:WorkflowViewState.IdRef="Assign_3">
                       <Assign.To>
                         <OutArgument x:TypeArguments="x:Object">[CurrentRow("Rule")]</OutArgument>
@@ -374,7 +444,7 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </WriteLine>
-                    <ui:SetAsset TimeoutMS="{x:Null}" AssetName="MRF_OCR_STATUS" DisplayName="Set Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="486.4,218.4" sap2010:WorkflowViewState.IdRef="SetAsset_1" Value="[&quot;pending&quot;]"/>
+                    <ui:SetAsset TimeoutMS="{x:Null}" AssetName="MRF_OCR_STATUS" DisplayName="Set Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="486.4,218.4" sap2010:WorkflowViewState.IdRef="SetAsset_1" Value="[&quot;pending&quot;]" />
                   </Sequence>
                 </ActivityAction>
               </ui:ForEachRow.Body>
@@ -411,12 +481,12 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="555.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_5"/>
+            <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="555.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_5" />
             <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[MRF_NEW_GEN_data_table_rule4]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="555.2,2612" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
               <ui:ForEachRow.Body>
                 <ActivityAction x:TypeArguments="sd:DataRow">
                   <ActivityAction.Argument>
-                    <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow"/>
+                    <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
                   </ActivityAction.Argument>
                   <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="553.6,2439.2" sap2010:WorkflowViewState.IdRef="Sequence_17">
                     <sap:WorkflowViewStateService.ViewState>
@@ -424,13 +494,35 @@
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:SetToClipboard DisplayName="Set To Clipboard" sap:VirtualizedContainerService.HintSize="520,92" sap2010:WorkflowViewState.IdRef="SetToClipboard_2" Text="[CurrentRow(&quot;Search Data&quot;).ToString()]"/>
-                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="python-workflow - Invoke Workflow File (python-workflow.cs)" sap:VirtualizedContainerService.HintSize="520,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="python-workflow.cs"><ui:InvokeWorkflowFile.Arguments><InArgument x:TypeArguments="x:String" x:Key="scriptPath">C:\UipathScript\MeritzFireMarine\ExtraData\meritz_gen_click_clear.py</InArgument><InArgument x:TypeArguments="x:String" x:Key="mode"/></ui:InvokeWorkflowFile.Arguments></ui:InvokeWorkflowFile>
+                    <ui:SetToClipboard DisplayName="Set To Clipboard" sap:VirtualizedContainerService.HintSize="520,92" sap2010:WorkflowViewState.IdRef="SetToClipboard_2" Text="[CurrentRow(&quot;Search Data&quot;).ToString()]" />
+                    <p:PythonScope OperationTimeout="{x:Null}" DisplayName="Python Click And Clear" sap:VirtualizedContainerService.HintSize="520,56.8" sap2010:WorkflowViewState.IdRef="PythonScope_4" LibraryPath="C:\Users\RPA02\AppData\Local\Programs\Python\Python311\python311.dll" Path="C:\Users\RPA02\AppData\Local\Programs\Python\Python311">
+                      <p:PythonScope.Body>
+                        <ActivityAction x:TypeArguments="x:Object">
+                          <ActivityAction.Argument>
+                            <DelegateInArgument x:TypeArguments="x:Object" Name="PythonEngineSessionProperty" />
+                          </ActivityAction.Argument>
+                          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,225.6" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <p:RunScript Code="{x:Null}" DisplayName="Run Python Script" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="RunScript_4" ScriptFile="C:\UipathScript\MeritzFireMarine\ExtraData\meritz_gen_click_clear.py" />
+                          </Sequence>
+                        </ActivityAction>
+                      </p:PythonScope.Body>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </p:PythonScope>
                     <uix:NApplicationCard AttachMode="ByInstance" DisplayName="메리츠화재 GA포탈" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="520,56.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" ScopeGuid="109cf16d-c046-465b-b4d4-ecc0a094dfbc" Version="V2">
                       <uix:NApplicationCard.Body>
                         <ActivityAction x:TypeArguments="x:Object">
                           <ActivityAction.Argument>
-                            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData"/>
+                            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
                           </ActivityAction.Argument>
                           <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,487.2" sap2010:WorkflowViewState.IdRef="Sequence_21">
                             <sap:WorkflowViewStateService.ViewState>
@@ -438,26 +530,48 @@
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <uix:NKeyboardShortcuts ActivateBefore="{x:Null}" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,256.8" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_2" InteractionMode="HardwareEvents" ScopeIdentifier="109cf16d-c046-465b-b4d4-ecc0a094dfbc" Shortcuts="[d(hk)][d(ctrl)]v[u(ctrl)][u(hk)]" Version="V5"/>
-                            <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_6"/>
-                            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="python-workflow - Invoke Workflow File (python-workflow.cs)" sap:VirtualizedContainerService.HintSize="416,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="python-workflow.cs"><ui:InvokeWorkflowFile.Arguments><InArgument x:TypeArguments="x:String" x:Key="scriptPath">C:\UipathScript\MeritzFireMarine\ExtraData\meritz_gen_search_extra.py</InArgument><InArgument x:TypeArguments="x:String" x:Key="mode"/></ui:InvokeWorkflowFile.Arguments></ui:InvokeWorkflowFile>
+                            <uix:NKeyboardShortcuts ActivateBefore="{x:Null}" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,256.8" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_2" InteractionMode="HardwareEvents" ScopeIdentifier="109cf16d-c046-465b-b4d4-ecc0a094dfbc" Shortcuts="[d(hk)][d(ctrl)]v[u(ctrl)][u(hk)]" Version="V5" />
+                            <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_6" />
+                            <p:PythonScope OperationTimeout="{x:Null}" DisplayName="Python Click Search" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="PythonScope_6" LibraryPath="C:\Users\RPA02\AppData\Local\Programs\Python\Python311\python311.dll" Path="C:\Users\RPA02\AppData\Local\Programs\Python\Python311">
+                              <p:PythonScope.Body>
+                                <ActivityAction x:TypeArguments="x:Object">
+                                  <ActivityAction.Argument>
+                                    <DelegateInArgument x:TypeArguments="x:Object" Name="PythonEngineSessionProperty" />
+                                  </ActivityAction.Argument>
+                                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,225.6" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <p:RunScript Code="{x:Null}" DisplayName="Run Python Script" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="RunScript_5" ScriptFile="C:\UipathScript\MeritzFireMarine\ExtraData\meritz_gen_search_extra.py" />
+                                  </Sequence>
+                                </ActivityAction>
+                              </p:PythonScope.Body>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </p:PythonScope>
                           </Sequence>
                         </ActivityAction>
                       </uix:NApplicationCard.Body>
                       <uix:NApplicationCard.OCREngine>
                         <ActivityFunc x:TypeArguments="sd1:Image, scg:IEnumerable(scg:KeyValuePair(sd2:Rectangle, x:String))">
                           <ActivityFunc.Argument>
-                            <DelegateInArgument x:TypeArguments="sd1:Image" Name="Image"/>
+                            <DelegateInArgument x:TypeArguments="sd1:Image" Name="Image" />
                           </ActivityFunc.Argument>
                         </ActivityFunc>
                       </uix:NApplicationCard.OCREngine>
                       <uix:NApplicationCard.TargetApp>
                         <uix:TargetApp Area="180, 0, 1559, 1080" ContentHash="j-Maj0fqAkugghm6cGjiHg" FilePath="C:\Program Files (x86)\TOBESOFT\XPLATFORM\MeritzFireBSR\xplatform.exe" IconBase64="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" InformativeScreenshot="8631dcbc06844f6b94efa2e96d0fdfdd.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/qEKtYBFDA0aiGLi_A4-Lkg" Selector="&lt;wnd app='xplatform.exe' cls='CyWindowClass' title='메리츠화재 GA포탈 *' /&gt;" Version="V2">
                           <uix:TargetApp.Arguments>
-                            <InArgument x:TypeArguments="x:String"/>
+                            <InArgument x:TypeArguments="x:String" />
                           </uix:TargetApp.Arguments>
                           <uix:TargetApp.WorkingDirectory>
-                            <InArgument x:TypeArguments="x:String"/>
+                            <InArgument x:TypeArguments="x:String" />
                           </uix:TargetApp.WorkingDirectory>
                         </uix:TargetApp>
                       </uix:NApplicationCard.TargetApp>
@@ -479,13 +593,13 @@
                           </sap:WorkflowViewStateService.ViewState>
                           <uasj:RunJob Account="{x:Null}" ContinueOnError="{x:Null}" Job="{x:Null}" DisplayName="Run RPA: OCR_RPA" ExecutionMode="Busy" FailWhenFaulted="True" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="RunJob_4" Machine="Machine_OCR" ProcessName="OCR_RPA" TimeoutMS="600000">
                             <uasj:RunJob.Arguments>
-                              <scg:Dictionary x:TypeArguments="x:String, Argument"/>
+                              <scg:Dictionary x:TypeArguments="x:String, Argument" />
                             </uasj:RunJob.Arguments>
                             <uasj:RunJob.Input>
-                              <InArgument x:TypeArguments="x:Object"/>
+                              <InArgument x:TypeArguments="x:Object" />
                             </uasj:RunJob.Input>
                             <uasj:RunJob.Output>
-                              <OutArgument x:TypeArguments="x:String"/>
+                              <OutArgument x:TypeArguments="x:String" />
                             </uasj:RunJob.Output>
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -507,17 +621,17 @@
                               <OutArgument x:TypeArguments="x:String">[status]</OutArgument>
                             </ui:GetRobotAsset.Value>
                           </ui:GetRobotAsset>
-                          <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_7"/>
-                          <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="WriteLine_8" Text="Dang trong loop"/>
+                          <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_7" />
+                          <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="WriteLine_8" Text="Dang trong loop" />
                           <uasj:RunJob Account="{x:Null}" ContinueOnError="{x:Null}" Job="{x:Null}" DisplayName="Run RPA: OCR_RPA" ExecutionMode="Busy" FailWhenFaulted="True" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="RunJob_3" Machine="Machine_OCR" ProcessName="OCR_RPA" TimeoutMS="600000">
                             <uasj:RunJob.Arguments>
-                              <scg:Dictionary x:TypeArguments="x:String, Argument"/>
+                              <scg:Dictionary x:TypeArguments="x:String, Argument" />
                             </uasj:RunJob.Arguments>
                             <uasj:RunJob.Input>
-                              <InArgument x:TypeArguments="x:Object"/>
+                              <InArgument x:TypeArguments="x:Object" />
                             </uasj:RunJob.Input>
                             <uasj:RunJob.Output>
-                              <OutArgument x:TypeArguments="x:String"/>
+                              <OutArgument x:TypeArguments="x:String" />
                             </uasj:RunJob.Output>
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -540,8 +654,8 @@
                         <OutArgument x:TypeArguments="x:String">[MRF_NEW_GEN_time]</OutArgument>
                       </ui:GetRobotAsset.Value>
                     </ui:GetRobotAsset>
-                    <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="520,122.4" sap2010:WorkflowViewState.IdRef="Delay_8"/>
-                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="520,122.4" sap2010:WorkflowViewState.IdRef="WriteLine_9" Text="[&quot;Time&quot; + MRF_NEW_GEN_time]"/>
+                    <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="520,122.4" sap2010:WorkflowViewState.IdRef="Delay_8" />
+                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="520,122.4" sap2010:WorkflowViewState.IdRef="WriteLine_9" Text="[&quot;Time&quot; + MRF_NEW_GEN_time]" />
                     <Assign DisplayName="Assign Rule" sap:VirtualizedContainerService.HintSize="520,174.4" sap2010:WorkflowViewState.IdRef="Assign_7">
                       <Assign.To>
                         <OutArgument x:TypeArguments="x:Object">[CurrentRow("Rule")]</OutArgument>
@@ -582,7 +696,7 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </WriteLine>
-                    <ui:SetAsset TimeoutMS="{x:Null}" AssetName="MRF_OCR_STATUS" DisplayName="Set Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="520,218.4" sap2010:WorkflowViewState.IdRef="SetAsset_2" Value="[&quot;pending&quot;]"/>
+                    <ui:SetAsset TimeoutMS="{x:Null}" AssetName="MRF_OCR_STATUS" DisplayName="Set Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="520,218.4" sap2010:WorkflowViewState.IdRef="SetAsset_2" Value="[&quot;pending&quot;]" />
                   </Sequence>
                 </ActivityAction>
               </ui:ForEachRow.Body>
@@ -630,7 +744,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:CopyFile>
-            <ui:InvokeCode ContinueOnError="{x:Null}" Code="Using workbook As New ClosedXML.Excel.XLWorkbook(final_file_path)&#10;    Dim worksheet = workbook.Worksheet(1)&#10;    Dim r As Integer = 2&#10;    Dim templateStyle = worksheet.Range(2, 1, 2, 6).Style&#10;&#10;    ' Rule 3 trước&#10;    For Each row As System.Data.DataRow In MRF_NEW_GEN_data_table_rule3.Rows&#10;        worksheet.Range(r, 1, r, 6).Style = templateStyle&#10;        worksheet.Cell(r, 1).Value = row(&quot;Rule&quot;).ToString()&#10;        worksheet.Cell(r, 2).Value = row(&quot;Search Data&quot;).ToString()&#10;        worksheet.Cell(r, 3).Value = row(&quot;Change Column Name&quot;).ToString()&#10;        worksheet.Cell(r, 4).Value = row(&quot;Before Column Data&quot;).ToString()&#10;        worksheet.Cell(r, 5).Value = row(&quot;After Column Data&quot;).ToString()&#10;        worksheet.Cell(r, 6).Value = row(&quot;Required Action&quot;).ToString()&#10;        r += 1&#10;    Next&#10;&#10;    ' Rule 4 tiếp nối ngay sau&#10;    For Each row As System.Data.DataRow In MRF_NEW_GEN_data_table_rule4.Rows&#10;        worksheet.Range(r, 1, r, 6).Style = templateStyle&#10;        worksheet.Cell(r, 1).Value = row(&quot;Rule&quot;).ToString()&#10;        worksheet.Cell(r, 2).Value = row(&quot;Search Data&quot;).ToString()&#10;        worksheet.Cell(r, 3).Value = row(&quot;Change Column Name&quot;).ToString()&#10;        worksheet.Cell(r, 4).Value = row(&quot;Before Column Data&quot;).ToString()&#10;        worksheet.Cell(r, 5).Value = row(&quot;After Column Data&quot;).ToString()&#10;        worksheet.Cell(r, 6).Value = row(&quot;Required Action&quot;).ToString()&#10;        r += 1&#10;    Next&#10;&#10;    workbook.Save()&#10;End Using" DisplayName="Invoke Code - Export to Excel" sap:VirtualizedContainerService.HintSize="416,188" sap2010:WorkflowViewState.IdRef="InvokeCode_2">
+            <ui:InvokeCode ContinueOnError="{x:Null}" Code="Using workbook As New ClosedXML.Excel.XLWorkbook(final_file_path)&#xA;    Dim worksheet = workbook.Worksheet(1)&#xA;    Dim r As Integer = 2&#xA;    Dim templateStyle = worksheet.Range(2, 1, 2, 6).Style&#xA;&#xA;    ' Rule 3 trước&#xA;    For Each row As System.Data.DataRow In MRF_NEW_GEN_data_table_rule3.Rows&#xA;        worksheet.Range(r, 1, r, 6).Style = templateStyle&#xA;        worksheet.Cell(r, 1).Value = row(&quot;Rule&quot;).ToString()&#xA;        worksheet.Cell(r, 2).Value = row(&quot;Search Data&quot;).ToString()&#xA;        worksheet.Cell(r, 3).Value = row(&quot;Change Column Name&quot;).ToString()&#xA;        worksheet.Cell(r, 4).Value = row(&quot;Before Column Data&quot;).ToString()&#xA;        worksheet.Cell(r, 5).Value = row(&quot;After Column Data&quot;).ToString()&#xA;        worksheet.Cell(r, 6).Value = row(&quot;Required Action&quot;).ToString()&#xA;        r += 1&#xA;    Next&#xA;&#xA;    ' Rule 4 tiếp nối ngay sau&#xA;    For Each row As System.Data.DataRow In MRF_NEW_GEN_data_table_rule4.Rows&#xA;        worksheet.Range(r, 1, r, 6).Style = templateStyle&#xA;        worksheet.Cell(r, 1).Value = row(&quot;Rule&quot;).ToString()&#xA;        worksheet.Cell(r, 2).Value = row(&quot;Search Data&quot;).ToString()&#xA;        worksheet.Cell(r, 3).Value = row(&quot;Change Column Name&quot;).ToString()&#xA;        worksheet.Cell(r, 4).Value = row(&quot;Before Column Data&quot;).ToString()&#xA;        worksheet.Cell(r, 5).Value = row(&quot;After Column Data&quot;).ToString()&#xA;        worksheet.Cell(r, 6).Value = row(&quot;Required Action&quot;).ToString()&#xA;        r += 1&#xA;    Next&#xA;&#xA;    workbook.Save()&#xA;End Using" DisplayName="Invoke Code - Export to Excel" sap:VirtualizedContainerService.HintSize="416,188" sap2010:WorkflowViewState.IdRef="InvokeCode_2">
               <ui:InvokeCode.Arguments>
                 <InArgument x:TypeArguments="x:String" x:Key="final_file_path">[MRF_NEW_GEN_coppied_file_path]</InArgument>
                 <InArgument x:TypeArguments="sd:DataTable" x:Key="MRF_NEW_GEN_data_table_rule3">[MRF_NEW_GEN_data_table_rule3]</InArgument>
@@ -652,7 +766,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="Data Table is empty"/>
+            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="Data Table is empty" />
           </Sequence>
         </If.Else>
       </If>
