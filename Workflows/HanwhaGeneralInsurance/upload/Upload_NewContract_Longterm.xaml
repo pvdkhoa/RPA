@@ -106,11 +106,14 @@
       <AssemblyReference>System.Private.Uri</AssemblyReference>
       <AssemblyReference>System.Linq.Expressions</AssemblyReference>
       <AssemblyReference>UiPath.Python.Activities</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Upload_NewContract_Longterm" sap:VirtualizedContainerService.HintSize="846,7374.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Upload_NewContract_Longterm" sap:VirtualizedContainerService.HintSize="832.4000000000001,7564" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="HWG_NEW_LTR_PATH" />
+      <Variable x:TypeArguments="ui:UiElement" Name="browser_instance" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -128,20 +131,25 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:GetRobotAsset>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome 홈 - OPENGA" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="521.6,7176" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="b5fbf5cf-128b-4df5-9038-1861fc870a84" Version="V2">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome 홈 - OPENGA" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="521.6,7365.6" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OutUiElement="[browser_instance]" ScopeGuid="b5fbf5cf-128b-4df5-9038-1861fc870a84" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="520,6982.4" sap2010:WorkflowViewState.IdRef="Sequence_13">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="520,7172" sap2010:WorkflowViewState.IdRef="Sequence_13">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '계약관리'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="b5fbf5cf-128b-4df5-9038-1861fc870a84" Version="V5">
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="CheckPageLoadingStatus - Invoke Workflow File (Utils\CheckPageLoadingStatus.xaml)" sap:VirtualizedContainerService.HintSize="486.4,86.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Utils\CheckPageLoadingStatus.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InArgument x:TypeArguments="ui:UiElement" x:Key="in_Browser">[browser_instance]</InArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '계약관리'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,86.4" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="b5fbf5cf-128b-4df5-9038-1861fc870a84" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="app.openga.calsplatz.com" CVScreenId="5de7579a-51b1-499c-ac75-2de90b3e5771" ContentHash="l5GXb9B8eEaNjoXhV_DPAw" CvTextArea="66, 321, 60, 18" CvTextArgument="702l" CvType="Text" DesignTimeRectangle="69, 318, 196, 22" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='계약관리' class='qs-sidebar-menu-name' tag='SPAN' /&gt;" Guid="702b5902-1dbf-42fe-945f-6f21547687bb" InformativeScreenshot="3661cc7be766d9af0647ca6cc3047385.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/eGZBHcz4MUmByDZ6oa5mqQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='홈 - OPENGA' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
                   <uix:TargetAnchorable.Anchors>
@@ -152,8 +160,8 @@
                 </uix:TargetAnchorable>
               </uix:NClick.Target>
             </uix:NClick>
-            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_1" />
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '신계약관리'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="b5fbf5cf-128b-4df5-9038-1861fc870a84" Version="V5">
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="486.4,78.4" sap2010:WorkflowViewState.IdRef="Delay_1" />
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '신계약관리'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,86.4" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="b5fbf5cf-128b-4df5-9038-1861fc870a84" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="app.openga.calsplatz.com" CVScreenId="30e6a84f-dd6a-4f16-9130-1a0a4ed64f5d" ContentHash="Q-AdThl7MkewrVfMz8JhhA" CvTextArea="92, 427, 72, 17" CvTextArgument="NAR2l" CvType="Text" DesignTimeRectangle="94, 423, 171, 22" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='신계약관리' class='qs-sidebar-menu-name' tag='SPAN' /&gt;" Guid="b78344db-0db8-4289-a1a9-40eb3e581a6a" InformativeScreenshot="8048303384596e68742b4f03b63f12d7.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/UNTfyfEhaEu5NbBp_W5myQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='홈 - OPENGA' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
                   <uix:TargetAnchorable.Anchors>
@@ -164,8 +172,8 @@
                 </uix:TargetAnchorable>
               </uix:NClick.Target>
             </uix:NClick>
-            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_2" />
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '신계약엑셀업로드'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_3" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="b5fbf5cf-128b-4df5-9038-1861fc870a84" Version="V5">
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="486.4,78.4" sap2010:WorkflowViewState.IdRef="Delay_2" />
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '신계약엑셀업로드'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,86.4" sap2010:WorkflowViewState.IdRef="NClick_3" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="b5fbf5cf-128b-4df5-9038-1861fc870a84" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="app.openga.calsplatz.com" CVScreenId="08abe949-8692-42dd-963a-56d26337a8eb" ContentHash="dzsJ9eMnSkiSgxKiT2sLVQ" CvTextArea="82, 652, 115, 17" CvTextArgument="N/91925" CvType="Text" DesignTimeRectangle="84, 649, 211, 22" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='신계약엑셀업로드' class='qs-sidebar-menu-name' tag='SPAN' /&gt;" Guid="32279681-c527-4dc3-8a62-514892b14cde" InformativeScreenshot="1137c7aa7053ef647cab65c3d995891e.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/7mn2X_rVgEKWGu9M4uCjgQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='홈 - OPENGA' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
                   <uix:TargetAnchorable.Anchors>
@@ -1105,7 +1113,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </p:CVScope>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '조회'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_4" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="b5fbf5cf-128b-4df5-9038-1861fc870a84" Version="V5">
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '조회'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,88.8" sap2010:WorkflowViewState.IdRef="NClick_4" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="b5fbf5cf-128b-4df5-9038-1861fc870a84" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="app.openga.calsplatz.com/new_policy_upload" CVScreenId="0f41bb7c-f852-45e1-a8e7-772fa5b1d559" ContentHash="ONgMTxX17Ee-QfEORtNo-Q" CvElementArea="1726, 264, 54, 36" CvType="Button" DesignTimeRectangle="1729, 266, 50, 32" ElementType="Button" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl tag='BUTTON' type='button' class='el-button el-button--primary' aaname=' 조회' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='조회' /&gt;" Guid="eab6ccce-8ffd-474e-9ebb-45a288928892" InformativeScreenshot="47d3024109406d0c13a1d74eaea2d339.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/7UN79qW1OkCThqg9_OBLaw" ScopeSelectorArgument="&lt;html app='chrome.exe' title='신계약엑셀업로드 - OPENGA' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
                   <uix:TargetAnchorable.Anchors>
@@ -1135,21 +1143,25 @@
               </sap:WorkflowViewStateService.ViewState>
             </uix:NKeyboardShortcuts>
             <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_6" />
-            <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome [삼성생명] 신계약 검증_장기 (마감년월 202603)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="486.4,5422.4" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" InteractionMode="DebuggerApi" ScopeGuid="3e98c7d3-6cb7-4b9a-9963-5d9f7e073645" Version="V2">
+            <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome [삼성생명] 신계약 검증_장기 (마감년월 202603)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="486.4,5436" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" InteractionMode="DebuggerApi" OutUiElement="[browser_instance]" ScopeGuid="3e98c7d3-6cb7-4b9a-9963-5d9f7e073645" Version="V2">
               <uix:NApplicationCard.Body>
                 <ActivityAction x:TypeArguments="x:Object">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="484.8,5228.8" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="484.8,5242.4" sap2010:WorkflowViewState.IdRef="Sequence_12">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_7" />
-                    <p:CVScope ContinueOnError="{x:Null}" DelayBefore="{x:Null}" ScopeId="{x:Null}" ScrollOffset="{x:Null}" Server="{x:Null}" CvMethod="ElementDetection, OCR" DesignTimeCacheId="d6e57110-dafe-4ce1-9a29-81db401dda6c" DisplayName="CV Screen Scope 'DIV'" sap:VirtualizedContainerService.HintSize="451.2,721.6" sap2010:WorkflowViewState.IdRef="CVScope_2" SendOnPremData="False" Version="V6">
+                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="CheckPageLoadingStatus - Invoke Workflow File (Utils\CheckPageLoadingStatus.xaml)" sap:VirtualizedContainerService.HintSize="451.2,86.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Utils\CheckPageLoadingStatus.xaml">
+                      <ui:InvokeWorkflowFile.Arguments>
+                        <InArgument x:TypeArguments="ui:UiElement" x:Key="in_Browser">[browser_instance]</InArgument>
+                      </ui:InvokeWorkflowFile.Arguments>
+                    </ui:InvokeWorkflowFile>
+                    <p:CVScope ContinueOnError="{x:Null}" DelayBefore="{x:Null}" ScopeId="{x:Null}" ScrollOffset="{x:Null}" Server="{x:Null}" CvMethod="ElementDetection, OCR" DesignTimeCacheId="d6e57110-dafe-4ce1-9a29-81db401dda6c" DisplayName="CV Screen Scope 'DIV'" sap:VirtualizedContainerService.HintSize="451.2,637.6" sap2010:WorkflowViewState.IdRef="CVScope_2" SendOnPremData="False" Version="V6">
                       <p:CVScope.Body>
                         <ActivityAction x:TypeArguments="x:Object">
                           <ActivityAction.Argument>
@@ -1197,7 +1209,7 @@
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
                             </p:CvClickWithDescriptor>
-                            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="400,113.6" sap2010:WorkflowViewState.IdRef="Delay_8">
+                            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="400,69.6" sap2010:WorkflowViewState.IdRef="Delay_8">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1263,7 +1275,7 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </p:CVScope>
-                    <uix:NCheckState DisplayName="Check App State 'app.calssvc-openga.cals…'" EnableIfNotExists="False" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,1392.8" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="3e98c7d3-6cb7-4b9a-9963-5d9f7e073645" Version="V5">
+                    <uix:NCheckState DisplayName="Check App State 'app.calssvc-openga.cals…'" EnableIfNotExists="False" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,118.4" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="3e98c7d3-6cb7-4b9a-9963-5d9f7e073645" Version="V5">
                       <uix:NCheckState.DelayBefore>
                         <InArgument x:TypeArguments="x:Double" />
                       </uix:NCheckState.DelayBefore>

@@ -38,6 +38,7 @@
       <x:String>System.Reflection</x:String>
       <x:String>UiPath.UIAutomationNext.Contracts</x:String>
       <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>System.Linq.Expressions</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -85,10 +86,19 @@
       <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
       <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
       <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Update_" sap:VirtualizedContainerService.HintSize="891.6,2339.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Update_" sap:VirtualizedContainerService.HintSize="832.4000000000001,1056" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
+      <Variable x:TypeArguments="ui:UiElement" Name="browser_instance" />
       <Variable x:TypeArguments="x:String" Name="CALS_URL" />
       <Variable x:TypeArguments="ss:SecureString" Name="CALS_PW" />
       <Variable x:TypeArguments="x:String" Name="CALS_UID" />
@@ -98,13 +108,13 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:GetRobotAsset AssetName="CALS_URL" CacheStrategy="None" DisplayName="Get Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="486.4,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2" TimeoutMS="{x:Null}">
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="CALS_URL" CacheStrategy="None" DisplayName="Get Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="451.2,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
       <ui:GetRobotAsset.Value>
         <OutArgument x:TypeArguments="x:String">[CALS_URL]</OutArgument>
       </ui:GetRobotAsset.Value>
     </ui:GetRobotAsset>
-    <ui:GetRobotCredential AssetName="CALS_LOGIN" CacheStrategy="None" DisplayName="Get Credential" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="486.4,175.2" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[CALS_PW]" TimeoutMS="{x:Null}" Username="[CALS_UID]" />
-    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" ConnectionId="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Chrome Login - OPENGA" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="486.4,1965.6" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InUiElement="{x:Null}" InteractionMode="DebuggerApi" IsIncognito="{x:Null}" OpenMode="{x:Null}" OutUiElement="{x:Null}" ScopeGuid="d9ea03cc-58e5-48c4-989d-2794954db57d" Timeout="{x:Null}" UserDataFolderMode="{x:Null}" UserDataFolderPath="{x:Null}" Version="V2" WebDriverMode="{x:Null}" WindowResize="Maximize">
+    <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="CALS_LOGIN" CacheStrategy="None" DisplayName="Get Credential" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="451.2,175.2" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[CALS_PW]" Username="[CALS_UID]" />
+    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" DisplayName="Chrome Login - OPENGA" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="451.2,682.4" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OutUiElement="[browser_instance]" ScopeGuid="d9ea03cc-58e5-48c4-989d-2794954db57d" Version="V2" WindowResize="Maximize">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
@@ -116,8 +126,12 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Delay Duration="00:00:15" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_1" />
-            <uix:NCheckState ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Check App State '‘UiPath Browser Automat…'" Exists="{x:Null}" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,679.2" sap2010:WorkflowViewState.IdRef="NCheckState_2" InUiElement="{x:Null}" OutUiElement="{x:Null}" Result="{x:Null}" ScopeIdentifier="d9ea03cc-58e5-48c4-989d-2794954db57d" Timeout="{x:Null}" Version="V5">
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="CheckPageLoadingStatus - Invoke Workflow File (Utils\CheckPageLoadingStatus.xaml)" sap:VirtualizedContainerService.HintSize="416,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Utils\CheckPageLoadingStatus.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InArgument x:TypeArguments="ui:UiElement" x:Key="in_Browser">[browser_instance]</InArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
+            <uix:NCheckState DisplayName="Check App State '‘UiPath Browser Automat…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,679.2" sap2010:WorkflowViewState.IdRef="NCheckState_2" ScopeIdentifier="d9ea03cc-58e5-48c4-989d-2794954db57d" Version="V5">
               <uix:NCheckState.IfExists>
                 <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_5">
                   <sap:WorkflowViewStateService.ViewState>
@@ -125,7 +139,7 @@
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click '취소'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_2" InUiElement="{x:Null}" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="d9ea03cc-58e5-48c4-989d-2794954db57d" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '취소'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="d9ea03cc-58e5-48c4-989d-2794954db57d" Version="V5">
                     <uix:NClick.Target>
                       <uix:TargetAnchorable BrowserURL="app.openga.calsplatz.com/login" ContentHash="SstdRY0JvEifEy-e1fbVdg" DesignTimeRectangle="607, 127, 81, 48" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='Login - OPENGA - Chrome' role='pane' /&gt;&lt;ctrl name='정보 표시줄 컨테이너' role='grouping' /&gt;&lt;ctrl name='취소' role='push button' /&gt;" Guid="3e899640-9d25-42a1-8c8b-8f2166a07033" InformativeScreenshot="7d0a6fad4f21383784f7deafb560047a.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/xisHHtDKt0Wtw4ax5sa5Sw" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='Login - OPENGA - Chrome' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                     </uix:NClick.Target>
@@ -144,9 +158,15 @@
               <uix:NCheckState.Target>
                 <uix:TargetAnchorable BrowserURL="app.openga.calsplatz.com/login" ContentHash="0a_rkMH9gUigs6xnXN0Ozw" DesignTimeRectangle="9, 118, 1920, 66" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='Login - OPENGA - Chrome' role='pane' /&gt;&lt;ctrl name='정보 표시줄 컨테이너' role='grouping' /&gt;&lt;ctrl idx='2' role='pane' /&gt;" Guid="1bddbf29-d666-4bb8-971d-2ac4de235be7" InformativeScreenshot="7b11a82bab40f1c133119d508cc406eb.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/QxwGFAxQ6EKNBckMDHXNvQ" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='Login - OPENGA - Chrome' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NCheckState.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
             </uix:NCheckState>
             <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_4" />
-            <uix:NCheckState ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Check App State 'Label'" Exists="{x:Null}" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,788" sap2010:WorkflowViewState.IdRef="NCheckState_1" InUiElement="{x:Null}" OutUiElement="{x:Null}" Result="{x:Null}" ScopeIdentifier="d9ea03cc-58e5-48c4-989d-2794954db57d" Timeout="{x:Null}" Version="V5">
+            <uix:NCheckState DisplayName="Check App State 'Label'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,788" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="d9ea03cc-58e5-48c4-989d-2794954db57d" Version="V5">
               <uix:NCheckState.IfExists>
                 <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,173.6" sap2010:WorkflowViewState.IdRef="Sequence_3">
                   <sap:WorkflowViewStateService.ViewState>
@@ -164,7 +184,7 @@
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <uix:NTypeInto ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickBeforeMode="Single" ClipboardMode="Never" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DeselectAfter="{x:Null}" DisplayName="Type Into 'INPUT el-id-8626-2'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InUiElement="{x:Null}" InteractionMode="SameAsCard" OutUiElement="{x:Null}" ScopeIdentifier="d9ea03cc-58e5-48c4-989d-2794954db57d" SecureText="{x:Null}" Text="[CALS_UID]" Timeout="{x:Null}" Version="V5">
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'INPUT el-id-8626-2'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="SameAsCard" ScopeIdentifier="d9ea03cc-58e5-48c4-989d-2794954db57d" Text="[CALS_UID]" Version="V5">
                     <uix:NTypeInto.Target>
                       <uix:TargetAnchorable BrowserURL="app.openga.calsplatz.com/login" CVScreenId="12f1f533-f35a-4af7-8bf4-2f337bbd92d1" ContentHash="H7P3jn1RHkuC1r6RdjZYRw" CvElementArea="998, 544, 429, 48" CvType="InputBox" DesignTimeRectangle="1001, 545, 423, 45" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='el-id-*-*' tag='INPUT' /&gt;" Guid="9c7d7951-c186-4cef-98fe-6cae6f74d685" InformativeScreenshot="ea34869e664847a6d91854a57996aadb.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/kKYwUUBpuEyHoqJtF8cTeQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Login - OPENGA' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
                     </uix:NTypeInto.Target>
@@ -185,7 +205,7 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </uix:NTypeInto>
-                  <uix:NTypeInto ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickBeforeMode="Single" ClipboardMode="Never" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DeselectAfter="{x:Null}" DisplayName="Type Into login id" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InUiElement="{x:Null}" InteractionMode="SameAsCard" OutUiElement="{x:Null}" ScopeIdentifier="d9ea03cc-58e5-48c4-989d-2794954db57d" SecureText="[CALS_PW]" Text="{x:Null}" Timeout="{x:Null}" Version="V5">
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into login id" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="SameAsCard" ScopeIdentifier="d9ea03cc-58e5-48c4-989d-2794954db57d" SecureText="[CALS_PW]" Version="V5">
                     <uix:NTypeInto.Target>
                       <uix:TargetAnchorable BrowserURL="app.openga.calsplatz.com/login" CVScreenId="12f1f533-f35a-4af7-8bf4-2f337bbd92d1" ContentHash="i9HHUuoajE-TLW07FXXwiQ" CvElementArea="998, 601, 428, 48" CvType="InputBox" DesignTimeRectangle="1001, 602, 423, 45" ElementType="InputBoxPassword" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='el-id-*-*' tag='INPUT' idx='2' /&gt;" Guid="cf12137f-938b-4f26-82a9-92f8054946d6" InformativeScreenshot="82fbafd810849ba8de3fd776b91bde67.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/87XaP_t6ok6F0wbOQ8tafg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Login - OPENGA' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
                         <uix:TargetAnchorable.Anchors>
@@ -212,7 +232,7 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </uix:NTypeInto>
-                  <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click 'Login'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NClick_1" InUiElement="{x:Null}" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="d9ea03cc-58e5-48c4-989d-2794954db57d" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Login'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="d9ea03cc-58e5-48c4-989d-2794954db57d" Version="V5">
                     <uix:NClick.Target>
                       <uix:TargetAnchorable BrowserURL="app.openga.calsplatz.com/login" CVScreenId="12f1f533-f35a-4af7-8bf4-2f337bbd92d1" ContentHash="tlrolZ5o7UmovwGEs3q5ow" CvElementArea="997, 683, 430, 48" CvTextArea="1191, 700, 42, 20" CvTextArgument="Login" CvType="Button" DesignTimeRectangle="1193, 685, 40, 45" ElementType="Text" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl tag='SPAN' type='' class='' aaname=' Login ' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='Login' /&gt;" Guid="d24e7c90-553f-4e85-be0e-59f71ed6844a" InformativeScreenshot="13107f4463de7c0534d262ba20563fe5.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/wDsj-AE0KkCkpX-HHHNpTg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Login - OPENGA' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
                         <uix:TargetAnchorable.Anchors>
