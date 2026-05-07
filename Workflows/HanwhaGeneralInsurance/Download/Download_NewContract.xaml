@@ -120,10 +120,15 @@
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
       <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
       <AssemblyReference>NPOI.Core</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>REF_RPA.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Automobile New Contracts Sequence" sap:VirtualizedContainerService.HintSize="847.6,17116" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Automobile New Contracts Sequence" sap:VirtualizedContainerService.HintSize="863.6,18648" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="END_PERIOD" />
+      <Variable x:TypeArguments="x:String" Name="IS_MANUAL" />
+      <Variable x:TypeArguments="x:String" Name="START_PERIOD" />
       <Variable x:TypeArguments="x:String" Name="newFilePath" />
       <Variable x:TypeArguments="x:String" Name="latestFilePath" />
     </Sequence.Variables>
@@ -132,7 +137,40 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <uix:NCheckState ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Check App State '청약서류자동차보험 이미지주행거리 미심사…'" Exists="{x:Null}" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="625.6,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_3" InScope="{x:Null}" InUiElement="{x:Null}" OutUiElement="{x:Null}" Result="{x:Null}" Timeout="{x:Null}" Version="V5">
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="START_DATE_DOWNLOAD" CacheStrategy="None" DisplayName="Get Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="625.6,56.8" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+      <ui:GetRobotAsset.Value>
+        <OutArgument x:TypeArguments="x:String">[START_PERIOD]</OutArgument>
+      </ui:GetRobotAsset.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:GetRobotAsset>
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="END_DATE_DOWNLOAD" CacheStrategy="None" DisplayName="Get Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="625.6,56.8" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
+      <ui:GetRobotAsset.Value>
+        <OutArgument x:TypeArguments="x:String">[END_PERIOD]</OutArgument>
+      </ui:GetRobotAsset.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:GetRobotAsset>
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="IS_MANUAL" CacheStrategy="None" DisplayName="Get Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="625.6,56.8" sap2010:WorkflowViewState.IdRef="GetRobotAsset_3">
+      <ui:GetRobotAsset.Value>
+        <OutArgument x:TypeArguments="x:String">[IS_MANUAL]</OutArgument>
+      </ui:GetRobotAsset.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:GetRobotAsset>
+    <uix:NCheckState DisplayName="Check App State '청약서류자동차보험 이미지주행거리 미심사…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="625.6,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_3" Version="V5">
       <uix:NCheckState.IfExists>
         <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="486.4,498.4" sap2010:WorkflowViewState.IdRef="Sequence_7">
           <sap:WorkflowViewStateService.ViewState>
@@ -140,7 +178,7 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <uix:NApplicationCard AttachMode="ByInstance" CloseMode="{x:Null}" ConnectionId="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Edge 청약서류자동차보험 이미지주행거리 미심사 및 미정산 현황(1)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="452.8,438.4" sap2010:WorkflowViewState.IdRef="NApplicationCard_5" InUiElement="{x:Null}" InteractionMode="DebuggerApi" IsIncognito="{x:Null}" OpenMode="{x:Null}" OutUiElement="{x:Null}" ScopeGuid="c5d61e5f-7be2-4f0c-9169-2c1cfb0809c3" Timeout="{x:Null}" UserDataFolderMode="{x:Null}" UserDataFolderPath="{x:Null}" Version="V2" WebDriverMode="{x:Null}">
+          <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Edge 청약서류자동차보험 이미지주행거리 미심사 및 미정산 현황(1)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="452.8,438.4" sap2010:WorkflowViewState.IdRef="NApplicationCard_5" InteractionMode="DebuggerApi" ScopeGuid="c5d61e5f-7be2-4f0c-9169-2c1cfb0809c3" Version="V2">
             <uix:NApplicationCard.Body>
               <ActivityAction x:TypeArguments="x:Object">
                 <ActivityAction.Argument>
@@ -152,7 +190,7 @@
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click 'Close'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="417.6,184.8" sap2010:WorkflowViewState.IdRef="NClick_7" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="c5d61e5f-7be2-4f0c-9169-2c1cfb0809c3" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Close'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="417.6,184.8" sap2010:WorkflowViewState.IdRef="NClick_7" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="c5d61e5f-7be2-4f0c-9169-2c1cfb0809c3" Version="V5">
                     <uix:NClick.Target>
                       <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/html/sfa/pt/sfaptz15.html" ContentHash="Yj2IBYjZ1kS1D3d6tZ4Xwg" DesignTimeRectangle="577, 1, 58, 38" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='청약서류/자동차보험 이미지/주행거리 미심사 및 미정산 현황 - Microsoft Edge' role='pane' /&gt;&lt;ctrl name='Close' role='push button' /&gt;" Guid="f0f72703-8614-4ba5-8298-79f760277e80" InformativeScreenshot="7ed2ea78ddaf358492079ca32d8b664b.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/uCmSAi1puEmp0l-21_aVHg" ScopeSelectorArgument="&lt;wnd app='msedge.exe' cls='Chrome_WidgetWin_1' title='청약서류/자동차보험 이미지/주행거리 미심사 및 미정산 현황 - Profile 1 - Microsoft​ Edge' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                     </uix:NClick.Target>
@@ -192,13 +230,13 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </uix:NCheckState>
-    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Always]" ConnectionId="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Edge 한화영업포털(1)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="625.6,17036" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InUiElement="{x:Null}" InteractionMode="DebuggerApi" IsIncognito="{x:Null}" OpenMode="{x:Null}" OutUiElement="{x:Null}" ScopeGuid="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UserDataFolderMode="{x:Null}" UserDataFolderPath="{x:Null}" Version="V2" WebDriverMode="{x:Null}">
+    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Always]" DisplayName="Edge 한화영업포털(1)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="625.6,18397.6" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="DebuggerApi" ScopeGuid="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="624,16914.4" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="624,18204" sap2010:WorkflowViewState.IdRef="Sequence_5">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -212,40 +250,29 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </Delay>
-            <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click '미래에셋금융서비스(주)님 반갑습니다.'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="590.4,56.8" sap2010:WorkflowViewState.IdRef="NClick_2" InUiElement="{x:Null}" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
-              <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="igbWAIFbpE6QgLLPzmEvMQ" DesignTimeRectangle="9, 143, 4601, 30" ElementType="List" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' /&gt;&lt;webctrl tag='UL' /&gt;" Guid="0d6a1712-457e-40b0-97d4-aa8b88340dc8" InformativeScreenshot="2bdd82ae8d8f723b5483f2c152c393ef.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/8W5Wk0EEBUWjMZIu__tY-A" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1773718887564' title='한화영업포털' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-              </uix:NClick.Target>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </uix:NClick>
-            <uix:NHover ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Hover '영업지원'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="590.4,56.8" HoverTime="{x:Null}" sap2010:WorkflowViewState.IdRef="NHover_1" InUiElement="{x:Null}" InteractionMode="SameAsCard" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" Version="V5">
+            <uix:NHover DisplayName="Hover '영업지원'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="590.4,245.6" sap2010:WorkflowViewState.IdRef="NHover_1" InteractionMode="SameAsCard" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
               <uix:NHover.Target>
                 <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="JFWzXbiO0E6M1teF8oiEMw" DesignTimeRectangle="333, 93, 72, 30" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl parentid='menu-1' tag='SPAN' /&gt;" Guid="8224ca8f-11e8-4f0a-ac36-d74e1cd31655" InformativeScreenshot="82470e78ae16ee4f460f9bb522d8b26b.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/8_OM6FrXqUSGGhvS7Z05aw" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1773655253762' title='한화영업포털' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NHover.Target>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </uix:NHover>
-            <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click '통합계약명세(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="590.4,56.8" sap2010:WorkflowViewState.IdRef="NClick_5" InUiElement="{x:Null}" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '통합계약명세(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="590.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_5" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="akSrn91cIEmR0QuXD_EfcQ" DesignTimeRectangle="488, 211, 101, 22" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='통합계약명세' class='scno-link-gnb' parentid='menu-1' tag='A' /&gt;" Guid="5dd619c7-13bb-4c9c-9b0b-b8b0f149a9dc" InformativeScreenshot="ab8e186463ff20ddad03dc9dad86bd20.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/3wHdxbvHuE2IfyZpUHBLJQ" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1773655253762' title='한화영업포털' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </uix:NClick>
-            <Sequence DisplayName="Long-term New Contracts  Sequence" sap:VirtualizedContainerService.HintSize="590.4,3531.2" sap2010:WorkflowViewState.IdRef="Sequence_16">
+            <Sequence DisplayName="Long-term New Contracts  Sequence" sap:VirtualizedContainerService.HintSize="590.4,3724.8" sap2010:WorkflowViewState.IdRef="Sequence_16">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -260,7 +287,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </Delay>
-              <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click '액셀내보내기 출력 다운로드엑셀생성요청액셀내…'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NClick_10" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '액셀내보내기 출력 다운로드엑셀생성요청액셀내…'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NClick_10" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                 <uix:NClick.Target>
                   <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="FDAd8PN94UGu26zBdcwi0Q" DesignTimeRectangle="79, 938, 1505, 42" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' /&gt;&lt;webctrl id='container_2' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='FOOTER' /&gt;" Guid="68a2b71d-93a9-4fb5-8246-26d991fbf093" InformativeScreenshot="f96eb309f0ddafd8dea85db3fdedd1dc.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/C6g7FJI500667zOBt-0yhg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1773719458394' title='한화영업포털' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                 </uix:NClick.Target>
@@ -271,7 +298,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </uix:NClick>
-              <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click '장기신계약(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NClick_8" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '장기신계약(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NClick_8" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                 <uix:NClick.Target>
                   <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="qim-oHeabk-__bhoPBG64A" DesignTimeRectangle="183, 217, 105, 28" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' /&gt;&lt;webctrl id='container_2' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl aaname='장기신계약' parentid='TAPSPAN' tag='SPAN' /&gt;" Guid="4bfa0f79-2018-4c86-b2d2-5886fdfdb226" InformativeScreenshot="e8fccdb10577d4757ee3ca347c41ed97.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/B4o54JTVHkyH8KduXIvf8A" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1773719458394' title='한화영업포털' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                 </uix:NClick.Target>
@@ -363,7 +390,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </Delay>
-              <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click '액셀내보내기 출력 다운로드엑셀생성요청액셀내…(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NClick_24" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '액셀내보내기 출력 다운로드엑셀생성요청액셀내…(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NClick_24" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                 <uix:NClick.Target>
                   <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="f5GUjM2LI0m8D1TEmoR5ag" DesignTimeRectangle="79, 938, 1505, 42" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' /&gt;&lt;webctrl id='container_2' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='FOOTER' /&gt;" Guid="e347f250-39d5-4b5c-917c-c2b3cba92496" InformativeScreenshot="f33b6cddd56aba628412a3dfab640094.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/X_K6oZZwYkG1qRwvMvTTRQ" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1773808094331' title='한화영업포털' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                 </uix:NClick.Target>
@@ -374,7 +401,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </uix:NClick>
-              <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click 'Checkbox'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NClick_13" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Checkbox'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NClick_13" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                 <uix:NClick.Target>
                   <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="EC6uHDQk3UOyUPYgs5txUw" DesignTimeRectangle="214, 299, 16, 16" ElementType="CheckBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' /&gt;&lt;webctrl id='container_2' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl aaname='기준일자 조회구분 일괄조회 영업가족 사용인' id='tblSearch' tag='TABLE' /&gt;&lt;webctrl tableRow='2' tag='INPUT' /&gt;" Guid="3373ff98-607e-47fc-ae53-90b5c99b3f10" InformativeScreenshot="1c8dc9455a7c2e7afa0f1ae15dd7eb1a.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/3QvbfCOml0a6emX5sQDW4Q" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1773719458394' title='한화영업포털' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive">
                     <uix:TargetAnchorable.PointOffset>
@@ -389,18 +416,80 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </uix:NClick>
-              <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click 'BUTTON T1_btnRA'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NClick_14" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
-                <uix:NClick.Target>
-                  <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="kAwNBGa1XkWMZl09OruZ7w" DesignTimeRectangle="1482, 265, 70, 27" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' /&gt;&lt;webctrl id='container_2' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl class='dosearch' idx='2' parentid='tab' tag='BUTTON' type='button' /&gt;" Guid="a25ae0c4-8688-465c-8fc9-94131005ecb9" InformativeScreenshot="2bfe05a5ec59559842698a70b8d1fe68.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/yXboHNLxyEqmWzfybzTg3g" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1773719458394' title='한화영업포털' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-                </uix:NClick.Target>
+              <If Condition="[IS_MANUAL = &quot;TRUE&quot;]" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="If_4">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
+                <If.Then>
+                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,542.4" sap2010:WorkflowViewState.IdRef="Sequence_46">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '기준일자'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_7" InteractionMode="SameAsCard" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Text="[START_PERIOD.Replace(&quot;-&quot;, &quot;&quot;)]" Version="V5">
+                      <uix:NTypeInto.Target>
+                        <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="0wKd3MhzAEyc-LBExj4_aQ" DesignTimeRectangle="238, 316, 90, 25" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl id='container_2' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl aaname='기준일자 조회구분 일괄조회 영업가족 사용인' id='tblSearch' tag='TABLE' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl type='text' tag='INPUT' class='date' placeholder='____-__-__' aaname='' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="0fe6e9b7-2633-4df4-a6b6-fae945b07744" InformativeScreenshot="37965019c4fb6cf46cb07cb1e212e4ee.jpg" IsResponsive="True" Reference="5HjwgH8OmEa1VO6GnukQ2g/iBtKhG0Ds0CbkJmQoDWFWQ" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1778129916203' title='한화영업포털' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                          <uix:TargetAnchorable.Anchors>
+                            <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                              <uix:Target DesignTimeRectangle="113, 313, 123, 30" ElementType="Text" FuzzySelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl id='container_2' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl aaname='기준일자 조회구분 일괄조회 영업가족 사용인' id='tblSearch' tag='TABLE' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl type='' tag='TH' class='state-required' aaname='기준일자' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='기준일자' /&gt;" Guid="b9d1e6a8-4637-4ab3-9754-d3df49e346df" SearchSteps="FuzzySelector" />
+                            </scg:List>
+                          </uix:TargetAnchorable.Anchors>
+                        </uix:TargetAnchorable>
+                      </uix:NTypeInto.Target>
+                      <uix:NTypeInto.VerifyOptions>
+                        <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                          <uix:VerifyExecutionTypeIntoOptions.Retry>
+                            <InArgument x:TypeArguments="x:Boolean" />
+                          </uix:VerifyExecutionTypeIntoOptions.Retry>
+                          <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                            <InArgument x:TypeArguments="x:Double" />
+                          </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                        </uix:VerifyExecutionTypeIntoOptions>
+                      </uix:NTypeInto.VerifyOptions>
+                    </uix:NTypeInto>
+                    <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '2026-05-07'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,236.8" sap2010:WorkflowViewState.IdRef="NTypeInto_8" InteractionMode="SameAsCard" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Text="[END_PERIOD.Replace(&quot;-&quot;, &quot;&quot;)]" Version="V5">
+                      <uix:NTypeInto.Target>
+                        <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="ci7EkxHI6U2m-tXS4VZwnQ" DesignTimeRectangle="369, 316, 90, 25" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' /&gt;&lt;webctrl id='container_2' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl aaname='기준일자 조회구분 일괄조회 영업가족 사용인' id='tblSearch' tag='TABLE' /&gt;&lt;webctrl idx='2' tableRow='1' tag='INPUT' /&gt;" Guid="6074d956-28b6-443e-ade9-904ac25e7f6d" InformativeScreenshot="7365fb09c4b79e75bd3d0052e0fb1835.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/AhWgocwLu0SEoYcX8HfbNQ" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1778129916203' title='한화영업포털' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                      </uix:NTypeInto.Target>
+                      <uix:NTypeInto.VerifyOptions>
+                        <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                          <uix:VerifyExecutionTypeIntoOptions.Retry>
+                            <InArgument x:TypeArguments="x:Boolean" />
+                          </uix:VerifyExecutionTypeIntoOptions.Retry>
+                          <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                            <InArgument x:TypeArguments="x:Double" />
+                          </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                        </uix:VerifyExecutionTypeIntoOptions>
+                      </uix:NTypeInto.VerifyOptions>
+                    </uix:NTypeInto>
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_47">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Sequence>
+                </If.Else>
+              </If>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'BUTTON T1_btnRA'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_14" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="kAwNBGa1XkWMZl09OruZ7w" DesignTimeRectangle="1827, 318, 70, 27" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' /&gt;&lt;webctrl id='container_2' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl class='dosearch' idx='2' parentid='tab' tag='BUTTON' type='button' /&gt;" Guid="a25ae0c4-8688-465c-8fc9-94131005ecb9" InformativeScreenshot="72c4c47077247ab450f49fcdd856909f.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/yXboHNLxyEqmWzfybzTg3g" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1773719458394' title='한화영업포털' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                </uix:NClick.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
               </uix:NClick>
-              <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click '엑셀생성요청'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NClick_15" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '엑셀생성요청'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NClick_15" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                 <uix:NClick.Target>
                   <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="v1xEqSadcUa8uvAbm2QTBg" DesignTimeRectangle="1376, 945, 99, 29" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' /&gt;&lt;webctrl id='container_2' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl aaname='엑셀생성요청' class='doaction' tag='BUTTON' type='button' /&gt;" Guid="13b5567c-8df1-4e9d-b9b7-853fd757eb47" InformativeScreenshot="699cc316935fe0cae5f5e4217e043853.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/jjrv5TeReEqs7PADVevfOQ" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1773732281263' title='한화영업포털' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                 </uix:NClick.Target>
@@ -411,7 +500,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </uix:NClick>
-              <uix:NCheckState ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Check App State 'OK'" Exists="{x:Null}" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_4" InScope="{x:Null}" InUiElement="{x:Null}" OutUiElement="{x:Null}" Result="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" Version="V5">
+              <uix:NCheckState DisplayName="Check App State 'OK'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_4" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                 <uix:NCheckState.IfExists>
                   <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,301.6" sap2010:WorkflowViewState.IdRef="Sequence_10">
                     <sap:WorkflowViewStateService.ViewState>
@@ -419,7 +508,7 @@
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click 'OK(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_16" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'OK(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_16" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                       <uix:NClick.Target>
                         <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="KG-MK3kRgESMtSalZIMmOQ" DesignTimeRectangle="1008, 226, 49, 40" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='An embedded page at ncrm.hwgeneralins.com says' role='dialog' /&gt;&lt;ctrl name='OK' role='push button' /&gt;" Guid="f27aa65e-06f4-4c99-bc0a-6dea2f99815c" InformativeScreenshot="8874a3fead1f696f09362768b8cc75d0.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/kdi1C8AiskegbNshrv7OZA" ScopeSelectorArgument="&lt;wnd app='msedge.exe' cls='Chrome_WidgetWin_1' title='한화영업포털 - Profile 1 - Microsoft​ Edge' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                       </uix:NClick.Target>
@@ -453,7 +542,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </uix:NCheckState>
-              <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click '다운로드'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_17" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '다운로드'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_17" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                 <uix:NClick.Target>
                   <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="LC9c7_4JYEmpC_9lUkI5DQ" DesignTimeRectangle="1302, 945, 70, 29" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' /&gt;&lt;webctrl id='container_2' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl aaname='다운로드' class='doaction' tag='BUTTON' type='button' /&gt;" Guid="61c4129d-677f-4f26-894c-1e33437ca101" InformativeScreenshot="5753470f2a248a1d5b792ab1b3eecfa0.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/lvZVBGk2Dk6m6nnK2ty4zQ" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1773732281263' title='한화영업포털' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                 </uix:NClick.Target>
@@ -464,7 +553,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </uix:NClick>
-              <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click 'Checkbox(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_18" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Checkbox(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_18" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                 <uix:NClick.Target>
                   <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="v0aMP1pbHkemY_UHXyzG_g" DesignTimeRectangle="479, 478, 19, 16" ElementType="CheckBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl id='container_2' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl id='popup_1' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl parentid='MyList-body' tag='TABLE' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' /&gt;&lt;webctrl type='checkbox' tag='INPUT' class='grid-multi-check' aaname='' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="f630cea8-4b09-4b1b-8198-ff14459c7c60" InformativeScreenshot="976cf1c325e8fff2aa3817d6f79b5686.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/GvPQYy6WF0ekqKX7bq_YFw" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1773732281263' title='한화영업포털' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
                     <uix:TargetAnchorable.Anchors>
@@ -481,7 +570,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </uix:NClick>
-              <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click '다운로드(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NClick_19" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '다운로드(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NClick_19" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                 <uix:NClick.Target>
                   <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="0-AWAN7fOkiF-zI9weTpPA" DesignTimeRectangle="766, 729, 70, 29" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' /&gt;&lt;webctrl id='container_2' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl id='popup_1' tag='IFRAME' /&gt;&lt;webctrl id='logDownload' tag='BUTTON' /&gt;" Guid="76e75a6b-2e4d-44e4-bebf-cb81d108d6b5" InformativeScreenshot="8bd54d55867ba218827a42f4ef90045f.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/SngA3LozP0G6-CukE9XOHQ" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1773732281263' title='한화영업포털' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                 </uix:NClick.Target>
@@ -500,14 +589,14 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </Delay>
-              <p:CVScope ScopeId="{x:Null}" ApiKey="{x:Null}" ContinueOnError="{x:Null}" CvMethod="ElementDetection, OCR" DelayBefore="{x:Null}" DesignTimeCacheId="8d9b8199-362e-4374-9d2f-3380262779df" DisplayName="CV Screen Scope 'document  Downloads'" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="CVScope_4" ScrollOffset="{x:Null}" SendOnPremData="False" Server="{x:Null}" TimeoutMS="{x:Null}" Version="V6">
+              <p:CVScope ContinueOnError="{x:Null}" DelayBefore="{x:Null}" ScopeId="{x:Null}" ScrollOffset="{x:Null}" Server="{x:Null}" CvMethod="ElementDetection, OCR" DesignTimeCacheId="8d9b8199-362e-4374-9d2f-3380262779df" DisplayName="CV Screen Scope 'document  Downloads'" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="CVScope_4" SendOnPremData="False" Version="V6">
                 <p:CVScope.Body>
                   <ActivityAction x:TypeArguments="x:Object">
                     <ActivityAction.Argument>
                       <DelegateInArgument x:TypeArguments="x:Object" Name="CVSessionData" />
                     </ActivityAction.Argument>
                     <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_15">
-                      <p:CvElementExistsWithDescriptor ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" DelayScreenshotAfterScroll="{x:Null}" Descriptor="[&quot;Target: Icon (11,61,24,23)&quot; +&#xA;&quot;Anchor: Text 'What do you want to do with' (44,62,165,15)&quot; +&#xA;&quot;Anchor: Text 'Downloads' (16,17,70,13)&quot;]" DesignTimeCacheId="8d9b8199-362e-4374-9d2f-3380262779df" DesignTimeScaleFactor="1.25" DisplayName="CV Element Exists - 'Icon'" sap:VirtualizedContainerService.HintSize="400,169.6" sap2010:WorkflowViewState.IdRef="CvElementExistsWithDescriptor_2" InRegion="{x:Null}" InformativeScreenshot="0c1292b2b4b5b3d553f50cd884aa6d36" NumberOfScrolls="2" OutRegion="{x:Null}" Result="{x:Null}" ScrollDirection="None" TimeoutMS="{x:Null}" Version="V6">
+                      <p:CvElementExistsWithDescriptor DelayScreenshotAfterScroll="{x:Null}" Descriptor="[&quot;Target: Icon (11,61,24,23)&quot; +&#xA;&quot;Anchor: Text 'What do you want to do with' (44,62,165,15)&quot; +&#xA;&quot;Anchor: Text 'Downloads' (16,17,70,13)&quot;]" DesignTimeCacheId="8d9b8199-362e-4374-9d2f-3380262779df" DesignTimeScaleFactor="1.25" DisplayName="CV Element Exists - 'Icon'" sap:VirtualizedContainerService.HintSize="400,169.6" sap2010:WorkflowViewState.IdRef="CvElementExistsWithDescriptor_2" InformativeScreenshot="0c1292b2b4b5b3d553f50cd884aa6d36" NumberOfScrolls="2" ScrollDirection="None" Version="V6">
                         <p:CvElementExistsWithDescriptor.DesignTimeDescriptor>
                           <uc:CvDescriptor Id="27bd36a6-5b87-4a9b-b916-6b028262dc48">
                             <uc:CvDescriptor.Anchors>
@@ -522,7 +611,7 @@
                           </uc:CvDescriptor>
                         </p:CvElementExistsWithDescriptor.DesignTimeDescriptor>
                       </p:CvElementExistsWithDescriptor>
-                      <p:CvClickWithDescriptor ClickType="CLICK_SINGLE" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" DelayScreenshotAfterScroll="{x:Null}" Descriptor="[&quot;Target: Text 'Save' (177,105,26,12)&quot; +&#xA;&quot;Anchor: Button (168,96,48,32)&quot; +&#xA;&quot;Anchor: Text 'What do you want to do with' (44,62,165,15)&quot; +&#xA;&quot;Anchor: Text 'Downloads' (16,17,70,13)&quot;]" DesignTimeCacheId="8d9b8199-362e-4374-9d2f-3380262779df" DesignTimeScaleFactor="1.25" DisplayName="CV Click - Text" sap:VirtualizedContainerService.HintSize="400,209.6" sap2010:WorkflowViewState.IdRef="CvClickWithDescriptor_2" InRegion="{x:Null}" InformativeScreenshot="a646305feefc21579758df0fee4af912" KeyModifiers="None" MouseButton="BTN_LEFT" NumberOfScrolls="2" OutRegion="{x:Null}" ScrollDirection="None" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" TimeoutMS="{x:Null}" UnblockInput="{x:Null}" Version="V6">
+                      <p:CvClickWithDescriptor DelayBefore="{x:Null}" DelayMS="{x:Null}" DelayScreenshotAfterScroll="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" Descriptor="[&quot;Target: Text 'Save' (177,105,26,12)&quot; +&#xA;&quot;Anchor: Button (168,96,48,32)&quot; +&#xA;&quot;Anchor: Text 'What do you want to do with' (44,62,165,15)&quot; +&#xA;&quot;Anchor: Text 'Downloads' (16,17,70,13)&quot;]" DesignTimeCacheId="8d9b8199-362e-4374-9d2f-3380262779df" DesignTimeScaleFactor="1.25" DisplayName="CV Click - Text" sap:VirtualizedContainerService.HintSize="400,209.6" sap2010:WorkflowViewState.IdRef="CvClickWithDescriptor_2" InformativeScreenshot="a646305feefc21579758df0fee4af912" KeyModifiers="None" MouseButton="BTN_LEFT" NumberOfScrolls="2" ScrollDirection="None" Version="V6">
                         <p:CvClickWithDescriptor.CursorPosition>
                           <ui:CursorPosition Position="Center">
                             <ui:CursorPosition.OffsetX>
@@ -664,7 +753,7 @@
                     <ActivityFunc.Argument>
                       <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
                     </ActivityFunc.Argument>
-                    <p1:UiPathScreenOCR ApiKey="{x:Null}" ComputeSkewAngle="False" Endpoint="{x:Null}" ExtractWords="True" sap:VirtualizedContainerService.HintSize="400,24.8" sap2010:WorkflowViewState.IdRef="UiPathScreenOCR_3" Image="[Image]" Language="en" NoopExecution="False" Output="{x:Null}" PredictionId="{x:Null}" Profile="Screen" Result="{x:Null}" Scale="1" Text="{x:Null}" Timeout="100000" UseAccents="{x:Null}" UseLocalServer="{x:Null}" UseSeparateOcrProcess="True" />
+                    <p1:UiPathScreenOCR ApiKey="{x:Null}" Endpoint="{x:Null}" Output="{x:Null}" PredictionId="{x:Null}" Text="{x:Null}" UseAccents="{x:Null}" UseLocalServer="{x:Null}" ComputeSkewAngle="False" ExtractWords="True" sap:VirtualizedContainerService.HintSize="400,24.8" sap2010:WorkflowViewState.IdRef="UiPathScreenOCR_3" Image="[Image]" Language="en" NoopExecution="False" Profile="Screen" Scale="1" Timeout="100000" UseSeparateOcrProcess="True" />
                   </ActivityFunc>
                 </p:CVScope.OCREngine>
                 <p:CVScope.Target>
@@ -684,7 +773,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </p:CVScope>
-              <uix:NCheckState ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Check App State 'edgedownloadshub(5)'" Exists="{x:Null}" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="486.4,1949.6" sap2010:WorkflowViewState.IdRef="NCheckState_12" InScope="{x:Null}" InUiElement="{x:Null}" OutUiElement="{x:Null}" Result="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" Version="V5">
+              <uix:NCheckState DisplayName="Check App State 'edgedownloadshub(5)'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="486.4,1949.6" sap2010:WorkflowViewState.IdRef="NCheckState_12" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                 <uix:NCheckState.IfExists>
                   <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="484.8,1515.2" sap2010:WorkflowViewState.IdRef="Sequence_35">
                     <sap:WorkflowViewStateService.ViewState>
@@ -692,7 +781,7 @@
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayBetweenShortcuts="{x:Null}" DisplayName="Keyboard Shortcuts 'edgedownloadshub(6)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,328.8" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_3" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="HardwareEvents" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Shortcuts="[d(hk)][k(Esc)][u(hk)]" ShortcutsArgument="{x:Null}" Timeout="{x:Null}" Version="V5">
+                    <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts 'edgedownloadshub(6)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,328.8" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_3" InteractionMode="HardwareEvents" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Shortcuts="[d(hk)][k(Esc)][u(hk)]" Version="V5">
                       <uix:NKeyboardShortcuts.Target>
                         <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="4ZknUy51BU-VT17NhRILoA" DesignTimeRectangle="36, 21, 450, 812" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='Downloads' role='document' /&gt;" Guid="0eb025d4-8a3d-425e-948d-bc3c91bb1490" InformativeScreenshot="1421c9589e87422c6fdba3db77b6b2d6.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/1D3cGamLWU6_aY5jVy6mQQ" ScopeSelectorArgument="&lt;wnd app='msedge.exe' cls='Chrome_WidgetWin_1' idx='*' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                       </uix:NKeyboardShortcuts.Target>
@@ -734,7 +823,7 @@
                               <x:Boolean x:Key="IsPinned">False</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="{x:Null}" Message="[&quot;Not Found FileName&quot;]" />
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Not Found FileName&quot;]" />
                         </Sequence>
                       </If.Then>
                       <If.Else>
@@ -753,7 +842,7 @@
                               <InArgument x:TypeArguments="x:String">[Path.Combine("C:\RPA\TempDownload", "HWG_NEW_LTR_" &amp; DateTime.Now.ToString("yyyyMMdd_HHmmss") &amp; "_" &amp; Path.GetFileName(latestFilePath))]</InArgument>
                             </Assign.Value>
                           </Assign>
-                          <ui:MoveFile ContinueOnError="{x:Null}" Destination="[newFilePath]" DestinationResource="{x:Null}" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="416,192" sap2010:WorkflowViewState.IdRef="MoveFile_1" Path="[latestFilePath]" PathResource="{x:Null}" />
+                          <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[newFilePath]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="416,192" sap2010:WorkflowViewState.IdRef="MoveFile_1" Path="[latestFilePath]" />
                           <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="Delay_29" />
                         </Sequence>
                       </If.Else>
@@ -773,12 +862,12 @@
                   <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="f9dJKKj0UUCTPgoewkWb4g" DesignTimeRectangle="36, 21, 450, 812" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='Downloads' role='document' /&gt;" Guid="eacaa212-6503-4432-9081-86fbdee9dbbc" InformativeScreenshot="f8d2efa295ab758fc0db6ac41b72f41b.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/jQ-BNcHboUevRKdwpHYg7g" ScopeSelectorArgument="&lt;wnd app='msedge.exe' cls='Chrome_WidgetWin_1' idx='*' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                 </uix:NCheckState.Target>
               </uix:NCheckState>
-              <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click '닫기(2)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_55" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '닫기(2)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_55" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                 <uix:NClick.Target>
                   <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="Fub9kWmp0kiBeuYpVf72FA" DesignTimeRectangle="1158, 745, 41, 29" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' /&gt;&lt;webctrl id='container_2' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl id='popup_1' tag='IFRAME' /&gt;&lt;webctrl id='logClose' tag='BUTTON' /&gt;" Guid="38fac42e-a3ae-43be-a02c-98180ff7abfc" InformativeScreenshot="884005fba8e2c632d59a78efdf2a555b.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/a8Pzlf2SK0u-sZQ3ezraDw" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1773817197593' title='한화영업포털' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                 </uix:NClick.Target>
               </uix:NClick>
-              <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click '액셀내보내기 출력 다운로드엑셀생성요청액셀내…(2)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NClick_25" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '액셀내보내기 출력 다운로드엑셀생성요청액셀내…(2)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NClick_25" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                 <uix:NClick.Target>
                   <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="K2tN7IryTUuMP789IIeuKg" DesignTimeRectangle="79, 938, 1505, 42" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' /&gt;&lt;webctrl id='container_2' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='FOOTER' /&gt;" Guid="d970cbec-eed4-4748-a5ad-5435c65543b5" InformativeScreenshot="f33b6cddd56aba628412a3dfab640094.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/OujVy659-0Cs8KElmYBKxg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1773808094331' title='한화영업포털' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                 </uix:NClick.Target>
@@ -791,7 +880,7 @@
               </uix:NClick>
               <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="486.4,113.6" sap2010:WorkflowViewState.IdRef="Delay_4" />
             </Sequence>
-            <Sequence DisplayName="Automobile New Contract Sequence" sap:VirtualizedContainerService.HintSize="590.4,6535.2" sap2010:WorkflowViewState.IdRef="Sequence_17">
+            <Sequence DisplayName="Automobile New Contract Sequence" sap:VirtualizedContainerService.HintSize="590.4,6592" sap2010:WorkflowViewState.IdRef="Sequence_17">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -799,12 +888,12 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="521.6,122.4" sap2010:WorkflowViewState.IdRef="Delay_11" />
-              <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click '액셀내보내기 출력 다운로드엑셀생성요청액셀내…(4)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="521.6,193.6" sap2010:WorkflowViewState.IdRef="NClick_32" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '액셀내보내기 출력 다운로드엑셀생성요청액셀내…(4)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="521.6,193.6" sap2010:WorkflowViewState.IdRef="NClick_32" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                 <uix:NClick.Target>
                   <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="7VfNThR52ku4GbbRdkbd8w" DesignTimeRectangle="79, 938, 1505, 42" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' /&gt;&lt;webctrl id='container_2' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='FOOTER' /&gt;" Guid="f392282f-d9c4-4588-b231-c69b54a8dcab" InformativeScreenshot="790066e3918b0459af33c42b348fc01c.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/2U0v3IObrkeSzk9htc2VAw" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1773817197593' title='한화영업포털' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                 </uix:NClick.Target>
               </uix:NClick>
-              <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click '자동차신계약'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="521.6,193.6" sap2010:WorkflowViewState.IdRef="NClick_26" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '자동차신계약'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="521.6,193.6" sap2010:WorkflowViewState.IdRef="NClick_26" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                 <uix:NClick.Target>
                   <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="Z1qa9sItY0CSqChXnllXZQ" DesignTimeRectangle="289, 217, 119, 28" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' /&gt;&lt;webctrl id='container_2' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl aaname='자동차신계약' parentid='TAPSPAN' tag='SPAN' /&gt;" Guid="37cde51f-d04f-43e9-958c-dc874e231457" InformativeScreenshot="953316bd5235b9fea8af5c2599a15894.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/OH84OLEN_kiNfhiXF-Mt2w" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1773817197593' title='한화영업포털' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                 </uix:NClick.Target>
@@ -884,29 +973,91 @@
                 </sap:WorkflowViewStateService.ViewState>
               </ui:CommentOut>
               <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="521.6,122.4" sap2010:WorkflowViewState.IdRef="Delay_10" />
-              <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click '액셀내보내기 출력 다운로드엑셀생성요청액셀내…(3)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="521.6,193.6" sap2010:WorkflowViewState.IdRef="NClick_29" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '액셀내보내기 출력 다운로드엑셀생성요청액셀내…(3)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="521.6,193.6" sap2010:WorkflowViewState.IdRef="NClick_29" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                 <uix:NClick.Target>
                   <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="y8gK6No1zUWkeOWXw8SBbg" DesignTimeRectangle="79, 938, 1505, 42" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' /&gt;&lt;webctrl id='container_2' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='FOOTER' /&gt;" Guid="5fde51ef-974a-47e3-b4ba-e132274761c5" InformativeScreenshot="6f62f313262f802b3201c9f20ff0c394.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/yvlecgNnbUCdbSDXT9cAUA" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1773817197593' title='한화영업포털' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                 </uix:NClick.Target>
               </uix:NClick>
-              <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click 'Checkbox(2)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="521.6,193.6" sap2010:WorkflowViewState.IdRef="NClick_30" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Checkbox(2)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="521.6,193.6" sap2010:WorkflowViewState.IdRef="NClick_30" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                 <uix:NClick.Target>
                   <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="KCr2GKnNm02ALYNHeFUsNQ" DesignTimeRectangle="1194, 267, 17, 16" ElementType="CheckBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' /&gt;&lt;webctrl id='container_2' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl id='tblSearch' parentid='divSlctInput1' tag='TABLE' /&gt;&lt;webctrl tableCol='3' tableRow='1' tag='INPUT' type='checkbox' /&gt;" Guid="6584ad18-b9d6-47d0-a12e-7d5f740fa8c7" InformativeScreenshot="30b5a4f6686494d5ec008afe89d03f0b.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/N6HkPty2L0GUp4DB1LqMFw" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1773817197593' title='한화영업포털' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                 </uix:NClick.Target>
               </uix:NClick>
-              <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click 'BUTTON T2_btnRA1'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="521.6,193.6" sap2010:WorkflowViewState.IdRef="NClick_31" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+              <If Condition="[IS_MANUAL = &quot;TRUE&quot;]" sap:VirtualizedContainerService.HintSize="521.6,56.8" sap2010:WorkflowViewState.IdRef="If_5">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If.Then>
+                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,542.4" sap2010:WorkflowViewState.IdRef="Sequence_48">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '기준일자'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_11" InteractionMode="SameAsCard" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Text="[START_PERIOD.Replace(&quot;-&quot;, &quot;&quot;)]" Version="V5">
+                      <uix:NTypeInto.Target>
+                        <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="0wKd3MhzAEyc-LBExj4_aQ" DesignTimeRectangle="238, 316, 90, 25" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl id='container_2' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl aaname='기준일자 조회구분 일괄조회 영업가족 사용인' id='tblSearch' tag='TABLE' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl type='text' tag='INPUT' class='date' placeholder='____-__-__' aaname='' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="0fe6e9b7-2633-4df4-a6b6-fae945b07744" InformativeScreenshot="37965019c4fb6cf46cb07cb1e212e4ee.jpg" IsResponsive="True" Reference="5HjwgH8OmEa1VO6GnukQ2g/iBtKhG0Ds0CbkJmQoDWFWQ" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1778129916203' title='한화영업포털' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                          <uix:TargetAnchorable.Anchors>
+                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                              <uix:Target DesignTimeRectangle="113, 313, 123, 30" ElementType="Text" FuzzySelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl id='container_2' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl aaname='기준일자 조회구분 일괄조회 영업가족 사용인' id='tblSearch' tag='TABLE' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl type='' tag='TH' class='state-required' aaname='기준일자' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='기준일자' /&gt;" Guid="b9d1e6a8-4637-4ab3-9754-d3df49e346df" SearchSteps="FuzzySelector" />
+                            </scg:List>
+                          </uix:TargetAnchorable.Anchors>
+                        </uix:TargetAnchorable>
+                      </uix:NTypeInto.Target>
+                      <uix:NTypeInto.VerifyOptions>
+                        <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                          <uix:VerifyExecutionTypeIntoOptions.Retry>
+                            <InArgument x:TypeArguments="x:Boolean" />
+                          </uix:VerifyExecutionTypeIntoOptions.Retry>
+                          <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                            <InArgument x:TypeArguments="x:Double" />
+                          </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                        </uix:VerifyExecutionTypeIntoOptions>
+                      </uix:NTypeInto.VerifyOptions>
+                    </uix:NTypeInto>
+                    <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '2026-05-07'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,236.8" sap2010:WorkflowViewState.IdRef="NTypeInto_12" InteractionMode="SameAsCard" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Text="[END_PERIOD.Replace(&quot;-&quot;, &quot;&quot;)]" Version="V5">
+                      <uix:NTypeInto.Target>
+                        <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="ci7EkxHI6U2m-tXS4VZwnQ" DesignTimeRectangle="369, 316, 90, 25" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' /&gt;&lt;webctrl id='container_2' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl aaname='기준일자 조회구분 일괄조회 영업가족 사용인' id='tblSearch' tag='TABLE' /&gt;&lt;webctrl idx='2' tableRow='1' tag='INPUT' /&gt;" Guid="6074d956-28b6-443e-ade9-904ac25e7f6d" InformativeScreenshot="7365fb09c4b79e75bd3d0052e0fb1835.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/AhWgocwLu0SEoYcX8HfbNQ" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1778129916203' title='한화영업포털' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                      </uix:NTypeInto.Target>
+                      <uix:NTypeInto.VerifyOptions>
+                        <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                          <uix:VerifyExecutionTypeIntoOptions.Retry>
+                            <InArgument x:TypeArguments="x:Boolean" />
+                          </uix:VerifyExecutionTypeIntoOptions.Retry>
+                          <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                            <InArgument x:TypeArguments="x:Double" />
+                          </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                        </uix:VerifyExecutionTypeIntoOptions>
+                      </uix:NTypeInto.VerifyOptions>
+                    </uix:NTypeInto>
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_49">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Sequence>
+                </If.Else>
+              </If>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'BUTTON T2_btnRA1'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="521.6,193.6" sap2010:WorkflowViewState.IdRef="NClick_31" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                 <uix:NClick.Target>
                   <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="i79nqzwc8U-pheFl3-sxug" DesignTimeRectangle="1482, 265, 70, 27" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' /&gt;&lt;webctrl id='container_2' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl parentid='divSlctInput1' tag='BUTTON' type='button' /&gt;" Guid="76d22664-d103-4b82-ac5d-6d921adfebd6" InformativeScreenshot="de50ce9009158daa3fb543f0e705584e.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/0VU9ahtq4UOA_D6-7g_7Sg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1773817197593' title='한화영업포털' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                 </uix:NClick.Target>
               </uix:NClick>
               <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="521.6,122.4" sap2010:WorkflowViewState.IdRef="Delay_12" />
-              <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click '엑셀생성요청(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="521.6,193.6" sap2010:WorkflowViewState.IdRef="NClick_33" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '엑셀생성요청(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="521.6,193.6" sap2010:WorkflowViewState.IdRef="NClick_33" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                 <uix:NClick.Target>
                   <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="hvsOP5lQA06YHZ1TSM7oeQ" DesignTimeRectangle="1371, 945, 99, 29" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' /&gt;&lt;webctrl id='container_2' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl aaname='엑셀생성요청' class='doaction' idx='2' tag='BUTTON' type='button' /&gt;" Guid="b7e1b492-c006-47e9-ad5a-60c1b8e30a0d" InformativeScreenshot="7cddd8ab8adc795915f86ba8250cf66c.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/_ngFcgcSBkyX4f3rhHkofg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1773817197593' title='한화영업포털' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                 </uix:NClick.Target>
               </uix:NClick>
               <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="521.6,122.4" sap2010:WorkflowViewState.IdRef="Delay_26" />
-              <uix:NCheckState ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Check App State 'OK(2)'" Exists="{x:Null}" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="521.6,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_6" InScope="{x:Null}" InUiElement="{x:Null}" OutUiElement="{x:Null}" Result="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" Version="V5">
+              <uix:NCheckState DisplayName="Check App State 'OK(2)'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="521.6,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_6" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                 <uix:NCheckState.IfExists>
                   <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,367.2" sap2010:WorkflowViewState.IdRef="Sequence_19">
                     <sap:WorkflowViewStateService.ViewState>
@@ -914,7 +1065,7 @@
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click 'OK(3)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_34" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'OK(3)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_34" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                       <uix:NClick.Target>
                         <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="B2Sv1Dj8i06N-6VZcqwaiQ" DesignTimeRectangle="1008, 226, 49, 40" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='An embedded page at ncrm.hwgeneralins.com says' role='dialog' /&gt;&lt;ctrl name='OK' role='push button' /&gt;" Guid="84ada73b-b94d-4cd0-aa84-31a96ffc2262" InformativeScreenshot="8874a3fead1f696f09362768b8cc75d0.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/5zFXR4rwDkGvFsuj9yJnuA" ScopeSelectorArgument="&lt;wnd app='msedge.exe' cls='Chrome_WidgetWin_1' title='한화영업포털 - Profile 1 - Microsoft​ Edge' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                       </uix:NClick.Target>
@@ -929,7 +1080,7 @@
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="Non have popup request successful of Automobile Contract" TextWriter="{x:Null}" />
+                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="Non have popup request successful of Automobile Contract" />
                   </Sequence>
                 </uix:NCheckState.IfNotExists>
                 <uix:NCheckState.Target>
@@ -942,12 +1093,12 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </uix:NCheckState>
-              <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click '다운로드(2)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="521.6,193.6" sap2010:WorkflowViewState.IdRef="NClick_35" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '다운로드(2)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="521.6,193.6" sap2010:WorkflowViewState.IdRef="NClick_35" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                 <uix:NClick.Target>
                   <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="HakH4sa8jUe-mGSg3Fnb8A" DesignTimeRectangle="1293, 945, 70, 29" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' /&gt;&lt;webctrl id='container_2' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl aaname='다운로드' class='doaction' idx='2' tag='BUTTON' type='button' /&gt;" Guid="60a4b8f9-e278-4f2d-aa29-6814875925fb" InformativeScreenshot="5753470f2a248a1d5b792ab1b3eecfa0.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/7kfzkRrNmkSiftS54daUMA" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1773817197593' title='한화영업포털' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                 </uix:NClick.Target>
               </uix:NClick>
-              <uix:NCheckState ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Check App State 'DIV dialogpopupContentp…'" Exists="{x:Null}" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="521.6,4362.4" sap2010:WorkflowViewState.IdRef="NCheckState_7" InScope="{x:Null}" InUiElement="{x:Null}" OutUiElement="{x:Null}" Result="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" Version="V5">
+              <uix:NCheckState DisplayName="Check App State 'DIV dialogpopupContentp…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="521.6,4362.4" sap2010:WorkflowViewState.IdRef="NCheckState_7" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                 <uix:NCheckState.IfExists>
                   <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="520,3936.8" sap2010:WorkflowViewState.IdRef="Sequence_21">
                     <sap:WorkflowViewStateService.ViewState>
@@ -955,7 +1106,7 @@
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click '파일 이름'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_36" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '파일 이름'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_36" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                       <uix:NClick.Target>
                         <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="bi1PAEX1-Ue3iSkmELGtMg" DesignTimeRectangle="479, 478, 19, 16" ElementType="CheckBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl id='container_2' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl id='popup_1' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl parentid='MyList-body' tag='TABLE' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' /&gt;&lt;webctrl type='checkbox' tag='INPUT' class='grid-multi-check' aaname='' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="d6c5ca16-e364-42fe-885a-eb184bab264d" InformativeScreenshot="976cf1c325e8fff2aa3817d6f79b5686.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/3bPwO0sDdU6SAJtuXOaBgA" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1773817197593' title='한화영업포털' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
                           <uix:TargetAnchorable.Anchors>
@@ -966,20 +1117,20 @@
                         </uix:TargetAnchorable>
                       </uix:NClick.Target>
                     </uix:NClick>
-                    <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click '다운로드(3)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_37" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '다운로드(3)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_37" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                       <uix:NClick.Target>
                         <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="9MM59AwwdUi2E1ZWTNERUg" DesignTimeRectangle="1085, 745, 70, 29" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' /&gt;&lt;webctrl id='container_2' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl id='popup_1' tag='IFRAME' /&gt;&lt;webctrl id='logDownload' tag='BUTTON' /&gt;" Guid="456beb92-ef48-4f01-a183-00566cf69a8c" InformativeScreenshot="5a3a10e9ee6bec417108b5e1e748e45f.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/hQnUFdXo-0iNDCzIdZ2Rdw" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1773817197593' title='한화영업포털' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                       </uix:NClick.Target>
                     </uix:NClick>
                     <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_14" />
-                    <p:CVScope ScopeId="{x:Null}" ApiKey="{x:Null}" ContinueOnError="{x:Null}" CvMethod="ElementDetection, OCR" DelayBefore="{x:Null}" DesignTimeCacheId="11f4c400-cf1e-498d-b0c4-1fd7866c120b" DisplayName="CV Screen Scope 'document  Downloads'" sap:VirtualizedContainerService.HintSize="486.4,728.8" sap2010:WorkflowViewState.IdRef="CVScope_5" ScrollOffset="{x:Null}" SendOnPremData="False" Server="{x:Null}" TimeoutMS="{x:Null}" Version="V6">
+                    <p:CVScope ContinueOnError="{x:Null}" DelayBefore="{x:Null}" ScopeId="{x:Null}" ScrollOffset="{x:Null}" Server="{x:Null}" CvMethod="ElementDetection, OCR" DesignTimeCacheId="11f4c400-cf1e-498d-b0c4-1fd7866c120b" DisplayName="CV Screen Scope 'document  Downloads'" sap:VirtualizedContainerService.HintSize="486.4,728.8" sap2010:WorkflowViewState.IdRef="CVScope_5" SendOnPremData="False" Version="V6">
                       <p:CVScope.Body>
                         <ActivityAction x:TypeArguments="x:Object">
                           <ActivityAction.Argument>
                             <DelegateInArgument x:TypeArguments="x:Object" Name="CVSessionData" />
                           </ActivityAction.Argument>
                           <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_23">
-                            <p:CvElementExistsWithDescriptor ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" DelayScreenshotAfterScroll="{x:Null}" Descriptor="[&quot;Target: Button (168,96,48,32)&quot; +&#xA;&quot;Anchor: Text 'Save' (177,105,26,12)&quot; +&#xA;&quot;Anchor: Text 'What do you want to do with' (44,62,165,15)&quot; +&#xA;&quot;Anchor: Icon (231,13,21,19)&quot;]" DesignTimeCacheId="11f4c400-cf1e-498d-b0c4-1fd7866c120b" DesignTimeScaleFactor="1.25" DisplayName="CV Element Exists - 'Button'" sap:VirtualizedContainerService.HintSize="400,169.6" sap2010:WorkflowViewState.IdRef="CvElementExistsWithDescriptor_6" InRegion="{x:Null}" InformativeScreenshot="6f5e650181e5a317e1a0bba485857640" NumberOfScrolls="2" OutRegion="{x:Null}" Result="{x:Null}" ScrollDirection="None" TimeoutMS="{x:Null}" Version="V6">
+                            <p:CvElementExistsWithDescriptor DelayScreenshotAfterScroll="{x:Null}" Descriptor="[&quot;Target: Button (168,96,48,32)&quot; +&#xA;&quot;Anchor: Text 'Save' (177,105,26,12)&quot; +&#xA;&quot;Anchor: Text 'What do you want to do with' (44,62,165,15)&quot; +&#xA;&quot;Anchor: Icon (231,13,21,19)&quot;]" DesignTimeCacheId="11f4c400-cf1e-498d-b0c4-1fd7866c120b" DesignTimeScaleFactor="1.25" DisplayName="CV Element Exists - 'Button'" sap:VirtualizedContainerService.HintSize="400,169.6" sap2010:WorkflowViewState.IdRef="CvElementExistsWithDescriptor_6" InformativeScreenshot="6f5e650181e5a317e1a0bba485857640" NumberOfScrolls="2" ScrollDirection="None" Version="V6">
                               <p:CvElementExistsWithDescriptor.DesignTimeDescriptor>
                                 <uc:CvDescriptor Id="46bd09ab-b319-4b24-aea8-a550e448a610">
                                   <uc:CvDescriptor.Anchors>
@@ -995,7 +1146,7 @@
                                 </uc:CvDescriptor>
                               </p:CvElementExistsWithDescriptor.DesignTimeDescriptor>
                             </p:CvElementExistsWithDescriptor>
-                            <p:CvClickWithDescriptor ClickType="CLICK_SINGLE" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" DelayScreenshotAfterScroll="{x:Null}" Descriptor="[&quot;Target: Button (168,96,48,32)&quot; +&#xA;&quot;Anchor: Text 'Save' (177,105,26,12)&quot; +&#xA;&quot;Anchor: Text 'What do you want to do with' (44,62,165,15)&quot; +&#xA;&quot;Anchor: Icon (231,13,21,19)&quot;]" DesignTimeCacheId="11f4c400-cf1e-498d-b0c4-1fd7866c120b" DesignTimeScaleFactor="1.25" DisplayName="CV Click - 'Button'" sap:VirtualizedContainerService.HintSize="400,209.6" sap2010:WorkflowViewState.IdRef="CvClickWithDescriptor_3" InRegion="{x:Null}" InformativeScreenshot="6f5e650181e5a317e1a0bba485857640" KeyModifiers="None" MouseButton="BTN_LEFT" NumberOfScrolls="2" OutRegion="{x:Null}" ScrollDirection="None" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" TimeoutMS="{x:Null}" UnblockInput="{x:Null}" Version="V6">
+                            <p:CvClickWithDescriptor DelayBefore="{x:Null}" DelayMS="{x:Null}" DelayScreenshotAfterScroll="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" Descriptor="[&quot;Target: Button (168,96,48,32)&quot; +&#xA;&quot;Anchor: Text 'Save' (177,105,26,12)&quot; +&#xA;&quot;Anchor: Text 'What do you want to do with' (44,62,165,15)&quot; +&#xA;&quot;Anchor: Icon (231,13,21,19)&quot;]" DesignTimeCacheId="11f4c400-cf1e-498d-b0c4-1fd7866c120b" DesignTimeScaleFactor="1.25" DisplayName="CV Click - 'Button'" sap:VirtualizedContainerService.HintSize="400,209.6" sap2010:WorkflowViewState.IdRef="CvClickWithDescriptor_3" InformativeScreenshot="6f5e650181e5a317e1a0bba485857640" KeyModifiers="None" MouseButton="BTN_LEFT" NumberOfScrolls="2" ScrollDirection="None" Version="V6">
                               <p:CvClickWithDescriptor.CursorPosition>
                                 <ui:CursorPosition Position="Center">
                                   <ui:CursorPosition.OffsetX>
@@ -1150,7 +1301,7 @@
                           <ActivityFunc.Argument>
                             <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
                           </ActivityFunc.Argument>
-                          <p1:UiPathScreenOCR ApiKey="{x:Null}" ComputeSkewAngle="False" Endpoint="{x:Null}" ExtractWords="True" sap:VirtualizedContainerService.HintSize="400,24.8" sap2010:WorkflowViewState.IdRef="UiPathScreenOCR_4" Image="[Image]" Language="en" NoopExecution="False" Output="{x:Null}" PredictionId="{x:Null}" Profile="Screen" Result="{x:Null}" Scale="1" Text="{x:Null}" Timeout="100000" UseAccents="{x:Null}" UseLocalServer="{x:Null}" UseSeparateOcrProcess="True" />
+                          <p1:UiPathScreenOCR ApiKey="{x:Null}" Endpoint="{x:Null}" Output="{x:Null}" PredictionId="{x:Null}" Text="{x:Null}" UseAccents="{x:Null}" UseLocalServer="{x:Null}" ComputeSkewAngle="False" ExtractWords="True" sap:VirtualizedContainerService.HintSize="400,24.8" sap2010:WorkflowViewState.IdRef="UiPathScreenOCR_4" Image="[Image]" Language="en" NoopExecution="False" Profile="Screen" Scale="1" Timeout="100000" UseSeparateOcrProcess="True" />
                         </ActivityFunc>
                       </p:CVScope.OCREngine>
                       <p:CVScope.Target>
@@ -1170,7 +1321,7 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </p:CVScope>
-                    <uix:NCheckState ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Check App State 'edgedownloadshub(2)'" Exists="{x:Null}" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="486.4,2015.2" sap2010:WorkflowViewState.IdRef="NCheckState_10" InScope="{x:Null}" InUiElement="{x:Null}" OutUiElement="{x:Null}" Result="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" Version="V5">
+                    <uix:NCheckState DisplayName="Check App State 'edgedownloadshub(2)'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="486.4,2015.2" sap2010:WorkflowViewState.IdRef="NCheckState_10" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                       <uix:NCheckState.IfExists>
                         <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="484.8,1580.8" sap2010:WorkflowViewState.IdRef="Sequence_31">
                           <sap:WorkflowViewStateService.ViewState>
@@ -1179,7 +1330,7 @@
                               <x:Boolean x:Key="IsPinned">False</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayBetweenShortcuts="{x:Null}" DisplayName="Keyboard Shortcuts 'edgedownloadshub(3)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,328.8" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_2" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="HardwareEvents" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Shortcuts="[d(hk)][k(Esc)][u(hk)]" ShortcutsArgument="{x:Null}" Timeout="{x:Null}" Version="V5">
+                          <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts 'edgedownloadshub(3)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,328.8" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_2" InteractionMode="HardwareEvents" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Shortcuts="[d(hk)][k(Esc)][u(hk)]" Version="V5">
                             <uix:NKeyboardShortcuts.Target>
                               <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="Io29iF1G2kqfZZSuHyBDoQ" DesignTimeRectangle="36, 21, 450, 812" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='Downloads' role='document' /&gt;" Guid="65eadbe0-6fec-4672-8b1a-d47bf36c6638" InformativeScreenshot="5241f268c0a39a6eae9ea060db1dc283.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/SY1YsHv3m0e6U1ERlSOfgg" ScopeSelectorArgument="&lt;wnd app='msedge.exe' cls='Chrome_WidgetWin_1' idx='*' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                             </uix:NKeyboardShortcuts.Target>
@@ -1221,7 +1372,7 @@
                                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="{x:Null}" Message="[&quot;Not Found FileName&quot;]" />
+                                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_3" Message="[&quot;Not Found FileName&quot;]" />
                               </Sequence>
                             </If.Then>
                             <If.Else>
@@ -1240,7 +1391,7 @@
                                     <InArgument x:TypeArguments="x:String">[Path.Combine("C:\RPA\TempDownload", "HWG_NEW_CAR_" &amp; DateTime.Now.ToString("yyyyMMdd_HHmmss") &amp; "_" &amp; Path.GetFileName(latestFilePath))]</InArgument>
                                   </Assign.Value>
                                 </Assign>
-                                <ui:MoveFile ContinueOnError="{x:Null}" Destination="[newFilePath]" DestinationResource="{x:Null}" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="416,192" sap2010:WorkflowViewState.IdRef="MoveFile_2" Path="[latestFilePath]" PathResource="{x:Null}" />
+                                <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[newFilePath]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="416,192" sap2010:WorkflowViewState.IdRef="MoveFile_2" Path="[latestFilePath]" />
                                 <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="Delay_32" />
                               </Sequence>
                             </If.Else>
@@ -1267,12 +1418,12 @@
                       </sap:WorkflowViewStateService.ViewState>
                     </uix:NCheckState>
                     <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_25" />
-                    <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click '닫기'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_39" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '닫기'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_39" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                       <uix:NClick.Target>
                         <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="C17LeaJ1KE67UMCScz9LCw" DesignTimeRectangle="1158, 745, 41, 29" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' /&gt;&lt;webctrl id='container_2' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl id='popup_1' tag='IFRAME' /&gt;&lt;webctrl id='logClose' tag='BUTTON' /&gt;" Guid="958033ae-e6ef-4a77-b835-f2828eb7f75a" InformativeScreenshot="884005fba8e2c632d59a78efdf2a555b.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/QElzwbtgJEOiPjQ9AMXYew" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1773817197593' title='한화영업포털' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                       </uix:NClick.Target>
                     </uix:NClick>
-                    <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click '액셀내보내기 출력 다운로드엑셀생성요청액셀내…(5)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_40" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '액셀내보내기 출력 다운로드엑셀생성요청액셀내…(5)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_40" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                       <uix:NClick.Target>
                         <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="_k9kJYFgg0SXD8GWCHglkg" DesignTimeRectangle="79, 938, 1505, 42" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' /&gt;&lt;webctrl id='container_2' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='FOOTER' /&gt;" Guid="c7e0dd7e-e936-4d7e-8366-a83adc1dadde" InformativeScreenshot="94d5427c7ecff26fe30923b25c207c71.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/03tWP5WQ1UGrnds7bt51MQ" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1773817197593' title='한화영업포털' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                       </uix:NClick.Target>
@@ -1294,7 +1445,7 @@
                 </uix:NCheckState.Target>
               </uix:NCheckState>
             </Sequence>
-            <Sequence DisplayName="General New Contracts Sequence" sap:VirtualizedContainerService.HintSize="590.4,6560.8" sap2010:WorkflowViewState.IdRef="Sequence_24">
+            <Sequence DisplayName="General New Contracts Sequence" sap:VirtualizedContainerService.HintSize="590.4,7331.2" sap2010:WorkflowViewState.IdRef="Sequence_24">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1302,12 +1453,12 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="556.8,122.4" sap2010:WorkflowViewState.IdRef="Delay_16" />
-              <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click '액셀내보내기 출력 다운로드엑셀생성요청액셀내…(6)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="556.8,193.6" sap2010:WorkflowViewState.IdRef="NClick_41" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '액셀내보내기 출력 다운로드엑셀생성요청액셀내…(6)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="556.8,193.6" sap2010:WorkflowViewState.IdRef="NClick_41" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                 <uix:NClick.Target>
                   <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="emXVFdvGrUecjSzc9O6GZw" DesignTimeRectangle="79, 938, 1505, 42" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' /&gt;&lt;webctrl id='container_2' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='FOOTER' /&gt;" Guid="01986da4-38a7-4ad4-87e8-353a22366f7c" InformativeScreenshot="f33b6cddd56aba628412a3dfab640094.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/OD_il8yCnEmKxEPdO5Ai5Q" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1773817197593' title='한화영업포털' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                 </uix:NClick.Target>
               </uix:NClick>
-              <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click '일반보험계약'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="556.8,193.6" sap2010:WorkflowViewState.IdRef="NClick_42" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '일반보험계약'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="556.8,193.6" sap2010:WorkflowViewState.IdRef="NClick_42" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                 <uix:NClick.Target>
                   <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="hl4hKPEzQkmseypBN6EMJg" DesignTimeRectangle="409, 217, 120, 28" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' /&gt;&lt;webctrl id='container_2' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl aaname='일반보험계약' parentid='TAPSPAN' tag='SPAN' /&gt;" Guid="ad829a06-a070-49b0-a297-a519aa62aa4e" InformativeScreenshot="bdc370baed92995b2ff4ec9bfe74db96.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/p8-nEKKeVky0kmcPba18AA" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1773817197593' title='한화영업포털' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                 </uix:NClick.Target>
@@ -1387,29 +1538,91 @@
                 </sap:WorkflowViewStateService.ViewState>
               </ui:CommentOut>
               <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="556.8,122.4" sap2010:WorkflowViewState.IdRef="Delay_18" />
-              <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click '액셀내보내기 출력 다운로드엑셀생성요청액셀내…(7)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="556.8,193.6" sap2010:WorkflowViewState.IdRef="NClick_45" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '액셀내보내기 출력 다운로드엑셀생성요청액셀내…(7)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="556.8,193.6" sap2010:WorkflowViewState.IdRef="NClick_45" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                 <uix:NClick.Target>
                   <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="4OoyXe0z_kWbQqzRUxXhqA" DesignTimeRectangle="79, 938, 1505, 42" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' /&gt;&lt;webctrl id='container_2' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='FOOTER' /&gt;" Guid="390226df-7419-4f76-9f08-55f39b0e69c1" InformativeScreenshot="f33b6cddd56aba628412a3dfab640094.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/B2SslmhWZUCz_j1MT2H9oA" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1773817197593' title='한화영업포털' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                 </uix:NClick.Target>
               </uix:NClick>
-              <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click 'Checkbox(3)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="556.8,193.6" sap2010:WorkflowViewState.IdRef="NClick_46" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Checkbox(3)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="556.8,193.6" sap2010:WorkflowViewState.IdRef="NClick_46" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                 <uix:NClick.Target>
                   <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="yCjwP2SKQ0Opb74q4hVuxQ" DesignTimeRectangle="1035, 331, 16, 16" ElementType="CheckBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' /&gt;&lt;webctrl id='container_2' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl aaname='기준년월 보험종목 인수구분 신규/기존 수납기준 처리구분 조회구분 일괄조회 사용인' id='tblSearch' parentid='tab' tag='TABLE' /&gt;&lt;webctrl tableRow='3' tag='INPUT' type='checkbox' /&gt;" Guid="2dbb0918-f7c2-4ffc-ac97-835b1fac1fdd" InformativeScreenshot="48167518bb6d642c9a95f6a565b22557.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/Npn-qI89JE60iozyffFDxw" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1773817197593' title='한화영업포털' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                 </uix:NClick.Target>
               </uix:NClick>
-              <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click 'BUTTON T3_btnRA'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="556.8,193.6" sap2010:WorkflowViewState.IdRef="NClick_47" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+              <If Condition="[IS_MANUAL = &quot;TRUE&quot;]" sap:VirtualizedContainerService.HintSize="556.8,770.4" sap2010:WorkflowViewState.IdRef="If_6">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If.Then>
+                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,542.4" sap2010:WorkflowViewState.IdRef="Sequence_50">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '기준일자'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_9" InteractionMode="SameAsCard" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Text="[START_PERIOD.Replace(&quot;-&quot;, &quot;&quot;)]" Version="V5">
+                      <uix:NTypeInto.Target>
+                        <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="0wKd3MhzAEyc-LBExj4_aQ" DesignTimeRectangle="238, 316, 90, 25" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl id='container_2' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl aaname='기준일자 조회구분 일괄조회 영업가족 사용인' id='tblSearch' tag='TABLE' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl type='text' tag='INPUT' class='date' placeholder='____-__-__' aaname='' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="0fe6e9b7-2633-4df4-a6b6-fae945b07744" InformativeScreenshot="37965019c4fb6cf46cb07cb1e212e4ee.jpg" IsResponsive="True" Reference="5HjwgH8OmEa1VO6GnukQ2g/iBtKhG0Ds0CbkJmQoDWFWQ" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1778129916203' title='한화영업포털' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                          <uix:TargetAnchorable.Anchors>
+                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                              <uix:Target DesignTimeRectangle="113, 313, 123, 30" ElementType="Text" FuzzySelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl id='container_2' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl aaname='기준일자 조회구분 일괄조회 영업가족 사용인' id='tblSearch' tag='TABLE' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl type='' tag='TH' class='state-required' aaname='기준일자' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='기준일자' /&gt;" Guid="b9d1e6a8-4637-4ab3-9754-d3df49e346df" SearchSteps="FuzzySelector" />
+                            </scg:List>
+                          </uix:TargetAnchorable.Anchors>
+                        </uix:TargetAnchorable>
+                      </uix:NTypeInto.Target>
+                      <uix:NTypeInto.VerifyOptions>
+                        <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                          <uix:VerifyExecutionTypeIntoOptions.Retry>
+                            <InArgument x:TypeArguments="x:Boolean" />
+                          </uix:VerifyExecutionTypeIntoOptions.Retry>
+                          <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                            <InArgument x:TypeArguments="x:Double" />
+                          </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                        </uix:VerifyExecutionTypeIntoOptions>
+                      </uix:NTypeInto.VerifyOptions>
+                    </uix:NTypeInto>
+                    <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '2026-05-07'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,236.8" sap2010:WorkflowViewState.IdRef="NTypeInto_10" InteractionMode="SameAsCard" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Text="[END_PERIOD.Replace(&quot;-&quot;, &quot;&quot;)]" Version="V5">
+                      <uix:NTypeInto.Target>
+                        <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="ci7EkxHI6U2m-tXS4VZwnQ" DesignTimeRectangle="369, 316, 90, 25" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' /&gt;&lt;webctrl id='container_2' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl aaname='기준일자 조회구분 일괄조회 영업가족 사용인' id='tblSearch' tag='TABLE' /&gt;&lt;webctrl idx='2' tableRow='1' tag='INPUT' /&gt;" Guid="6074d956-28b6-443e-ade9-904ac25e7f6d" InformativeScreenshot="7365fb09c4b79e75bd3d0052e0fb1835.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/AhWgocwLu0SEoYcX8HfbNQ" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1778129916203' title='한화영업포털' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                      </uix:NTypeInto.Target>
+                      <uix:NTypeInto.VerifyOptions>
+                        <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                          <uix:VerifyExecutionTypeIntoOptions.Retry>
+                            <InArgument x:TypeArguments="x:Boolean" />
+                          </uix:VerifyExecutionTypeIntoOptions.Retry>
+                          <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                            <InArgument x:TypeArguments="x:Double" />
+                          </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                        </uix:VerifyExecutionTypeIntoOptions>
+                      </uix:NTypeInto.VerifyOptions>
+                    </uix:NTypeInto>
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_51">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Sequence>
+                </If.Else>
+              </If>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'BUTTON T3_btnRA'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="556.8,193.6" sap2010:WorkflowViewState.IdRef="NClick_47" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                 <uix:NClick.Target>
                   <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="WPfMasvh_Ee_dwOAOP7-CQ" DesignTimeRectangle="1482, 265, 70, 27" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' /&gt;&lt;webctrl id='container_2' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl class='dosearch' idx='3' parentid='tab' tag='BUTTON' type='button' /&gt;" Guid="68b70903-9b7a-48ec-9e43-e2f892a6421c" InformativeScreenshot="62a61b270464e7527e3eb8ddb046f742.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/ijwq22yPHEa9Ysec-ucgrw" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1773817197593' title='한화영업포털' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                 </uix:NClick.Target>
               </uix:NClick>
               <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="556.8,122.4" sap2010:WorkflowViewState.IdRef="Delay_19" />
-              <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click '엑셀생성요청(3)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="556.8,193.6" sap2010:WorkflowViewState.IdRef="NClick_56" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '엑셀생성요청(3)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="556.8,193.6" sap2010:WorkflowViewState.IdRef="NClick_56" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                 <uix:NClick.Target>
                   <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="p6x_HXWkdkuY9zifewIxtA" DesignTimeRectangle="1216, 945, 99, 29" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' /&gt;&lt;webctrl id='container_2' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl aaname='엑셀생성요청' class='doaction' idx='3' tag='BUTTON' type='button' /&gt;" Guid="62fe651a-7d2a-48d7-a647-ee77302cc77a" InformativeScreenshot="5753470f2a248a1d5b792ab1b3eecfa0.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/GOQt-kz--kSbXH0zXtd_XQ" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1773817197593' title='한화영업포털' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                 </uix:NClick.Target>
               </uix:NClick>
               <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="556.8,122.4" sap2010:WorkflowViewState.IdRef="Delay_27" />
-              <uix:NCheckState ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Check App State 'OK(4)'" Exists="{x:Null}" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="556.8,4647.2" sap2010:WorkflowViewState.IdRef="NCheckState_8" InScope="{x:Null}" InUiElement="{x:Null}" OutUiElement="{x:Null}" Result="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" Version="V5">
+              <uix:NCheckState DisplayName="Check App State 'OK(4)'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="556.8,4647.2" sap2010:WorkflowViewState.IdRef="NCheckState_8" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                 <uix:NCheckState.IfExists>
                   <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="555.2,4137.6" sap2010:WorkflowViewState.IdRef="Sequence_26">
                     <sap:WorkflowViewStateService.ViewState>
@@ -1418,18 +1631,18 @@
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click 'OK(5)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="521.6,193.6" sap2010:WorkflowViewState.IdRef="NClick_49" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'OK(5)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="521.6,193.6" sap2010:WorkflowViewState.IdRef="NClick_49" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                       <uix:NClick.Target>
                         <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="Ri3bSEs7M0iO_iiLjEvSxg" DesignTimeRectangle="1008, 226, 49, 40" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='An embedded page at ncrm.hwgeneralins.com says' role='dialog' /&gt;&lt;ctrl name='OK' role='push button' /&gt;" Guid="942bac99-d170-4906-afd7-b2e3ee06a429" InformativeScreenshot="8874a3fead1f696f09362768b8cc75d0.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/Bbp_3X7JJUy5yef_Ixo7lA" ScopeSelectorArgument="&lt;wnd app='msedge.exe' cls='Chrome_WidgetWin_1' title='한화영업포털 - Profile 1 - Microsoft​ Edge' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                       </uix:NClick.Target>
                     </uix:NClick>
                     <Delay Duration="00:00:10" sap:VirtualizedContainerService.HintSize="521.6,122.4" sap2010:WorkflowViewState.IdRef="Delay_20" />
-                    <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click '다운로드(6)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="521.6,193.6" sap2010:WorkflowViewState.IdRef="NClick_57" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '다운로드(6)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="521.6,193.6" sap2010:WorkflowViewState.IdRef="NClick_57" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                       <uix:NClick.Target>
                         <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="2Lh5oo4OYEqg1iUATgo39g" DesignTimeRectangle="1137, 945, 70, 29" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' /&gt;&lt;webctrl id='container_2' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl aaname='다운로드' class='doaction' idx='3' tag='BUTTON' type='button' /&gt;" Guid="ba38a22c-41b3-4f23-8dc7-f6355e4638c1" InformativeScreenshot="5753470f2a248a1d5b792ab1b3eecfa0.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/VFwu-EVMZUiY_kJF9xbY2A" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1773817197593' title='한화영업포털' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                       </uix:NClick.Target>
                     </uix:NClick>
-                    <uix:NCheckState ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Check App State 'DIV dialogpopupContentp…(1)'" Exists="{x:Null}" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="521.6,3568" sap2010:WorkflowViewState.IdRef="NCheckState_9" InScope="{x:Null}" InUiElement="{x:Null}" OutUiElement="{x:Null}" Result="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" Version="V5">
+                    <uix:NCheckState DisplayName="Check App State 'DIV dialogpopupContentp…(1)'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="521.6,3568" sap2010:WorkflowViewState.IdRef="NCheckState_9" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                       <uix:NCheckState.IfExists>
                         <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="520,3142.4" sap2010:WorkflowViewState.IdRef="Sequence_28">
                           <sap:WorkflowViewStateService.ViewState>
@@ -1438,7 +1651,7 @@
                               <x:Boolean x:Key="IsPinned">False</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click '파일 이름'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_51" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+                          <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '파일 이름'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_51" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                             <uix:NClick.Target>
                               <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="yFyjTre3zEukHt9ytb3zqA" DesignTimeRectangle="479, 478, 19, 16" ElementType="CheckBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl id='container_2' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl id='popup_1' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl parentid='MyList-body' tag='TABLE' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' /&gt;&lt;webctrl type='checkbox' tag='INPUT' class='grid-multi-check' aaname='' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="c916314f-6a17-461c-af52-bb140c8ad005" InformativeScreenshot="976cf1c325e8fff2aa3817d6f79b5686.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/Td-sIJT830OB3fn7oigHww" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1773817197593' title='한화영업포털' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
                                 <uix:TargetAnchorable.Anchors>
@@ -1449,20 +1662,20 @@
                               </uix:TargetAnchorable>
                             </uix:NClick.Target>
                           </uix:NClick>
-                          <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click '다운로드(5)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_52" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+                          <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '다운로드(5)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_52" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                             <uix:NClick.Target>
                               <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="9O0Je_Nm8Em2IUiOHsJn6g" DesignTimeRectangle="1085, 745, 70, 29" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' /&gt;&lt;webctrl id='container_2' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl id='popup_1' tag='IFRAME' /&gt;&lt;webctrl id='logDownload' tag='BUTTON' /&gt;" Guid="993c9320-0f54-45a8-b75d-e8be8e774703" InformativeScreenshot="5a3a10e9ee6bec417108b5e1e748e45f.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/xk1EdAUu0Ey1Ex0uDZ68GA" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1773817197593' title='한화영업포털' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                             </uix:NClick.Target>
                           </uix:NClick>
                           <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_21" />
-                          <p:CVScope ScopeId="{x:Null}" ApiKey="{x:Null}" ContinueOnError="{x:Null}" CvMethod="ElementDetection, OCR" DelayBefore="{x:Null}" DesignTimeCacheId="efa0bff9-d396-4ded-b671-cc0c51a6a467" DisplayName="CV Screen Scope 'document  Downloads'" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="CVScope_6" ScrollOffset="{x:Null}" SendOnPremData="False" Server="{x:Null}" TimeoutMS="{x:Null}" Version="V6">
+                          <p:CVScope ContinueOnError="{x:Null}" DelayBefore="{x:Null}" ScopeId="{x:Null}" ScrollOffset="{x:Null}" Server="{x:Null}" CvMethod="ElementDetection, OCR" DesignTimeCacheId="efa0bff9-d396-4ded-b671-cc0c51a6a467" DisplayName="CV Screen Scope 'document  Downloads'" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="CVScope_6" SendOnPremData="False" Version="V6">
                             <p:CVScope.Body>
                               <ActivityAction x:TypeArguments="x:Object">
                                 <ActivityAction.Argument>
                                   <DelegateInArgument x:TypeArguments="x:Object" Name="CVSessionData" />
                                 </ActivityAction.Argument>
                                 <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_30">
-                                  <p:CvElementExistsWithDescriptor ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" DelayScreenshotAfterScroll="{x:Null}" Descriptor="[&quot;Target: Button (168,96,48,32)&quot; +&#xA;&quot;Anchor: Text 'Save' (177,105,26,12)&quot; +&#xA;&quot;Anchor: Text 'What do you want to do with' (44,62,165,15)&quot; +&#xA;&quot;Anchor: Icon (231,13,21,19)&quot;]" DesignTimeCacheId="43fc739c-35c1-46e2-b9b8-3fc1556bc06a" DesignTimeScaleFactor="1.25" DisplayName="CV Element Exists - 'Button'" sap:VirtualizedContainerService.HintSize="400,169.6" sap2010:WorkflowViewState.IdRef="CvElementExistsWithDescriptor_7" InRegion="{x:Null}" InformativeScreenshot="f629874558693e7743f621efeeb823d4" NumberOfScrolls="2" OutRegion="{x:Null}" Result="{x:Null}" ScrollDirection="None" TimeoutMS="{x:Null}" Version="V6">
+                                  <p:CvElementExistsWithDescriptor DelayScreenshotAfterScroll="{x:Null}" Descriptor="[&quot;Target: Button (168,96,48,32)&quot; +&#xA;&quot;Anchor: Text 'Save' (177,105,26,12)&quot; +&#xA;&quot;Anchor: Text 'What do you want to do with' (44,62,165,15)&quot; +&#xA;&quot;Anchor: Icon (231,13,21,19)&quot;]" DesignTimeCacheId="43fc739c-35c1-46e2-b9b8-3fc1556bc06a" DesignTimeScaleFactor="1.25" DisplayName="CV Element Exists - 'Button'" sap:VirtualizedContainerService.HintSize="400,169.6" sap2010:WorkflowViewState.IdRef="CvElementExistsWithDescriptor_7" InformativeScreenshot="f629874558693e7743f621efeeb823d4" NumberOfScrolls="2" ScrollDirection="None" Version="V6">
                                     <p:CvElementExistsWithDescriptor.DesignTimeDescriptor>
                                       <uc:CvDescriptor Id="ea3964e2-5e88-430f-8a02-ef43ffd86e87">
                                         <uc:CvDescriptor.Anchors>
@@ -1478,7 +1691,7 @@
                                       </uc:CvDescriptor>
                                     </p:CvElementExistsWithDescriptor.DesignTimeDescriptor>
                                   </p:CvElementExistsWithDescriptor>
-                                  <p:CvClickWithDescriptor ClickType="CLICK_SINGLE" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" DelayScreenshotAfterScroll="{x:Null}" Descriptor="[&quot;Target: Button (168,96,48,32)&quot; +&#xA;&quot;Anchor: Text 'Save' (177,105,26,12)&quot; +&#xA;&quot;Anchor: Text 'What do you want to do with' (44,62,165,15)&quot; +&#xA;&quot;Anchor: Icon (231,13,21,19)&quot;]" DesignTimeCacheId="43fc739c-35c1-46e2-b9b8-3fc1556bc06a" DesignTimeScaleFactor="1.25" DisplayName="CV Click - 'Button'" sap:VirtualizedContainerService.HintSize="400,209.6" sap2010:WorkflowViewState.IdRef="CvClickWithDescriptor_4" InRegion="{x:Null}" InformativeScreenshot="f629874558693e7743f621efeeb823d4" KeyModifiers="None" MouseButton="BTN_LEFT" NumberOfScrolls="2" OutRegion="{x:Null}" ScrollDirection="None" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" TimeoutMS="{x:Null}" UnblockInput="{x:Null}" Version="V6">
+                                  <p:CvClickWithDescriptor DelayBefore="{x:Null}" DelayMS="{x:Null}" DelayScreenshotAfterScroll="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" Descriptor="[&quot;Target: Button (168,96,48,32)&quot; +&#xA;&quot;Anchor: Text 'Save' (177,105,26,12)&quot; +&#xA;&quot;Anchor: Text 'What do you want to do with' (44,62,165,15)&quot; +&#xA;&quot;Anchor: Icon (231,13,21,19)&quot;]" DesignTimeCacheId="43fc739c-35c1-46e2-b9b8-3fc1556bc06a" DesignTimeScaleFactor="1.25" DisplayName="CV Click - 'Button'" sap:VirtualizedContainerService.HintSize="400,209.6" sap2010:WorkflowViewState.IdRef="CvClickWithDescriptor_4" InformativeScreenshot="f629874558693e7743f621efeeb823d4" KeyModifiers="None" MouseButton="BTN_LEFT" NumberOfScrolls="2" ScrollDirection="None" Version="V6">
                                     <p:CvClickWithDescriptor.CursorPosition>
                                       <ui:CursorPosition Position="Center">
                                         <ui:CursorPosition.OffsetX>
@@ -1828,7 +2041,7 @@
                                 <ActivityFunc.Argument>
                                   <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
                                 </ActivityFunc.Argument>
-                                <p1:UiPathScreenOCR ApiKey="{x:Null}" ComputeSkewAngle="False" Endpoint="{x:Null}" ExtractWords="True" sap:VirtualizedContainerService.HintSize="400,24.8" sap2010:WorkflowViewState.IdRef="UiPathScreenOCR_5" Image="[Image]" Language="en" NoopExecution="False" Output="{x:Null}" PredictionId="{x:Null}" Profile="Screen" Result="{x:Null}" Scale="1" Text="{x:Null}" Timeout="100000" UseAccents="{x:Null}" UseLocalServer="{x:Null}" UseSeparateOcrProcess="True" />
+                                <p1:UiPathScreenOCR ApiKey="{x:Null}" Endpoint="{x:Null}" Output="{x:Null}" PredictionId="{x:Null}" Text="{x:Null}" UseAccents="{x:Null}" UseLocalServer="{x:Null}" ComputeSkewAngle="False" ExtractWords="True" sap:VirtualizedContainerService.HintSize="400,24.8" sap2010:WorkflowViewState.IdRef="UiPathScreenOCR_5" Image="[Image]" Language="en" NoopExecution="False" Profile="Screen" Scale="1" Timeout="100000" UseSeparateOcrProcess="True" />
                               </ActivityFunc>
                             </p:CVScope.OCREngine>
                             <p:CVScope.Target>
@@ -1848,7 +2061,7 @@
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
                           </p:CVScope>
-                          <uix:NCheckState ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Check App State 'edgedownloadshub(4)'" Exists="{x:Null}" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="486.4,2015.2" sap2010:WorkflowViewState.IdRef="NCheckState_11" InScope="{x:Null}" InUiElement="{x:Null}" OutUiElement="{x:Null}" Result="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" Version="V5">
+                          <uix:NCheckState DisplayName="Check App State 'edgedownloadshub(4)'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="486.4,2015.2" sap2010:WorkflowViewState.IdRef="NCheckState_11" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                             <uix:NCheckState.IfExists>
                               <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="484.8,1580.8" sap2010:WorkflowViewState.IdRef="Sequence_33">
                                 <sap:WorkflowViewStateService.ViewState>
@@ -1856,7 +2069,7 @@
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayBetweenShortcuts="{x:Null}" DisplayName="Keyboard Shortcuts 'edgedownloadshub(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,328.8" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_1" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="HardwareEvents" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Shortcuts="[d(hk)][k(Esc)][u(hk)]" ShortcutsArgument="{x:Null}" Timeout="{x:Null}" Version="V5">
+                                <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts 'edgedownloadshub(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,328.8" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_1" InteractionMode="HardwareEvents" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Shortcuts="[d(hk)][k(Esc)][u(hk)]" Version="V5">
                                   <uix:NKeyboardShortcuts.Target>
                                     <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="lGpcRSNe5Eqgf5zyIzPcTA" DesignTimeRectangle="36, 21, 450, 678" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='Downloads' role='document' /&gt;" Guid="53215f7d-f58e-4062-a218-6975350db074" InformativeScreenshot="a52b2d0f2f1890d303085897b8656487.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/sR1RAfETIEuHr1pkxDT2tQ" ScopeSelectorArgument="&lt;wnd app='msedge.exe' cls='Chrome_WidgetWin_1' idx='*' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                                   </uix:NKeyboardShortcuts.Target>
@@ -1898,7 +2111,7 @@
                                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
-                                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="{x:Null}" Message="[&quot;Not Found FileName&quot;]" />
+                                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;Not Found FileName&quot;]" />
                                     </Sequence>
                                   </If.Then>
                                   <If.Else>
@@ -1917,7 +2130,7 @@
                                           <InArgument x:TypeArguments="x:String">[Path.Combine("C:\RPA\TempDownload", "HWG_NEW_GEN_" &amp; DateTime.Now.ToString("yyyyMMdd_HHmmss") &amp; "_" &amp; Path.GetFileName(latestFilePath))]</InArgument>
                                         </Assign.Value>
                                       </Assign>
-                                      <ui:MoveFile ContinueOnError="{x:Null}" Destination="[newFilePath]" DestinationResource="{x:Null}" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="416,192" sap2010:WorkflowViewState.IdRef="MoveFile_3" Path="[latestFilePath]" PathResource="{x:Null}" />
+                                      <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[newFilePath]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="416,192" sap2010:WorkflowViewState.IdRef="MoveFile_3" Path="[latestFilePath]" />
                                       <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="Delay_33" />
                                     </Sequence>
                                   </If.Else>
@@ -1938,12 +2151,12 @@
                             </uix:NCheckState.Target>
                           </uix:NCheckState>
                           <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_23" />
-                          <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click '닫기(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_53" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+                          <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '닫기(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_53" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                             <uix:NClick.Target>
                               <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="FOruvw9Gzk2b-t9B-kI8Iw" DesignTimeRectangle="1158, 745, 41, 29" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' /&gt;&lt;webctrl id='container_2' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl id='popup_1' tag='IFRAME' /&gt;&lt;webctrl id='logClose' tag='BUTTON' /&gt;" Guid="78f4a6c9-f5af-4478-a152-af9b276f55d1" InformativeScreenshot="280651e8a839d0a0aedd034c36059fe8.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/K6Xaa0xunUa3hex5LNxG-g" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1773817197593' title='한화영업포털' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                             </uix:NClick.Target>
                           </uix:NClick>
-                          <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click '액셀내보내기 출력 다운로드엑셀생성요청액셀내…(8)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,184.8" sap2010:WorkflowViewState.IdRef="NClick_54" InScope="{x:Null}" InUiElement="{x:Null}" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Timeout="{x:Null}" UnblockInput="{x:Null}" Version="V5">
+                          <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '액셀내보내기 출력 다운로드엑셀생성요청액셀내…(8)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,184.8" sap2010:WorkflowViewState.IdRef="NClick_54" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="53adbf69-172e-4780-95ac-87c15689ff4e" Version="V5">
                             <uix:NClick.Target>
                               <uix:TargetAnchorable BrowserURL="hwsfa.hwgeneralins.com/online/webfw/html/nawmain.html" ContentHash="I0BmAuQUUEKsyUNrK85Wlw" DesignTimeRectangle="79, 938, 1505, 42" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ncrmwrapper' tag='IFRAME' /&gt;&lt;webctrl id='container_2' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='channelWrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='sdiwrapper' tableRow='1' tag='IFRAME' /&gt;&lt;webctrl tag='FOOTER' /&gt;" Guid="0328e6e5-9dfe-4c3f-8a1c-d0f1f074d861" InformativeScreenshot="f33b6cddd56aba628412a3dfab640094.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/I-lVrfkWkkWaHQdAZiGnlw" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='PORTAL1773817197593' title='한화영업포털' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                             </uix:NClick.Target>
@@ -1978,7 +2191,7 @@
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="Non Appear Popup request download success of General Contract" TextWriter="{x:Null}" />
+                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="Non Appear Popup request download success of General Contract" />
                   </Sequence>
                 </uix:NCheckState.IfNotExists>
                 <uix:NCheckState.Target>
@@ -2003,7 +2216,7 @@
         </ActivityFunc>
       </uix:NApplicationCard.OCREngine>
       <uix:NApplicationCard.TargetApp>
-        <uix:TargetApp Area="0, 0, 1593, 1020" BrowserType="Edge" ContentHash="3gA_jwLTSEKBRs-z_XuHDQ" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAYKSURBVFhHxZZ7bBRVFMYxnUIQ0aDBB/xB1ABCZIQwpcEXAksLyJtQCNhBFEEoyCNAoVDdllcQkFdRqMojggSlAVEgiKQoKVooQhUIWECe5W4fy05nd94zn7mzu2VnuoXWmPglJ93OPfec35x7z73TBMBD/6c1cT9oqBGOeYxwzGuEYyYQjskkHPNR5O84wjFdCMckuOfEs0YBEI5pSzhmLuGYIsIxKuEY3MduEo5ZTjimtTtOrDUIIPJGu0hSolo1loP4aTaUn7+HfvUCzMpyGOXXoZWeQGj3RvgzBoAkN4sFqSYcM9ods0EAhGOeIByzmSQ30wPZPPSLZwBYeJAomH/agFgIk3DMZHf8+wIQjulLy0jfWLtQ4s7xYJkmxA1ZsRB0yZLdeeICEI6ZRThGF3InwlIVd+hGSVgyORbiqDtXHQDCMTnUWVw/H7AeXO4HyQrVoCK1bexStKsXILLDEcge3/jk1N80wuaaK+bnxlZhVFwAwjGptOyVIzvDkoKOAHFlmTCv/g7twHqoW2dD3ZkFbc9SaPs/gXZgA/TDm6AXboNZVgztXHEswPQ6ACQpsVWkb6EUHXKnqiPz0q9QNk6E+vUimGUnAV1zu4RFIcsvQT+2A3e6JoJ0twEc3RAG4JiVNHn12y/XKZ9DlgntYB6UlaNgXj7lHq1fug7fK4+inE1AZeqTExwAJCmR9rpIAaSCze6pDtnJVwyHVXGt9pmlyjBvlcG48gfMO9fiVsMKiSBJTeHr2QJ6ySFZWT1m5D0Ajsmw1yYpEcbtq+65tTIvl0D29oNx+qBdCf3MMahHdkEt3AP9dCH0kqNQD2xFaO0MSJuyYFy/VDtXO3fSXv+7Mwbb/xsXjqtybmqvKMABOujr9bh9eNQndftcyMuHwLx9GerhHTCryt0utTL+OgNxwQgoBXn2kga/XGoDxO4vbe/H1yWvpwUFuE0HKwbS9qxHmgJ58QBIi4dC+2Vfg45jKxhAcFEa5G1LUDn8Bfjf6+3YX+a1Ushez3QKQA8H+Hq3rncDWgEfpAW9EMwc5B66r8yKW6ga2hHl3CPQr5x3DtKXyk0pogByeA80heG76XSKyAoJqBn/ImRvCiyx2j1cr8xANcpfbYOq0Rxg6M5BXYWckyJSgPPRQ0IqyHc6RWRc+RPBaT1oyaAf+dw9HF+GjrszhyAwfwwEnoVeetwxbN44T+PpFGBNFKAqjY3bRvJXy6HtXWUDyIv7w/z7rNvFKdOAsPR9iOsyYWkKhAndoOxe63DRvsml8cooQPvYrxtxk9fhSBVaMQmWJEBZNSoMsXxo+ASMI9rz9C6Rvv0s8sBEzaSekDbOq/UxiveF43g9a6In4cIoAOnRFKHdefcimiaC2Wnhn5dPQc7tH56ck2IfTBQsKu1sEQKZadDO3zsl6UEljO8KKW+OvfH0H/Mh5/SjMUTZ62kXBuiekEA4ZkMtBL0Rs8bBIDfsctZ80Le2Q4xzhZCXDIy+AeRlgyFty0VgYTqCW5bV+X4wLp5GYGxnBBcOh7J6THSeKXs942rvgqhFvmjtc8FuzZ4P4+68NFQNaQ+1+CjMqjsw/RXQTuxHTUYyqoc9h4o+T8E/ugOkrDfs/aFsGA91yyyo2+dAzZ+Kmok9UN33aQQzkqLJQ7LXk+64jBwQ3ROaE45JJxxTEIExb3ZIwK1OCfbyVPR7Bv4pKRA350D5YSuUdfy9arhMmv86qql/ShtI2X102espkL2e9rH56gC4zccxLf3Dnn838NZLMK6ec5TXlmXZLaUXboe6cyGUvHegrEqDvGIEAmkd4B/UDoFRHbbLXs+z7tgNAqAmpHdJFHi2VJw/DKbf50aoI0sSEVo11e5/gWcvCeldWrpjNgrAhuDZbgLPinRDar8dCn96uWUa0E79BHHOm9HkPoFnO7ljxVqDAagJPNtL4NlKGlycnQrpiw+hfJcPZd9mSPmLIM5MiSamVirwbEd3DLc1CoCawLNtBZ7dKvCsHJMs1q4LPDtXSO/S3D03njUaIGoCz7YSeHa4wLOZAs9mCzw7ReDZZLpf3L73s38N8F/ZP0whe18mIz51AAAAAElFTkSuQmCC" InformativeScreenshot="cf268441916eb0228a1e518100b27c88.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/psHpCylD8kOZpdkM4d3fMQ" Selector="&lt;html app='msedge.exe' title='한화영업포털' /&gt;" Url="https://hwsfa.hwgeneralins.com:1443/online/webfw/html/nawmain.html" Version="V2">
+        <uix:TargetApp Area="0, 0, 1593, 1020" BrowserType="Edge" ContentHash="rALruX27IUCZAYBZ85Otmw" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAYKSURBVFhHxZZ7bBRVFMYxnUIQ0aDBB/xB1ABCZIQwpcEXAksLyJtQCNhBFEEoyCNAoVDdllcQkFdRqMojggSlAVEgiKQoKVooQhUIWECe5W4fy05nd94zn7mzu2VnuoXWmPglJ93OPfec35x7z73TBMBD/6c1cT9oqBGOeYxwzGuEYyYQjskkHPNR5O84wjFdCMckuOfEs0YBEI5pSzhmLuGYIsIxKuEY3MduEo5ZTjimtTtOrDUIIPJGu0hSolo1loP4aTaUn7+HfvUCzMpyGOXXoZWeQGj3RvgzBoAkN4sFqSYcM9ods0EAhGOeIByzmSQ30wPZPPSLZwBYeJAomH/agFgIk3DMZHf8+wIQjulLy0jfWLtQ4s7xYJkmxA1ZsRB0yZLdeeICEI6ZRThGF3InwlIVd+hGSVgyORbiqDtXHQDCMTnUWVw/H7AeXO4HyQrVoCK1bexStKsXILLDEcge3/jk1N80wuaaK+bnxlZhVFwAwjGptOyVIzvDkoKOAHFlmTCv/g7twHqoW2dD3ZkFbc9SaPs/gXZgA/TDm6AXboNZVgztXHEswPQ6ACQpsVWkb6EUHXKnqiPz0q9QNk6E+vUimGUnAV1zu4RFIcsvQT+2A3e6JoJ0twEc3RAG4JiVNHn12y/XKZ9DlgntYB6UlaNgXj7lHq1fug7fK4+inE1AZeqTExwAJCmR9rpIAaSCze6pDtnJVwyHVXGt9pmlyjBvlcG48gfMO9fiVsMKiSBJTeHr2QJ6ySFZWT1m5D0Ajsmw1yYpEcbtq+65tTIvl0D29oNx+qBdCf3MMahHdkEt3AP9dCH0kqNQD2xFaO0MSJuyYFy/VDtXO3fSXv+7Mwbb/xsXjqtybmqvKMABOujr9bh9eNQndftcyMuHwLx9GerhHTCryt0utTL+OgNxwQgoBXn2kga/XGoDxO4vbe/H1yWvpwUFuE0HKwbS9qxHmgJ58QBIi4dC+2Vfg45jKxhAcFEa5G1LUDn8Bfjf6+3YX+a1Ushez3QKQA8H+Hq3rncDWgEfpAW9EMwc5B66r8yKW6ga2hHl3CPQr5x3DtKXyk0pogByeA80heG76XSKyAoJqBn/ImRvCiyx2j1cr8xANcpfbYOq0Rxg6M5BXYWckyJSgPPRQ0IqyHc6RWRc+RPBaT1oyaAf+dw9HF+GjrszhyAwfwwEnoVeetwxbN44T+PpFGBNFKAqjY3bRvJXy6HtXWUDyIv7w/z7rNvFKdOAsPR9iOsyYWkKhAndoOxe63DRvsml8cooQPvYrxtxk9fhSBVaMQmWJEBZNSoMsXxo+ASMI9rz9C6Rvv0s8sBEzaSekDbOq/UxiveF43g9a6In4cIoAOnRFKHdefcimiaC2Wnhn5dPQc7tH56ck2IfTBQsKu1sEQKZadDO3zsl6UEljO8KKW+OvfH0H/Mh5/SjMUTZ62kXBuiekEA4ZkMtBL0Rs8bBIDfsctZ80Le2Q4xzhZCXDIy+AeRlgyFty0VgYTqCW5bV+X4wLp5GYGxnBBcOh7J6THSeKXs942rvgqhFvmjtc8FuzZ4P4+68NFQNaQ+1+CjMqjsw/RXQTuxHTUYyqoc9h4o+T8E/ugOkrDfs/aFsGA91yyyo2+dAzZ+Kmok9UN33aQQzkqLJQ7LXk+64jBwQ3ROaE45JJxxTEIExb3ZIwK1OCfbyVPR7Bv4pKRA350D5YSuUdfy9arhMmv86qql/ShtI2X102espkL2e9rH56gC4zccxLf3Dnn838NZLMK6ec5TXlmXZLaUXboe6cyGUvHegrEqDvGIEAmkd4B/UDoFRHbbLXs+z7tgNAqAmpHdJFHi2VJw/DKbf50aoI0sSEVo11e5/gWcvCeldWrpjNgrAhuDZbgLPinRDar8dCn96uWUa0E79BHHOm9HkPoFnO7ljxVqDAagJPNtL4NlKGlycnQrpiw+hfJcPZd9mSPmLIM5MiSamVirwbEd3DLc1CoCawLNtBZ7dKvCsHJMs1q4LPDtXSO/S3D03njUaIGoCz7YSeHa4wLOZAs9mCzw7ReDZZLpf3L73s38N8F/ZP0whe18mIz51AAAAAElFTkSuQmCC" InformativeScreenshot="cf268441916eb0228a1e518100b27c88.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/FiQ-lVH3pUeSxEzXI_JmjA" Selector="&lt;html app='msedge.exe' title='한화영업포털' /&gt;" Url="https://hwsfa.hwgeneralins.com:1443/online/webfw/html/nawmain.html" Version="V2">
           <uix:TargetApp.Arguments>
             <InArgument x:TypeArguments="x:String" />
           </uix:TargetApp.Arguments>
