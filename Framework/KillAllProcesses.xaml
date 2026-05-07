@@ -39,6 +39,7 @@
       <x:String>UiPath.UIAutomationNext.Models</x:String>
       <x:String>System.Management.Automation</x:String>
       <x:String>System.Dynamic</x:String>
+      <x:String>UiPath.Shared.Telemetry</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -104,7 +105,7 @@
       <AssemblyReference>System.Management.Automation</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Use the Kill Process activity to force the termination of the Windows processes representing applications used in the business process being automated.&#xA;Note that killing processes might have undesirable outcomes, such as losing unsaved changes to files." DisplayName="Kill All Processes" sap:VirtualizedContainerService.HintSize="912.4000000000001,1043.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
+  <Sequence sap2010:Annotation.AnnotationText="Use the Kill Process activity to force the termination of the Windows processes representing applications used in the business process being automated.&#xA;Note that killing processes might have undesirable outcomes, such as losing unsaved changes to files." DisplayName="Kill All Processes" sap:VirtualizedContainerService.HintSize="863.6,1059.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -116,7 +117,7 @@
     <ui:KillProcess Process="{x:Null}" AppliesTo="All" ContinueOnError="True" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="449.6,174.4" sap2010:WorkflowViewState.IdRef="KillProcess_3" ProcessName="msedge" />
     <ui:KillProcess ContinueOnError="{x:Null}" Process="{x:Null}" AppliesTo="All" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="449.6,174.4" sap2010:WorkflowViewState.IdRef="KillProcess_4" ProcessName="msedgedriver" />
     <ui:KillProcess Process="{x:Null}" AppliesTo="All" ContinueOnError="True" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="449.6,174.4" sap2010:WorkflowViewState.IdRef="KillProcess_1" ProcessName="chrome" />
-    <ui:InvokePowerShell x:TypeArguments="sma:PSObject" ContinueOnError="{x:Null}" CommandText="Get-Process chrome,chromedriver,msedge,msedgedriver,XPlatform,nexacro -ErrorAction SilentlyContinue | Stop-Process -Force" DisplayName="Invoke Power Shell" sap:VirtualizedContainerService.HintSize="449.6,103.2" sap2010:WorkflowViewState.IdRef="InvokePowerShell`1_1" PowerShellProcess="PowerShellCore">
+    <ui:InvokePowerShell x:TypeArguments="sma:PSObject" ContinueOnError="{x:Null}" CommandText="Get-Process -Name chrome,chromedriver,msedge,msedgedriver,XPlatform,nexacro -ErrorAction SilentlyContinue | Stop-Process -Force" DisplayName="Invoke Power Shell" sap:VirtualizedContainerService.HintSize="449.6,103.2" sap2010:WorkflowViewState.IdRef="InvokePowerShell`1_1" PowerShellProcess="PowerShellCore">
       <ui:InvokePowerShell.Parameters>
         <scg:Dictionary x:TypeArguments="x:String, InArgument" />
       </ui:InvokePowerShell.Parameters>

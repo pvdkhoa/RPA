@@ -100,21 +100,61 @@
       <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
       <AssemblyReference>NPOI.Core</AssemblyReference>
       <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>REF_RPA.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Download_NewContract_Longterm" sap:VirtualizedContainerService.HintSize="856.4000000000001,3641.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Download_NewContract_Longterm" sap:VirtualizedContainerService.HintSize="718.8000000000001,4336.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="END_PERIOD" />
+      <Variable x:TypeArguments="x:String" Name="START_PERIOD" />
+      <Variable x:TypeArguments="x:String" Name="IS_MANUAL" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Edge KB스마트비서 GA전용(1)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="521.6,3618.4" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="6885e268-22a7-4abd-8427-9da2562498ee" Version="V2">
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="START_DATE_DOWNLOAD" CacheStrategy="None" DisplayName="Get Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="521.6,56.8" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+      <ui:GetRobotAsset.Value>
+        <OutArgument x:TypeArguments="x:String">[START_PERIOD]</OutArgument>
+      </ui:GetRobotAsset.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:GetRobotAsset>
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="END_DATE_DOWNLOAD" CacheStrategy="None" DisplayName="Get Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="521.6,56.8" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
+      <ui:GetRobotAsset.Value>
+        <OutArgument x:TypeArguments="x:String">[END_PERIOD]</OutArgument>
+      </ui:GetRobotAsset.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:GetRobotAsset>
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="IS_MANUAL" CacheStrategy="None" DisplayName="Get Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="521.6,56.8" sap2010:WorkflowViewState.IdRef="GetRobotAsset_3">
+      <ui:GetRobotAsset.Value>
+        <OutArgument x:TypeArguments="x:String">[IS_MANUAL]</OutArgument>
+      </ui:GetRobotAsset.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:GetRobotAsset>
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Edge KB스마트비서 GA전용(1)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="521.6,4143.2" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="6885e268-22a7-4abd-8427-9da2562498ee" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="520,3424.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="520,3949.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -147,6 +187,47 @@
                 </uix:VerifyExecutionTypeIntoOptions>
               </uix:NTypeInto.VerifyOptions>
             </uix:NTypeInto>
+            <If Condition="[IS_MANUAL = &quot;TRUE&quot;]" sap:VirtualizedContainerService.HintSize="486.4,524.8" sap2010:WorkflowViewState.IdRef="If_2">
+              <If.Then>
+                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,296.8" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '마감년월'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,236.8" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="SameAsCard" ScopeIdentifier="6885e268-22a7-4abd-8427-9da2562498ee" Text="[START_PERIOD.Replace(&quot;-&quot;, &quot;&quot;).Substring(0, 6)]" Version="V5">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable BrowserURL="nsales.kbinsure.co.kr/wsserver/wq/main" ContentHash="Fk4ufBy7H0Wd6a4aDCtx2Q" DesignTimeRectangle="223, 340, 100, 30" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='mainIframe' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='INPUT' class='w2inputCalendar_divInput' aaname='' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="7d4d1991-4a0e-4e9a-b48b-1fcc93a2015e" InformativeScreenshot="102b808070df956a189befd3ce7dcc9d.jpg" IsResponsive="True" Reference="5HjwgH8OmEa1VO6GnukQ2g/Auu1eJ6ni02lQ6v2qGJDkg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='ch_index_ok' title='KB스마트비서 GA전용' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                            <uix:Target DesignTimeRectangle="153, 340, 59, 30" ElementType="Text" FuzzySelectorArgument="&lt;webctrl id='mainIframe' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='DIV' class='w2textbox ' aaname='마감년월' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='마감년월' /&gt;" Guid="d1716f75-84cc-418f-bebd-73caf883da0b" SearchSteps="FuzzySelector" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NTypeInto.Target>
+                    <uix:NTypeInto.VerifyOptions>
+                      <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                        <uix:VerifyExecutionTypeIntoOptions.Retry>
+                          <InArgument x:TypeArguments="x:Boolean" />
+                        </uix:VerifyExecutionTypeIntoOptions.Retry>
+                        <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                          <InArgument x:TypeArguments="x:Double" />
+                        </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                      </uix:VerifyExecutionTypeIntoOptions>
+                    </uix:NTypeInto.VerifyOptions>
+                  </uix:NTypeInto>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </If.Else>
+            </If>
             <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '조회'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="6885e268-22a7-4abd-8427-9da2562498ee" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="nsales.kbinsure.co.kr/wsserver/wq/main" ContentHash="oRkpZq013kepvVu9_atk9A" DesignTimeRectangle="1748, 279, 52, 30" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='mainIframe' tag='IFRAME' /&gt;&lt;webctrl aaname='조회' tabindex='25' tag='INPUT' type='button' /&gt;" Guid="bbb25475-fa80-4633-8016-eb9f0acff755" InformativeScreenshot="c67db23ae67251820a491bec6596bb71.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/wjHm5c6UC0iiVVBwIi58Jg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='ch_index_ok' title='KB스마트비서 GA전용' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
@@ -305,7 +386,7 @@
         </ActivityFunc>
       </uix:NApplicationCard.OCREngine>
       <uix:NApplicationCard.TargetApp>
-        <uix:TargetApp Area="-9, -9, 1938, 1038" BrowserType="Edge" ContentHash="4htu_jx2EUSBjQozx2eEOg" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAFTSURBVDhPxZDdK8NRHMafP0NRahYKEVbceMkUu9DIWC6YIu9vba00kfLS3Hgpa2nUIpYLLLQ7LzeSG7lwiUuRUq7l0XGa7ff7HRdTcuqpc57vcz59v1/wDPytII7eTFV/A4gtgM4arXexCp4vG7NKwEgzONAo728xcLIDLDSDV0Fj9guwMgz2NIAPEWlaS0F/L3jsB8vzQHcr+Hxg/PwNeImCow4wKx2caAfNGWBxNthUAd5syGDIC276fgDEdR0CC0xgZhrYaQM/ThO1fjs40wWue8HAGHi/owOI9luqQY9TAkQXfXbw9UjW26zSC4+DQTeYb0oCLA6CrnrwNixNAYhMSZglF9zyga46cLZb1gWgsigJ8LinnaskBzycl/fLAFhrAW1l4NKQHE3s5m5bsYO4HFXg7nTi/X4CRufANQ/4tK/NKgEiKGbV+yopAano/wGf3v54UlzfDj8AAAAASUVORK5CYII=" InformativeScreenshot="2f3108db4366497ef904e6bbe7a06b34.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/j8rL8HIn_0SVFtyrMr49Sw" Selector="&lt;html app='msedge.exe' htmlwindowname='ch_index_ok' title='KB스마트비서 GA전용' /&gt;" Url="https://nsales.kbinsure.co.kr:8500/wsserver/wq/main?ADL_ID=ADL_ga&amp;uid=1jjggvtrb2358810603" Version="V2" />
+        <uix:TargetApp Area="-9, -9, 1938, 1038" BrowserType="Edge" ContentHash="tYAi90N5NUymrNGChyjauQ" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAFTSURBVDhPxZDdK8NRHMafP0NRahYKEVbceMkUu9DIWC6YIu9vba00kfLS3Hgpa2nUIpYLLLQ7LzeSG7lwiUuRUq7l0XGa7ff7HRdTcuqpc57vcz59v1/wDPytII7eTFV/A4gtgM4arXexCp4vG7NKwEgzONAo728xcLIDLDSDV0Fj9guwMgz2NIAPEWlaS0F/L3jsB8vzQHcr+Hxg/PwNeImCow4wKx2caAfNGWBxNthUAd5syGDIC276fgDEdR0CC0xgZhrYaQM/ThO1fjs40wWue8HAGHi/owOI9luqQY9TAkQXfXbw9UjW26zSC4+DQTeYb0oCLA6CrnrwNixNAYhMSZglF9zyga46cLZb1gWgsigJ8LinnaskBzycl/fLAFhrAW1l4NKQHE3s5m5bsYO4HFXg7nTi/X4CRufANQ/4tK/NKgEiKGbV+yopAano/wGf3v54UlzfDj8AAAAASUVORK5CYII=" InformativeScreenshot="2f3108db4366497ef904e6bbe7a06b34.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/tKFVn8C4iUKjyowV_VOZVg" Selector="&lt;html app='msedge.exe' htmlwindowname='ch_index_ok' title='KB스마트비서 GA전용' /&gt;" Url="https://nsales.kbinsure.co.kr:8500/wsserver/wq/main?ADL_ID=ADL_ga&amp;uid=1jjggvtrb2358810603" Version="V2" />
       </uix:NApplicationCard.TargetApp>
     </uix:NApplicationCard>
   </Sequence>
