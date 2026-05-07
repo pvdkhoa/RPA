@@ -10,7 +10,7 @@ namespace REF_RPA
     public class python_workflow : CodedWorkflow
     {
        [Workflow]
-        public void Execute(string scriptPath, string? mode = "")
+        public void Execute(string scriptPath, string mode = "")
         {
             string pythonExe = @"C:\Users\RPA02\AppData\Local\Programs\Python\Python311\python.exe";
 
