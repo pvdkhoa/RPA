@@ -104,11 +104,12 @@
       <AssemblyReference>REF_RPA.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Download_NewContract_Longterm" sap:VirtualizedContainerService.HintSize="718.8000000000001,4336.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Download_NewContract_Longterm" sap:VirtualizedContainerService.HintSize="863.6,4566.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
+      <Variable x:TypeArguments="ui:UiElement" Name="browserInstance" />
       <Variable x:TypeArguments="x:String" Name="END_PERIOD" />
       <Variable x:TypeArguments="x:String" Name="START_PERIOD" />
-      <Variable x:TypeArguments="x:String" Name="IS_MANUAL" />
+      <Variable x:TypeArguments="x:String" Default="False" Name="IS_MANUAL" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -148,18 +149,23 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:GetRobotAsset>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Edge KB스마트비서 GA전용(1)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="521.6,4143.2" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="6885e268-22a7-4abd-8427-9da2562498ee" Version="V2">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Edge KB스마트비서 GA전용(1)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="521.6,4372.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="6885e268-22a7-4abd-8427-9da2562498ee" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="520,3949.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="520,4179.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="CheckPageLoadingStatus - Invoke Workflow File (Utils\CheckPageLoadingStatus.xaml)" sap:VirtualizedContainerService.HintSize="486.4,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Utils\CheckPageLoadingStatus.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InArgument x:TypeArguments="ui:UiElement" x:Key="in_Browser">[browserInstance]</InArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
             <uix:NClick ActivateBefore="True" ClickType="[UiPath.UIAutomationNext.Enums.NClickType.Double]" DisplayName="Click '자동차건별현황'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="6885e268-22a7-4abd-8427-9da2562498ee" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="nsales.kbinsure.co.kr/wsserver/wq/main" ContentHash="F4js9kvgZEqUfSSoQou5aA" DesignTimeRectangle="681, 185, 187, 25" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='mainIframe' tag='IFRAME' /&gt;&lt;webctrl aaname='자동차건별현황' aria-role='tab' tag='A' /&gt;" Guid="63a983c6-4ac7-4457-a123-7508be494e52" InformativeScreenshot="bfaf7f0f83605d12c4d6f4436b9b77bc.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/A1xq_d62L0qS0LZi2u2_Cw" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='ch_index_ok' title='KB스마트비서 GA전용' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
@@ -199,7 +205,7 @@
                     <uix:NTypeInto.Target>
                       <uix:TargetAnchorable BrowserURL="nsales.kbinsure.co.kr/wsserver/wq/main" ContentHash="Fk4ufBy7H0Wd6a4aDCtx2Q" DesignTimeRectangle="223, 340, 100, 30" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='mainIframe' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='INPUT' class='w2inputCalendar_divInput' aaname='' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="7d4d1991-4a0e-4e9a-b48b-1fcc93a2015e" InformativeScreenshot="102b808070df956a189befd3ce7dcc9d.jpg" IsResponsive="True" Reference="5HjwgH8OmEa1VO6GnukQ2g/Auu1eJ6ni02lQ6v2qGJDkg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='ch_index_ok' title='KB스마트비서 GA전용' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
                         <uix:TargetAnchorable.Anchors>
-                          <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
                             <uix:Target DesignTimeRectangle="153, 340, 59, 30" ElementType="Text" FuzzySelectorArgument="&lt;webctrl id='mainIframe' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='DIV' class='w2textbox ' aaname='마감년월' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='마감년월' /&gt;" Guid="d1716f75-84cc-418f-bebd-73caf883da0b" SearchSteps="FuzzySelector" />
                           </scg:List>
                         </uix:TargetAnchorable.Anchors>
@@ -233,7 +239,11 @@
                 <uix:TargetAnchorable BrowserURL="nsales.kbinsure.co.kr/wsserver/wq/main" ContentHash="oRkpZq013kepvVu9_atk9A" DesignTimeRectangle="1748, 279, 52, 30" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='mainIframe' tag='IFRAME' /&gt;&lt;webctrl aaname='조회' tabindex='25' tag='INPUT' type='button' /&gt;" Guid="bbb25475-fa80-4633-8016-eb9f0acff755" InformativeScreenshot="c67db23ae67251820a491bec6596bb71.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/wjHm5c6UC0iiVVBwIi58Jg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='ch_index_ok' title='KB스마트비서 GA전용' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
-            <Delay Duration="00:00:20" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_2" />
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="CheckPageLoadingStatus - Invoke Workflow File (Utils\CheckPageLoadingStatus.xaml)" sap:VirtualizedContainerService.HintSize="486.4,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Utils\CheckPageLoadingStatus.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InArgument x:TypeArguments="ui:UiElement" x:Key="in_Browser">[browserInstance]</InArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
             <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '업무KB지!'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_3" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="6885e268-22a7-4abd-8427-9da2562498ee" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="nsales.kbinsure.co.kr/wsserver/wq/main" ContentHash="Ubk60rrke0uKHVlyjKAx8A" DesignTimeRectangle="1711, 965, 109, 30" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='mainIframe' tag='IFRAME' /&gt;&lt;webctrl aaname='엑셀다운로드' tabindex='27' tag='INPUT' type='button' /&gt;" Guid="a7f14308-ea81-41f9-9bf3-a8d608a3e9e8" InformativeScreenshot="71ecd3b6ca715936424e5e34fb617e6a.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/8EipPSUDkkS8SkC1nhfilg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='ch_index_ok' title='KB스마트비서 GA전용' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />

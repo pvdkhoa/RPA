@@ -130,10 +130,12 @@
       <AssemblyReference>System.Collections.Immutable</AssemblyReference>
       <AssemblyReference>System.Linq.Parallel</AssemblyReference>
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="KBL_Search_ExtraData" sap:VirtualizedContainerService.HintSize="847.6,12596.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="KBL_Search_ExtraData" sap:VirtualizedContainerService.HintSize="863.6,12716" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
+      <Variable x:TypeArguments="ui:UiElement" Name="browserInstance" />
       <Variable x:TypeArguments="x:String" Name="KBL_OTP" />
       <Variable x:TypeArguments="ss:SecureString" Name="KBL_PW" />
       <Variable x:TypeArguments="x:String" Name="KBL_UID" />
@@ -180,13 +182,13 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:GetRobotCredential>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Edge KB라이프(1)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="659.2,12223.2" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" InteractionMode="DebuggerApi" ScopeGuid="ae474a51-aae4-4bad-ad4c-4d5a8e7a6c93" Version="V2" WindowResize="Maximize">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Edge KB라이프(1)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="659.2,12342.4" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" InteractionMode="DebuggerApi" OutUiElement="[browserInstance]" ScopeGuid="ae474a51-aae4-4bad-ad4c-4d5a8e7a6c93" Version="V2" WindowResize="Maximize">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="657.6,12029.6" sap2010:WorkflowViewState.IdRef="Sequence_34">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="657.6,12148.8" sap2010:WorkflowViewState.IdRef="Sequence_34">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Name="myBrowser" />
               <Variable x:TypeArguments="x:String" Name="otp6" />
@@ -202,6 +204,11 @@
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="CheckPageLoadingStatus - Invoke Workflow File (Utils\CheckPageLoadingStatus.xaml)" sap:VirtualizedContainerService.HintSize="624,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Utils\CheckPageLoadingStatus.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InArgument x:TypeArguments="ui:UiElement" x:Key="in_Browser">[browserInstance]</InArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
             <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into ''ID''" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="624,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_8" InteractionMode="SameAsCard" ScopeIdentifier="ae474a51-aae4-4bad-ad4c-4d5a8e7a6c93" Text="[KBL_UID]" Version="V5">
               <uix:NTypeInto.Target>
                 <uix:TargetAnchorable BrowserURL="sfa.kblife.co.kr/scr/m/sfa-login" CVScreenId="029596b3-3a56-41b7-8b91-5e3c2d1dec46" CvElementArea="408, 376, 417, 69" CvType="InputBox" DesignTimeRectangle="409, 378, 415, 67" DesignTimeScaleFactor="1.25" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='userId' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl id='userId' tag='INPUT' type='text' class='input' placeholder='통합사번을 7자리를 입력하세요.' aaname='ID' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="dc755285-90a8-426a-8132-d906b607a250" InformativeScreenshot="25762352e1a180e88504459edb0d19bb.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='ch_index_ok' title='KB라이프' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6">
@@ -308,7 +315,7 @@
                 <InArgument x:TypeArguments="x:String">[KBL_OTP(1).ToString]</InArgument>
               </Assign.Value>
             </Assign>
-            <Assign sap:VirtualizedContainerService.HintSize="588.8,174.4" sap2010:WorkflowViewState.IdRef="Assign_11">
+            <Assign sap:VirtualizedContainerService.HintSize="624,174.4" sap2010:WorkflowViewState.IdRef="Assign_11">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[otp3]</OutArgument>
               </Assign.To>
@@ -317,7 +324,7 @@
               </Assign.Value>
             </Assign>
             <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="588.8,122.4" sap2010:WorkflowViewState.IdRef="WriteLine_9" Text="[&quot;OTP value: [&quot; + KBL_OTP + &quot;] - Length: &quot; + KBL_OTP.Length.ToString]" />
-            <Assign sap:VirtualizedContainerService.HintSize="588.8,174.4" sap2010:WorkflowViewState.IdRef="Assign_12">
+            <Assign sap:VirtualizedContainerService.HintSize="624,174.4" sap2010:WorkflowViewState.IdRef="Assign_12">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[otp4]</OutArgument>
               </Assign.To>
@@ -716,14 +723,6 @@
                 <uix:TargetAnchorable BrowserURL="sfa.kblife.co.kr/scr/m/main" ContentHash="7XZvIzonbky5GgDTkXPibg" DesignTimeRectangle="1184, 742, 100, 50" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl parentid='dialog-qualificationExpire' tag='IFRAME' /&gt;&lt;webctrl tag='BUTTON' /&gt;" Guid="d66bfd26-fbe1-42ca-a40b-c2b4e1917c8a" InformativeScreenshot="7ab3f2a5016fe43444a7a7c1e26eb979.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/byiEteME3UCE2HCqU8N5wg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='KB라이프생명 가입설계시스템 LiPS' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NCheckState.Target>
             </uix:NCheckState>
-            <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="624,56.8" sap2010:WorkflowViewState.IdRef="Delay_29">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </Delay>
             <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="624,56.8" sap2010:WorkflowViewState.IdRef="Delay_30">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">

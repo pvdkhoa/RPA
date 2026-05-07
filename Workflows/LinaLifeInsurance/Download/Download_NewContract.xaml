@@ -103,14 +103,20 @@
       <AssemblyReference>NPOI.Core</AssemblyReference>
       <AssemblyReference>System.Linq.Async</AssemblyReference>
       <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Download_NewContract" sap:VirtualizedContainerService.HintSize="912.4000000000001,4906.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Download_NewContract" sap:VirtualizedContainerService.HintSize="863.6,4176.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
+      <Variable x:TypeArguments="ui:UiElement" Name="browserInstance" />
       <Variable x:TypeArguments="s:DateTime" Name="dt" />
       <Variable x:TypeArguments="x:String" Name="resultEnd" />
       <Variable x:TypeArguments="x:String" Name="resultStart" />
-      <Variable x:TypeArguments="x:String" Name="IS_MANUAL" />
+      <Variable x:TypeArguments="x:String" Name="IS_MANUAL">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:String">False</Literal>
+        </Variable.Default>
+      </Variable>
       <Variable x:TypeArguments="x:String" Name="START_PERIOD" />
       <Variable x:TypeArguments="x:String" Name="END_PERIOD" />
       <Variable x:TypeArguments="x:String" Name="latestFilePath" />
@@ -154,19 +160,23 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:GetRobotAsset>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome GA - 차세대 시스템" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="486.4,4712.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="5d22a12e-cb97-4556-96c1-8162b8b1ba35" Version="V2">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome GA - 차세대 시스템" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="486.4,3983.2" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OutUiElement="[browserInstance]" ScopeGuid="5d22a12e-cb97-4556-96c1-8162b8b1ba35" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="484.8,4519.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="484.8,3789.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_8" />
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="CheckPageLoadingStatus - Invoke Workflow File (Utils\CheckPageLoadingStatus.xaml)" sap:VirtualizedContainerService.HintSize="451.2,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Utils\CheckPageLoadingStatus.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InArgument x:TypeArguments="ui:UiElement" x:Key="in_Browser">[browserInstance]</InArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
             <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '통계·수수료'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="5d22a12e-cb97-4556-96c1-8162b8b1ba35" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="ga.lina.co.kr/webfw/html/nawmain.html" DesignTimeRectangle="822, 149, 117, 67" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='MN73' tag='A' /&gt;" Guid="58d79951-6e05-42e1-9fef-2b95d8083083" InformativeScreenshot="731e14f75a3496eba5efe9fb232393c8.jpg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='GA - 차세대 시스템' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
@@ -179,7 +189,13 @@
               </uix:NClick.Target>
             </uix:NClick>
             <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_2" />
-            <If Condition="[IS_MANUAL = &quot;TRUE&quot;]" sap:VirtualizedContainerService.HintSize="451.2,959.2" sap2010:WorkflowViewState.IdRef="If_2">
+            <If Condition="[IS_MANUAL = &quot;TRUE&quot;]" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="If_2">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
               <If.Then>
                 <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,599.2" sap2010:WorkflowViewState.IdRef="Sequence_9">
                   <sap:WorkflowViewStateService.ViewState>
@@ -191,7 +207,7 @@
                     <uix:NTypeInto.Target>
                       <uix:TargetAnchorable BrowserURL="ga.lina.co.kr/webfw/html/nawmain.html" CVScreenId="f2101d91-2ad8-48c8-90b4-e1f177bcac58" ContentHash="_aBfqisQgUSfXx0inhcCVw" CvElementArea="194, 312, 84, 28" CvType="InputBox" DesignTimeRectangle="197, 383, 82, 25" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='container_1' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='calDtFrom' type='text' tag='INPUT' class='date sun' aaname='' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="3882f824-f767-4c4f-9852-1ad21fa4c0eb" InformativeScreenshot="79998f6ece69cb27b13132a761e58a03.jpg" IsResponsive="True" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/7WQOORAkUku7pXc-JJzcnQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='GA - 차세대 시스템' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
                         <uix:TargetAnchorable.Anchors>
-                          <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
                             <uix:Target CVScreenId="f2101d91-2ad8-48c8-90b4-e1f177bcac58" CvTextArea="121, 317, 57, 16" CvTextArgument="7Q2AH" CvType="Text" DesignTimeRectangle="31, 382, 164, 27" ElementType="Text" FuzzySelectorArgument="&lt;webctrl id='container_1' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='TH' class='state-required' aaname='계약일자' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='계약일자' /&gt;" Guid="29dcada0-be5b-4476-a6f9-2d0093fa96a6" SearchSteps="FuzzySelector, CV" />
                           </scg:List>
                         </uix:TargetAnchorable.Anchors>
@@ -323,7 +339,11 @@
                 </uix:TargetAnchorable>
               </uix:NClick.Target>
             </uix:NClick>
-            <Delay Duration="00:00:15" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_5" />
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="CheckPageLoadingStatus - Invoke Workflow File (Utils\CheckPageLoadingStatus.xaml)" sap:VirtualizedContainerService.HintSize="451.2,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Utils\CheckPageLoadingStatus.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InArgument x:TypeArguments="ui:UiElement" x:Key="in_Browser">[browserInstance]</InArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
             <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Excel'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_4" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="5d22a12e-cb97-4556-96c1-8162b8b1ba35" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="ga.lina.co.kr/webfw/html/nawmain.html" CVScreenId="77ae3dfa-d0bd-4844-8874-422f2a54e009" ContentHash="NMSClz7CI0yqBQ9GbmzbNw" CvElementArea="24, 968, 58, 29" CvTextArea="41, 974, 32, 13" CvTextArgument="Excel" CvType="Button" DesignTimeRectangle="26, 969, 55, 25" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='container_1' tag='IFRAME' /&gt;&lt;webctrl id='btnRDn' tag='BUTTON' /&gt;" Guid="e2a0b601-028e-42c7-856a-9b4987f4a1d0" InformativeScreenshot="95189743ae1b85016ed49f7ef9c61b37.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/HTghDiHaMkmmfZbc7JANfw" ScopeSelectorArgument="&lt;html app='chrome.exe' title='GA - 차세대 시스템' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
@@ -417,10 +437,10 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </uix:NCheckState>
-            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="Delay_10">
+            <Delay Duration="00:00:10" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_10">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
