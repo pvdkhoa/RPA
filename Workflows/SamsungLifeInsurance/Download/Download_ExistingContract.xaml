@@ -115,9 +115,10 @@
       <AssemblyReference>System.CodeDom</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Download_ExistingContract" sap:VirtualizedContainerService.HintSize="912.4000000000001,3864.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Download_ExistingContract" sap:VirtualizedContainerService.HintSize="832.4000000000001,3996.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="s:DateTime" Name="dt" />
       <Variable x:TypeArguments="x:String" Name="resultStart" />
@@ -126,6 +127,7 @@
       <Variable x:TypeArguments="x:String" Name="IS_MANUAL" />
       <Variable x:TypeArguments="x:String" Name="newFilePath" />
       <Variable x:TypeArguments="x:String" Name="latestFilePath" />
+      <Variable x:TypeArguments="ui:UiElement" Name="browser_instance" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -165,31 +167,36 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:GetRobotAsset>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Edge 삼성생명 - GA영업포탈시스템　　　　　　　　　　　　　　　_WebDRM[w" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="533.6,3671.2" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="3604040f-d26c-45e6-b475-5c44cb3adeb8" Version="V2">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Edge 삼성생명 - GA영업포탈시스템　　　　　　　　　　　　　　　_WebDRM[w" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="533.6,3803.2" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OutUiElement="[browser_instance]" ScopeGuid="3604040f-d26c-45e6-b475-5c44cb3adeb8" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="532,3477.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="532,3349.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '영업관리'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="498.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="3604040f-d26c-45e6-b475-5c44cb3adeb8" Version="V5">
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="CheckPageLoadingStatus - Invoke Workflow File (Utils\CheckPageLoadingStatus.xaml)" sap:VirtualizedContainerService.HintSize="498.4,86.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Utils\CheckPageLoadingStatus.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InArgument x:TypeArguments="ui:UiElement" x:Key="in_Browser">[browser_instance]</InArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '영업관리'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="498.4,86.4" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="3604040f-d26c-45e6-b475-5c44cb3adeb8" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="ga.samsunglife.com/websquare/websquare.html" ContentHash="6Y9ky_A0gkKe2FHcMhkeCw" DesignTimeRectangle="612, 180, 70, 22" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl parentid='mf_wfm_header_wq_uuid_450' tag='A' /&gt;" Guid="99a2ef71-8b47-41a8-83bf-aaf27334921c" InformativeScreenshot="187696b6dc1128538aaf55b5a0657f81.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/Mv1lf2dQ60GOoXmys_Ygvg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='삼성생명 - GA영업포탈시스템　　　　　　　　　　　　　　　_WebDRM[wDs]' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
             <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="498.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_1" />
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '유지관리리스트'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="498.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="3604040f-d26c-45e6-b475-5c44cb3adeb8" Version="V5">
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '유지관리리스트'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="498.4,86.4" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="3604040f-d26c-45e6-b475-5c44cb3adeb8" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="ga.samsunglife.com/websquare/websquare.html" ContentHash="N7c6LbKnQEylzj5NUXHRow" DesignTimeRectangle="977, 391, 250, 23" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl parentid='mf_wfm_header_wq_uuid_496' tag='A' /&gt;" Guid="7a06f49c-0144-4209-ad3e-9c18130aad76" InformativeScreenshot="1b434875f8046d1412d572301be4a534.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/az8RiVg010iV2oyVkjmjSA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='삼성생명 - GA영업포탈시스템　　　　　　　　　　　　　　　_WebDRM[wDs]' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
-            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="498.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_2" />
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'TD'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="498.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_3" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="3604040f-d26c-45e6-b475-5c44cb3adeb8" Version="V5">
+            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="498.4,78.4" sap2010:WorkflowViewState.IdRef="Delay_2" />
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'TD'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="498.4,86.4" sap2010:WorkflowViewState.IdRef="NClick_3" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="3604040f-d26c-45e6-b475-5c44cb3adeb8" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="ga.samsunglife.com/websquare/websquare.html" ContentHash="drevTOJqUUemxrwFzmJ3uw" DesignTimeRectangle="869, 357, 25, 32" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl idx='3' tableRow='1' tag='TABLE' /&gt;&lt;webctrl aria-labelledby='mf_tac_layout_contents_GPSIC305M_body_wfm_commOrgCmb3_sbx_agncOrgNo_itemTable' tableRow='1' tag='TD' /&gt;" Guid="d012a6f2-9bdd-44b8-9806-48b91edf6824" InformativeScreenshot="6c590ca9bddafdb3d911314da8d80b88.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/uXSstUh5JUuoeK4naBIv1g" ScopeSelectorArgument="&lt;html app='msedge.exe' title='삼성생명 - GA영업포탈시스템　　　　　　　　　　　　　　　_WebDRM[XfP]' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
