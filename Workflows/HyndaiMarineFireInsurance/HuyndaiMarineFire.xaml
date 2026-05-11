@@ -103,27 +103,30 @@
       <AssemblyReference>System.Memory.Data</AssemblyReference>
       <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
-      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="HuyndaiMarineFire" sap:VirtualizedContainerService.HintSize="782,4997.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="HuyndaiMarineFire" sap:VirtualizedContainerService.HintSize="832.4000000000001,4261.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="HDG_OTP" />
       <Variable x:TypeArguments="x:String" Name="HDG_UID" />
       <Variable x:TypeArguments="x:String" Name="HDG_URL" />
       <Variable x:TypeArguments="ui:UiElement" Name="browser_instance" />
+      <Variable x:TypeArguments="x:String" Name="CHECKING_ID" />
+      <Variable x:TypeArguments="x:String" Default="C:\RPA\CheckAvailableComp" Name="CHECKING_FILE_PATH" />
+      <Variable x:TypeArguments="x:String" Default="HDG" Name="COMP_CODE" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="HDG_AST_URL" CacheStrategy="None" DisplayName="Get Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="451.2,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="HDG_AST_URL" CacheStrategy="None" DisplayName="Get Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="486.4,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
       <ui:GetRobotAsset.Value>
         <OutArgument x:TypeArguments="x:String">[HDG_URL]</OutArgument>
       </ui:GetRobotAsset.Value>
     </ui:GetRobotAsset>
-    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="HDG_AST_OTP" CacheStrategy="None" DisplayName="Get Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="451.2,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="HDG_AST_OTP" CacheStrategy="None" DisplayName="Get Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="486.4,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
       <ui:GetRobotAsset.Value>
         <OutArgument x:TypeArguments="x:String">[HDG_OTP]</OutArgument>
       </ui:GetRobotAsset.Value>
@@ -141,7 +144,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="CheckPageLoadingStatus - Invoke Workflow File (Utils\CheckPageLoadingStatus.xaml)" sap:VirtualizedContainerService.HintSize="416,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Utils\CheckPageLoadingStatus.xaml">
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="CheckPageLoadingStatus - Invoke Workflow File (Utils\CheckPageLoadingStatus.xaml)" sap:VirtualizedContainerService.HintSize="451.2,86.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Utils\CheckPageLoadingStatus.xaml">
               <ui:InvokeWorkflowFile.Arguments>
                 <InArgument x:TypeArguments="ui:UiElement" x:Key="in_Browser">[browser_instance]</InArgument>
               </ui:InvokeWorkflowFile.Arguments>
@@ -172,7 +175,7 @@
                 </uix:VerifyExecutionTypeIntoOptions>
               </uix:NTypeInto.VerifyOptions>
             </uix:NTypeInto>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''INPUT ipt_password''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''INPUT ipt_password''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,86.4" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" CVScreenId="e842ab03-b452-4e9a-b096-ed2d3cff85f4" CvElementArea="992, 428, 478, 58" CvType="InputBox" DesignTimeRectangle="986, 430, 473, 55" DesignTimeScaleFactor="1.25" ElementType="InputBoxPassword" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ipt_password' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl id='ipt_password' tag='INPUT' type='password' class='w2input nppfs-npv w2input_focus' placeholder='비밀번호' aaname='' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="f0929803-783a-4f6f-851d-854badb15602" InformativeScreenshot="9cb08ff88f74e482bdb9386f4b4cab13.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector, CV" Version="V6">
                   <uix:TargetAnchorable.PointOffset>
@@ -181,7 +184,7 @@
                 </uix:TargetAnchorable>
               </uix:NClick.Target>
             </uix:NClick>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''IMG''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_3" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''IMG''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,86.4" sap2010:WorkflowViewState.IdRef="NClick_3" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" DesignTimeRectangle="449, 915, 77, 130" DesignTimeScaleFactor="1.25" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-role='button' idx='27' tag='IMG' /&gt;" FuzzySelectorArgument="&lt;webctrl aria-role='button' type='' tag='IMG' class='' aaname='' matching:aria-role='fuzzy' fuzzylevel:aria-role='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="cf773798-70d2-44dc-959f-e2bb9f0ea23a" InformativeScreenshot="84df88f8736fbb626a61dd8953f273bf.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector" Version="V6">
                   <uix:TargetAnchorable.PointOffset>
@@ -190,7 +193,7 @@
                 </uix:TargetAnchorable>
               </uix:NClick.Target>
             </uix:NClick>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''IMG''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_4" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''IMG''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,86.4" sap2010:WorkflowViewState.IdRef="NClick_4" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" DesignTimeRectangle="607, 915, 76, 130" DesignTimeScaleFactor="1.25" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-role='button' idx='28' tag='IMG' /&gt;" FuzzySelectorArgument="&lt;webctrl aria-role='button' type='' tag='IMG' class='' aaname='' matching:aria-role='fuzzy' fuzzylevel:aria-role='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="026336fe-d998-4737-85b9-72d5d9067fff" InformativeScreenshot="e5e960be833b4d8344de47bb4c5e77cc.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector" Version="V6">
                   <uix:TargetAnchorable.PointOffset>
@@ -199,7 +202,7 @@
                 </uix:TargetAnchorable>
               </uix:NClick.Target>
             </uix:NClick>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''IMG''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_5" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''IMG''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,86.4" sap2010:WorkflowViewState.IdRef="NClick_5" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" CVScreenId="e842ab03-b452-4e9a-b096-ed2d3cff85f4" CvTextArea="746, 944, 12, 12" CvTextArgument="*" CvType="Text" DesignTimeRectangle="686, 915, 76, 130" DesignTimeScaleFactor="1.25" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-role='button' idx='29' tag='IMG' /&gt;" FuzzySelectorArgument="&lt;webctrl aria-role='button' type='' tag='IMG' class='' aaname='' matching:aria-role='fuzzy' fuzzylevel:aria-role='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="36b048df-c4e8-4361-ab3a-ce485795702d" InformativeScreenshot="a1c387004f9ea04c57ea62f88f262cd4.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector, CV" Version="V6">
                   <uix:TargetAnchorable.PointOffset>
@@ -208,7 +211,7 @@
                 </uix:TargetAnchorable>
               </uix:NClick.Target>
             </uix:NClick>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''IMG''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_6" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''IMG''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,86.4" sap2010:WorkflowViewState.IdRef="NClick_6" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" DesignTimeRectangle="765, 915, 76, 130" DesignTimeScaleFactor="1.25" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-role='button' idx='30' tag='IMG' /&gt;" FuzzySelectorArgument="&lt;webctrl aria-role='button' type='' tag='IMG' class='' aaname='' matching:aria-role='fuzzy' fuzzylevel:aria-role='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="c6de81f7-3daa-4c56-b536-4c133e05dd6d" InformativeScreenshot="bf6ff21f361b13ac2dd57a4f6179b564.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector" Version="V6">
                   <uix:TargetAnchorable.PointOffset>
@@ -217,7 +220,7 @@
                 </uix:TargetAnchorable>
               </uix:NClick.Target>
             </uix:NClick>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''IMG''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_7" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''IMG''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_7" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" DesignTimeRectangle="449, 518, 77, 130" DesignTimeScaleFactor="1.25" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-role='button' idx='35' tag='IMG' /&gt;" FuzzySelectorArgument="&lt;webctrl aria-role='button' type='' tag='IMG' class='' aaname='' matching:aria-role='fuzzy' fuzzylevel:aria-role='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="dafd6c62-97fc-4f42-b3e8-48c09e85e7c8" InformativeScreenshot="6f4bf8c7481b7731158174dc5956f271.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector" Version="V6">
                   <uix:TargetAnchorable.PointOffset>
@@ -226,7 +229,7 @@
                 </uix:TargetAnchorable>
               </uix:NClick.Target>
             </uix:NClick>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''IMG''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_8" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''IMG''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_8" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" CVScreenId="e842ab03-b452-4e9a-b096-ed2d3cff85f4" CvElementArea="993, 575, 476, 65" CvTextArea="1216, 596, 58, 23" CvTextArgument="וمحج" CvType="Button" DesignTimeRectangle="1237, 518, 76, 130" DesignTimeScaleFactor="1.25" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-role='button' idx='43' tag='IMG' /&gt;" FuzzySelectorArgument="&lt;webctrl aria-role='button' type='' tag='IMG' class='' aaname='' matching:aria-role='fuzzy' fuzzylevel:aria-role='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="47bb5494-07c7-4302-8957-b48e75080bc6" InformativeScreenshot="540fed97fc78149af394e46f837301c7.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector, CV" Version="V6">
                   <uix:TargetAnchorable.PointOffset>
@@ -235,7 +238,7 @@
                 </uix:TargetAnchorable>
               </uix:NClick.Target>
             </uix:NClick>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''IMG''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_9" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''IMG''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,86.4" sap2010:WorkflowViewState.IdRef="NClick_9" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" DesignTimeRectangle="449, 518, 77, 130" DesignTimeScaleFactor="1.25" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-role='button' idx='35' tag='IMG' /&gt;" FuzzySelectorArgument="&lt;webctrl aria-role='button' type='' tag='IMG' class='' aaname='' matching:aria-role='fuzzy' fuzzylevel:aria-role='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="df98d7f3-e062-4011-987b-23ab169ddd05" InformativeScreenshot="2c510fdd11f9766606fd07056c5c0724.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector" Version="V6">
                   <uix:TargetAnchorable.PointOffset>
@@ -244,7 +247,7 @@
                 </uix:TargetAnchorable>
               </uix:NClick.Target>
             </uix:NClick>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''IMG''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_10" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''IMG''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_10" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" DesignTimeRectangle="922, 518, 76, 130" DesignTimeScaleFactor="1.25" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-role='button' idx='39' tag='IMG' /&gt;" FuzzySelectorArgument="&lt;webctrl aria-role='button' type='' tag='IMG' class='' aaname='' matching:aria-role='fuzzy' fuzzylevel:aria-role='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="5d0db722-de5c-4131-a3a4-cffb416781f3" InformativeScreenshot="18fee8c23c8a1bcfe6ac30c5dca95e15.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector" Version="V6">
                   <uix:TargetAnchorable.PointOffset>
@@ -253,7 +256,7 @@
                 </uix:TargetAnchorable>
               </uix:NClick.Target>
             </uix:NClick>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''IMG''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_11" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''IMG''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_11" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" CVScreenId="e48d6267-837b-443a-b8c9-affe55bf7e4a" CvElementArea="1314, 621, 237, 107" CvTextArea="1387, 656, 52, 35" CvTextArgument="A/" CvType="Button" DesignTimeRectangle="1316, 624, 234, 104" DesignTimeScaleFactor="1.25" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-role='button' idx='7' tag='IMG' /&gt;" FuzzySelectorArgument="&lt;webctrl aria-role='button' type='' tag='IMG' class='' aaname='' matching:aria-role='fuzzy' fuzzylevel:aria-role='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="8ce341ce-d678-45a7-8888-72827df70326" InformativeScreenshot="895d908c45808e29cedcbba1556ef0c0.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector, CV" Version="V6">
                   <uix:TargetAnchorable.PointOffset>
@@ -262,7 +265,7 @@
                 </uix:TargetAnchorable>
               </uix:NClick.Target>
             </uix:NClick>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''IMG''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_12" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''IMG''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_12" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" CVScreenId="e48d6267-837b-443a-b8c9-affe55bf7e4a" CvElementArea="367, 514, 82, 132" CvTextArea="397, 556, 21, 48" CvTextArgument="1" CvType="Button" DesignTimeRectangle="371, 518, 76, 130" DesignTimeScaleFactor="1.25" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-role='button' idx='120' tag='IMG' /&gt;" FuzzySelectorArgument="&lt;webctrl aria-role='button' type='' tag='IMG' class='' aaname='' matching:aria-role='fuzzy' fuzzylevel:aria-role='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="d887825a-1c6d-4dee-809c-57bf71072e8a" InformativeScreenshot="93a9ff798af0c19c797a655d48aa8400.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector, CV" Version="V6">
                   <uix:TargetAnchorable.PointOffset>
@@ -271,7 +274,7 @@
                 </uix:TargetAnchorable>
               </uix:NClick.Target>
             </uix:NClick>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''IMG''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_13" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''IMG''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_13" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" CVScreenId="e48d6267-837b-443a-b8c9-affe55bf7e4a" CvElementArea="367, 514, 82, 132" CvTextArea="397, 556, 21, 48" CvTextArgument="1" CvType="Button" DesignTimeRectangle="371, 518, 76, 130" DesignTimeScaleFactor="1.25" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-role='button' idx='120' tag='IMG' /&gt;" FuzzySelectorArgument="&lt;webctrl aria-role='button' type='' tag='IMG' class='' aaname='' matching:aria-role='fuzzy' fuzzylevel:aria-role='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="6e06fa97-794f-4194-9b6d-2865cbdbd9c2" InformativeScreenshot="2eb2386ae08fc1d3245db7d46c93c534.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector, CV" Version="V6">
                   <uix:TargetAnchorable.PointOffset>
@@ -280,7 +283,7 @@
                 </uix:TargetAnchorable>
               </uix:NClick.Target>
             </uix:NClick>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''IMG''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_14" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''IMG''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_14" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" CVScreenId="e48d6267-837b-443a-b8c9-affe55bf7e4a" CvElementArea="1314, 938, 237, 86" CvTextArea="1360, 971, 141, 42" CvTextArgument="0229" CvType="Button" DesignTimeRectangle="1316, 943, 234, 103" DesignTimeScaleFactor="1.25" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-role='button' idx='90' tag='IMG' /&gt;" FuzzySelectorArgument="&lt;webctrl aria-role='button' type='' tag='IMG' class='' aaname='' matching:aria-role='fuzzy' fuzzylevel:aria-role='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="a847bab0-97ae-4745-95dc-781f4f048e3b" InformativeScreenshot="5ac6fc7cbcc9d33cbf8110459fde3133.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector, CV" Version="V6">
                   <uix:TargetAnchorable.PointOffset>
@@ -289,7 +292,7 @@
                 </uix:TargetAnchorable>
               </uix:NClick.Target>
             </uix:NClick>
-            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into ''INPUT ipt_fstJumin''" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="SameAsCard" IsPassword="True" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Text="[HDG_OTP]" Version="V5">
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into ''INPUT ipt_fstJumin''" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="SameAsCard" IsPassword="True" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Text="[HDG_OTP]" Version="V5">
               <uix:NTypeInto.Target>
                 <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" DesignTimeRectangle="995, 498, 473, 55" DesignTimeScaleFactor="1.25" ElementType="InputBoxPassword" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ipt_fstJumin' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl id='ipt_fstJumin' tag='INPUT' type='password' class='w2input ' placeholder='생년월일(YYMMDD)' aaname='' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="9672c6f5-232b-457b-918e-36d645f7ee98" InformativeScreenshot="df98629f29857421020b4e41378461d1.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector" Version="V6">
                   <uix:TargetAnchorable.PointOffset>
@@ -308,7 +311,7 @@
                 </uix:VerifyExecutionTypeIntoOptions>
               </uix:NTypeInto.VerifyOptions>
             </uix:NTypeInto>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''로그인''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_15" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''로그인''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_15" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" DesignTimeRectangle="995, 578, 473, 62" DesignTimeScaleFactor="1.25" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='btn_login' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl id='btn_login' tag='INPUT' type='button' class='w2trigger btn orange ico_login' aaname='로그인' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:text='로그인' /&gt;" Guid="3d196978-b809-47f9-bd50-fcb5d1357fa5" InformativeScreenshot="581acf259c81f41390ab52c1c7137101.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector" Version="V6">
                   <uix:TargetAnchorable.PointOffset>
@@ -333,6 +336,80 @@
                 <scg:Dictionary x:TypeArguments="x:String, Argument" />
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
+            <Delay Duration="00:00:10" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_1" />
+            <If Condition="[runType = &quot;CHECK&quot;]" sap:VirtualizedContainerService.HintSize="451.2,692" sap2010:WorkflowViewState.IdRef="If_1">
+              <If.Then>
+                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,335.2" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_3">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Delay>
+                  <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="CHECKING_ID" CacheStrategy="None" DisplayName="Get Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="GetRobotAsset_3">
+                    <ui:GetRobotAsset.Value>
+                      <OutArgument x:TypeArguments="x:String">[CHECKING_ID]</OutArgument>
+                    </ui:GetRobotAsset.Value>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:GetRobotAsset>
+                  <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_4">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Delay>
+                  <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ====== Tạo đường dẫn file JSON ======&#xA;Dim jsonPath As String = System.IO.Path.Combine(checkingFilePath, &quot;result_&quot; &amp; checkingId &amp; &quot;.json&quot;)&#xA;&#xA;' ====== Đọc file JSON hiện tại ======&#xA;Dim jsonContent As String = System.IO.File.ReadAllText(jsonPath, System.Text.Encoding.UTF8)&#xA;Dim jsonArray   As Newtonsoft.Json.Linq.JArray = Newtonsoft.Json.Linq.JArray.Parse(jsonContent)&#xA;&#xA;' ====== Tìm theo compCode và Update ======&#xA;For Each item As Newtonsoft.Json.Linq.JObject In jsonArray&#xA;    If item(&quot;compCode&quot;).ToString() = compCode Then&#xA;        item(&quot;isLogined&quot;)   = &quot;Y&quot;&#xA;        item(&quot;processTime&quot;) = DateTime.Now.ToString(&quot;yyyyMMdd HH:mm:ss&quot;)&#xA;        Exit For&#xA;    End If&#xA;Next&#xA;&#xA;' ====== Ghi lại file JSON (ghi đè) ======&#xA;System.IO.File.WriteAllText(jsonPath, jsonArray.ToString(), System.Text.Encoding.UTF8)" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+                    <ui:InvokeCode.Arguments>
+                      <InArgument x:TypeArguments="x:String" x:Key="checkingId">[CHECKING_ID]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="checkingFilePath">[CHECKING_FILE_PATH]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="compCode">[COMP_CODE]</InArgument>
+                    </ui:InvokeCode.Arguments>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:InvokeCode>
+                  <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="Delay_5">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Delay>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,227.2" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_Process_01 - Invoke Workflow File (Workflows\HyndaiMarineFireInsurance\Download\Download_Process_01.xaml)" sap:VirtualizedContainerService.HintSize="416,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Workflows\HyndaiMarineFireInsurance\Download\Download_Process.xaml">
+                    <ui:InvokeWorkflowFile.Arguments>
+                      <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                    </ui:InvokeWorkflowFile.Arguments>
+                  </ui:InvokeWorkflowFile>
+                </Sequence>
+              </If.Else>
+            </If>
           </Sequence>
         </ActivityAction>
       </uix:NApplicationCard.Body>

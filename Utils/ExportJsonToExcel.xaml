@@ -1,0 +1,110 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="ExportJsonToExcel" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="CHECKING_ID" Type="InArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>ExportJsonToExcel_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="ExportJsonToExcel" sap:VirtualizedContainerService.HintSize="838.4000000000001,475.65666666666664" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="outputDir">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:String">C:\RPA\CheckAvailableComp</Literal>
+        </Variable.Default>
+      </Variable>
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ====== Input variables: outputDir, runId ======&#xD;&#xA;Dim jsonPath  As String = System.IO.Path.Combine(outputDir, &quot;result_&quot; &amp; runId &amp; &quot;.json&quot;)&#xD;&#xA;Dim excelPath As String = System.IO.Path.Combine(outputDir, &quot;Report_&quot; &amp; runId &amp; &quot;.xlsx&quot;)&#xD;&#xA;&#xD;&#xA;' ====== Đọc JSON và ghi vào Excel ======&#xD;&#xA;Dim jsonContent As String = System.IO.File.ReadAllText(jsonPath, System.Text.Encoding.UTF8)&#xD;&#xA;Dim jsonData As Newtonsoft.Json.Linq.JArray = Newtonsoft.Json.Linq.JArray.Parse(jsonContent)&#xD;&#xA;&#xD;&#xA;Dim workbook As New ClosedXML.Excel.XLWorkbook(excelPath)&#xD;&#xA;Dim ws As ClosedXML.Excel.IXLWorksheet = workbook.Worksheet(&quot;Result&quot;)&#xD;&#xA;&#xD;&#xA;' ====== Header ======&#xD;&#xA;ws.Cell(1, 1).Value = &quot;No&quot;&#xD;&#xA;ws.Cell(1, 2).Value = &quot;Company Code&quot;&#xD;&#xA;ws.Cell(1, 3).Value = &quot;Company Name&quot;&#xD;&#xA;ws.Cell(1, 4).Value = &quot;Login Status&quot;&#xD;&#xA;ws.Cell(1, 5).Value = &quot;Process Time&quot;&#xD;&#xA;&#xD;&#xA;' ====== Style Header ======&#xD;&#xA;Dim headerRange As ClosedXML.Excel.IXLRange = ws.Range(1, 1, 1, 5)&#xD;&#xA;headerRange.Style.Font.Bold = True&#xD;&#xA;headerRange.Style.Alignment.Horizontal = ClosedXML.Excel.XLAlignmentHorizontalValues.Center&#xD;&#xA;headerRange.Style.Border.OutsideBorder = ClosedXML.Excel.XLBorderStyleValues.Thin&#xD;&#xA;headerRange.Style.Border.InsideBorder = ClosedXML.Excel.XLBorderStyleValues.Thin&#xD;&#xA;&#xD;&#xA;' ====== Ghi Data ======&#xD;&#xA;Dim rowIndex As Integer = 2&#xD;&#xA;For Each item As Newtonsoft.Json.Linq.JObject In jsonData&#xD;&#xA;    Dim compCode    As String = item(&quot;compCode&quot;).ToString()&#xD;&#xA;    Dim companyName As String = item(&quot;companyName&quot;).ToString()&#xD;&#xA;    Dim isLogined   As String = item(&quot;isLogined&quot;).ToString()&#xD;&#xA;    Dim processTime As String = item(&quot;processTime&quot;).ToString()&#xD;&#xA;&#xD;&#xA;    ws.Cell(rowIndex, 1).Value = rowIndex - 1&#xD;&#xA;    ws.Cell(rowIndex, 1).Style.Alignment.Horizontal = ClosedXML.Excel.XLAlignmentHorizontalValues.Center&#xD;&#xA;&#xD;&#xA;    ws.Cell(rowIndex, 2).Value = compCode&#xD;&#xA;    ws.Cell(rowIndex, 2).Style.Alignment.Horizontal = ClosedXML.Excel.XLAlignmentHorizontalValues.Center&#xD;&#xA;&#xD;&#xA;    ws.Cell(rowIndex, 3).Value = companyName&#xD;&#xA;&#xD;&#xA;    ws.Cell(rowIndex, 4).Value = If(isLogined = &quot;Y&quot;, &quot;Y&quot;, If(isLogined = &quot;N&quot;, &quot;N&quot;, &quot;&quot;))&#xD;&#xA;    ws.Cell(rowIndex, 4).Style.Alignment.Horizontal = ClosedXML.Excel.XLAlignmentHorizontalValues.Center&#xD;&#xA;&#xD;&#xA;    ws.Cell(rowIndex, 5).Value = If(String.IsNullOrEmpty(processTime), &quot;&quot;, processTime)&#xD;&#xA;    ws.Cell(rowIndex, 5).Style.Alignment.Horizontal = ClosedXML.Excel.XLAlignmentHorizontalValues.Center&#xD;&#xA;&#xD;&#xA;    Dim dataRange As ClosedXML.Excel.IXLRange = ws.Range(rowIndex, 1, rowIndex, 5)&#xD;&#xA;    dataRange.Style.Border.OutsideBorder = ClosedXML.Excel.XLBorderStyleValues.Thin&#xD;&#xA;    dataRange.Style.Border.InsideBorder = ClosedXML.Excel.XLBorderStyleValues.Thin&#xD;&#xA;&#xD;&#xA;    rowIndex += 1&#xD;&#xA;Next&#xD;&#xA;&#xD;&#xA;' ====== Auto-fit + Freeze ======&#xD;&#xA;ws.Columns().AdjustToContents()&#xD;&#xA;ws.SheetView.FreezeRows(1)&#xD;&#xA;&#xD;&#xA;' ====== Lưu file ======&#xD;&#xA;workbook.Save()&#xD;&#xA;workbook.Dispose()" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="449.6,188" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+      <ui:InvokeCode.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="outputDir">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="outputDir" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="runId">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="CHECKING_ID" />
+        </InArgument>
+      </ui:InvokeCode.Arguments>
+    </ui:InvokeCode>
+  </Sequence>
+</Activity>
