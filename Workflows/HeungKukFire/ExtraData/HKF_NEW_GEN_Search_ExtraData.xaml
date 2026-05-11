@@ -136,9 +136,10 @@
       <AssemblyReference>System.Collections.Immutable</AssemblyReference>
       <AssemblyReference>System.Linq.Parallel</AssemblyReference>
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="HKF_NEW_GEN_Search_ExtraData" sap:VirtualizedContainerService.HintSize="855.6,7200.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="HKF_NEW_GEN_Search_ExtraData" sap:VirtualizedContainerService.HintSize="832.4000000000001,8786.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Default="HKF_NEW_GEN_*.xlsx" Name="HKF_NEW_GEN_prefix_file_name" />
       <Variable x:TypeArguments="sd:DataTable" Default="[New DataTable()]" Name="HKF_NEW_GEN_data_table" />
@@ -151,6 +152,7 @@
       <Variable x:TypeArguments="x:Int32" Default="0" Name="rowIndex" />
       <Variable x:TypeArguments="x:String" Name="HKF_NEW_GEN_file_path" />
       <Variable x:TypeArguments="x:String" Name="HKF_NEW_GEN_coppied_file_path" />
+      <Variable x:TypeArguments="ui:UiElement" Name="browser_instance" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -204,13 +206,13 @@
                           <ActivityAction.Argument>
                             <DelegateInArgument x:TypeArguments="ue:IWorkbookQuickHandle" Name="Excel" />
                           </ActivityAction.Argument>
-                          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,220" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,137.6" sap2010:WorkflowViewState.IdRef="Sequence_6">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <ueab:ReadRangeX DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="416,160" sap2010:WorkflowViewState.IdRef="ReadRangeX_1" Range="[Excel.Sheet(&quot;일반&quot;).Range(&quot;A1&quot;)]" SaveTo="[HKF_NEW_GEN_raw_table]" />
+                            <ueab:ReadRangeX DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="416,77.6" sap2010:WorkflowViewState.IdRef="ReadRangeX_1" Range="[Excel.Sheet(&quot;일반&quot;).Range(&quot;A1&quot;)]" SaveTo="[HKF_NEW_GEN_raw_table]" />
                           </Sequence>
                         </ActivityAction>
                       </ueab:ExcelApplicationCard.Body>
@@ -269,52 +271,56 @@
         </If.Else>
       </If>
     </Sequence>
-    <Sequence DisplayName="2. Search On Website And Modified Data Table" sap:VirtualizedContainerService.HintSize="625.6,1672.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence DisplayName="2. Search On Website And Modified Data Table" sap:VirtualizedContainerService.HintSize="625.6,3258.4" sap2010:WorkflowViewState.IdRef="Sequence_3">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <If Condition="[HKF_NEW_GEN_data_table.Rows.Count &gt; 0]" sap:VirtualizedContainerService.HintSize="486.4,1580.8" sap2010:WorkflowViewState.IdRef="If_2">
+      <If Condition="[HKF_NEW_GEN_data_table.Rows.Count &gt; 0]" sap:VirtualizedContainerService.HintSize="556.8,3166.4" sap2010:WorkflowViewState.IdRef="If_2">
         <If.Then>
-          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="484.8,1361.6" sap2010:WorkflowViewState.IdRef="Sequence_11">
+          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="555.2,2947.2" sap2010:WorkflowViewState.IdRef="Sequence_11">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Edge 흥국화재 영업포탈(1)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="451.2,1301.6" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="f72b9a4d-bf74-4dab-b234-e06eb8be1356" Version="V2">
+            <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Edge 흥국화재 영업포탈(1)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="521.6,2887.2" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OutUiElement="[browser_instance]" ScopeGuid="f72b9a4d-bf74-4dab-b234-e06eb8be1356" Version="V2">
               <uix:NApplicationCard.Body>
                 <ActivityAction x:TypeArguments="x:Object">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,1108" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="520,2693.6" sap2010:WorkflowViewState.IdRef="Sequence_12">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_3" />
-                    <uix:NClick ActivateBefore="{x:Null}" ClickType="Single" DisplayName="Click '계약관리'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="f72b9a4d-bf74-4dab-b234-e06eb8be1356" Version="V5">
+                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="CheckPageLoadingStatus - Invoke Workflow File (Utils\CheckPageLoadingStatus.xaml)" sap:VirtualizedContainerService.HintSize="486.4,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Utils\CheckPageLoadingStatus.xaml">
+                      <ui:InvokeWorkflowFile.Arguments>
+                        <InArgument x:TypeArguments="ui:UiElement" x:Key="in_Browser">[browser_instance]</InArgument>
+                      </ui:InvokeWorkflowFile.Arguments>
+                    </ui:InvokeWorkflowFile>
+                    <uix:NClick ActivateBefore="{x:Null}" ClickType="Single" DisplayName="Click '계약관리'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="f72b9a4d-bf74-4dab-b234-e06eb8be1356" Version="V5">
                       <uix:NClick.Target>
                         <uix:TargetAnchorable BrowserURL="sales.heungkukfire.co.kr" CVScreenId="23a6ddba-d3b3-497c-ab57-40146eccace4" ContentHash="B0rU5FfeXUKLpXBoG3pE3Q" DesignTimeRectangle="708, 150, 174, 65" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='계약관리 ' tag='SPAN' /&gt;" Guid="64908e61-dd71-4704-96b4-a7da24e1a25e" InformativeScreenshot="4837ed0606066ded009fbe7a34917e6f.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/nQt7VgPQV06KmAABFxyd7g" ScopeSelectorArgument="&lt;html app='msedge.exe' title='흥국화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                       </uix:NClick.Target>
                     </uix:NClick>
-                    <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_4" />
-                    <uix:NHover DisplayName="Hover '계약조회'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,245.6" sap2010:WorkflowViewState.IdRef="NHover_1" InteractionMode="SameAsCard" ScopeIdentifier="f72b9a4d-bf74-4dab-b234-e06eb8be1356" Version="V5">
+                    <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_4" />
+                    <uix:NHover DisplayName="Hover '계약조회'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,245.6" sap2010:WorkflowViewState.IdRef="NHover_1" InteractionMode="SameAsCard" ScopeIdentifier="f72b9a4d-bf74-4dab-b234-e06eb8be1356" Version="V5">
                       <uix:NHover.Target>
                         <uix:TargetAnchorable BrowserURL="sales.heungkukfire.co.kr" CVScreenId="1641bac7-c5f7-4f7c-9f12-9abebb646c34" ContentHash="bnSVCuq0AkWGGWXklMF7NA" DesignTimeRectangle="718, 218, 165, 37" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;main&amp;gt;div&amp;gt;header&amp;gt;nav&amp;gt;ul&amp;gt;li&amp;gt;div&amp;gt;ul&amp;gt;li&amp;gt;strong' idx='7' tag='STRONG' /&gt;" Guid="b10fa541-2fd1-4d41-8415-70391e46d871" InformativeScreenshot="9234ecd92aeb63939a30a7e4e75b42c5.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/liqE0K-Ua0uzmIvvgc1GnA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='흥국화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                       </uix:NHover.Target>
                     </uix:NHover>
-                    <uix:NClick ActivateBefore="{x:Null}" ClickType="Single" DisplayName="Click '계약상세조회(일반자동차)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="f72b9a4d-bf74-4dab-b234-e06eb8be1356" Version="V5">
+                    <uix:NClick ActivateBefore="{x:Null}" ClickType="Single" DisplayName="Click '계약상세조회(일반자동차)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="f72b9a4d-bf74-4dab-b234-e06eb8be1356" Version="V5">
                       <uix:NClick.Target>
                         <uix:TargetAnchorable BrowserURL="sales.heungkukfire.co.kr" CVScreenId="89a2877c-7581-4168-92fc-981f019ddabd" ContentHash="ATM-pgi4ykqS8Es9rZkI2Q" DesignTimeRectangle="14, 109, 0, 0" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='계약상세조회(일반/자동차)' tag='SPAN' /&gt;" Guid="4c8a2885-8c54-4a8a-ad6f-4478ca9caccd" InformativeScreenshot="56e55da9aeb32544c3b52c236ea614f0.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/kAUqLheGfUKzWN1NT6Uuyg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='흥국화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                       </uix:NClick.Target>
                     </uix:NClick>
-                    <Delay Duration="00:00:10" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_2" />
-                    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Always]" DisplayName="Edge 흥국화재 NeOS포탈" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="DebuggerApi" ScopeGuid="a925cd38-9e33-4ef6-875c-c7a14487476f" Version="V2">
+                    <Delay Duration="00:00:10" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_2" />
+                    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Always]" DisplayName="Edge 흥국화재 NeOS포탈" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="486.4,1580" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="DebuggerApi" ScopeGuid="a925cd38-9e33-4ef6-875c-c7a14487476f" Version="V2">
                       <uix:NApplicationCard.Body>
                         <ActivityAction x:TypeArguments="x:Object">
                           <ActivityAction.Argument>
@@ -338,7 +344,7 @@
                                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                       </scg:Dictionary>
                                     </sap:WorkflowViewStateService.ViewState>
-                                    <uix:NTypeInto ActivateBefore="{x:Null}" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '계약번호'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,296.8" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="SameAsCard" ScopeIdentifier="a925cd38-9e33-4ef6-875c-c7a14487476f" Text="[CurrentRow(&quot;search_data&quot;).ToString()]" Version="V5">
+                                    <uix:NTypeInto ActivateBefore="{x:Null}" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '계약번호'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,102.4" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="SameAsCard" ScopeIdentifier="a925cd38-9e33-4ef6-875c-c7a14487476f" Text="[CurrentRow(&quot;search_data&quot;).ToString()]" Version="V5">
                                       <uix:NTypeInto.Target>
                                         <uix:TargetAnchorable BrowserURL="sales.heungkukfire.co.kr/neos" CVScreenId="3eb41ceb-36a4-47ce-a087-0af3cd7c519b" ContentHash="fkCkKfFChEegyaFbnxUMcw" CvElementArea="136, 246, 155, 31" CvType="InputBox" DesignTimeRectangle="138, 248, 152, 28" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl aaname='계약번호 변경번호 계약자 기준일' tag='TABLE' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;&lt;webctrl type='text' tag='INPUT' class='w2input edt_Main_src w100' aaname='' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="d48335fd-c388-44d5-86c8-dba5fe9edbf3" InformativeScreenshot="e2e1ec6c9826d1387b1fe37e14bf95b9.jpg" IsResponsive="True" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/QDVgFitLukSeLCt6bXPnQg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='neos' title='흥국화재 NeOS포탈' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
                                           <uix:TargetAnchorable.Anchors>
@@ -359,14 +365,14 @@
                                         </uix:VerifyExecutionTypeIntoOptions>
                                       </uix:NTypeInto.VerifyOptions>
                                     </uix:NTypeInto>
-                                    <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_5" />
-                                    <uix:NClick ActivateBefore="{x:Null}" ClickType="Single" DisplayName="Click '조회'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,244.8" sap2010:WorkflowViewState.IdRef="NClick_3" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="a925cd38-9e33-4ef6-875c-c7a14487476f" Version="V5">
+                                    <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="416,78.4" sap2010:WorkflowViewState.IdRef="Delay_5" />
+                                    <uix:NClick ActivateBefore="{x:Null}" ClickType="Single" DisplayName="Click '조회'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,94.4" sap2010:WorkflowViewState.IdRef="NClick_3" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="a925cd38-9e33-4ef6-875c-c7a14487476f" Version="V5">
                                       <uix:NClick.Target>
                                         <uix:TargetAnchorable BrowserURL="sales.heungkukfire.co.kr/neos" CVScreenId="7ad6b205-c035-45f7-9389-6cf8f23d14eb" ContentHash="lxnin3LnjUCZDMyzM4vsVQ" DesignTimeRectangle="1829, 246, 61, 30" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='조회' tag='INPUT' type='button' /&gt;" Guid="0b7d4825-9455-4254-8924-8e38de733974" InformativeScreenshot="cdd53e3945329212a3d280321532c6f6.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/RcqXZQCBNUizNJIfBqJQJQ" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='neos' title='흥국화재 NeOS포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                                       </uix:NClick.Target>
                                     </uix:NClick>
-                                    <Delay Duration="00:00:10" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_6" />
-                                    <uix:NGetText DisplayName="Get Text 'Label'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NGetText_1" ScopeIdentifier="a925cd38-9e33-4ef6-875c-c7a14487476f" TextString="[CurrentRow(&quot;updated_data&quot;)]" Version="V5">
+                                    <Delay Duration="00:00:10" sap:VirtualizedContainerService.HintSize="416,78.4" sap2010:WorkflowViewState.IdRef="Delay_6" />
+                                    <uix:NGetText DisplayName="Get Text 'Label'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,86.4" sap2010:WorkflowViewState.IdRef="NGetText_1" ScopeIdentifier="a925cd38-9e33-4ef6-875c-c7a14487476f" TextString="[CurrentRow(&quot;updated_data&quot;)]" Version="V5">
                                       <uix:NGetText.Target>
                                         <uix:TargetAnchorable BrowserURL="sales.heungkukfire.co.kr/neos" CVScreenId="f8853d94-852a-4bf4-8fbd-6e1cb73edac1" ContentHash="GB-8IiFqqUiW5QrjMUKrNg" CvElementArea="1078, 301, 116, 30" CvType="InputBox" DesignTimeRectangle="1080, 303, 113, 27" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl aaname='상품 보험기간 청약일 계약상태 계약자 계약담당소급유무 주소 공동인수 보험료납입 기타사항' tag='TABLE' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;&lt;webctrl name='mf_wdc_main_subWindow0_wframe_div_form_divSalePolicy_calAgrmEndDate_input' type='' tag='INPUT' class='w2inputCalendar_divInput w2inputCalendar_readOnly w2input_disabled' aaname='' matching:name='fuzzy' fuzzylevel:name='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="dfa7a31a-cb86-4735-a572-f98730e3db02" InformativeScreenshot="5d00d93c615d0568fde0a15e4500a675.jpg" IsResponsive="True" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/evcglNTDmk6TUzvhra0llQ" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='neos' title='흥국화재 NeOS포탈' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
                                           <uix:TargetAnchorable.Anchors>
@@ -377,7 +383,7 @@
                                         </uix:TargetAnchorable>
                                       </uix:NGetText.Target>
                                     </uix:NGetText>
-                                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[&quot;Output: &quot; + CurrentRow(&quot;updated_data&quot;).ToString()]" />
+                                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,69.6" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[&quot;Output: &quot; + CurrentRow(&quot;updated_data&quot;).ToString()]" />
                                   </Sequence>
                                 </ActivityAction>
                               </ui:ForEachRow.Body>
@@ -404,7 +410,7 @@
                       </uix:NApplicationCard.TargetApp>
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
@@ -420,13 +426,20 @@
                 </ActivityFunc>
               </uix:NApplicationCard.OCREngine>
               <uix:NApplicationCard.TargetApp>
-                <uix:TargetApp Area="-9, -9, 1938, 1038" BrowserType="Edge" ContentHash="UIF2XhY5eUykv49k46P7YA" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAGVSURBVDhPpdBNKMNhHAfwp3ZxcuLm6EK57khI3i4S20VEWS7YzTtrqUXRhMn7a//8xyIkByLytjX+5rD2ooaVMm9FxtBXz9+ep83N/OrT8zzf/+97+ROfQpfiU+hOfQod/oh2Uog7Ti+54/SIkUQc8Z34D3KcaICVSog4w3f+LcLvjOwkdeM/yHpyD5hnVwAv3nt4+g54tqk04f7gEvtFszyLRBbSjDCnGUHPr9AX6HhFh/xeSR/Gk/NWzt4fg9hUCXLO9ikyqRwAc314Cb/1Cke9u5jPHceDKyCX2bw9BbFaLmJS2c+R/owhMKacEdlg1jBss/aoMpvrEz/fp4ghfxSGvB/B5zeEXkOwLZ+jq3AMji1PVPnGE4BRPcP3aZe0FE+A+fz4+QfHG0753Vo6BfuOV878F3forBD4bnMYqSubAbO75cLethvTQ3s805bPYc0ioalG5FkkUqURUFUdI40Aoq4VoaqPjbpOBCnRmqWCRgtiUaI1n5FKjZBa2LAoZbctIbN9CVlh7J7ZEZ1RdJd2aPcbjPCcd9wBq5kAAAAASUVORK5CYII=" InformativeScreenshot="31057a93576ec0cab11778d06fa33edf.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/BayW7lyvSUuiYiKgBKb93w" Selector="&lt;html app='msedge.exe' title='흥국화재 영업포탈' /&gt;" Url="https://sales.heungkukfire.co.kr/#/ga/cm/GACM002M01?_id=0000000000000" Version="V2" />
+                <uix:TargetApp Area="-9, -9, 1938, 1038" BrowserType="Edge" ContentHash="UIF2XhY5eUykv49k46P7YA" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAGVSURBVDhPpdBNKMNhHAfwp3ZxcuLm6EK57khI3i4S20VEWS7YzTtrqUXRhMn7a//8xyIkByLytjX+5rD2ooaVMm9FxtBXz9+ep83N/OrT8zzf/+97+ROfQpfiU+hOfQod/oh2Uog7Ti+54/SIkUQc8Z34D3KcaICVSog4w3f+LcLvjOwkdeM/yHpyD5hnVwAv3nt4+g54tqk04f7gEvtFszyLRBbSjDCnGUHPr9AX6HhFh/xeSR/Gk/NWzt4fg9hUCXLO9ikyqRwAc314Cb/1Cke9u5jPHceDKyCX2bw9BbFaLmJS2c+R/owhMKacEdlg1jBss/aoMpvrEz/fp4ghfxSGvB/B5zeEXkOwLZ+jq3AMji1PVPnGE4BRPcP3aZe0FE+A+fz4+QfHG0753Vo6BfuOV878F3forBD4bnMYqSubAbO75cLethvTQ3s805bPYc0ioalG5FkkUqURUFUdI40Aoq4VoaqPjbpOBCnRmqWCRgtiUaI1n5FKjZBa2LAoZbctIbN9CVlh7J7ZEZ1RdJd2aPcbjPCcd9wBq5kAAAAASUVORK5CYII=" InformativeScreenshot="31057a93576ec0cab11778d06fa33edf.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/BayW7lyvSUuiYiKgBKb93w" Selector="&lt;html app='msedge.exe' title='흥국화재 영업포탈' /&gt;" Url="https://sales.heungkukfire.co.kr/#/ga/cm/GACM002M01?_id=0000000000000" Version="V2">
+                  <uix:TargetApp.Arguments>
+                    <InArgument x:TypeArguments="x:String" />
+                  </uix:TargetApp.Arguments>
+                  <uix:TargetApp.WorkingDirectory>
+                    <InArgument x:TypeArguments="x:String" />
+                  </uix:TargetApp.WorkingDirectory>
+                </uix:TargetApp>
               </uix:NApplicationCard.TargetApp>
             </uix:NApplicationCard>
           </Sequence>
         </If.Then>
         <If.Else>
-          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="484.8,89.6" sap2010:WorkflowViewState.IdRef="Sequence_13">
+          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="555.2,89.6" sap2010:WorkflowViewState.IdRef="Sequence_13">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -645,13 +658,13 @@
           </Sequence>
         </If.Then>
         <If.Else>
-          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,173.6" sap2010:WorkflowViewState.IdRef="Sequence_22">
+          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="590.4,173.6" sap2010:WorkflowViewState.IdRef="Sequence_22">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="WriteLine_4" Text="Data table not have data" />
+            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="556.8,113.6" sap2010:WorkflowViewState.IdRef="WriteLine_4" Text="Data table not have data" />
           </Sequence>
         </If.Else>
       </If>
