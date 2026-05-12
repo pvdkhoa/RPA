@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="SendMail" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:umae="clr-namespace:UiPath.Mail.Activities.Enums;assembly=UiPath.Mail.Activities" xmlns:umame="clr-namespace:UiPath.MicrosoftOffice365.Activities.Mail.Enums;assembly=UiPath.Mail.Activities" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="SendMail" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:uga="clr-namespace:UiPath.GSuite.Activities;assembly=UiPath.GSuite.Activities" xmlns:ugade="clr-namespace:UiPath.GSuite.Activities.Drive.Enums;assembly=UiPath.GSuite.Activities" xmlns:ugam="clr-namespace:UiPath.GSuite.Activities.Models;assembly=UiPath.GSuite.Activities" xmlns:ugdm="clr-namespace:UiPath.GSuite.Drive.Models;assembly=UiPath.GSuite" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:umae="clr-namespace:UiPath.Mail.Activities.Enums;assembly=UiPath.Mail.Activities" xmlns:umame="clr-namespace:UiPath.MicrosoftOffice365.Activities.Mail.Enums;assembly=UiPath.Mail.Activities" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.GSuite.Activities" xmlns:usau1="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="lastScreenshotPath" Type="InArgument(x:String)" />
     <x:Property Name="isSuccess" Type="InArgument(x:String)" />
@@ -57,6 +57,11 @@
       <x:String>UiPath.Platform.SyncObjects</x:String>
       <x:String>System.ComponentModel</x:String>
       <x:String>System.Linq.Expressions</x:String>
+      <x:String>UiPath.GSuite.Activities.Models</x:String>
+      <x:String>UiPath.GSuite.Activities.Drive.Enums</x:String>
+      <x:String>UiPath.GSuite.Drive.Models</x:String>
+      <x:String>UiPath.GSuite.Activities</x:String>
+      <x:String>UiPath.Shared.Activities.ConnectionService.Contracts</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -129,9 +134,10 @@
       <AssemblyReference>System.IO.Packaging</AssemblyReference>
       <AssemblyReference>System.IO.FileSystem.AccessControl</AssemblyReference>
       <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
+      <AssemblyReference>UiPath.GSuite</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="SendMail" sap:VirtualizedContainerService.HintSize="912.4000000000001,11852" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="SendMail" sap:VirtualizedContainerService.HintSize="832.4000000000001,2933.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="subjectStr" />
     </Sequence.Variables>
@@ -140,7 +146,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence sap:VirtualizedContainerService.HintSize="553.6,11828.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence sap:VirtualizedContainerService.HintSize="484.8,2910.4" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="compTitle" />
         <Variable x:TypeArguments="x:String" Name="logo2" />
@@ -154,17 +160,17 @@
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="520,122.4" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[If(exceptionData Is Nothing, &quot;NOTHING&quot;, exceptionData.Message &amp; &quot; | &quot; &amp; exceptionData.Source)]" />
-      <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="EMAIL_RECEIVERS" CacheStrategy="None" DisplayName="Get Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="520,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[If(exceptionData Is Nothing, &quot;NOTHING&quot;, exceptionData.Message &amp; &quot; | &quot; &amp; exceptionData.Source)]" />
+      <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="EMAIL_RECEIVERS" CacheStrategy="None" DisplayName="Get Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="451.2,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
         <ui:GetRobotAsset.Value>
           <OutArgument x:TypeArguments="x:String">[EmailReceivers]</OutArgument>
         </ui:GetRobotAsset.Value>
       </ui:GetRobotAsset>
-      <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="520,122.4" sap2010:WorkflowViewState.IdRef="Delay_1" />
-      <If Condition="[isSuccess = &quot;False&quot;]" sap:VirtualizedContainerService.HintSize="520,616.8" sap2010:WorkflowViewState.IdRef="If_16">
+      <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_1" />
+      <If Condition="[isSuccess = &quot;False&quot;]" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="If_16">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
@@ -210,24 +216,36 @@
           </Sequence>
         </If.Else>
       </If>
-      <Assign sap:VirtualizedContainerService.HintSize="520,174.4" sap2010:WorkflowViewState.IdRef="Assign_3">
+      <Assign sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="Assign_3">
         <Assign.To>
           <OutArgument x:TypeArguments="x:String">[logo2]</OutArgument>
         </Assign.To>
         <Assign.Value>
           <InArgument x:TypeArguments="x:String">["https://drive.google.com/uc?export=view&amp;id=1-qQbcQn6Gfv-u4uMKviTGDS6liRbPwkZ"]</InArgument>
         </Assign.Value>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
       </Assign>
-      <Assign sap:VirtualizedContainerService.HintSize="520,174.4" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="Assign_2">
         <Assign.To>
           <OutArgument x:TypeArguments="x:String">[logo1]</OutArgument>
         </Assign.To>
         <Assign.Value>
           <InArgument x:TypeArguments="x:String">["https://drive.google.com/uc?export=view&amp;id=1CCI3pOGImKYWMu_peambSqKp7gM25qNz"]</InArgument>
         </Assign.Value>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
       </Assign>
-      <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="520,122.4" sap2010:WorkflowViewState.IdRef="Delay_2" />
-      <Assign sap:VirtualizedContainerService.HintSize="520,174.4" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_2" />
+      <Assign sap:VirtualizedContainerService.HintSize="451.2,174.4" sap2010:WorkflowViewState.IdRef="Assign_1">
         <Assign.To>
           <OutArgument x:TypeArguments="scg:List(x:String)">[MailList]</OutArgument>
         </Assign.To>
@@ -235,7 +253,7 @@
           <InArgument x:TypeArguments="scg:List(x:String)">[EmailReceivers.Split(","c).Select(Function(s) s.Trim()).ToList()]</InArgument>
         </Assign.Value>
       </Assign>
-      <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[compCode]" sap:VirtualizedContainerService.HintSize="520,9108" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+      <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[compCode]" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="Switch`1_1">
         <Switch.Default>
           <Sequence DisplayName="Default" sap:VirtualizedContainerService.HintSize="484.8,89.6" sap2010:WorkflowViewState.IdRef="Sequence_19">
             <sap:WorkflowViewStateService.ViewState>
@@ -247,7 +265,7 @@
         </Switch.Default>
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
@@ -930,37 +948,89 @@
           </If>
         </Sequence>
       </Switch>
-      <If Condition="[isSuccess = &quot;False&quot;]" sap:VirtualizedContainerService.HintSize="520,955.2" sap2010:WorkflowViewState.IdRef="If_15">
+      <If Condition="[isSuccess = &quot;False&quot;]" sap:VirtualizedContainerService.HintSize="451.2,1883.2" sap2010:WorkflowViewState.IdRef="If_15">
         <If.Then>
-          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,412.8" sap2010:WorkflowViewState.IdRef="Sequence_46">
+          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,1240.8" sap2010:WorkflowViewState.IdRef="Sequence_46">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="ugdm:GDriveRemoteItem[]" Name="dataOut" />
+              <Variable x:TypeArguments="x:String" Name="imageUrl" />
+              <Variable x:TypeArguments="upr:IResource" Name="ieFile" />
+              <Variable x:TypeArguments="upr:ILocalResource" Name="ir" />
+            </Sequence.Variables>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" Email="{x:Null}" Files="{x:Reference __ReferenceID0}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Password="{x:Null}" Port="{x:Null}" ReplyTo="{x:Null}" ResourceAttachmentList="{x:Null}" ResourceAttachments="{x:Null}" Result="{x:Null}" SecurePassword="{x:Null}" Server="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" Action="Forward" AttachmentInputMode="FilePaths" AttachmentsCollection="[New List(Of String) From {ScreenshotPath}]" Body="[&quot;&lt;div style='font-family: Arial, sans-serif; max-width: 700px; margin: 0 auto;'&gt;&quot; &amp; &quot;&lt;div style='background-color: #003087; padding: 0; margin: 0;'&gt;&quot; &amp; &quot;&lt;img src='&quot; &amp; logo1 &amp; &quot;' style='width: 100%; height: auto; display: block; margin: 0; padding: 0;' /&gt;&quot; &amp; &quot;&lt;/div&gt;&quot; &amp; &quot;&lt;div style='padding: 30px; border: 1px solid #ddd;'&gt;&quot; &amp; &quot;&lt;p&gt;안녕하세요,&lt;/p&gt;&quot; &amp; &quot;&lt;p&gt;&quot; &amp; DateTime.Now.ToString(&quot;yyyy년 M월 d일&quot;) &amp; &quot;, RPA 작업 결과를 알려 드립니다.&lt;/p&gt;&quot; &amp; &quot;&lt;p&gt;&lt;b&gt;처리 작업:&lt;/b&gt; &quot; &amp; compTitle &amp; &quot;&lt;/p&gt;&quot; &amp; &quot;&lt;p&gt;&lt;b&gt;처리 결과:&lt;/b&gt; 작업 오류&lt;/p&gt;&quot; &amp; &quot;&lt;p&gt;&lt;b&gt;수행시간:&lt;/b&gt; &quot; &amp; in_StartTime.ToString(&quot;yyyy-MM-dd HH:mm:ss&quot;) &amp; &quot; ~ &quot; &amp; DateTime.Now.ToString(&quot;HH:mm:ss&quot;) &amp; &quot;&lt;/p&gt;&quot; &amp; &quot;&lt;br&gt;&quot; &amp; &quot;&lt;p&gt;&lt;b&gt;&quot; &amp; compTitle &amp; &quot; 건의 작업 오류에 대한 상세 내용은 아래와 같습니다.&lt;/b&gt;&lt;/p&gt;&quot; &amp; &quot;&lt;p style='color: gray;'&gt;※ 스크린샷은 첨부 파일을 참조해 주시기 바랍니다.&lt;/p&gt;&quot; &amp; &quot;&lt;br&gt;&quot; &amp; &quot;&lt;table style='width: 100%; border-collapse: collapse;'&gt;&quot; &amp; &quot;&lt;tr style='background-color: #003087; color: white;'&gt;&lt;td style='padding: 10px; width: 25%;'&gt;&lt;b&gt;오류 발생 일시 / Time&lt;/b&gt;&lt;/td&gt;&lt;td style='padding: 10px; width: 75%;'&gt;&quot; &amp; DateTime.Now.ToString(&quot;yyyy-MM-dd HH:mm:ss&quot;) &amp; &quot;&lt;/td&gt;&lt;/tr&gt;&quot; &amp; &quot;&lt;tr style='background-color: #f5f5f5;'&gt;&lt;td style='padding: 10px;'&gt;&lt;b&gt;오류 유형 / Error Type&lt;/b&gt;&lt;/td&gt;&lt;td style='padding: 10px;'&gt;&quot; &amp; exceptionData.GetType().Name &amp; &quot;&lt;/td&gt;&lt;/tr&gt;&quot; &amp; &quot;&lt;tr&gt;&lt;td style='padding: 10px;'&gt;&lt;b&gt;오류 원인 / Message&lt;/b&gt;&lt;/td&gt;&lt;td style='padding: 10px;'&gt;&quot; &amp; exceptionData.Message &amp; &quot;&lt;/td&gt;&lt;/tr&gt;&quot; &amp; &quot;&lt;tr style='background-color: #f5f5f5;'&gt;&lt;td style='padding: 10px;'&gt;&lt;b&gt;오류 발생 / Source&lt;/b&gt;&lt;/td&gt;&lt;td style='padding: 10px;'&gt;&quot; &amp; exceptionData.Source &amp; &quot;&lt;/td&gt;&lt;/tr&gt;&quot; &amp; &quot;&lt;tr&gt;&lt;td style='padding: 10px; vertical-align: top;'&gt;&lt;b&gt;오류 상세 메시지 / Stack Trace&lt;/b&gt;&lt;/td&gt;&lt;td style='padding: 10px; font-size: 12px;'&gt;&quot; &amp; exceptionData.StackTrace.Replace(Environment.NewLine, &quot;&lt;br&gt;&quot;) &amp; &quot;&lt;/td&gt;&lt;/tr&gt;&quot; &amp; &quot;&lt;/table&gt;&quot; &amp; &quot;&lt;br&gt;&quot; &amp; &quot;&lt;p&gt;감사합니다&lt;/p&gt;&quot; &amp; &quot;&lt;p&gt;비고&lt;/p&gt;&quot; &amp; &quot;&lt;/div&gt;&quot; &amp; &quot;&lt;div style='padding: 0; margin: 0; border-top: 2px solid #003087;'&gt;&quot; &amp; &quot;&lt;img src='&quot; &amp; logo2 &amp; &quot;' style='width: 100%; height: auto; display: block; margin: 0; padding: 0;' /&gt;&quot; &amp; &quot;&lt;/div&gt;&quot; &amp; &quot;&lt;/div&gt;&quot;]" ConnectionId="7caf5461-2075-4f01-89ed-d0df5c269f52" ConnectionMode="IntegrationService" DisplayName="Send SMTP Email" EnableSSL="True" sap:VirtualizedContainerService.HintSize="416,352.8" sap2010:WorkflowViewState.IdRef="SendMail_3" IgnoreCRL="False" IsBodyHtml="True" SecureConnection="Auto" Subject="[&quot;[RPA] &quot; &amp; compTitle &amp; &quot; &quot; &amp; in_StartTime.ToString(&quot;yyyy-MM-dd&quot;) &amp; &quot; &quot; &amp; (If(isSuccess = &quot;True&quot;, &quot;성공&quot;, &quot;실패&quot;)) &amp; &quot; 안내&quot;]" To="[String.Join(&quot;,&quot;, MailList)]" UseISConnection="True" UseRichTextEditor="True">
-              <ui:SendMail.AttachmentsBackup>
-                <usau:BackupSlot x:TypeArguments="umame:AttachmentInputMode" StoredValue="FilePaths">
+            <ui:PathExists Exists="{x:Null}" DisplayName="Get Local File or Folder" sap:VirtualizedContainerService.HintSize="416,173.6" sap2010:WorkflowViewState.IdRef="PathExists_1" Path="[lastScreenshotPath]" PathType="File" Resource="[ir]" />
+            <Assign sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="Assign_32">
+              <Assign.To>
+                <OutArgument x:TypeArguments="upr:IResource">[ieFile]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="upr:ILocalResource">[ir]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <uga:UploadFilesConnections BrowseFolderId="{x:Null}" ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" DestinationFolder="{x:Null}" FilesList="{x:Null}" FirstResult="{x:Null}" FolderIdBackup="{x:Reference __ReferenceID0}" OverwriteExistingFile="{x:Null}" SaveToFolderName="{x:Null}" SingleFileToUpload="{x:Null}" AllResults="[dataOut]" AuthScopesInvalid="False" ConflictResolution="AddSeparate" ConnectionId="f01b3f94-ea99-4205-b50e-1c8205d72612" Convert="False" DisplayName="Upload Files" FilesInputMode="MultipleByVariable" FolderInputMode="UrlOrId" sap:VirtualizedContainerService.HintSize="416,205.6" sap2010:WorkflowViewState.IdRef="UploadFilesConnections_1" ManualFolderId="https://drive.google.com/drive/u/0/folders/1ueFSw9CwdAwJCBvEL6uQCD3TlgyvEXIv" MultipleFilesToUpload="[New List(Of UiPath.Platform.ResourceHandling.IResource) From {ieFile}]" UseConnectionService="True">
+              <uga:UploadFilesConnections.FilesBackup>
+                <usau:BackupSlot x:TypeArguments="ugade:FilesInputMode" StoredValue="MultipleByVariable">
                   <usau:BackupSlot.BackupValues>
+                    <scg:Dictionary x:TypeArguments="ugade:FilesInputMode, scg:List(x:Object)" />
+                  </usau:BackupSlot.BackupValues>
+                </usau:BackupSlot>
+              </uga:UploadFilesConnections.FilesBackup>
+              <uga:UploadFilesConnections.Folder>
+                <ugam:DriveItemArgument BrowserId="{x:Null}" ConnectionDescriptor="{x:Null}" DriveId="{x:Null}" Existing="{x:Null}" FriendlyName="{x:Null}" FullPath="{x:Null}" ParentId="{x:Null}" ParentIdFriendlyName="{x:Null}" RelativePath="{x:Null}" ConnectionKey="f01b3f94-ea99-4205-b50e-1c8205d72612" FullPathHint="My Drive" IdOrUrl="https://drive.google.com/drive/u/0/folders/1ueFSw9CwdAwJCBvEL6uQCD3TlgyvEXIv" InputMode="UrlOrId">
+                  <ugam:DriveItemArgument.Backup>
+                    <usau:BackupSlot x:TypeArguments="ugade:EDriveItemMode" x:Name="__ReferenceID0" StoredValue="UrlOrId">
+                      <usau:BackupSlot.BackupValues>
+                        <scg:List x:TypeArguments="x:Object" x:Key="Browse" Capacity="3">
+                          <InArgument x:TypeArguments="x:String">root</InArgument>
+                          <InArgument x:TypeArguments="x:String" />
+                          <InArgument x:TypeArguments="x:String">My Drive</InArgument>
+                        </scg:List>
+                      </usau:BackupSlot.BackupValues>
+                    </usau:BackupSlot>
+                  </ugam:DriveItemArgument.Backup>
+                  <ugam:DriveItemArgument.ParentIdFullPathHint>
+                    <InArgument x:TypeArguments="x:String">
+                      <Literal x:TypeArguments="x:String" Value="" />
+                    </InArgument>
+                  </ugam:DriveItemArgument.ParentIdFullPathHint>
+                </ugam:DriveItemArgument>
+              </uga:UploadFilesConnections.Folder>
+            </uga:UploadFilesConnections>
+            <Assign sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="Assign_33">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[imageUrl]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">["https://drive.google.com/uc?export=view&amp;id=" + dataOut(0).ID]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" Email="{x:Null}" Files="{x:Reference __ReferenceID1}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Password="{x:Null}" Port="{x:Null}" ReplyTo="{x:Null}" ResourceAttachmentList="{x:Null}" ResourceAttachments="{x:Null}" Result="{x:Null}" SecurePassword="{x:Null}" Server="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" Action="Forward" AttachmentInputMode="FilePaths" Body="[&quot;&quot; &amp;&#xA;&quot;&quot; &amp;&#xA;&quot;&quot; &amp;&#xA;&quot;&quot; &amp;&#xA;&quot;&quot; &amp;&#xA;&quot;안녕하세요,&quot; &amp;&#xA;&quot;&quot; &amp; DateTime.Now.ToString(&quot;yyyy년 M월 d일&quot;) &amp; &quot;, RPA 작업 결과를 알려 드립니다.&quot; &amp;&#xA;&quot;처리 작업: &quot; &amp; compTitle &amp; &quot;&quot; &amp;&#xA;&quot;처리 결과: 작업 오류&quot; &amp;&#xA;&quot;수행시간: &quot; &amp; in_StartTime.ToString(&quot;yyyy-MM-dd HH:mm:ss&quot;) &amp; &quot; ~ &quot; &amp; DateTime.Now.ToString(&quot;HH:mm:ss&quot;) &amp; &quot;&quot; &amp;&#xA;&quot;&quot; &amp;&#xA;&quot;&quot; &amp; compTitle &amp; &quot; 건의 작업 오류에 대한 상세 내용은 아래와 같습니다.&quot; &amp;&#xA;&quot;※ 스크린샷:&quot; &amp;&#xA;&quot;&quot; &amp;&#xA;&quot;&quot; &amp;&#xA;&quot;&quot; &amp;&#xA;&quot;오류 발생 일시 / Time&quot; &amp; DateTime.Now.ToString(&quot;yyyy-MM-dd HH:mm:ss&quot;) &amp; &quot;&quot; &amp;&#xA;&quot;오류 유형 / Error Type&quot; &amp; exceptionData.GetType().Name &amp; &quot;&quot; &amp;&#xA;&quot;오류 원인 / Message&quot; &amp; exceptionData.Message &amp; &quot;&quot; &amp;&#xA;&quot;오류 발생 / Source&quot; &amp; exceptionData.Source &amp; &quot;&quot; &amp;&#xA;&quot;오류 상세 메시지 / Stack Trace&quot; &amp; exceptionData.StackTrace.Replace(Environment.NewLine, &quot;&quot;) &amp; &quot;&quot; &amp;&#xA;&quot;&quot; &amp;&#xA;&quot;&quot; &amp;&#xA;&quot;감사합니다&quot; &amp;&#xA;&quot;비고&quot; &amp;&#xA;&quot;&quot; &amp;&#xA;&quot;&quot; &amp;&#xA;&quot;&quot; &amp;&#xA;&quot;&quot; &amp;&#xA;&quot;&quot;]" ConnectionId="492571a7-53a2-4a18-89d2-3af8fec56075" ConnectionMode="IntegrationService" DisplayName="Send SMTP Email" EnableSSL="True" sap:VirtualizedContainerService.HintSize="416,452.8" sap2010:WorkflowViewState.IdRef="SendMail_3" IgnoreCRL="False" IsBodyHtml="True" SecureConnection="Auto" Subject="[&quot;[RPA] &quot; &amp; compTitle &amp; &quot; &quot; &amp; in_StartTime.ToString(&quot;yyyy-MM-dd&quot;) &amp; &quot; &quot; &amp; (If(isSuccess = &quot;True&quot;, &quot;성공&quot;, &quot;실패&quot;)) &amp; &quot; 안내&quot;]" To="[String.Join(&quot;,&quot;, MailList)]" UseISConnection="True" UseRichTextEditor="True">
+              <ui:SendMail.AttachmentsBackup>
+                <usau1:BackupSlot x:TypeArguments="umame:AttachmentInputMode" StoredValue="FilePaths">
+                  <usau1:BackupSlot.BackupValues>
                     <scg:List x:TypeArguments="x:Object" x:Key="Existing" Capacity="1">
                       <InArgument x:TypeArguments="scg:IEnumerable(upr:IResource)">[ScreenShotPath]</InArgument>
                     </scg:List>
                     <scg:List x:TypeArguments="x:Object" x:Key="FilePaths" Capacity="2">
                       <x:Null />
-                      <scg:List x:TypeArguments="InArgument(x:String)" x:Name="__ReferenceID0" Capacity="0" />
+                      <scg:List x:TypeArguments="InArgument(x:String)" x:Name="__ReferenceID1" Capacity="0" />
                     </scg:List>
                     <scg:List x:TypeArguments="x:Object" x:Key="Builder" Capacity="1">
                       <x:Null />
                     </scg:List>
-                  </usau:BackupSlot.BackupValues>
-                </usau:BackupSlot>
+                  </usau1:BackupSlot.BackupValues>
+                </usau1:BackupSlot>
               </ui:SendMail.AttachmentsBackup>
               <ui:SendMail.ConnectionDetailsBackupSlot>
-                <usau:BackupSlot x:TypeArguments="umae:ConnectionDetails" StoredValue="IntegrationService">
-                  <usau:BackupSlot.BackupValues>
+                <usau1:BackupSlot x:TypeArguments="umae:ConnectionDetails" StoredValue="IntegrationService">
+                  <usau1:BackupSlot.BackupValues>
                     <scg:Dictionary x:TypeArguments="umae:ConnectionDetails, scg:List(x:Object)" />
-                  </usau:BackupSlot.BackupValues>
-                </usau:BackupSlot>
+                  </usau1:BackupSlot.BackupValues>
+                </usau1:BackupSlot>
               </ui:SendMail.ConnectionDetailsBackupSlot>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -972,35 +1042,35 @@
           </Sequence>
         </If.Then>
         <If.Else>
-          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,412.8" sap2010:WorkflowViewState.IdRef="Sequence_47">
+          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,512.8" sap2010:WorkflowViewState.IdRef="Sequence_47">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" Email="{x:Null}" Files="{x:Reference __ReferenceID1}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Password="{x:Null}" Port="{x:Null}" ReplyTo="{x:Null}" ResourceAttachmentList="{x:Null}" ResourceAttachments="{x:Null}" Result="{x:Null}" SecurePassword="{x:Null}" Server="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" Action="Forward" AttachmentInputMode="FilePaths" Body="[&quot;&lt;div style='font-family: Arial, sans-serif; max-width: 700px; margin: 0 auto;'&gt;&quot; &amp; &quot;&lt;div style='background-color: #003087; padding: 0; margin: 0;'&gt;&quot; &amp; &quot;&lt;img src='&quot; &amp; logo1 &amp; &quot;' style='width: 100%; height: auto; display: block; margin: 0; padding: 0;' /&gt;&quot; &amp; &quot;&lt;/div&gt;&quot; &amp; &quot;&lt;div style='padding: 30px; border: 1px solid #ddd;'&gt;&quot; &amp; &quot;&lt;p&gt;안녕하세요,&lt;/p&gt;&quot; &amp; &quot;&lt;p&gt;&quot; &amp; DateTime.Now.ToString(&quot;yyyy년 M월 d일&quot;) &amp; &quot;, RPA 작업 결과를 알려 드립니다.&lt;/p&gt;&quot; &amp; &quot;&lt;p&gt;&lt;b&gt;처리 작업:&lt;/b&gt; &quot; &amp; compTitle &amp; &quot;&lt;/p&gt;&quot; &amp; &quot;&lt;p&gt;&lt;b&gt;처리 결과:&lt;/b&gt; 작업 성공&lt;/p&gt;&quot; &amp; &quot;&lt;p&gt;&lt;b&gt;수행시간:&lt;/b&gt; &quot; &amp; in_StartTime.ToString(&quot;yyyy-MM-dd HH:mm:ss&quot;) &amp; &quot; ~ &quot; &amp; DateTime.Now.ToString(&quot;HH:mm:ss&quot;) &amp; &quot;&lt;/p&gt;&quot; &amp; &quot;&lt;br&gt;&quot; &amp; &quot;&lt;img src='&quot; &amp; logo2 &amp; &quot;' style='width: 100%; height: auto; display: block; margin: 0; padding: 0;' /&gt;&quot; &amp; &quot;&lt;/div&gt;&quot; &amp; &quot;&lt;/div&gt;&quot;]" ConnectionId="7caf5461-2075-4f01-89ed-d0df5c269f52" ConnectionMode="IntegrationService" DisplayName="Send SMTP Email" EnableSSL="True" sap:VirtualizedContainerService.HintSize="416,352.8" sap2010:WorkflowViewState.IdRef="SendMail_2" IgnoreCRL="False" IsBodyHtml="True" SecureConnection="Auto" Subject="[&quot;[RPA] &quot; &amp; compTitle &amp; &quot; &quot; &amp; in_StartTime.ToString(&quot;yyyy-MM-dd&quot;) &amp; &quot; &quot; &amp; (If(isSuccess = &quot;True&quot;, &quot;성공&quot;, &quot;실패&quot;)) &amp; &quot; 안내&quot;]" To="[String.Join(&quot;,&quot;, MailList)]" UseISConnection="True" UseRichTextEditor="True">
+            <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" Email="{x:Null}" Files="{x:Reference __ReferenceID2}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Password="{x:Null}" Port="{x:Null}" ReplyTo="{x:Null}" ResourceAttachmentList="{x:Null}" ResourceAttachments="{x:Null}" Result="{x:Null}" SecurePassword="{x:Null}" Server="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" Action="Forward" AttachmentInputMode="FilePaths" Body="[&quot;&lt;div style='font-family: Arial, sans-serif; max-width: 700px; margin: 0 auto;'&gt;&quot; &amp; &quot;&lt;div style='background-color: #003087; padding: 0; margin: 0;'&gt;&quot; &amp; &quot;&lt;img src='&quot; &amp; logo1 &amp; &quot;' style='width: 100%; height: auto; display: block; margin: 0; padding: 0;' /&gt;&quot; &amp; &quot;&lt;/div&gt;&quot; &amp; &quot;&lt;div style='padding: 30px; border: 1px solid #ddd;'&gt;&quot; &amp; &quot;&lt;p&gt;안녕하세요,&lt;/p&gt;&quot; &amp; &quot;&lt;p&gt;&quot; &amp; DateTime.Now.ToString(&quot;yyyy년 M월 d일&quot;) &amp; &quot;, RPA 작업 결과를 알려 드립니다.&lt;/p&gt;&quot; &amp; &quot;&lt;p&gt;&lt;b&gt;처리 작업:&lt;/b&gt; &quot; &amp; compTitle &amp; &quot;&lt;/p&gt;&quot; &amp; &quot;&lt;p&gt;&lt;b&gt;처리 결과:&lt;/b&gt; 작업 성공&lt;/p&gt;&quot; &amp; &quot;&lt;p&gt;&lt;b&gt;수행시간:&lt;/b&gt; &quot; &amp; in_StartTime.ToString(&quot;yyyy-MM-dd HH:mm:ss&quot;) &amp; &quot; ~ &quot; &amp; DateTime.Now.ToString(&quot;HH:mm:ss&quot;) &amp; &quot;&lt;/p&gt;&quot; &amp; &quot;&lt;br&gt;&quot; &amp; &quot;&lt;img src='&quot; &amp; logo2 &amp; &quot;' style='width: 100%; height: auto; display: block; margin: 0; padding: 0;' /&gt;&quot; &amp; &quot;&lt;/div&gt;&quot; &amp; &quot;&lt;/div&gt;&quot;]" ConnectionId="492571a7-53a2-4a18-89d2-3af8fec56075" ConnectionMode="IntegrationService" DisplayName="Send SMTP Email" EnableSSL="True" sap:VirtualizedContainerService.HintSize="416,452.8" sap2010:WorkflowViewState.IdRef="SendMail_2" IgnoreCRL="False" IsBodyHtml="True" SecureConnection="Auto" Subject="[&quot;[RPA] &quot; &amp; compTitle &amp; &quot; &quot; &amp; in_StartTime.ToString(&quot;yyyy-MM-dd&quot;) &amp; &quot; &quot; &amp; (If(isSuccess = &quot;True&quot;, &quot;성공&quot;, &quot;실패&quot;)) &amp; &quot; 안내&quot;]" To="[String.Join(&quot;,&quot;, MailList)]" UseISConnection="True" UseRichTextEditor="True">
               <ui:SendMail.AttachmentsBackup>
-                <usau:BackupSlot x:TypeArguments="umame:AttachmentInputMode" StoredValue="FilePaths">
-                  <usau:BackupSlot.BackupValues>
+                <usau1:BackupSlot x:TypeArguments="umame:AttachmentInputMode" StoredValue="FilePaths">
+                  <usau1:BackupSlot.BackupValues>
                     <scg:List x:TypeArguments="x:Object" x:Key="Existing" Capacity="1">
                       <InArgument x:TypeArguments="scg:IEnumerable(upr:IResource)">[ScreenShotPath]</InArgument>
                     </scg:List>
                     <scg:List x:TypeArguments="x:Object" x:Key="FilePaths" Capacity="2">
                       <x:Null />
-                      <scg:List x:TypeArguments="InArgument(x:String)" x:Name="__ReferenceID1" Capacity="0" />
+                      <scg:List x:TypeArguments="InArgument(x:String)" x:Name="__ReferenceID2" Capacity="0" />
                     </scg:List>
                     <scg:List x:TypeArguments="x:Object" x:Key="Builder" Capacity="1">
                       <x:Null />
                     </scg:List>
-                  </usau:BackupSlot.BackupValues>
-                </usau:BackupSlot>
+                  </usau1:BackupSlot.BackupValues>
+                </usau1:BackupSlot>
               </ui:SendMail.AttachmentsBackup>
               <ui:SendMail.ConnectionDetailsBackupSlot>
-                <usau:BackupSlot x:TypeArguments="umae:ConnectionDetails" StoredValue="IntegrationService">
-                  <usau:BackupSlot.BackupValues>
+                <usau1:BackupSlot x:TypeArguments="umae:ConnectionDetails" StoredValue="IntegrationService">
+                  <usau1:BackupSlot.BackupValues>
                     <scg:Dictionary x:TypeArguments="umae:ConnectionDetails, scg:List(x:Object)" />
-                  </usau:BackupSlot.BackupValues>
-                </usau:BackupSlot>
+                  </usau1:BackupSlot.BackupValues>
+                </usau1:BackupSlot>
               </ui:SendMail.ConnectionDetailsBackupSlot>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
