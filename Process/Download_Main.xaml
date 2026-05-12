@@ -95,28 +95,24 @@
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Download_Main" sap:VirtualizedContainerService.HintSize="832.4000000000001,3970.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Download_Main" sap:VirtualizedContainerService.HintSize="874,4088.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="screenshotPath" />
       <Variable x:TypeArguments="x:String" Name="CHECKING_ID" />
-      <Variable x:TypeArguments="x:String" Name="CHECKING_FILE_PATH">
-        <Variable.Default>
-          <Literal x:TypeArguments="x:String">C:\RPA\CheckAvailableComp</Literal>
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="x:String" Default="C:\RPA\CheckAvailableComp" Name="CHECKING_FILE_PATH" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence sap:VirtualizedContainerService.HintSize="520,3947.2" sap2010:WorkflowViewState.IdRef="Sequence_34">
+    <Sequence sap:VirtualizedContainerService.HintSize="520,4065.6" sap2010:WorkflowViewState.IdRef="Sequence_34">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="486.4,3864" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="486.4,3982.4" sap2010:WorkflowViewState.IdRef="TryCatch_1">
         <TryCatch.Try>
           <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="484.8,1609.6" sap2010:WorkflowViewState.IdRef="Sequence_35">
             <sap:WorkflowViewStateService.ViewState>
@@ -460,7 +456,7 @@
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
               </ActivityAction.Argument>
-              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="484.8,1862.4" sap2010:WorkflowViewState.IdRef="Sequence_36">
+              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="484.8,1980.8" sap2010:WorkflowViewState.IdRef="Sequence_36">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -548,9 +544,9 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                 </Assign>
-                <If Condition="[in_RunType = &quot;CHECK&quot;]" sap:VirtualizedContainerService.HintSize="451.2,703.2" sap2010:WorkflowViewState.IdRef="If_2">
+                <If Condition="[in_RunType = &quot;CHECK&quot;]" sap:VirtualizedContainerService.HintSize="451.2,821.6" sap2010:WorkflowViewState.IdRef="If_2">
                   <If.Then>
-                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,475.2" sap2010:WorkflowViewState.IdRef="Sequence_38">
+                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,593.6" sap2010:WorkflowViewState.IdRef="Sequence_38">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -564,13 +560,13 @@
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
                       </Delay>
-                      <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="CHECKING_ID" CacheStrategy="None" DisplayName="Get Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+                      <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="CHECKING_ID" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="416,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
                         <ui:GetRobotAsset.Value>
                           <OutArgument x:TypeArguments="x:String">[CHECKING_ID]</OutArgument>
                         </ui:GetRobotAsset.Value>
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             <x:Boolean x:Key="IsPinned">False</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
@@ -583,17 +579,11 @@
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
                       </Delay>
-                      <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ====== Tạo đường dẫn file JSON ======&#xD;&#xA;Dim jsonPath As String = System.IO.Path.Combine(checkingFilePath, &quot;result_&quot; &amp; checkingId &amp; &quot;.json&quot;)&#xD;&#xA;&#xD;&#xA;' ====== Đọc file JSON hiện tại ======&#xD;&#xA;Dim jsonContent As String = System.IO.File.ReadAllText(jsonPath, System.Text.Encoding.UTF8)&#xD;&#xA;Dim jsonArray   As Newtonsoft.Json.Linq.JArray = Newtonsoft.Json.Linq.JArray.Parse(jsonContent)&#xD;&#xA;&#xD;&#xA;' ====== Tìm theo compCode và Update ======&#xD;&#xA;For Each item As Newtonsoft.Json.Linq.JObject In jsonArray&#xD;&#xA;    If item(&quot;compCode&quot;).ToString() = compCode Then&#xD;&#xA;        item(&quot;isLogined&quot;)   = &quot;N&quot;&#xD;&#xA;        item(&quot;processTime&quot;) = DateTime.Now.ToString(&quot;yyyyMMdd HH:mm:ss&quot;)&#xD;&#xA;        Exit For&#xD;&#xA;    End If&#xD;&#xA;Next&#xD;&#xA;&#xD;&#xA;' ====== Ghi lại file JSON (ghi đè) ======&#xD;&#xA;System.IO.File.WriteAllText(jsonPath, jsonArray.ToString(), System.Text.Encoding.UTF8)" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+                      <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ====== Tạo đường dẫn file JSON ======&#xA;Dim jsonPath As String = System.IO.Path.Combine(checkingFilePath, &quot;result_&quot; &amp; checkingId &amp; &quot;.json&quot;)&#xA;&#xA;' ====== Đọc file JSON hiện tại ======&#xA;Dim jsonContent As String = System.IO.File.ReadAllText(jsonPath, System.Text.Encoding.UTF8)&#xA;Dim jsonArray   As Newtonsoft.Json.Linq.JArray = Newtonsoft.Json.Linq.JArray.Parse(jsonContent)&#xA;&#xA;' ====== Tìm theo compCode và Update ======&#xA;For Each item As Newtonsoft.Json.Linq.JObject In jsonArray&#xA;    If item(&quot;compCode&quot;).ToString() = compCode Then&#xA;        item(&quot;isLogined&quot;)   = &quot;N&quot;&#xA;        item(&quot;processTime&quot;) = DateTime.Now.ToString(&quot;yyyyMMdd HH:mm:ss&quot;)&#xA;        Exit For&#xA;    End If&#xA;Next&#xA;&#xA;' ====== Ghi lại file JSON (ghi đè) ======&#xA;System.IO.File.WriteAllText(jsonPath, jsonArray.ToString(), System.Text.Encoding.UTF8)" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
                         <ui:InvokeCode.Arguments>
-                          <InArgument x:TypeArguments="x:String" x:Key="checkingId">
-                            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="CHECKING_ID" />
-                          </InArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="checkingFilePath">
-                            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="CHECKING_FILE_PATH" />
-                          </InArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="compCode">
-                            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_CompCode" />
-                          </InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="checkingId">[CHECKING_ID]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="checkingFilePath">[CHECKING_FILE_PATH]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="compCode">[in_CompCode]</InArgument>
                         </ui:InvokeCode.Arguments>
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">

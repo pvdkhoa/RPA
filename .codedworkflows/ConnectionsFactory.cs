@@ -26,11 +26,8 @@ namespace REF_RPA
 
     public class GmailFactory
     {
-        public UiPath.GSuite.Activities.Api.GmailConnection My_Workspace_20145393_student_hcmute_edu_vn { get; set; }
-
         public GmailFactory(ICodedWorkflowsServiceContainer resolver)
         {
-            My_Workspace_20145393_student_hcmute_edu_vn = new UiPath.GSuite.Activities.Api.GmailConnection("c366934d-7fd1-4973-b886-a4fad4f6113e", resolver);
         }
     }
 
