@@ -96,21 +96,25 @@
       <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
       <AssemblyReference>NPOI.Core</AssemblyReference>
       <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Download_ExistingContract" sap:VirtualizedContainerService.HintSize="854.8000000000001,2551.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Download_ExistingContract" sap:VirtualizedContainerService.HintSize="863.6,2727.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="ui:UiElement" Name="browserInstance" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome MetPlus - 메트라이프 법인영업포탈(1)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="486.4,2528" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="d2c40561-5090-4e12-8943-03dd6b6b5361" Version="V2">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome MetPlus - 메트라이프 법인영업포탈(1)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="486.4,2704" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OutUiElement="[browserInstance]" ScopeGuid="d2c40561-5090-4e12-8943-03dd6b6b5361" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="484.8,2334.4" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="484.8,2510.4" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Name="latestFilePath" />
               <Variable x:TypeArguments="x:String" Name="newFilePath" />
@@ -120,6 +124,11 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="CheckPageLoadingStatus - Invoke Workflow File (Utils\CheckPageLoadingStatus.xaml)" sap:VirtualizedContainerService.HintSize="451.2,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Utils\CheckPageLoadingStatus.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InArgument x:TypeArguments="ui:UiElement" x:Key="in_Browser">[browserInstance]</InArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
             <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '실적'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="d2c40561-5090-4e12-8943-03dd6b6b5361" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" CVScreenId="ef5de6c4-2fcd-4f0a-a70d-a0179c737935" ContentHash="w_3SW_DD0kC0aeW8cuhMzg" CvTextArea="59, 187, 36, 21" CvTextArgument="ST" CvType="Text" DesignTimeRectangle="15, 181, 125, 31" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='실적' tag='DIV' /&gt;" Guid="ac366332-2b31-448c-a631-6028ccde1f5d" InformativeScreenshot="bec4bde9a400266d09548fa88f6cec52.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/pTR0VOOzg0G_Ul_TSg3Y8Q" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus - 실적&amp;gt;Sales Results&amp;gt;GA건별 청약사항 조회(stsr13m00)' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
@@ -149,7 +158,7 @@
                 <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" CVScreenId="41a127c8-882c-4e40-83d0-efe720578c3d" ContentHash="2sxSUg68REGP0lJswEMyeQ" CvElementArea="1202, 924, 56, 28" CvTextArea="1211, 929, 33, 20" CvTextArgument="92" CvType="Button" DesignTimeRectangle="1205, 925, 53, 25" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='엑셀 ' tag='DIV' /&gt;" Guid="b87a1a5b-eb7b-4c07-8a0d-06df02f7903a" InformativeScreenshot="321d7f48f4e96e320a465fcdb5f1089f.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/d2xPyk_bLUaoDrcxkdN4aA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus - 실적&amp;gt;Efficiency&amp;gt;GA보유계약조회(수금관리)(stef23m01)' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
-            <Delay Duration="00:00:30" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_5">
+            <Delay Duration="00:00:25" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_5">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
