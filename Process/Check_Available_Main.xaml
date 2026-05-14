@@ -3,7 +3,6 @@
     <x:Property Name="io_LastRunType" Type="InOutArgument(x:String)" />
     <x:Property Name="io_LastContractType" Type="InOutArgument(x:String)" />
     <x:Property Name="io_LastCompCode" Type="InOutArgument(x:String)" />
-    <x:Property Name="io_LastScreenshotPath" Type="InOutArgument(x:String)" />
     <x:Property Name="io_LastException" Type="InOutArgument(s:Exception)" />
     <x:Property Name="in_RunType" Type="InArgument(x:String)" />
     <x:Property Name="in_StartTime" Type="InArgument(s:DateTime)" />
@@ -55,6 +54,7 @@
       <x:String>UiPath.Mail.SMTP.Activities</x:String>
       <x:String>UiPath.Shared.Activities</x:String>
       <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>UiPath.Core.Activities.Orchestrator</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -119,7 +119,7 @@
       <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Download_Main" sap:VirtualizedContainerService.HintSize="874,3885.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Download_Main" sap:VirtualizedContainerService.HintSize="726.8000000000001,3816" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:List(x:String)" Name="MailList" />
       <Variable x:TypeArguments="x:String" Name="screenshotPath" />
@@ -133,14 +133,14 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Step 1: Check Available" sap:VirtualizedContainerService.HintSize="520,3862.4" sap2010:WorkflowViewState.IdRef="Sequence_34">
+    <Sequence DisplayName="Step 1: Check Available" sap:VirtualizedContainerService.HintSize="520,3792.8" sap2010:WorkflowViewState.IdRef="Sequence_34">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="486.4,3779.2" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="486.4,3709.6" sap2010:WorkflowViewState.IdRef="TryCatch_1">
         <TryCatch.Try>
           <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="484.8,1406.4" sap2010:WorkflowViewState.IdRef="Sequence_35">
             <sap:WorkflowViewStateService.ViewState>
@@ -457,7 +457,7 @@
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
               </ActivityAction.Argument>
-              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="484.8,1980.8" sap2010:WorkflowViewState.IdRef="Sequence_36">
+              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="484.8,1911.2" sap2010:WorkflowViewState.IdRef="Sequence_36">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -475,20 +475,7 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                 </ui:InvokeWorkflowFile>
-                <Assign sap:VirtualizedContainerService.HintSize="451.2,174.4" sap2010:WorkflowViewState.IdRef="Assign_5">
-                  <Assign.To>
-                    <OutArgument x:TypeArguments="x:String">[io_LastScreenshotPath]</OutArgument>
-                  </Assign.To>
-                  <Assign.Value>
-                    <InArgument x:TypeArguments="x:String">[screenshotPath]</InArgument>
-                  </Assign.Value>
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                </Assign>
+                <ui:SetAsset TimeoutMS="{x:Null}" AssetName="LAST_SCREENSHOT_PATH" DisplayName="Set Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="451.2,227.2" sap2010:WorkflowViewState.IdRef="SetAsset_1" Value="[screenshotPath]" />
                 <Assign sap:VirtualizedContainerService.HintSize="451.2,174.4" sap2010:WorkflowViewState.IdRef="Assign_4">
                   <Assign.To>
                     <OutArgument x:TypeArguments="s:Exception">[io_LastException]</OutArgument>
@@ -619,7 +606,6 @@
                     </Sequence>
                   </If.Else>
                 </If>
-                <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;[Download_Main Catch] io_LastException = &quot; &amp; If(io_LastException Is Nothing, &quot;NOTHING&quot;, io_LastException.Message) &amp; &quot; | io_LastScreenshotPath = &quot; &amp; io_LastScreenshotPath &amp; &quot; | io_LastCompCode = &quot; &amp; io_LastCompCode]" />
                 <Rethrow sap:VirtualizedContainerService.HintSize="451.2,48" sap2010:WorkflowViewState.IdRef="Rethrow_1" />
               </Sequence>
             </ActivityAction>
