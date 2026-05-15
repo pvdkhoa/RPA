@@ -148,7 +148,7 @@
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="SSF_Search_ExtraData" sap:VirtualizedContainerService.HintSize="661.2,5291.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="SSF_Search_ExtraData" sap:VirtualizedContainerService.HintSize="664.4000000000001,9287.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Default="C:\RPA_Template_Extra_Data\RPA_Template_Extra_Data.xlsx" Name="SSF_NEW_LTR_template_file" />
       <Variable x:TypeArguments="x:String" Default="C:\RPA\TempExtraData" Name="SSF_NEW_LTR_target_path" />
@@ -177,7 +177,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="1. Filter Downloaded File + Write Filtered Data To Data Table" sap:VirtualizedContainerService.HintSize="555.2,1762.4" sap2010:WorkflowViewState.IdRef="Sequence_33">
+    <Sequence DisplayName="1. Filter Downloaded File + Write Filtered Data To Data Table" sap:VirtualizedContainerService.HintSize="590.4,1762.4" sap2010:WorkflowViewState.IdRef="Sequence_33">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -246,7 +246,7 @@
               </sap:WorkflowViewStateService.ViewState>
             </ueab:ExcelProcessScopeX>
             <Delay Duration="00:00:10" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_11" />
-            <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim seen_product As New HashSet(Of String)&#xD;&#xA;SSF_data_table = New DataTable()&#xD;&#xA;SSF_data_table.Columns.Add(&quot;search_data&quot;, GetType(String))&#xD;&#xA;SSF_data_table.Columns.Add(&quot;before_update_data&quot;, GetType(String))&#xD;&#xA;SSF_data_table.Columns.Add(&quot;updated_data&quot;, GetType(String))&#xD;&#xA;SSF_period_data_table = New DataTable()&#xD;&#xA;SSF_period_data_table.Columns.Add(&quot;search_data&quot;, GetType(String))&#xD;&#xA;SSF_period_data_table.Columns.Add(&quot;before_update_data&quot;, GetType(String))&#xD;&#xA;SSF_period_data_table.Columns.Add(&quot;updated_data&quot;, GetType(Integer))&#xD;&#xA;&#xD;&#xA;For Each row As DataRow In raw_table.Rows&#xD;&#xA;    Dim productCode As String = row(&quot;상품코드&quot;).ToString().Trim()&#xD;&#xA;&#xD;&#xA;    ' Filter đầu tiên: chỉ lấy productCode bắt đầu bằng &quot;Z&quot;&#xD;&#xA;    If Not productCode.StartsWith(&quot;Z&quot;) Then Continue For&#xD;&#xA;&#xD;&#xA;    Dim contractCode As String = row(&quot;계약번호&quot;).ToString().Trim()&#xD;&#xA;    Dim productName As String = row(&quot;상품명&quot;).ToString().Trim()&#xD;&#xA;    Dim periodValue As String = row(&quot;납입기간&quot;).ToString().Trim()&#xD;&#xA;&#xD;&#xA;    If String.IsNullOrEmpty(contractCode) OrElse String.IsNullOrEmpty(productName) Then&#xD;&#xA;        Continue For&#xD;&#xA;    End If&#xD;&#xA;&#xD;&#xA;    If Not seen_product.Contains(productName) Then&#xD;&#xA;        seen_product.Add(productName)&#xD;&#xA;&#xD;&#xA;        Dim newRow1 As DataRow = SSF_data_table.NewRow()&#xD;&#xA;        newRow1(&quot;search_data&quot;) = contractCode&#xD;&#xA;        newRow1(&quot;before_update_data&quot;) = productName&#xD;&#xA;        newRow1(&quot;updated_data&quot;) = &quot;&quot;&#xD;&#xA;        SSF_data_table.Rows.Add(newRow1)&#xD;&#xA;&#xD;&#xA;        Dim newRow2 As DataRow = SSF_period_data_table.NewRow()&#xD;&#xA;        newRow2(&quot;search_data&quot;) = contractCode&#xD;&#xA;        newRow2(&quot;before_update_data&quot;) = periodValue&#xD;&#xA;        newRow2(&quot;updated_data&quot;) = 0&#xD;&#xA;        SSF_period_data_table.Rows.Add(newRow2)&#xD;&#xA;    End If&#xD;&#xA;Next" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="486.4,188" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+            <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim seen_product As New HashSet(Of String)&#xD;&#xA;Dim seen_period As New HashSet(Of String)&#xD;&#xA;&#xD;&#xA;SSF_data_table = New DataTable()&#xD;&#xA;SSF_data_table.Columns.Add(&quot;search_data&quot;, GetType(String))&#xD;&#xA;SSF_data_table.Columns.Add(&quot;before_update_data&quot;, GetType(String))&#xD;&#xA;SSF_data_table.Columns.Add(&quot;updated_data&quot;, GetType(String))&#xD;&#xA;&#xD;&#xA;SSF_period_data_table = New DataTable()&#xD;&#xA;SSF_period_data_table.Columns.Add(&quot;search_data&quot;, GetType(String))&#xD;&#xA;SSF_period_data_table.Columns.Add(&quot;before_update_data&quot;, GetType(String))&#xD;&#xA;SSF_period_data_table.Columns.Add(&quot;updated_data&quot;, GetType(Integer))&#xD;&#xA;&#xD;&#xA;For Each row As DataRow In raw_table.Rows&#xD;&#xA;    Dim productCode As String = row(&quot;상품코드&quot;).ToString().Trim()&#xD;&#xA;&#xD;&#xA;    ' Filter chung: productCode phải bắt đầu bằng &quot;Z&quot;&#xD;&#xA;    If Not productCode.StartsWith(&quot;Z&quot;) Then Continue For&#xD;&#xA;&#xD;&#xA;    Dim contractCode As String = row(&quot;계약번호&quot;).ToString().Trim()&#xD;&#xA;    Dim productName As String = row(&quot;상품명&quot;).ToString().Trim()&#xD;&#xA;    Dim periodValue As String = row(&quot;납입기간&quot;).ToString().Trim()&#xD;&#xA;&#xD;&#xA;    If String.IsNullOrEmpty(contractCode) OrElse String.IsNullOrEmpty(productName) Then&#xD;&#xA;        Continue For&#xD;&#xA;    End If&#xD;&#xA;&#xD;&#xA;    ' SSF_data_table: chỉ cần productCode bắt đầu &quot;Z&quot; + unique productName&#xD;&#xA;    If Not seen_product.Contains(productName) Then&#xD;&#xA;        seen_product.Add(productName)&#xD;&#xA;&#xD;&#xA;        Dim newRow1 As DataRow = SSF_data_table.NewRow()&#xD;&#xA;        newRow1(&quot;search_data&quot;) = contractCode&#xD;&#xA;        newRow1(&quot;before_update_data&quot;) = productName&#xD;&#xA;        newRow1(&quot;updated_data&quot;) = &quot;&quot;&#xD;&#xA;        SSF_data_table.Rows.Add(newRow1)&#xD;&#xA;    End If&#xD;&#xA;&#xD;&#xA;    ' SSF_period_data_table: productCode bắt đầu &quot;Z&quot; +납입기간 = 0 + unique productName&#xD;&#xA;    If periodValue = &quot;0&quot; AndAlso Not seen_period.Contains(productName) Then&#xD;&#xA;        seen_period.Add(productName)&#xD;&#xA;&#xD;&#xA;        Dim newRow2 As DataRow = SSF_period_data_table.NewRow()&#xD;&#xA;        newRow2(&quot;search_data&quot;) = contractCode&#xD;&#xA;        newRow2(&quot;before_update_data&quot;) = periodValue&#xD;&#xA;        newRow2(&quot;updated_data&quot;) = 0&#xD;&#xA;        SSF_period_data_table.Rows.Add(newRow2)&#xD;&#xA;    End If&#xD;&#xA;Next" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="486.4,188" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
               <ui:InvokeCode.Arguments>
                 <InOutArgument x:TypeArguments="sd:DataTable" x:Key="SSF_data_table">[SSF_data_table]</InOutArgument>
                 <InArgument x:TypeArguments="sd:DataTable" x:Key="raw_table">[raw_table]</InArgument>
@@ -278,34 +278,34 @@
         </InArgument>
       </Delay>
     </Sequence>
-    <Sequence DisplayName="2. Search On Website And Modified Data Table" sap:VirtualizedContainerService.HintSize="555.2,2260.8" sap2010:WorkflowViewState.IdRef="Sequence_7">
+    <Sequence DisplayName="2. Search On Website And Modified Data Table" sap:VirtualizedContainerService.HintSize="590.4,6256.8" sap2010:WorkflowViewState.IdRef="Sequence_7">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <If Condition="[SSF_data_table.Rows.Count &gt; 0]" sap:VirtualizedContainerService.HintSize="521.6,2168.8" sap2010:WorkflowViewState.IdRef="If_6">
+      <If Condition="[SSF_data_table.Rows.Count &gt; 0]" sap:VirtualizedContainerService.HintSize="556.8,6164.8" sap2010:WorkflowViewState.IdRef="If_6">
         <If.Then>
-          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="520,1865.6" sap2010:WorkflowViewState.IdRef="Sequence_35">
+          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="555.2,5861.6" sap2010:WorkflowViewState.IdRef="Sequence_35">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Edge 영업 홈" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="486.4,1805.6" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="ec1a05b9-c37a-47e2-b82e-1eabb9b43cbc" Version="V2">
+            <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Edge 영업 홈" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="521.6,5801.6" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="ec1a05b9-c37a-47e2-b82e-1eabb9b43cbc" Version="V2">
               <uix:NApplicationCard.Body>
                 <ActivityAction x:TypeArguments="x:Object">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="484.8,1612" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="520,5608" sap2010:WorkflowViewState.IdRef="Sequence_2">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="Delay_1">
+                    <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="Delay_1">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -313,7 +313,7 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </Delay>
-                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '장기'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="ec1a05b9-c37a-47e2-b82e-1eabb9b43cbc" Version="V5">
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '장기'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="ec1a05b9-c37a-47e2-b82e-1eabb9b43cbc" Version="V5">
                       <uix:NClick.Target>
                         <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" ContentHash="I5-ar47NgkKjOfKToUJocA" DesignTimeRectangle="428, 122, 72, 40" ElementType="Button" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl aaname='장기' tag='BUTTON' type='button' class='' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='장기' /&gt;" Guid="c065d081-bda4-4b1c-90bb-6e71ccc66b40" InformativeScreenshot="f08631a587cc1e15956e2594364a03b7.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/N6hFnpYrV0ePYreiHAExVw" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
                           <uix:TargetAnchorable.Anchors>
@@ -330,7 +330,7 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </uix:NClick>
-                    <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="Delay_2">
+                    <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="Delay_2">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -338,7 +338,7 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </Delay>
-                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '계약상세조회'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="ec1a05b9-c37a-47e2-b82e-1eabb9b43cbc" Version="V5">
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '계약상세조회'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="ec1a05b9-c37a-47e2-b82e-1eabb9b43cbc" Version="V5">
                       <uix:NClick.Target>
                         <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" ContentHash="q4COIc8zbkeiFnsmMJMdfg" DesignTimeRectangle="695, 274, 242, 31" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='계약상세조회' tag='A' /&gt;" Guid="fb6cafbc-0c5e-4e05-bbfa-09a6fe43947f" InformativeScreenshot="15dab04ad2bacba921a29040338a5406.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/DKsrLlTI7ESuK1Ac53_uZQ" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                       </uix:NClick.Target>
@@ -349,7 +349,7 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </uix:NClick>
-                    <Delay Duration="00:00:07" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="Delay_3">
+                    <Delay Duration="00:00:07" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="Delay_3">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -357,7 +357,7 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </Delay>
-                    <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_1" InteractionMode="HardwareEvents" ScopeIdentifier="ec1a05b9-c37a-47e2-b82e-1eabb9b43cbc" Shortcuts="[d(hk)][k(Esc)][u(hk)]" Version="V5">
+                    <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_1" InteractionMode="HardwareEvents" ScopeIdentifier="ec1a05b9-c37a-47e2-b82e-1eabb9b43cbc" Shortcuts="[d(hk)][k(Esc)][u(hk)]" Version="V5">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -365,7 +365,7 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </uix:NKeyboardShortcuts>
-                    <Assign sap:VirtualizedContainerService.HintSize="451.2,174.4" sap2010:WorkflowViewState.IdRef="Assign_11">
+                    <Assign sap:VirtualizedContainerService.HintSize="486.4,174.4" sap2010:WorkflowViewState.IdRef="Assign_11">
                       <Assign.To>
                         <OutArgument x:TypeArguments="x:Int32">[rowIndex3]</OutArgument>
                       </Assign.To>
@@ -373,19 +373,19 @@
                         <InArgument x:TypeArguments="x:Int32">[0]</InArgument>
                       </Assign.Value>
                     </Assign>
-                    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[SSF_data_table]" DisplayName="Loop through Product Name Data Table" sap:VirtualizedContainerService.HintSize="451.2,1036.8" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+                    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[SSF_data_table]" DisplayName="Loop through Product Name Data Table" sap:VirtualizedContainerService.HintSize="486.4,2134.4" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
                       <ui:ForEachRow.Body>
                         <ActivityAction x:TypeArguments="sd:DataRow">
                           <ActivityAction.Argument>
                             <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
                           </ActivityAction.Argument>
-                          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="449.6,864" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="484.8,1952.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <If Condition="[rowIndex3 &gt; 0 AndAlso rowIndex3 Mod 20 = 0]" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="If_4">
+                            <If Condition="[rowIndex3 &gt; 0 AndAlso rowIndex3 Mod 20 = 0]" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="If_4">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -436,7 +436,7 @@
                                 </Sequence>
                               </If.Else>
                             </If>
-                            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'INPUT NPNLFPC01100_plcy…'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="SameAsCard" ScopeIdentifier="ec1a05b9-c37a-47e2-b82e-1eabb9b43cbc" Text="[CurrentRow(&quot;search_data&quot;).ToString()]" Version="V5">
+                            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'INPUT NPNLFPC01100_plcy…'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="SameAsCard" ScopeIdentifier="ec1a05b9-c37a-47e2-b82e-1eabb9b43cbc" Text="[CurrentRow(&quot;search_data&quot;).ToString()]" Version="V5">
                               <uix:NTypeInto.Target>
                                 <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" ContentHash="ubGc1zdNw0CL7OHuBM_ZKw" DesignTimeRectangle="277, 248, 143, 27" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-0C0ED271-9CD4-412D-97F6-09C74DAE5994_0' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tableRow='1' tag='INPUT' /&gt;" Guid="9c120f5e-56ff-408a-9555-236adeb39441" InformativeScreenshot="24f6f1f77d5690eeb8345aa7bbd18595.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/mbPyN8NCT0qfMtQZGkCfog" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                               </uix:NTypeInto.Target>
@@ -457,8 +457,8 @@
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
                             </uix:NTypeInto>
-                            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_4" />
-                            <uix:NClick ActivateBefore="{x:Null}" ClickType="Single" DisplayName="Click '검색'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NClick_3" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="ec1a05b9-c37a-47e2-b82e-1eabb9b43cbc" Version="V5">
+                            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_4" />
+                            <uix:NClick ActivateBefore="{x:Null}" ClickType="Single" DisplayName="Click '검색'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NClick_3" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="ec1a05b9-c37a-47e2-b82e-1eabb9b43cbc" Version="V5">
                               <uix:NClick.Target>
                                 <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" ContentHash="atxTNegCW0WKZo8mysS9Ug" DesignTimeRectangle="1761, 248, 63, 27" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-0C0ED271-9CD4-412D-97F6-09C74DAE5994_0' tag='IFRAME' /&gt;&lt;webctrl class='NUI-btn-search' parentid='NPNLFPC01100' tag='BUTTON' /&gt;" Guid="5fecdf7f-7fcb-4dc4-952f-e90daa877400" InformativeScreenshot="b154a5c07fd810c9daf7f57e09d4f742.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/VQcXi-0kD0ewBapwz1_nqw" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                               </uix:NClick.Target>
@@ -469,8 +469,8 @@
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
                             </uix:NClick>
-                            <Delay Duration="00:00:07" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_5" />
-                            <uix:NCheckState DisplayName="Check App State '고객조회 사유 선택 조회 사유 1. 보상처…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="ec1a05b9-c37a-47e2-b82e-1eabb9b43cbc" Version="V5">
+                            <Delay Duration="00:00:07" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_5" />
+                            <uix:NCheckState DisplayName="Check App State '고객조회 사유 선택 조회 사유 1. 보상처…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,995.2" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="ec1a05b9-c37a-47e2-b82e-1eabb9b43cbc" Version="V5">
                               <uix:NCheckState.IfExists>
                                 <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,560.8" sap2010:WorkflowViewState.IdRef="Sequence_39">
                                   <sap:WorkflowViewStateService.ViewState>
@@ -505,23 +505,23 @@
                               </uix:NCheckState.Target>
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
                             </uix:NCheckState>
-                            <uix:NGetText DisplayName="Get Text '자녀보험 NEW 엄마맘에쏙드는(1611.1…'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NGetText_1" ScopeIdentifier="ec1a05b9-c37a-47e2-b82e-1eabb9b43cbc" TextString="[productName]" Version="V5">
+                            <uix:NGetText DisplayName="Get Text '자녀보험 NEW 엄마맘에쏙드는(1611.1…'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,142.4" sap2010:WorkflowViewState.IdRef="NGetText_1" ScopeIdentifier="ec1a05b9-c37a-47e2-b82e-1eabb9b43cbc" TextString="[productName]" Version="V5">
                               <uix:NGetText.Target>
                                 <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" ContentHash="jAJbQLrDaU2Fzlv5egZv4A" DesignTimeRectangle="710, 240, 691, 43" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-0C0ED271-9CD4-412D-97F6-09C74DAE5994_0' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tableCol='2' tableRow='1' tag='TD' /&gt;" Guid="dddfa236-8234-429c-98b2-b72e4a465112" InformativeScreenshot="757c2fb53a19727faa18cda7d50f544d.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/5Gyxa1_roUeI9xUZ7OnvAw" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                               </uix:NGetText.Target>
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
                             </uix:NGetText>
-                            <Assign sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Assign_1">
+                            <Assign sap:VirtualizedContainerService.HintSize="451.2,174.4" sap2010:WorkflowViewState.IdRef="Assign_1">
                               <Assign.To>
                                 <OutArgument x:TypeArguments="x:Object">[CurrentRow("updated_data")]</OutArgument>
                               </Assign.To>
@@ -530,35 +530,56 @@
                               </Assign.Value>
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
                             </Assign>
-                            <uix:NGetText DisplayName="Get Text '15회차 (잔여 225회차 전체 240회)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NGetText_6" ScopeIdentifier="ec1a05b9-c37a-47e2-b82e-1eabb9b43cbc" TextString="[SSF_period_text]" Version="V5">
-                              <uix:NGetText.Target>
-                                <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" ContentHash="YfmoWZfV1U6-17-wf7erKQ" DesignTimeRectangle="572, 452, 550, 38" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-0C0ED271-9CD4-412D-97F6-09C74DAE5994_0' tag='IFRAME' /&gt;&lt;webctrl parentid='NPNLFPC01101' tag='TABLE' /&gt;&lt;webctrl tableRow='4' tag='TD' /&gt;" Guid="fca9f8f6-4898-4dce-9846-5131d0fb5153" InformativeScreenshot="74f34eb9787ae3038663fefc6b554771.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/IsAJyEU7xUOHmpPNNXTrLQ" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-                              </uix:NGetText.Target>
+                            <Assign sap:VirtualizedContainerService.HintSize="451.2,165.6" sap2010:WorkflowViewState.IdRef="Assign_12">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Int32">[rowIndex3]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Int32">[rowIndex3 + 1]</InArgument>
+                              </Assign.Value>
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                            </uix:NGetText>
-                            <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim m As System.Text.RegularExpressions.Match = _&#xA;    System.Text.RegularExpressions.Regex.Match(SSF_period_text, &quot;전체 (\d+)회&quot;)&#xA;&#xA;If m.Success Then&#xA;    SSF_period_time = Integer.Parse(m.Groups(1).Value)&#xA;End If" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="InvokeCode_9">
-                              <ui:InvokeCode.Arguments>
-                                <InArgument x:TypeArguments="x:String" x:Key="SSF_period_text">[SSF_period_text]</InArgument>
-                                <OutArgument x:TypeArguments="x:Int32" x:Key="SSF_period_time">[SSF_period_time]</OutArgument>
-                              </ui:InvokeCode.Arguments>
-                              <sap:WorkflowViewStateService.ViewState>
-                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                </scg:Dictionary>
-                              </sap:WorkflowViewStateService.ViewState>
-                            </ui:InvokeCode>
-                            <If Condition="[SSF_period_time &lt;&gt; 0]" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="If_3">
+                            </Assign>
+                          </Sequence>
+                        </ActivityAction>
+                      </ui:ForEachRow.Body>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:ForEachRow>
+                    <Assign sap:VirtualizedContainerService.HintSize="486.4,174.4" sap2010:WorkflowViewState.IdRef="Assign_15">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Int32">[rowIndex3]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Int32">[0]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[SSF_period_data_table]" DisplayName="Loop through period Data Table" sap:VirtualizedContainerService.HintSize="486.4,2724" sap2010:WorkflowViewState.IdRef="ForEachRow_6">
+                      <ui:ForEachRow.Body>
+                        <ActivityAction x:TypeArguments="sd:DataRow">
+                          <ActivityAction.Argument>
+                            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
+                          </ActivityAction.Argument>
+                          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="484.8,2551.2" sap2010:WorkflowViewState.IdRef="Sequence_41">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <If Condition="[rowIndex3 &gt; 0 AndAlso rowIndex3 Mod 20 = 0]" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="If_8">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -566,21 +587,169 @@
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
                               <If.Then>
-                                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,348" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,1256" sap2010:WorkflowViewState.IdRef="Sequence_43">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
-                                  <Assign sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="Assign_7">
+                                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'BUTTON'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_14" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="ec1a05b9-c37a-47e2-b82e-1eabb9b43cbc" Version="V5">
+                                    <uix:NClick.Target>
+                                      <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" ContentHash="L5DpASrte0Ou1I7EWyfzSA" DesignTimeRectangle="292, 190, 20, 20" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='btn-close' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;article&amp;gt;div&amp;gt;section&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;ul&amp;gt;li&amp;gt;button' tag='BUTTON' type='button' /&gt;" Guid="2f6118d7-cfab-405c-9bab-7a7b294766e1" InformativeScreenshot="9fbbc6069478b86f94dd596bc8e6d235.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/LozAqOGpq0aESH8nXJ0v-w" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                                    </uix:NClick.Target>
+                                  </uix:NClick>
+                                  <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_27" />
+                                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '장기(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_15" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="ec1a05b9-c37a-47e2-b82e-1eabb9b43cbc" Version="V5">
+                                    <uix:NClick.Target>
+                                      <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" ContentHash="Gm5mdx33eU2m50piwhhlkQ" DesignTimeRectangle="428, 122, 72, 40" ElementType="Button" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl aaname='장기' tag='BUTTON' type='button' class='' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='장기' /&gt;" Guid="8365d6bc-1e6c-4c7c-a3a8-88392fbb93ff" InformativeScreenshot="f08631a587cc1e15956e2594364a03b7.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/errWE1VWKEm5wF0szE4EaA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                                        <uix:TargetAnchorable.Anchors>
+                                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                            <uix:Target DesignTimeRectangle="448, 130, 32, 23" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='장기' tag='SPAN' type='' class='' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='장기' /&gt;" Guid="50c85863-8af6-4303-8c3e-4089f5fae56f" SearchSteps="FuzzySelector" />
+                                          </scg:List>
+                                        </uix:TargetAnchorable.Anchors>
+                                      </uix:TargetAnchorable>
+                                    </uix:NClick.Target>
+                                  </uix:NClick>
+                                  <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_28" />
+                                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '계약상세조회(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_16" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="ec1a05b9-c37a-47e2-b82e-1eabb9b43cbc" Version="V5">
+                                    <uix:NClick.Target>
+                                      <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" ContentHash="FY50Bcr2FU6d9f6kjhDdnA" DesignTimeRectangle="695, 274, 242, 31" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='계약상세조회' tag='A' /&gt;" Guid="4f3d03f2-ea07-4158-ba9b-a451687b5779" InformativeScreenshot="15dab04ad2bacba921a29040338a5406.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/1rEcyeRoRE63XXQh-fHLvw" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                                    </uix:NClick.Target>
+                                  </uix:NClick>
+                                  <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_29" />
+                                  <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,248" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_4" InteractionMode="HardwareEvents" ScopeIdentifier="ec1a05b9-c37a-47e2-b82e-1eabb9b43cbc" Shortcuts="[d(hk)][k(Esc)][u(hk)]" Version="V5" />
+                                </Sequence>
+                              </If.Then>
+                              <If.Else>
+                                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_44">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </Sequence>
+                              </If.Else>
+                            </If>
+                            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'INPUT NPNLFPC01100_plcy…'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="SameAsCard" ScopeIdentifier="ec1a05b9-c37a-47e2-b82e-1eabb9b43cbc" Text="[CurrentRow(&quot;search_data&quot;).ToString()]" Version="V5">
+                              <uix:NTypeInto.Target>
+                                <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" ContentHash="ubGc1zdNw0CL7OHuBM_ZKw" DesignTimeRectangle="277, 248, 143, 27" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-0C0ED271-9CD4-412D-97F6-09C74DAE5994_0' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tableRow='1' tag='INPUT' /&gt;" Guid="9c120f5e-56ff-408a-9555-236adeb39441" InformativeScreenshot="24f6f1f77d5690eeb8345aa7bbd18595.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/mbPyN8NCT0qfMtQZGkCfog" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                              </uix:NTypeInto.Target>
+                              <uix:NTypeInto.VerifyOptions>
+                                <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                                  <uix:VerifyExecutionTypeIntoOptions.Retry>
+                                    <InArgument x:TypeArguments="x:Boolean" />
+                                  </uix:VerifyExecutionTypeIntoOptions.Retry>
+                                  <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                                    <InArgument x:TypeArguments="x:Double" />
+                                  </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                                </uix:VerifyExecutionTypeIntoOptions>
+                              </uix:NTypeInto.VerifyOptions>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </uix:NTypeInto>
+                            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_26" />
+                            <uix:NClick ActivateBefore="{x:Null}" ClickType="Single" DisplayName="Click '검색'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NClick_12" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="ec1a05b9-c37a-47e2-b82e-1eabb9b43cbc" Version="V5">
+                              <uix:NClick.Target>
+                                <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" ContentHash="atxTNegCW0WKZo8mysS9Ug" DesignTimeRectangle="1761, 248, 63, 27" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-0C0ED271-9CD4-412D-97F6-09C74DAE5994_0' tag='IFRAME' /&gt;&lt;webctrl class='NUI-btn-search' parentid='NPNLFPC01100' tag='BUTTON' /&gt;" Guid="5fecdf7f-7fcb-4dc4-952f-e90daa877400" InformativeScreenshot="b154a5c07fd810c9daf7f57e09d4f742.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/VQcXi-0kD0ewBapwz1_nqw" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                              </uix:NClick.Target>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </uix:NClick>
+                            <Delay Duration="00:00:07" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_25" />
+                            <uix:NCheckState DisplayName="Check App State '고객조회 사유 선택 조회 사유 1. 보상처…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,995.2" sap2010:WorkflowViewState.IdRef="NCheckState_2" ScopeIdentifier="ec1a05b9-c37a-47e2-b82e-1eabb9b43cbc" Version="V5">
+                              <uix:NCheckState.IfExists>
+                                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,560.8" sap2010:WorkflowViewState.IdRef="Sequence_45">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'INPUT'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_13" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="ec1a05b9-c37a-47e2-b82e-1eabb9b43cbc" Version="V5">
+                                    <uix:NClick.Target>
+                                      <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" ContentHash="O2PXldFpK0OOdeW7EdcBEQ" DesignTimeRectangle="593, 608, 16, 16" ElementType="RadioButton" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-0C0ED271-9CD4-412D-97F6-09C74DAE5994_0' tag='IFRAME' /&gt;&lt;webctrl aaname=' 조회 사유' class='NUI-tbl' tag='TABLE' /&gt;&lt;webctrl tableRow='5' tag='INPUT' /&gt;" Guid="1a7e02da-ffde-4072-a1e4-9cf5e00f18fc" InformativeScreenshot="8a84a9d1a6abcc8fee96b9f1033508a2.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/_7Sic4QOA0SBFdAsIa5gEw" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None" />
+                                    </uix:NClick.Target>
+                                  </uix:NClick>
+                                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '선택'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_17" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="ec1a05b9-c37a-47e2-b82e-1eabb9b43cbc" Version="V5">
+                                    <uix:NClick.Target>
+                                      <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" ContentHash="rABygmNLx0O7xqstfE5j5w" DesignTimeRectangle="1337, 846, 73, 31" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-0C0ED271-9CD4-412D-97F6-09C74DAE5994_0' tag='IFRAME' /&gt;&lt;webctrl class='NUI-btn-page03' tag='BUTTON' /&gt;" Guid="26e337e4-30e1-40b8-99e2-fcd85b7c421b" InformativeScreenshot="640fc04b90260b7ebfb9dd067c083212.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/TDYeJSwDYki1M53xIEfg7g" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                                    </uix:NClick.Target>
+                                  </uix:NClick>
+                                  <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="Delay_30" />
+                                </Sequence>
+                              </uix:NCheckState.IfExists>
+                              <uix:NCheckState.IfNotExists>
+                                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_46">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </Sequence>
+                              </uix:NCheckState.IfNotExists>
+                              <uix:NCheckState.Target>
+                                <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" ContentHash="_jM9qnTbYUGmbAYSOaZa9Q" DesignTimeRectangle="560, 375, 875, 521" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-0C0ED271-9CD4-412D-97F6-09C74DAE5994_0' tag='IFRAME' /&gt;&lt;webctrl class='NUI-pop-inner' tag='DIV' /&gt;" Guid="7df2c21d-17c3-495f-b12b-7e1747f2882c" InformativeScreenshot="f5231acd4b9128363ac542267f8b67c2.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/m72OdsatuE6EBrslT6Vwzw" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                              </uix:NCheckState.Target>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </uix:NCheckState>
+                            <uix:NGetText DisplayName="Get Text '15회차 (잔여 225회차 전체 240회)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,142.4" sap2010:WorkflowViewState.IdRef="NGetText_8" ScopeIdentifier="ec1a05b9-c37a-47e2-b82e-1eabb9b43cbc" TextString="[SSF_period_text]" Version="V5">
+                              <uix:NGetText.Target>
+                                <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" ContentHash="YfmoWZfV1U6-17-wf7erKQ" DesignTimeRectangle="572, 452, 550, 38" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-0C0ED271-9CD4-412D-97F6-09C74DAE5994_0' tag='IFRAME' /&gt;&lt;webctrl parentid='NPNLFPC01101' tag='TABLE' /&gt;&lt;webctrl tableRow='4' tag='TD' /&gt;" Guid="fca9f8f6-4898-4dce-9846-5131d0fb5153" InformativeScreenshot="74f34eb9787ae3038663fefc6b554771.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/IsAJyEU7xUOHmpPNNXTrLQ" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                              </uix:NGetText.Target>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </uix:NGetText>
+                            <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim m As System.Text.RegularExpressions.Match = _&#xA;    System.Text.RegularExpressions.Regex.Match(SSF_period_text, &quot;전체 (\d+)회&quot;)&#xA;&#xA;If m.Success Then&#xA;    SSF_period_time = Integer.Parse(m.Groups(1).Value)&#xA;End If" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="451.2,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_10">
+                              <ui:InvokeCode.Arguments>
+                                <InArgument x:TypeArguments="x:String" x:Key="SSF_period_text">[SSF_period_text]</InArgument>
+                                <OutArgument x:TypeArguments="x:Int32" x:Key="SSF_period_time">[SSF_period_time]</OutArgument>
+                              </ui:InvokeCode.Arguments>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </ui:InvokeCode>
+                            <If Condition="[SSF_period_time &lt;&gt; 0]" sap:VirtualizedContainerService.HintSize="451.2,576" sap2010:WorkflowViewState.IdRef="If_9">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <If.Then>
+                                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,348" sap2010:WorkflowViewState.IdRef="Sequence_42">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <Assign sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="Assign_17">
                                     <Assign.To>
-                                      <OutArgument x:TypeArguments="x:Object">[SSF_period_data_table.Rows(rowIndex3)("updated_data")]</OutArgument>
+                                      <OutArgument x:TypeArguments="x:Object">[CurrentRow("updated_data")]</OutArgument>
                                     </Assign.To>
                                     <Assign.Value>
                                       <InArgument x:TypeArguments="x:Object">[SSF_period_time \ 12]</InArgument>
                                     </Assign.Value>
                                   </Assign>
-                                  <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="WriteLine_7" Text="[&quot;Output &quot; + (SSF_period_time \12).ToString()]">
+                                  <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="WriteLine_12" Text="[&quot;Output &quot; + (SSF_period_time \12).ToString()]">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -591,7 +760,7 @@
                                 </Sequence>
                               </If.Then>
                               <If.Else>
-                                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_47">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -600,7 +769,7 @@
                                 </Sequence>
                               </If.Else>
                             </If>
-                            <Assign sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="Assign_12">
+                            <Assign sap:VirtualizedContainerService.HintSize="451.2,165.6" sap2010:WorkflowViewState.IdRef="Assign_18">
                               <Assign.To>
                                 <OutArgument x:TypeArguments="x:Int32">[rowIndex3]</OutArgument>
                               </Assign.To>
@@ -609,7 +778,7 @@
                               </Assign.Value>
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
@@ -654,25 +823,25 @@
           </Sequence>
         </If.Then>
         <If.Else>
-          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="520,173.6" sap2010:WorkflowViewState.IdRef="Sequence_36">
+          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="555.2,173.6" sap2010:WorkflowViewState.IdRef="Sequence_36">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="486.4,113.6" sap2010:WorkflowViewState.IdRef="WriteLine_10" Text="None Have SSF Data Table" />
+            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="521.6,113.6" sap2010:WorkflowViewState.IdRef="WriteLine_10" Text="None Have SSF Data Table" />
           </Sequence>
         </If.Else>
       </If>
     </Sequence>
-    <Sequence DisplayName="3. Copy Template And Import Data On Data Table To Coppied File" sap:VirtualizedContainerService.HintSize="555.2,1244.8" sap2010:WorkflowViewState.IdRef="Sequence_30">
+    <Sequence DisplayName="3. Copy Template And Import Data On Data Table To Coppied File" sap:VirtualizedContainerService.HintSize="590.4,1244.8" sap2010:WorkflowViewState.IdRef="Sequence_30">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <If Condition="[SSF_data_table.Rows.Count &gt; 0]" sap:VirtualizedContainerService.HintSize="451.2,1161.6" sap2010:WorkflowViewState.IdRef="If_5">
+      <If Condition="[SSF_data_table.Rows.Count &gt; 0 Or SSF_period_data_table.Rows.Count &gt; 0]" sap:VirtualizedContainerService.HintSize="451.2,1161.6" sap2010:WorkflowViewState.IdRef="If_5">
         <If.Then>
           <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,858.4" sap2010:WorkflowViewState.IdRef="Sequence_31">
             <sap:WorkflowViewStateService.ViewState>
