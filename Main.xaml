@@ -942,9 +942,9 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                           <Transition.To>
-                            <State x:Name="__ReferenceID1" sap2010:Annotation.AnnotationText="End process and close all applications used." DisplayName="End Process" sap:VirtualizedContainerService.HintSize="200,109.6" sap2010:WorkflowViewState.IdRef="State_1" IsFinal="True">
+                            <State x:Name="__ReferenceID1" sap2010:Annotation.AnnotationText="End process and close all applications used." DisplayName="End Process" sap:VirtualizedContainerService.HintSize="531.2,2017.6" sap2010:WorkflowViewState.IdRef="State_1" IsFinal="True">
                               <State.Entry>
-                                <TryCatch DisplayName="Try to close all aplications" sap:VirtualizedContainerService.HintSize="486.4,1136.8" sap2010:WorkflowViewState.IdRef="TryCatch_13">
+                                <TryCatch DisplayName="Try to close all aplications" sap:VirtualizedContainerService.HintSize="486.4,1872.8" sap2010:WorkflowViewState.IdRef="TryCatch_13">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -952,7 +952,7 @@
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
                                   <TryCatch.Try>
-                                    <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="484.8,648" sap2010:WorkflowViewState.IdRef="Sequence_40">
+                                    <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="484.8,1416.8" sap2010:WorkflowViewState.IdRef="Sequence_40">
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -971,22 +971,72 @@
                                       </ui:InvokeWorkflowFile>
                                       <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_1" />
                                       <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[If(hasError = &quot;True&quot;, &quot;False&quot;, &quot;True&quot;)]" />
-                                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="SendMail - Invoke Workflow File (Utils\SendMail.xaml)" sap:VirtualizedContainerService.HintSize="451.2,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_30" UnSafe="False" WorkflowFileName="Utils\SendMail.xaml">
-                                        <ui:InvokeWorkflowFile.Arguments>
-                                          <InArgument x:TypeArguments="x:String" x:Key="isSuccess">[If(hasError = "True", "False", "True")]</InArgument>
-                                          <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[startTime]</InArgument>
-                                          <InArgument x:TypeArguments="x:String" x:Key="runType">[lastRunType]</InArgument>
-                                          <InArgument x:TypeArguments="s:Exception" x:Key="exceptionData">[lastException]</InArgument>
-                                          <InArgument x:TypeArguments="x:String" x:Key="compCode">[lastCompCode]</InArgument>
-                                          <InArgument x:TypeArguments="x:String" x:Key="contractType">[lastContractType]</InArgument>
-                                        </ui:InvokeWorkflowFile.Arguments>
-                                        <sap:WorkflowViewStateService.ViewState>
-                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                          </scg:Dictionary>
-                                        </sap:WorkflowViewStateService.ViewState>
-                                      </ui:InvokeWorkflowFile>
+                                      <If Condition="[in_RunType = &quot;CHECK&quot;]" sap:VirtualizedContainerService.HintSize="451.2,936" sap2010:WorkflowViewState.IdRef="If_15">
+                                        <If.Then>
+                                          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,579.2" sap2010:WorkflowViewState.IdRef="Sequence_59">
+                                            <Sequence.Variables>
+                                              <Variable x:TypeArguments="x:String" Name="excelFilePath">
+                                                <Variable.Default>
+                                                  <Literal x:TypeArguments="x:String">C:\RPA\Schedule\보유계약실행일자.xlsx</Literal>
+                                                </Variable.Default>
+                                              </Variable>
+                                            </Sequence.Variables>
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="ExportJsonToExcel - Invoke Workflow File (Utils\ExportJsonToExcel.xaml)" sap:VirtualizedContainerService.HintSize="416,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_34" UnSafe="False" WorkflowFileName="Utils\ExportJsonToExcel.xaml">
+                                              <ui:InvokeWorkflowFile.Arguments>
+                                                <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                                              </ui:InvokeWorkflowFile.Arguments>
+                                            </ui:InvokeWorkflowFile>
+                                            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="SendMailCheckAvailable - Invoke Workflow File (Utils\SendMailCheckAvailable.xaml)" sap:VirtualizedContainerService.HintSize="416,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_35" UnSafe="False" WorkflowFileName="Utils\SendMailCheckAvailable.xaml">
+                                              <ui:InvokeWorkflowFile.Arguments>
+                                                <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[startTime]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="runType">[in_RunType]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
+                                              </ui:InvokeWorkflowFile.Arguments>
+                                            </ui:InvokeWorkflowFile>
+                                            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="ExcelScheduleCreation - Invoke Workflow File (Utils\ExcelScheduleCreation.xaml)" sap:VirtualizedContainerService.HintSize="416,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_36" UnSafe="False" WorkflowFileName="Utils\ExcelScheduleCreation.xaml">
+                                              <ui:InvokeWorkflowFile.Arguments>
+                                                <InArgument x:TypeArguments="x:String" x:Key="in_ExcelPath">[excelFilePath]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="in_SheetName">Sheet1</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="in_FolderId">946773</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="in_OrganizationName">rpacaxjvjr</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="in_TenantName">DefaultTenant</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="in_ClientId">f03a6679-36df-4e04-987e-b73d8a905970</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="in_ClientSecret">!ys?YRKf6^e4Lbapq6SN0cq?GwNSO_#Q7s*~VwNt!BqDElg$F$srGJpiP7v8k$XS</InArgument>
+                                              </ui:InvokeWorkflowFile.Arguments>
+                                            </ui:InvokeWorkflowFile>
+                                          </Sequence>
+                                        </If.Then>
+                                        <If.Else>
+                                          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,227.2" sap2010:WorkflowViewState.IdRef="Sequence_60">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="SendMail - Invoke Workflow File (Utils\SendMail.xaml)" sap:VirtualizedContainerService.HintSize="416,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_30" UnSafe="False" WorkflowFileName="Utils\SendMail.xaml">
+                                              <ui:InvokeWorkflowFile.Arguments>
+                                                <InArgument x:TypeArguments="x:String" x:Key="isSuccess">[If(hasError = "True", "False", "True")]</InArgument>
+                                                <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[startTime]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="runType">[lastRunType]</InArgument>
+                                                <InArgument x:TypeArguments="s:Exception" x:Key="exceptionData">[lastException]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="compCode">[lastCompCode]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="contractType">[lastContractType]</InArgument>
+                                              </ui:InvokeWorkflowFile.Arguments>
+                                              <sap:WorkflowViewStateService.ViewState>
+                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                </scg:Dictionary>
+                                              </sap:WorkflowViewStateService.ViewState>
+                                            </ui:InvokeWorkflowFile>
+                                          </Sequence>
+                                        </If.Else>
+                                      </If>
                                     </Sequence>
                                   </TryCatch.Try>
                                   <TryCatch.Catches>

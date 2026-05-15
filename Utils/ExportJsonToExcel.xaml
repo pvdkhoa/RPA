@@ -76,9 +76,9 @@
       <AssemblyReference>System.Linq.Expressions</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ExportJsonToExcel" sap:VirtualizedContainerService.HintSize="874,508.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ExportJsonToExcel" sap:VirtualizedContainerService.HintSize="803.6,631.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="x:String" Default="20260512_140051" Name="CHECKING_ID" />
+      <Variable x:TypeArguments="x:String" Name="CHECKING_ID" />
       <Variable x:TypeArguments="x:String" Default="C:\RPA\CheckAvailableComp" Name="outputDir" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
@@ -91,7 +91,8 @@
         <OutArgument x:TypeArguments="x:String">[CHECKING_ID]</OutArgument>
       </ui:GetRobotAsset.Value>
     </ui:GetRobotAsset>
-    <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="449.6,122.4" sap2010:WorkflowViewState.IdRef="Delay_1" />
+    <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="449.6,122.4" sap2010:WorkflowViewState.IdRef="Delay_1" />
+    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="449.6,122.4" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;CHECKING ID &quot; + CHECKING_ID]" />
     <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ====== Input variables: outputDir, runId ======&#xA;Dim jsonPath  As String = System.IO.Path.Combine(outputDir, &quot;result_&quot; &amp; runId &amp; &quot;.json&quot;)&#xA;Dim excelPath As String = System.IO.Path.Combine(outputDir, &quot;Report_&quot; &amp; runId &amp; &quot;.xlsx&quot;)&#xA;&#xA;' ====== Đọc JSON ======&#xA;Dim jsonContent As String = System.IO.File.ReadAllText(jsonPath, System.Text.Encoding.UTF8)&#xA;Dim jsonData As Newtonsoft.Json.Linq.JArray = Newtonsoft.Json.Linq.JArray.Parse(jsonContent)&#xA;&#xA;' ====== Mở file Excel đã có sẵn (header + border đã init trước) ======&#xA;Dim workbook As New ClosedXML.Excel.XLWorkbook(excelPath)&#xA;Dim ws As ClosedXML.Excel.IXLWorksheet = workbook.Worksheet(&quot;Result&quot;)&#xA;&#xA;' ====== Ghi Data từ hàng 2 ======&#xA;Dim rowIndex As Integer = 2&#xA;For Each item As Newtonsoft.Json.Linq.JObject In jsonData&#xA;    Dim companyName As String = item(&quot;companyName&quot;).ToString()&#xA;    Dim isLogined   As String = item(&quot;isLogined&quot;).ToString()&#xA;    Dim processTime As String = item(&quot;processTime&quot;).ToString()&#xA;&#xA;    ' -- Cột A: No --&#xA;    ws.Cell(rowIndex, 1).Value = rowIndex - 1&#xA;&#xA;    ' -- Cột B: 이름 --&#xA;    ws.Cell(rowIndex, 2).Value = companyName&#xA;&#xA;    ' -- Cột C: 상태 --&#xA;    ' &quot;Y&quot;          → &quot;성공&quot; (màu đen)&#xA;    ' &quot;N&quot; hoặc &quot;&quot;  → &quot;실패&quot; (màu đỏ)&#xA;    If isLogined = &quot;Y&quot; Then&#xA;        ws.Cell(rowIndex, 3).Value = &quot;성공&quot;&#xA;        ws.Cell(rowIndex, 3).Style.Font.FontColor = ClosedXML.Excel.XLColor.Black&#xA;    Else&#xA;        ws.Cell(rowIndex, 3).Value = &quot;실패&quot;&#xA;        ws.Cell(rowIndex, 3).Style.Font.FontColor = ClosedXML.Excel.XLColor.Red&#xA;    End If&#xA;&#xA;    ' -- Cột D: 확인 일시 → format yyyy-MM-dd HH:mm:ss --&#xA;    If Not String.IsNullOrEmpty(processTime) Then&#xA;        Dim parsedTime As DateTime&#xA;        If DateTime.TryParse(processTime, parsedTime) Then&#xA;            ws.Cell(rowIndex, 4).Value = parsedTime.ToString(&quot;yyyy-MM-dd HH:mm:ss&quot;)&#xA;        Else&#xA;            ws.Cell(rowIndex, 4).Value = processTime&#xA;        End If&#xA;    Else&#xA;        ws.Cell(rowIndex, 4).Value = &quot;&quot;&#xA;    End If&#xA;&#xA;    rowIndex += 1&#xA;Next&#xA;&#xA;' ====== Lưu file ======&#xA;workbook.Save()&#xA;workbook.Dispose()" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="449.6,188" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
       <ui:InvokeCode.Arguments>
         <InArgument x:TypeArguments="x:String" x:Key="outputDir">[outputDir]</InArgument>
