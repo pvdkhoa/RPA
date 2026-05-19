@@ -105,9 +105,10 @@
       <AssemblyReference>System.Linq.Async</AssemblyReference>
       <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
       <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>REF_RPA.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Login" sap:VirtualizedContainerService.HintSize="762.8000000000001,5119.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Login" sap:VirtualizedContainerService.HintSize="757.2,5004" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="ui:UiElement" Name="browserInstance" />
       <Variable x:TypeArguments="ss:SecureString" Name="SSF_PW" />
@@ -123,96 +124,175 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="SSF_AST_URL" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="628.8,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="SSF_AST_URL" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="486.4,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
       <ui:GetRobotAsset.Value>
         <OutArgument x:TypeArguments="x:String">[SSF_URL]</OutArgument>
       </ui:GetRobotAsset.Value>
     </ui:GetRobotAsset>
-    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="SSF_AST_OTP" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="628.8,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="SSF_AST_OTP" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="486.4,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
       <ui:GetRobotAsset.Value>
         <OutArgument x:TypeArguments="x:String">[SSF_OTP]</OutArgument>
       </ui:GetRobotAsset.Value>
     </ui:GetRobotAsset>
     <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="SSF_AST_LOGIN" CacheStrategy="None" DisplayName="Get Credential" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="628.8,175.2" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[SSF_PW]" Username="[SSF_UID]" />
-    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" DisplayName="Edge 삼성생명 - GA영업포탈 로그인 관리" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="628.8,4570.4" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="DebuggerApi" OutUiElement="[browserInstance]" ScopeGuid="2b7f531e-abf7-45b0-84e7-a28cfa23f4a3" Version="V2" WindowResize="Maximize">
+    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" DisplayName="Edge 삼성생명 - GA영업포탈 로그인 관리" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="628.8,4455.2" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="DebuggerApi" OutUiElement="[browserInstance]" ScopeGuid="2b7f531e-abf7-45b0-84e7-a28cfa23f4a3" Version="V2" WindowResize="Maximize">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="627.2,4376.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="627.2,4261.6" sap2010:WorkflowViewState.IdRef="Sequence_3">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="593.6,122.4" sap2010:WorkflowViewState.IdRef="Delay_10" />
-            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'INPUT userId'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="593.6,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_4" InteractionMode="SameAsCard" ScopeIdentifier="2b7f531e-abf7-45b0-84e7-a28cfa23f4a3" Text="[SSF_UID]" Version="V5">
-              <uix:NTypeInto.Target>
-                <uix:TargetAnchorable BrowserURL="login.samsungfire.com/nl/p/login/ui/SPGENLP00000" CVScreenId="7e962e92-c21e-4718-afbe-f551b59615b8" ContentHash="9hdIbfSlTk-LE3VKQ5pPRQ" CvElementArea="1257, 371, 361, 65" CvType="InputBox" DesignTimeRectangle="1259, 373, 358, 62" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='userId' tag='INPUT' /&gt;" Guid="54cdbbd2-1415-483f-aa0a-3d7fec816350" InformativeScreenshot="c2b1e71448caec357811a3868baa7577.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/AbiVT3v80k6B_lVMCOkGlw" ScopeSelectorArgument="&lt;html app='msedge.exe' title='로그인' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
-              </uix:NTypeInto.Target>
-              <uix:NTypeInto.VerifyOptions>
-                <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
-                  <uix:VerifyExecutionTypeIntoOptions.Retry>
-                    <InArgument x:TypeArguments="x:Boolean" />
-                  </uix:VerifyExecutionTypeIntoOptions.Retry>
-                  <uix:VerifyExecutionTypeIntoOptions.Timeout>
-                    <InArgument x:TypeArguments="x:Double" />
-                  </uix:VerifyExecutionTypeIntoOptions.Timeout>
-                </uix:VerifyExecutionTypeIntoOptions>
-              </uix:NTypeInto.VerifyOptions>
-            </uix:NTypeInto>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '삼성화재아이디 저장로그인 아이디 찾기 비밀…'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="593.6,193.6" sap2010:WorkflowViewState.IdRef="NClick_8" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="2b7f531e-abf7-45b0-84e7-a28cfa23f4a3" Version="V5">
-              <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="login.samsungfire.com/nl/p/login/ui/SPGENLP00000" ContentHash="QU_SBt2g40-gWjdNWsDPSA" DesignTimeRectangle="1125, 129, 625, 875" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='login-form-wrap' parentid='sfmi-root' tag='DIV' /&gt;" Guid="e60db269-2d7a-4173-b379-ed987e15efc9" InformativeScreenshot="f1166aa7046db0a293d32ebd4082581b.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/a3XWX-UIA0Seb3FgVJcRtw" ScopeSelectorArgument="&lt;html app='msedge.exe' title='로그인' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-              </uix:NClick.Target>
-            </uix:NClick>
-            <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="593.6,122.4" sap2010:WorkflowViewState.IdRef="Delay_6" />
-            <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts 'INPUT refPassword(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="593.6,369.6" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_1" InteractionMode="HardwareEvents" ScopeIdentifier="2b7f531e-abf7-45b0-84e7-a28cfa23f4a3" Shortcuts="[d(hk)]a[u(hk)][d(hk)]s[u(hk)][d(hk)]d[u(hk)][d(hk)]f[u(hk)][d(hk)]2[u(hk)][d(hk)]0[u(hk)][d(hk)]2[u(hk)][d(hk)]6[u(hk)][d(hk)][d(shift)]1[u(shift)][u(hk)][d(hk)][d(shift)]1[u(shift)][u(hk)]" Version="V5">
-              <uix:NKeyboardShortcuts.Target>
-                <uix:TargetAnchorable BrowserURL="login.samsungfire.com/nl/p/login/ui/SPGENLP00000" CVScreenId="7e962e92-c21e-4718-afbe-f551b59615b8" ContentHash="ikbRHhPRSU67y-VA39rwTw" CvElementArea="1257, 443, 361, 66" CvType="InputBox" DesignTimeRectangle="1259, 445, 358, 63" ElementType="InputBoxPassword" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='refPassword' tag='INPUT' /&gt;" Guid="16035a3c-6951-44e6-9bf4-70ce133be5e2" InformativeScreenshot="4b17cf7dd28c048f3ca5b1bb14d6296c.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/0shdmjQUYUS-DLj-vYh1YQ" ScopeSelectorArgument="&lt;html app='msedge.exe' title='로그인' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
-              </uix:NKeyboardShortcuts.Target>
-            </uix:NKeyboardShortcuts>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '로그인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="593.6,193.6" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="2b7f531e-abf7-45b0-84e7-a28cfa23f4a3" Version="V5">
-              <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="login.samsungfire.com/nl/p/login/ui/SPGENLP00000" ContentHash="8rlVdzJ1ekiLR0-VsfUV5w" DesignTimeRectangle="1259, 580, 358, 50" ElementType="Button" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl tag='BUTTON' type='submit' class='' aaname='로그인' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='로그인' /&gt;" Guid="704c3072-765f-4ba2-a609-09f58bcd1b31" InformativeScreenshot="4a39e136a42b32758dcafca0cecdeecd.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/JQ6HEzKj7E-6Ken1alqKnQ" ScopeSelectorArgument="&lt;html app='msedge.exe' title='로그인' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
-                  <uix:TargetAnchorable.Anchors>
-                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                      <uix:Target DesignTimeRectangle="1412, 593, 52, 24" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='로그인' tag='SPAN' type='' class='' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='로그인' /&gt;" Guid="866b5113-6150-4f31-a205-8e9a38389416" SearchSteps="FuzzySelector" />
-                    </scg:List>
-                  </uix:TargetAnchorable.Anchors>
-                </uix:TargetAnchorable>
-              </uix:NClick.Target>
-            </uix:NClick>
-            <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="593.6,122.4" sap2010:WorkflowViewState.IdRef="Delay_1" />
-            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '생년월일'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="593.6,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_5" InteractionMode="SameAsCard" ScopeIdentifier="2b7f531e-abf7-45b0-84e7-a28cfa23f4a3" Text="[SSF_OTP]" Version="V5">
-              <uix:NTypeInto.Target>
-                <uix:TargetAnchorable BrowserURL="login.samsungfire.com/nl/p/login/ui/SPGENLP00000" ContentHash="M64vSn8YREuv8vgBamcl3g" DesignTimeRectangle="810, 617, 163, 40" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl tag='INPUT' type='text' class='tac' placeholder='YYYYMMDD' aaname='' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="85ca5261-9f24-4014-b916-79c1b70e6e70" InformativeScreenshot="7ec2a3def9b8632645ff4b9f9c315953.jpg" IsResponsive="True" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/o0SIyVyLtUyRuz9YWDqXbg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='2팩터 인증 - 생년월일' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
-                  <uix:TargetAnchorable.Anchors>
-                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                      <uix:Target DesignTimeRectangle="734, 625, 56, 25" ElementType="Text" FuzzySelectorArgument="&lt;webctrl class='n-label' parentid='sfmi-root' tag='DIV' type='' aaname='생년월일' matching:class='fuzzy' fuzzylevel:class='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='생년월일' /&gt;" Guid="bc32e48d-0ef8-4654-aacb-1a44e732412a" SearchSteps="FuzzySelector" />
-                    </scg:List>
-                  </uix:TargetAnchorable.Anchors>
-                </uix:TargetAnchorable>
-              </uix:NTypeInto.Target>
-              <uix:NTypeInto.VerifyOptions>
-                <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
-                  <uix:VerifyExecutionTypeIntoOptions.Retry>
-                    <InArgument x:TypeArguments="x:Boolean" />
-                  </uix:VerifyExecutionTypeIntoOptions.Retry>
-                  <uix:VerifyExecutionTypeIntoOptions.Timeout>
-                    <InArgument x:TypeArguments="x:Double" />
-                  </uix:VerifyExecutionTypeIntoOptions.Timeout>
-                </uix:VerifyExecutionTypeIntoOptions>
-              </uix:NTypeInto.VerifyOptions>
-            </uix:NTypeInto>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="593.6,193.6" sap2010:WorkflowViewState.IdRef="NClick_3" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="2b7f531e-abf7-45b0-84e7-a28cfa23f4a3" Version="V5">
-              <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="login.samsungfire.com/nl/p/login/ui/SPGENLP00000" ContentHash="qwixko0NhEiiVejRzBhM_Q" DesignTimeRectangle="1164, 722, 80, 40" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname=' 확인 ' tag='BUTTON' /&gt;" Guid="84d61061-67ef-4b29-9cd8-2cec3955c1a5" InformativeScreenshot="97176ac2d29053e94d58c87d98f4b54f.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/o6NmKHutEka-BcncltI1GA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='2팩터 인증 - 생년월일' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-              </uix:NClick.Target>
-            </uix:NClick>
-            <Delay Duration="00:00:10" sap:VirtualizedContainerService.HintSize="593.6,122.4" sap2010:WorkflowViewState.IdRef="Delay_11" />
-            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="593.6,337.6" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+            <uix:NCheckState DisplayName="Check App State '삼성화재업무맵장기자동차일반고객수납장기일반…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="593.6,1852" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="2b7f531e-abf7-45b0-84e7-a28cfa23f4a3" Version="V5">
+              <uix:NCheckState.IfExists>
+                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="467.2,89.6" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </uix:NCheckState.IfExists>
+              <uix:NCheckState.IfNotExists>
+                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="467.2,1417.6" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'INPUT userId'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_4" InteractionMode="SameAsCard" ScopeIdentifier="2b7f531e-abf7-45b0-84e7-a28cfa23f4a3" Text="[SSF_UID]" Version="V5">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable BrowserURL="login.samsungfire.com/nl/p/login/ui/SPGENLP00000" CVScreenId="7e962e92-c21e-4718-afbe-f551b59615b8" ContentHash="9hdIbfSlTk-LE3VKQ5pPRQ" CvElementArea="1257, 371, 361, 65" CvType="InputBox" DesignTimeRectangle="1259, 373, 358, 62" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='userId' tag='INPUT' /&gt;" Guid="54cdbbd2-1415-483f-aa0a-3d7fec816350" InformativeScreenshot="c2b1e71448caec357811a3868baa7577.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/AbiVT3v80k6B_lVMCOkGlw" ScopeSelectorArgument="&lt;html app='msedge.exe' title='로그인' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
+                    </uix:NTypeInto.Target>
+                    <uix:NTypeInto.VerifyOptions>
+                      <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                        <uix:VerifyExecutionTypeIntoOptions.Retry>
+                          <InArgument x:TypeArguments="x:Boolean" />
+                        </uix:VerifyExecutionTypeIntoOptions.Retry>
+                        <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                          <InArgument x:TypeArguments="x:Double" />
+                        </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                      </uix:VerifyExecutionTypeIntoOptions>
+                    </uix:NTypeInto.VerifyOptions>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uix:NTypeInto>
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '삼성화재아이디 저장로그인 아이디 찾기 비밀…'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_8" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="2b7f531e-abf7-45b0-84e7-a28cfa23f4a3" Version="V5">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable BrowserURL="login.samsungfire.com/nl/p/login/ui/SPGENLP00000" ContentHash="QU_SBt2g40-gWjdNWsDPSA" DesignTimeRectangle="1125, 129, 625, 875" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='login-form-wrap' parentid='sfmi-root' tag='DIV' /&gt;" Guid="e60db269-2d7a-4173-b379-ed987e15efc9" InformativeScreenshot="f1166aa7046db0a293d32ebd4082581b.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/a3XWX-UIA0Seb3FgVJcRtw" ScopeSelectorArgument="&lt;html app='msedge.exe' title='로그인' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                    </uix:NClick.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uix:NClick>
+                  <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_6">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Delay>
+                  <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts 'INPUT refPassword'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,369.6" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_1" InteractionMode="WindowMessages" ScopeIdentifier="2b7f531e-abf7-45b0-84e7-a28cfa23f4a3" Shortcuts="[d(hk)]a[u(hk)][d(hk)]s[u(hk)][d(hk)]d[u(hk)][d(hk)]f[u(hk)][d(hk)]2[u(hk)][d(hk)]0[u(hk)][d(hk)]2[u(hk)][d(hk)]6[u(hk)][d(hk)][d(shift)]1[u(shift)][u(hk)][d(hk)][d(shift)]1[u(shift)][u(hk)]" Version="V5">
+                    <uix:NKeyboardShortcuts.Target>
+                      <uix:TargetAnchorable BrowserURL="login.samsungfire.com/nl/p/login/ui/SPGENLP00000" CVScreenId="7e962e92-c21e-4718-afbe-f551b59615b8" ContentHash="ikbRHhPRSU67y-VA39rwTw" CvElementArea="1257, 443, 361, 66" CvType="InputBox" DesignTimeRectangle="1259, 445, 358, 63" ElementType="InputBoxPassword" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='refPassword' tag='INPUT' /&gt;" Guid="16035a3c-6951-44e6-9bf4-70ce133be5e2" InformativeScreenshot="4b17cf7dd28c048f3ca5b1bb14d6296c.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/0shdmjQUYUS-DLj-vYh1YQ" ScopeSelectorArgument="&lt;html app='msedge.exe' title='로그인' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
+                    </uix:NKeyboardShortcuts.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uix:NKeyboardShortcuts>
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '로그인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="2b7f531e-abf7-45b0-84e7-a28cfa23f4a3" Version="V5">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable BrowserURL="login.samsungfire.com/nl/p/login/ui/SPGENLP00000" ContentHash="8rlVdzJ1ekiLR0-VsfUV5w" DesignTimeRectangle="1259, 580, 358, 50" ElementType="Button" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl tag='BUTTON' type='submit' class='' aaname='로그인' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='로그인' /&gt;" Guid="704c3072-765f-4ba2-a609-09f58bcd1b31" InformativeScreenshot="4a39e136a42b32758dcafca0cecdeecd.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/JQ6HEzKj7E-6Ken1alqKnQ" ScopeSelectorArgument="&lt;html app='msedge.exe' title='로그인' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                            <uix:Target DesignTimeRectangle="1412, 593, 52, 24" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='로그인' tag='SPAN' type='' class='' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='로그인' /&gt;" Guid="866b5113-6150-4f31-a205-8e9a38389416" SearchSteps="FuzzySelector" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NClick.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uix:NClick>
+                  <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_1">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Delay>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '생년월일'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_5" InteractionMode="SameAsCard" ScopeIdentifier="2b7f531e-abf7-45b0-84e7-a28cfa23f4a3" Text="[SSF_OTP]" Version="V5">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable BrowserURL="login.samsungfire.com/nl/p/login/ui/SPGENLP00000" ContentHash="M64vSn8YREuv8vgBamcl3g" DesignTimeRectangle="810, 617, 163, 40" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl tag='INPUT' type='text' class='tac' placeholder='YYYYMMDD' aaname='' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="85ca5261-9f24-4014-b916-79c1b70e6e70" InformativeScreenshot="7ec2a3def9b8632645ff4b9f9c315953.jpg" IsResponsive="True" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/o0SIyVyLtUyRuz9YWDqXbg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='2팩터 인증 - 생년월일' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                            <uix:Target DesignTimeRectangle="734, 625, 56, 25" ElementType="Text" FuzzySelectorArgument="&lt;webctrl class='n-label' parentid='sfmi-root' tag='DIV' type='' aaname='생년월일' matching:class='fuzzy' fuzzylevel:class='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='생년월일' /&gt;" Guid="bc32e48d-0ef8-4654-aacb-1a44e732412a" SearchSteps="FuzzySelector" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NTypeInto.Target>
+                    <uix:NTypeInto.VerifyOptions>
+                      <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                        <uix:VerifyExecutionTypeIntoOptions.Retry>
+                          <InArgument x:TypeArguments="x:Boolean" />
+                        </uix:VerifyExecutionTypeIntoOptions.Retry>
+                        <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                          <InArgument x:TypeArguments="x:Double" />
+                        </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                      </uix:VerifyExecutionTypeIntoOptions>
+                    </uix:NTypeInto.VerifyOptions>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uix:NTypeInto>
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_3" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="2b7f531e-abf7-45b0-84e7-a28cfa23f4a3" Version="V5">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable BrowserURL="login.samsungfire.com/nl/p/login/ui/SPGENLP00000" ContentHash="qwixko0NhEiiVejRzBhM_Q" DesignTimeRectangle="1164, 722, 80, 40" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname=' 확인 ' tag='BUTTON' /&gt;" Guid="84d61061-67ef-4b29-9cd8-2cec3955c1a5" InformativeScreenshot="97176ac2d29053e94d58c87d98f4b54f.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/o6NmKHutEka-BcncltI1GA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='2팩터 인증 - 생년월일' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                    </uix:NClick.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uix:NClick>
+                </Sequence>
+              </uix:NCheckState.IfNotExists>
+              <uix:NCheckState.Target>
+                <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" ContentHash="KK5i-IxD9EyCKndQN08bMQ" DesignTimeRectangle="14, 109, 1891, 65" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='ns-portal-inner' parentid='sfmi-root' tag='DIV' /&gt;" Guid="ac5b3305-c4ba-4e5f-8d07-2f72839fb2a0" InformativeScreenshot="9917cf8e0b1f38d974085aac3150f1cd.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/TrHeVHQkqUuqSFPNIbFslw" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+              </uix:NCheckState.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </uix:NCheckState>
+            <Delay Duration="00:00:10" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_11" />
+            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="CommentOut_2">
               <ui:CommentOut.Body>
                 <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="449.6,227.2" sap2010:WorkflowViewState.IdRef="Sequence_7">
                   <sap:WorkflowViewStateService.ViewState>
@@ -227,14 +307,20 @@
                   </ui:InvokeWorkflowFile>
                 </Sequence>
               </ui:CommentOut.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
             </ui:CommentOut>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="ClosePopup - Invoke Workflow File (Utils\ClosePopup.xaml)" sap:VirtualizedContainerService.HintSize="593.6,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_13" UnSafe="False" WorkflowFileName="Utils\ClosePopup.xaml">
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="ClosePopup - Invoke Workflow File (Utils\ClosePopup.xaml)" sap:VirtualizedContainerService.HintSize="451.2,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_13" UnSafe="False" WorkflowFileName="Utils\ClosePopup.xaml">
               <ui:InvokeWorkflowFile.Arguments>
                 <InArgument x:TypeArguments="x:String" x:Key="in_PopupType">ALL</InArgument>
                 <InArgument x:TypeArguments="ui:UiElement" x:Key="in_Browser">[browserInstance]</InArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '영업'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="593.6,193.6" sap2010:WorkflowViewState.IdRef="NClick_4" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="2b7f531e-abf7-45b0-84e7-a28cfa23f4a3" Version="V5">
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '영업'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_4" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="2b7f531e-abf7-45b0-84e7-a28cfa23f4a3" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" ContentHash="aLAvRRViwkScEYj43ndNBA" DesignTimeRectangle="1034, 130, 33, 23" ElementType="Text" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl aaname='영업' tag='SPAN' type='' class='' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='영업' /&gt;" Guid="6bc39233-0956-4032-84e3-312f0d6fbe4a" InformativeScreenshot="97176ac2d29053e94d58c87d98f4b54f.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/2tYAbXtYq0mEofhYrc2rWQ" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
                   <uix:TargetAnchorable.Anchors>
@@ -255,13 +341,13 @@
                 <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" ContentHash="ixvnF6FDyUSbDQEKX3sPZg" DesignTimeRectangle="1101, 351, 121, 22" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='수수료조회-인별' tag='SPAN' /&gt;" Guid="7c31f3d7-14d9-40c9-8b02-cf03e6965653" InformativeScreenshot="efa850d92a7c61a99c12a701c8935cff.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/3SNaWx3oKU2kCVHNZOEQVg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '계약건별조회'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_7" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="2b7f531e-abf7-45b0-84e7-a28cfa23f4a3" Version="V5">
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '계약건별조회'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="593.6,193.6" sap2010:WorkflowViewState.IdRef="NClick_7" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="2b7f531e-abf7-45b0-84e7-a28cfa23f4a3" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" ContentHash="nMzxw-F7AU-g2NgVSA7meA" DesignTimeRectangle="1116, 626, 97, 23" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='계약건별조회' tag='SPAN' /&gt;" Guid="8be3e066-8054-40f4-a67b-2bfbe65536d2" InformativeScreenshot="01c8d7b6cb35e1bec8e4ed58113bd691.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/MnFMW2_ULUuKbUo8Slcosg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
             <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_3" />
-            <If Condition="[runType = &quot;CHECK&quot;]" DisplayName="Handle Check Available" sap:VirtualizedContainerService.HintSize="593.6,870.4" sap2010:WorkflowViewState.IdRef="If_1">
+            <If Condition="[runType = &quot;CHECK&quot;]" DisplayName="Handle Check Available" sap:VirtualizedContainerService.HintSize="451.2,870.4" sap2010:WorkflowViewState.IdRef="If_1">
               <If.Then>
                 <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,453.6" sap2010:WorkflowViewState.IdRef="Sequence_5">
                   <sap:WorkflowViewStateService.ViewState>

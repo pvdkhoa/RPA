@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="MetLife_Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="MetLife_Main" this:MetLife_Main.contractType="NEW" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="runType" Type="InArgument(x:String)" />
     <x:Property Name="contractType" Type="InArgument(x:String)" />
@@ -48,6 +48,8 @@
       <x:String>System.Net</x:String>
       <x:String>UiPath.UIAutomationNext.Contracts</x:String>
       <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>UiPath.CV</x:String>
+      <x:String>UiPath.CV.Activities</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -114,10 +116,14 @@
       <AssemblyReference>NPOI.Core</AssemblyReference>
       <AssemblyReference>System.Linq.Async</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>UiPath.CV.Activities</AssemblyReference>
+      <AssemblyReference>REF_RPA.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="MetLife_Main" sap:VirtualizedContainerService.HintSize="762.8000000000001,3513.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="MetLife_Main" sap:VirtualizedContainerService.HintSize="757.2,2984.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Default="True" Name="hasPopup" />
       <Variable x:TypeArguments="ui:UiElement" Name="browserInstance" />
       <Variable x:TypeArguments="x:String" Name="MLT_UID" />
       <Variable x:TypeArguments="x:String" Name="MLT_OTP" />
@@ -132,12 +138,12 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="MTL_AST_URL" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="520,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="MTL_AST_URL" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="486.4,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
       <ui:GetRobotAsset.Value>
         <OutArgument x:TypeArguments="x:String">[MLT_URL]</OutArgument>
       </ui:GetRobotAsset.Value>
     </ui:GetRobotAsset>
-    <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="MTL_AST_LOGIN" CacheStrategy="None" DisplayName="Get Credential" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="520,175.2" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[MLT_PW]" Username="[MLT_UID]">
+    <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="MTL_AST_LOGIN" CacheStrategy="None" DisplayName="Get Credential" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="486.4,175.2" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[MLT_PW]" Username="[MLT_UID]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -145,20 +151,20 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:GetRobotCredential>
-    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" DisplayName="Chrome MetPlus" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="520,3140" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OutUiElement="[browserInstance]" ScopeGuid="8cf0afbc-2ee9-41b2-854f-03176857cb17" Version="V2" WindowResize="Maximize">
+    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" DisplayName="Chrome MetPlus" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="486.4,2611.2" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OutUiElement="[browserInstance]" ScopeGuid="8cf0afbc-2ee9-41b2-854f-03176857cb17" Version="V2" WindowResize="Maximize">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="518.4,2946.4" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="484.8,2417.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="484.8,122.4" sap2010:WorkflowViewState.IdRef="Delay_11" />
-            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '아이디'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="484.8,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="SameAsCard" ScopeIdentifier="8cf0afbc-2ee9-41b2-854f-03176857cb17" Text="[MLT_UID]" Version="V5">
+            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_11" />
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '아이디'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="SameAsCard" ScopeIdentifier="8cf0afbc-2ee9-41b2-854f-03176857cb17" Text="[MLT_UID]" Version="V5">
               <uix:NTypeInto.Target>
                 <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" CVScreenId="140ea310-2c74-405c-a5e0-eb6b7f507569" ContentHash="mIE1_39LokuKxzgYgXjc3A" CvElementArea="1026, 320, 207, 35" CvType="InputBox" DesignTimeRectangle="1035, 322, 189, 29" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='MainFrame_VFrameSet_LoginFrame_form_divBg_edtEmpno_input' tag='INPUT' type='' class='' aaname='' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="52f8b6ae-225e-42ea-a2ef-6d0acca1a589" InformativeScreenshot="74f8461280fad42f7e031a2409d8251a.jpg" IsResponsive="True" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/3DcFKwGKm0K91YKIaWKCkQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
                   <uix:TargetAnchorable.Anchors>
@@ -185,7 +191,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </uix:NTypeInto>
-            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '비밀번호'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="484.8,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="SameAsCard" ScopeIdentifier="8cf0afbc-2ee9-41b2-854f-03176857cb17" Text="[New System.Net.NetworkCredential(String.Empty, MLT_PW).Password]" Version="V5">
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '비밀번호'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="SameAsCard" ScopeIdentifier="8cf0afbc-2ee9-41b2-854f-03176857cb17" Text="[New System.Net.NetworkCredential(String.Empty, MLT_PW).Password]" Version="V5">
               <uix:NTypeInto.Target>
                 <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" CVScreenId="f372395e-d7c5-4780-a78b-87360e2b61fa" ContentHash="UgaajyxzY0aEmWKFo1-tWw" CvElementArea="1025, 370, 208, 35" CvType="InputBox" DesignTimeRectangle="1035, 372, 189, 29" ElementType="InputBoxPassword" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='MainFrame_VFrameSet_LoginFrame_form_divBg_edtPassword_input' tag='INPUT' type='password' class='' aaname='' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="10f148d2-de93-4b08-967b-0e935a735ccb" InformativeScreenshot="f505041c282ddba2dcfc5811976b0084.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/58dqd087Hka3zkvceVo1CQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
                   <uix:TargetAnchorable.Anchors>
@@ -212,7 +218,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </uix:NTypeInto>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '휴대폰로그인(문자)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="484.8,56.8" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="8cf0afbc-2ee9-41b2-854f-03176857cb17" Version="V5">
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '휴대폰로그인(문자)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="8cf0afbc-2ee9-41b2-854f-03176857cb17" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" CVScreenId="703c91ff-d8ce-44c7-99e8-b9a686559a33" ContentHash="_mxv_iEMBkCdgcahnMwprQ" CvElementArea="1141, 451, 93, 80" CvType="Button" DesignTimeRectangle="1144, 453, 88, 75" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl parentid='MainFrame_VFrameSet_LoginFrame_form_divBg_btnOtpLogInSMSTextBoxElement' tag='DIV' /&gt;" Guid="637084c7-d3ff-4d6c-84cd-82d3a39bf580" InformativeScreenshot="4aba0a2983f5c37cc6db0d1350e364e7.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/0jYTM25-t0e5sHpbGgwvLw" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
@@ -223,8 +229,8 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </uix:NClick>
-            <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="484.8,122.4" sap2010:WorkflowViewState.IdRef="Delay_1" />
-            <uix:NCheckState DisplayName="Check App State 'metplus.metlife.co.kr 내…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="484.8,679.2" sap2010:WorkflowViewState.IdRef="NCheckState_9" ScopeIdentifier="8cf0afbc-2ee9-41b2-854f-03176857cb17" Version="V5">
+            <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_1" />
+            <uix:NCheckState DisplayName="Check App State 'metplus.metlife.co.kr 내…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,647.2" sap2010:WorkflowViewState.IdRef="NCheckState_9" ScopeIdentifier="8cf0afbc-2ee9-41b2-854f-03176857cb17" Version="V5">
               <uix:NCheckState.IfExists>
                 <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_17">
                   <sap:WorkflowViewStateService.ViewState>
@@ -232,7 +238,7 @@
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_9" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="8cf0afbc-2ee9-41b2-854f-03176857cb17" Version="V5">
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_9" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="8cf0afbc-2ee9-41b2-854f-03176857cb17" Version="V5">
                     <uix:NClick.Target>
                       <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" ContentHash="6SYcy6PurEybuBmECPCApA" DesignTimeRectangle="1054, 248, 80, 49" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='metplus.metlife.co.kr 내용:' role='dialog' /&gt;&lt;ctrl name='확인' role='push button' /&gt;" Guid="fdddc0f6-a861-4d6e-acab-42e789bd5eed" InformativeScreenshot="0ca2e0daa74311dc409bc6cd1ed72af3.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/Sl6Vg1qcDEKXaZyVIl7pDg" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='MetPlus - Chrome' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                     </uix:NClick.Target>
@@ -253,12 +259,12 @@
               </uix:NCheckState.Target>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </uix:NCheckState>
-            <uix:NCheckState DisplayName="Check App State '취소확인010  5338위 번호로 …'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="484.8,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_15" ScopeIdentifier="8cf0afbc-2ee9-41b2-854f-03176857cb17" Version="V5">
+            <uix:NCheckState DisplayName="Check App State '취소확인010  5338위 번호로 …'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_15" ScopeIdentifier="8cf0afbc-2ee9-41b2-854f-03176857cb17" Version="V5">
               <uix:NCheckState.IfExists>
                 <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="484.8,1873.6" sap2010:WorkflowViewState.IdRef="Sequence_3">
                   <sap:WorkflowViewStateService.ViewState>
@@ -517,7 +523,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </uix:NCheckState>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="CheckPageLoadingStatus - Invoke Workflow File (Utils\CheckPageLoadingStatus.xaml)" sap:VirtualizedContainerService.HintSize="484.8,56.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Utils\CheckPageLoadingStatus.xaml">
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="CheckPageLoadingStatus - Invoke Workflow File (Utils\CheckPageLoadingStatus.xaml)" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Utils\CheckPageLoadingStatus.xaml">
               <ui:InvokeWorkflowFile.Arguments>
                 <InArgument x:TypeArguments="ui:UiElement" x:Key="in_Browser">[browserInstance]</InArgument>
               </ui:InvokeWorkflowFile.Arguments>
@@ -528,7 +534,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:InvokeWorkflowFile>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="ClosePopup - Invoke Workflow File (Utils\ClosePopup.xaml)" sap:VirtualizedContainerService.HintSize="484.8,56.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Utils\ClosePopup.xaml">
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="ClosePopup - Invoke Workflow File (Utils\ClosePopup.xaml)" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Utils\ClosePopup.xaml">
               <ui:InvokeWorkflowFile.Arguments>
                 <InArgument x:TypeArguments="x:String" x:Key="in_PopupType">ALL</InArgument>
                 <InArgument x:TypeArguments="ui:UiElement" x:Key="in_Browser">[browserInstance]</InArgument>
@@ -540,238 +546,145 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:InvokeWorkflowFile>
-            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="484.8,56.8" sap2010:WorkflowViewState.IdRef="CommentOut_2">
-              <ui:CommentOut.Body>
-                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="449.6,108" sap2010:WorkflowViewState.IdRef="Sequence_38">
+            <Assign sap:VirtualizedContainerService.HintSize="451.2,174.4" sap2010:WorkflowViewState.IdRef="Assign_1">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[hasPopup]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">["True"]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <uix:NCheckState DisplayName="Check App State '보험계약대출 한도 축소 시행 안내'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_20" ScopeIdentifier="8cf0afbc-2ee9-41b2-854f-03176857cb17" Version="V5">
+              <uix:NCheckState.IfExists>
+                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_25">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <uix:NCheckState DisplayName="Check App State '보험계약대출 한도 축소 시행 안내'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="NCheckState_10" ScopeIdentifier="8cf0afbc-2ee9-41b2-854f-03176857cb17" Version="V5">
-                    <uix:NCheckState.IfExists>
-                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_25">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'DIV(8)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_10" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="8cf0afbc-2ee9-41b2-854f-03176857cb17" Version="V5">
-                          <uix:NClick.Target>
-                            <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" ContentHash="sSF8gNzh4Eubz5BBZEODKg" DesignTimeRectangle="1404, 133, 35, 34" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='34' isleaf='1' tag='DIV' /&gt;" Guid="36eff2a9-c383-4a04-b0aa-8151260587e2" InformativeScreenshot="760041648eadfcdbfe75746d3762edf8.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/60b60-TQcUOpYFfDDIva0g" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-                          </uix:NClick.Target>
-                        </uix:NClick>
-                      </Sequence>
-                    </uix:NCheckState.IfExists>
-                    <uix:NCheckState.IfNotExists>
-                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_26">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                      </Sequence>
-                    </uix:NCheckState.IfNotExists>
-                    <uix:NCheckState.Target>
-                      <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" ContentHash="IHYENfdyJEGeWBFkZb9SZQ" DesignTimeRectangle="499, 212, 950, 49" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='보험계약대출 한도 축소 시행 안내' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' tag='DIV' /&gt;" Guid="930ab7cc-7ecc-4ce1-98cb-efeace3d967c" InformativeScreenshot="2c0c37dcf231829dac3e32ff5fdace7d.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/ptTBOmuBVE2dHksn9VVWCw" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-                    </uix:NCheckState.Target>
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                  </uix:NCheckState>
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'DIV(8)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_10" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="8cf0afbc-2ee9-41b2-854f-03176857cb17" Version="V5">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" ContentHash="pJxZNhD8dEOEXjGMZ-pmqw" DesignTimeRectangle="593, 950, 544, 23" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='오늘 하루 이창을 열지 않습니다' idx='4' tag='DIV' /&gt;" Guid="a4af230d-9d4f-4620-b402-d2f71c19a65d" InformativeScreenshot="4159b7782950fc60686579f2aa5d7bb1.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/60b60-TQcUOpYFfDDIva0g" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None" />
+                    </uix:NClick.Target>
+                  </uix:NClick>
                 </Sequence>
-              </ui:CommentOut.Body>
+              </uix:NCheckState.IfExists>
+              <uix:NCheckState.IfNotExists>
+                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </uix:NCheckState.IfNotExists>
+              <uix:NCheckState.Target>
+                <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" ContentHash="zHzD2LSiW0-J0bWZKzVt_w" DesignTimeRectangle="568, 950, 544, 23" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='오늘 하루 이창을 열지 않습니다' idx='3' /&gt;" Guid="3a503f5c-6392-402e-ac0e-3cabb19a0e91" InformativeScreenshot="4159b7782950fc60686579f2aa5d7bb1.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/ptTBOmuBVE2dHksn9VVWCw" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None" />
+              </uix:NCheckState.Target>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-            </ui:CommentOut>
-            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="484.8,218.4" sap2010:WorkflowViewState.IdRef="CommentOut_3">
-              <ui:CommentOut.Body>
-                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="449.6,108" sap2010:WorkflowViewState.IdRef="Sequence_39">
+            </uix:NCheckState>
+            <uix:NCheckState DisplayName="Check App State '오늘 하루 이창을 열지 않습니다'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_22" ScopeIdentifier="8cf0afbc-2ee9-41b2-854f-03176857cb17" Version="V5">
+              <uix:NCheckState.IfExists>
+                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_48">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <uix:NCheckState DisplayName="Check App State '비교안내확인서 양식 변경 안내(26.5.1…(1)'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="NCheckState_11" ScopeIdentifier="8cf0afbc-2ee9-41b2-854f-03176857cb17" Version="V5">
-                    <uix:NCheckState.IfExists>
-                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_27">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'DIV(9)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_11" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="8cf0afbc-2ee9-41b2-854f-03176857cb17" Version="V5">
-                          <uix:NClick.Target>
-                            <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" ContentHash="WEel-F_AO024oePvq8LT1Q" DesignTimeRectangle="1479, 133, 35, 34" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='26' isleaf='1' tag='DIV' /&gt;" Guid="f994c9f3-1180-49ee-b398-df5bd2abc246" InformativeScreenshot="760041648eadfcdbfe75746d3762edf8.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/i3tOJijcNE-OPIZycOb8TQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-                          </uix:NClick.Target>
-                        </uix:NClick>
-                      </Sequence>
-                    </uix:NCheckState.IfExists>
-                    <uix:NCheckState.IfNotExists>
-                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_28">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                      </Sequence>
-                    </uix:NCheckState.IfNotExists>
-                    <uix:NCheckState.Target>
-                      <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" ContentHash="NN3sbZxc8024fBSplBq3Sw" DesignTimeRectangle="574, 212, 950, 49" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='비교안내확인서 양식 변경 안내(26.5.1일 시행) ' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' tag='DIV' /&gt;" Guid="96e629d2-8e26-4411-9e3a-1cbc86bf381a" InformativeScreenshot="2c0c37dcf231829dac3e32ff5fdace7d.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/Dq9vWi-p20iX6vfYt-N4-w" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-                    </uix:NCheckState.Target>
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                  </uix:NCheckState>
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '오늘 하루 이창을 열지 않습니다(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_15" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="8cf0afbc-2ee9-41b2-854f-03176857cb17" Version="V5">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" ContentHash="Eq13x-CqykqRJ7uWvvUcRQ" DesignTimeRectangle="568, 950, 544, 23" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='오늘 하루 이창을 열지 않습니다' idx='3' tag='DIV' /&gt;" Guid="0e86cf4b-86fb-476b-8ee1-0447740e0bbd" InformativeScreenshot="4159b7782950fc60686579f2aa5d7bb1.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/xu59jIgrI0CZFKM8dD-gmg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                    </uix:NClick.Target>
+                  </uix:NClick>
                 </Sequence>
-              </ui:CommentOut.Body>
-            </ui:CommentOut>
-            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="484.8,218.4" sap2010:WorkflowViewState.IdRef="CommentOut_6">
-              <ui:CommentOut.Body>
-                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="449.6,108" sap2010:WorkflowViewState.IdRef="Sequence_40">
+              </uix:NCheckState.IfExists>
+              <uix:NCheckState.IfNotExists>
+                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_49">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <uix:NCheckState DisplayName="Check App State '분할보험금(쿠폰 포함) 지급 시 대출 상계…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="NCheckState_12" ScopeIdentifier="8cf0afbc-2ee9-41b2-854f-03176857cb17" Version="V5">
-                    <uix:NCheckState.IfExists>
-                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_29">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'DIV(10)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_12" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="8cf0afbc-2ee9-41b2-854f-03176857cb17" Version="V5">
-                          <uix:NClick.Target>
-                            <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" ContentHash="bvJq0N_qtEOF3cezLLdO-g" DesignTimeRectangle="1454, 133, 35, 34" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='18' isleaf='1' tag='DIV' /&gt;" Guid="e895fd5f-e70b-43cc-9e3a-6a45b81b0251" InformativeScreenshot="760041648eadfcdbfe75746d3762edf8.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/Yy9jJ6PuAketPs2Z8Nx1NQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-                          </uix:NClick.Target>
-                        </uix:NClick>
-                      </Sequence>
-                    </uix:NCheckState.IfExists>
-                    <uix:NCheckState.IfNotExists>
-                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_30">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                      </Sequence>
-                    </uix:NCheckState.IfNotExists>
-                    <uix:NCheckState.Target>
-                      <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" ContentHash="pi2vLyhO7kGSawgOaebqwg" DesignTimeRectangle="549, 212, 950, 49" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname=' 분할보험금(쿠폰 포함) 지급 시 대출 상계처리 기준 변경' tag='DIV' /&gt;" Guid="27d1a797-0a8a-4958-8daf-ee21a5c7fa4d" InformativeScreenshot="2c0c37dcf231829dac3e32ff5fdace7d.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/dH1o4Oq2SU61NSOQwvZcnQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-                    </uix:NCheckState.Target>
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                  </uix:NCheckState>
                 </Sequence>
-              </ui:CommentOut.Body>
-            </ui:CommentOut>
-            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="484.8,218.4" sap2010:WorkflowViewState.IdRef="CommentOut_5">
-              <ui:CommentOut.Body>
-                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="449.6,108" sap2010:WorkflowViewState.IdRef="Sequence_41">
+              </uix:NCheckState.IfNotExists>
+              <uix:NCheckState.Target>
+                <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" ContentHash="J_CAVe0flUOmK55VlHHfhA" DesignTimeRectangle="568, 950, 544, 23" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='오늘 하루 이창을 열지 않습니다' idx='3' tag='DIV' /&gt;" Guid="0e94e9e7-34d5-4c69-9918-b45898df9454" InformativeScreenshot="4159b7782950fc60686579f2aa5d7bb1.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/qVqRh6UYgkSh8M6PW3j8sA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+              </uix:NCheckState.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </uix:NCheckState>
+            <uix:NCheckState DisplayName="Check App State '오늘 하루 이창을 열지 않습니다(2)'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_23" ScopeIdentifier="8cf0afbc-2ee9-41b2-854f-03176857cb17" Version="V5">
+              <uix:NCheckState.IfExists>
+                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_50">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <uix:NCheckState DisplayName="Check App State '[오류 반영 안내] 오로지 연금 오류 표기…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="NCheckState_13" ScopeIdentifier="8cf0afbc-2ee9-41b2-854f-03176857cb17" Version="V5">
-                    <uix:NCheckState.IfExists>
-                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_31">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'DIV(11)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_13" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="8cf0afbc-2ee9-41b2-854f-03176857cb17" Version="V5">
-                          <uix:NClick.Target>
-                            <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" ContentHash="akEYyZHCE06337P3O-LYDg" DesignTimeRectangle="1429, 133, 35, 34" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='10' isleaf='1' tag='DIV' /&gt;" Guid="96b14a46-d702-4ac3-b1dd-681f47047666" InformativeScreenshot="760041648eadfcdbfe75746d3762edf8.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/Ft0qF2gCwU2RqJ_pOVJLUw" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-                          </uix:NClick.Target>
-                        </uix:NClick>
-                      </Sequence>
-                    </uix:NCheckState.IfExists>
-                    <uix:NCheckState.IfNotExists>
-                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_32">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                      </Sequence>
-                    </uix:NCheckState.IfNotExists>
-                    <uix:NCheckState.Target>
-                      <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" ContentHash="h8C-0QMb20W7tx_UnSgD_g" DesignTimeRectangle="524, 212, 950, 49" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='[오류 반영 안내] 오로지 연금 오류 표기 반영 완료 안내' tag='DIV' /&gt;" Guid="d0c9780d-7fa6-41d4-b370-e6ac0cdcc526" InformativeScreenshot="2c0c37dcf231829dac3e32ff5fdace7d.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/VJ_pvB1_OEO3nXrtbrXX-Q" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-                    </uix:NCheckState.Target>
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                  </uix:NCheckState>
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '오늘 하루 이창을 열지 않습니다(3)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_16" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="8cf0afbc-2ee9-41b2-854f-03176857cb17" Version="V5">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" ContentHash="0oB6JoATi0CY9yQxBaH10w" DesignTimeRectangle="543, 950, 544, 23" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='오늘 하루 이창을 열지 않습니다' idx='2' tag='DIV' /&gt;" Guid="8b9da3a8-7664-4896-8c6f-c2fcf8f8515e" InformativeScreenshot="4159b7782950fc60686579f2aa5d7bb1.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/T8-oWTizDkqqdRlWPIIZPA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                    </uix:NClick.Target>
+                  </uix:NClick>
                 </Sequence>
-              </ui:CommentOut.Body>
-            </ui:CommentOut>
-            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="484.8,218.4" sap2010:WorkflowViewState.IdRef="CommentOut_4">
-              <ui:CommentOut.Body>
-                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="449.6,108" sap2010:WorkflowViewState.IdRef="Sequence_42">
+              </uix:NCheckState.IfExists>
+              <uix:NCheckState.IfNotExists>
+                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_51">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <uix:NCheckState DisplayName="Check App State '[UW] 증권발행 관리 프로세스 변경 안내'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="NCheckState_14" ScopeIdentifier="8cf0afbc-2ee9-41b2-854f-03176857cb17" Version="V5">
-                    <uix:NCheckState.IfExists>
-                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_33">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'DIV(12)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_14" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="8cf0afbc-2ee9-41b2-854f-03176857cb17" Version="V5">
-                          <uix:NClick.Target>
-                            <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" ContentHash="zGh-8l-BlUucDOQSDsoLhg" DesignTimeRectangle="1404, 133, 35, 34" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='2' isleaf='1' tag='DIV' /&gt;" Guid="11925179-8253-432a-8884-c86289854dfa" InformativeScreenshot="760041648eadfcdbfe75746d3762edf8.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/ii11pDilVUiZUe--7PKu-Q" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-                          </uix:NClick.Target>
-                        </uix:NClick>
-                      </Sequence>
-                    </uix:NCheckState.IfExists>
-                    <uix:NCheckState.IfNotExists>
-                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_34">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                      </Sequence>
-                    </uix:NCheckState.IfNotExists>
-                    <uix:NCheckState.Target>
-                      <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" ContentHash="aokiikfs30SzKnAawcwZXg" DesignTimeRectangle="499, 212, 950, 49" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='[UW] 증권발행 관리 프로세스 변경 안내' tag='DIV' /&gt;" Guid="6d540a03-494a-42e0-a87b-ea45e7d6fd65" InformativeScreenshot="2c0c37dcf231829dac3e32ff5fdace7d.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/yoIsTc3JTkqGcW9AkdgDyA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-                    </uix:NCheckState.Target>
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                  </uix:NCheckState>
                 </Sequence>
-              </ui:CommentOut.Body>
-            </ui:CommentOut>
-            <If Condition="[runType = &quot;CHECK&quot;]" DisplayName="Handle Check Availalbe" sap:VirtualizedContainerService.HintSize="484.8,691.2" sap2010:WorkflowViewState.IdRef="If_2">
+              </uix:NCheckState.IfNotExists>
+              <uix:NCheckState.Target>
+                <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" ContentHash="_3B9P9aUHUyWJ-KMzKDB0g" DesignTimeRectangle="543, 950, 544, 23" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='오늘 하루 이창을 열지 않습니다' idx='2' tag='DIV' /&gt;" Guid="cd5082fd-c38d-4546-8b5a-a61bb11371b7" InformativeScreenshot="4159b7782950fc60686579f2aa5d7bb1.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/zNTMZqy8B0-ntAfv7uD94Q" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+              </uix:NCheckState.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </uix:NCheckState>
+            <uix:NCheckState DisplayName="Check App State '오늘 하루 이창을 열지 않습니다(4)'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,679.2" sap2010:WorkflowViewState.IdRef="NCheckState_24" ScopeIdentifier="8cf0afbc-2ee9-41b2-854f-03176857cb17" Version="V5">
+              <uix:NCheckState.IfExists>
+                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_52">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '오늘 하루 이창을 열지 않습니다(5)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_17" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="8cf0afbc-2ee9-41b2-854f-03176857cb17" Version="V5">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" ContentHash="pevr7BFqUEmq1ShLftxXvA" DesignTimeRectangle="518, 950, 544, 23" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='오늘 하루 이창을 열지 않습니다' tag='DIV' /&gt;" Guid="568890c1-bd6d-4513-8596-3f6598814bef" InformativeScreenshot="4159b7782950fc60686579f2aa5d7bb1.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/qfyHUtwmxEK6PcNwUBVQ5w" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                    </uix:NClick.Target>
+                  </uix:NClick>
+                </Sequence>
+              </uix:NCheckState.IfExists>
+              <uix:NCheckState.IfNotExists>
+                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_53">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </uix:NCheckState.IfNotExists>
+              <uix:NCheckState.Target>
+                <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" ContentHash="R5bE3idASE-nrDD-X7KiTA" DesignTimeRectangle="518, 950, 544, 23" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='오늘 하루 이창을 열지 않습니다' tag='DIV' /&gt;" Guid="d13ed37a-df12-4abe-b87e-ce7591864559" InformativeScreenshot="4159b7782950fc60686579f2aa5d7bb1.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/tdYkk2onAUGytfDqUsKcLw" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+              </uix:NCheckState.Target>
+            </uix:NCheckState>
+            <If Condition="[runType = &quot;CHECK&quot;]" DisplayName="Handle Check Availalbe" sap:VirtualizedContainerService.HintSize="451.2,691.2" sap2010:WorkflowViewState.IdRef="If_2">
               <If.Then>
                 <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,453.6" sap2010:WorkflowViewState.IdRef="Sequence_35">
                   <sap:WorkflowViewStateService.ViewState>
