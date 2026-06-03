@@ -115,7 +115,7 @@
       <AssemblyReference>REF_RPA.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Login_CALS" sap:VirtualizedContainerService.HintSize="634,9967.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Login_CALS" sap:VirtualizedContainerService.HintSize="909.2,4209.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="DEV_URL" />
       <Variable x:TypeArguments="x:String" Name="PROD_URL" />
@@ -209,13 +209,13 @@
         </Sequence>
       </If.Else>
     </If>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome 홈 - OPENGA(1)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="556.8,8653.6" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" InteractionMode="DebuggerApi" OutUiElement="[browserInstance]" ScopeGuid="b5fbf5cf-128b-4df5-9038-1861fc870a84" Version="V2">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome 홈 - OPENGA(1)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="556.8,2896" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" InteractionMode="DebuggerApi" OutUiElement="[browserInstance]" ScopeGuid="b5fbf5cf-128b-4df5-9038-1861fc870a84" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="555.2,8460" sap2010:WorkflowViewState.IdRef="Sequence_14">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="555.2,2702.4" sap2010:WorkflowViewState.IdRef="Sequence_14">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1182,7 +1182,7 @@
               </sap:WorkflowViewStateService.ViewState>
             </uix:NKeyboardShortcuts>
             <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="521.6,122.4" sap2010:WorkflowViewState.IdRef="Delay_19" />
-            <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome [삼성생명] 신계약 검증_장기 (마감년월 202603)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="521.6,5837.6" sap2010:WorkflowViewState.IdRef="NApplicationCard_5" InteractionMode="DebuggerApi" OutUiElement="[browserInstance]" ScopeGuid="3e98c7d3-6cb7-4b9a-9963-5d9f7e073645" Version="V2">
+            <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome [삼성생명] 신계약 검증_장기 (마감년월 202603)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="521.6,5814.4" sap2010:WorkflowViewState.IdRef="NApplicationCard_5" InteractionMode="DebuggerApi" OutUiElement="[browserInstance]" ScopeGuid="3e98c7d3-6cb7-4b9a-9963-5d9f7e073645" Version="V2">
               <uix:NApplicationCard.Body>
                 <ActivityAction x:TypeArguments="x:Object">
                   <ActivityAction.Argument>
@@ -1630,9 +1630,13 @@
                     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="CheckAPIStatus - Invoke Workflow File (Utils\CheckAPIStatus.xaml)" sap:VirtualizedContainerService.HintSize="486.4,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Utils\CheckAPIStatus.xaml">
                       <ui:InvokeWorkflowFile.Arguments>
                         <InArgument x:TypeArguments="ui:UiElement" x:Key="in_Browser">[browserInstance]</InArgument>
-                        <InArgument x:TypeArguments="x:String" x:Key="in_ApiUrlPattern" xml:space="preserve">[If(ENV = "DEV", 
-    "https://app.calssvc-openga.calsplatz.com:4430/api/excel/excelUpload.binary",
-    "https://calssvc-openga.calsplatz.com:4430/api/excel/excelUpload.binary")]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_ApiUrlPattern" xml:space="preserve">[If(ENV = "DEV",
+    "https://sandbox.calssvc-openga.calsplatz.com:4430/api/excel/excelUpload.binary",
+    If(ENV = "SANDBOX",
+        "https://sandbox.calssvc-openga.calsplatz.com:4430/api/excel/excelUpload.binary",
+        "https://calssvc-openga.calsplatz.com:4430/api/excel/excelUpload.binary"
+    )
+)]</InArgument>
                         <InArgument x:TypeArguments="x:String" x:Key="in_HttpMethod">POST</InArgument>
                       </ui:InvokeWorkflowFile.Arguments>
                     </ui:InvokeWorkflowFile>

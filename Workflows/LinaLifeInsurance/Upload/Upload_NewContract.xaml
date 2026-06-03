@@ -108,9 +108,13 @@
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
       <AssemblyReference>REF_RPA.Core</AssemblyReference>
       <AssemblyReference>UiPath.Python.Activities</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Upload_NewContract" sap:VirtualizedContainerService.HintSize="634,7036" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Upload_NewContract" sap:VirtualizedContainerService.HintSize="909.2,7036" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="PROD_URL" />
       <Variable x:TypeArguments="x:String" Name="DEV_URL" />
@@ -1653,9 +1657,13 @@
                     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="CheckAPIStatus - Invoke Workflow File (Utils\CheckAPIStatus.xaml)" sap:VirtualizedContainerService.HintSize="486.4,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Utils\CheckAPIStatus.xaml">
                       <ui:InvokeWorkflowFile.Arguments>
                         <InArgument x:TypeArguments="ui:UiElement" x:Key="in_Browser">[browserInstance]</InArgument>
-                        <InArgument x:TypeArguments="x:String" x:Key="in_ApiUrlPattern" xml:space="preserve">[If(ENV = "DEV", 
-    "https://app.calssvc-openga.calsplatz.com:4430/api/excel/excelUpload.binary",
-    "https://calssvc-openga.calsplatz.com:4430/api/excel/excelUpload.binary")]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_ApiUrlPattern" xml:space="preserve">[If(ENV = "DEV",
+    "https://sandbox.calssvc-openga.calsplatz.com:4430/api/excel/excelUpload.binary",
+    If(ENV = "SANDBOX",
+        "https://sandbox.calssvc-openga.calsplatz.com:4430/api/excel/excelUpload.binary",
+        "https://calssvc-openga.calsplatz.com:4430/api/excel/excelUpload.binary"
+    )
+)]</InArgument>
                         <InArgument x:TypeArguments="x:String" x:Key="in_HttpMethod">POST</InArgument>
                       </ui:InvokeWorkflowFile.Arguments>
                     </ui:InvokeWorkflowFile>
