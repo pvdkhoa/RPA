@@ -51,6 +51,7 @@
       <x:String>System.Net</x:String>
       <x:String>UiPath.UIAutomationNext.Contracts</x:String>
       <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>UiPath.Shared.Telemetry</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -120,9 +121,10 @@
       <AssemblyReference>System.Linq.Async</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
       <AssemblyReference>REF_RPA.Core</AssemblyReference>
+      <AssemblyReference>UiPath.Python.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Login_KB" sap:VirtualizedContainerService.HintSize="756.4000000000001,5408.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Login_KB" sap:VirtualizedContainerService.HintSize="630.8000000000001,5079.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Default="KBG" Name="COMP_CODE" />
       <Variable x:TypeArguments="x:String" Default="C:\RPA\CheckAvailableComp" Name="CHECKING_FILE_PATH" />
@@ -132,6 +134,11 @@
       <Variable x:TypeArguments="x:String" Name="KBG_OTP" />
       <Variable x:TypeArguments="x:String" Name="KBG_URL" />
       <Variable x:TypeArguments="x:String" Name="CHECKING_ID" />
+      <Variable x:TypeArguments="x:String" Name="path">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:String">C:\UipathScript\KBG</Literal>
+        </Variable.Default>
+      </Variable>
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -149,13 +156,13 @@
       </ui:GetRobotAsset.Value>
     </ui:GetRobotAsset>
     <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="KBG_AST_LOGIN" CacheStrategy="None" DisplayName="Get Credential" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="486.4,175.2" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[KBG_PW]" Username="[KBG_UID]" />
-    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" DisplayName="Edge KB스마트비서 GA교차 전용" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="486.4,4860" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OutUiElement="[browserInstance]" ScopeGuid="426fabea-5de9-4538-bbe2-be43432d2441" Version="V2" WindowResize="Maximize">
+    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" DisplayName="Edge KB스마트비서 GA교차 전용" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="486.4,4530.4" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OutUiElement="[browserInstance]" ScopeGuid="426fabea-5de9-4538-bbe2-be43432d2441" Version="V2" WindowResize="Maximize">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="484.79999999999995,4044" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="484.8,4336.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -204,6 +211,31 @@
               </uix:NClick.Target>
             </uix:NClick>
             <Delay Duration="00:01:10" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_13" />
+            <ui:StartProcess WorkingDirectory="{x:Null}" Arguments="[&quot;-Command &quot;&quot;Unblock-File -Path '&quot; &amp; path &amp; &quot;'&quot;&quot;&quot;]" DisplayName="Start Process" FileName="powershell.exe" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="StartProcess_3">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:StartProcess>
+            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="Delay_18">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </Delay>
+            <ui:StartProcess WorkingDirectory="{x:Null}" Arguments="[&quot;-Command &quot;&quot;Set-Location '&quot; &amp; path &amp; &quot;'; &amp; 'C:\Users\RPA02\AppData\Local\Programs\Python\Python311\python.exe' '.\kbg_handle_login.py'&quot;&quot;&quot;]" DisplayName="Start Process" FileName="powershell.exe" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="StartProcess_4">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:StartProcess>
+            <Delay Duration="00:02:30" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_19" />
             <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="CommentOut_9">
               <ui:CommentOut.Body>
                 <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_22">
