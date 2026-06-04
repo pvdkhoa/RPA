@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="NEW_SSL" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="NEW_SSL" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="contractType" Type="InArgument(x:String)" />
     <x:Property Name="runType" Type="InArgument(x:String)" />
@@ -40,6 +40,7 @@
       <x:String>UiPath.Python</x:String>
       <x:String>UiPath.Python.Activities</x:String>
       <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.Security</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -94,10 +95,13 @@
       <AssemblyReference>UiPath.GSuite.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="NEW_SSL" sap:VirtualizedContainerService.HintSize="721.2,556" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="NEW_SSL" sap:VirtualizedContainerService.HintSize="911.6,808" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="in_Username" />
+      <Variable x:TypeArguments="ss:SecureString" Name="in_Password" />
       <Variable x:TypeArguments="x:String" Default="C:\UipathScript\SSL" Name="path" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
@@ -105,6 +109,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
+    <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="SSL_AST_LOGIN" CacheStrategy="None" DisplayName="Get Credential" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="449.6,175.2" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[in_Password]" Username="[in_Username]" />
     <ui:StartProcess WorkingDirectory="{x:Null}" Arguments="[&quot;-Command &quot;&quot;Unblock-File -Path '&quot; &amp; path &amp; &quot;'&quot;&quot;&quot;]" DisplayName="Start Process" FileName="powershell.exe" sap:VirtualizedContainerService.HintSize="449.6,120" sap2010:WorkflowViewState.IdRef="StartProcess_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -121,14 +126,16 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Delay>
-    <ui:StartProcess WorkingDirectory="{x:Null}" Arguments="[&quot;-Command &quot;&quot;Set-Location '&quot; &amp; path &amp; &quot;'; &amp; 'C:\Users\RPA02\AppData\Local\Programs\Python\Python311\python.exe' '.\ssf_handle_login.py'&quot;&quot;&quot;]" DisplayName="Start Process" FileName="powershell.exe" sap:VirtualizedContainerService.HintSize="449.6,120" sap2010:WorkflowViewState.IdRef="StartProcess_2">
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-    </ui:StartProcess>
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="' Convert SecureString to String&#xD;&#xA;Dim bstr As IntPtr = System.Runtime.InteropServices.Marshal.SecureStringToBSTR(in_Password)&#xD;&#xA;Dim plainPassword As String = System.Runtime.InteropServices.Marshal.PtrToStringBSTR(bstr)&#xD;&#xA;System.Runtime.InteropServices.Marshal.ZeroFreeBSTR(bstr)&#xD;&#xA;&#xD;&#xA;' Encode password to base64&#xD;&#xA;Dim passwordBytes = System.Text.Encoding.UTF8.GetBytes(plainPassword)&#xD;&#xA;Dim base64Password = System.Convert.ToBase64String(passwordBytes)&#xD;&#xA;&#xD;&#xA;' Config&#xD;&#xA;Dim scriptPath As String = &quot;C:\UipathScript\SSL&quot;&#xD;&#xA;Dim pythonExe As String = &quot;C:\Users\RPA02\AppData\Local\Programs\Python\Python311\python.exe&quot;&#xD;&#xA;&#xD;&#xA;' Build PowerShell arguments&#xD;&#xA;Dim psArgs As String = &quot;-Command &quot;&quot;Set-Location '&quot; &amp; scriptPath &amp; &quot;'; &amp; '&quot; &amp; pythonExe &amp; &quot;' '.\ssf_handle_login.py' '&quot; &amp; in_Username &amp; &quot;' '&quot; &amp; base64Password &amp; &quot;'&quot;&quot;&quot;&#xD;&#xA;&#xD;&#xA;' Run PowerShell visible&#xD;&#xA;Dim psi As New System.Diagnostics.ProcessStartInfo()&#xD;&#xA;psi.FileName = &quot;powershell.exe&quot;&#xD;&#xA;psi.Arguments = psArgs&#xD;&#xA;psi.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal&#xD;&#xA;psi.UseShellExecute = True&#xD;&#xA;&#xD;&#xA;Dim p = System.Diagnostics.Process.Start(psi)&#xD;&#xA;p.WaitForExit()" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="449.6,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+      <ui:InvokeCode.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Username">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Username" />
+        </InArgument>
+        <InArgument x:TypeArguments="ss:SecureString" x:Key="in_Password">
+          <VisualBasicValue x:TypeArguments="ss:SecureString" ExpressionText="in_Password" />
+        </InArgument>
+      </ui:InvokeCode.Arguments>
+    </ui:InvokeCode>
     <Delay Duration="00:03:30" sap:VirtualizedContainerService.HintSize="449.6,122.4" sap2010:WorkflowViewState.IdRef="Delay_2" />
     <If Condition="[contractType = &quot;NEW&quot;]" sap:VirtualizedContainerService.HintSize="449.6,48" sap2010:WorkflowViewState.IdRef="If_1">
       <sap:WorkflowViewStateService.ViewState>
