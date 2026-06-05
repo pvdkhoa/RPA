@@ -45,6 +45,7 @@
       <x:String>UiPath.CV.Activities</x:String>
       <x:String>UiPath.CV.Activities.Interfaces</x:String>
       <x:String>System.Security</x:String>
+      <x:String>UiPath.Shared.Telemetry</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -117,9 +118,11 @@
       <AssemblyReference>System.Memory.Data</AssemblyReference>
       <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
       <AssemblyReference>REF_RPA.Core</AssemblyReference>
+      <AssemblyReference>UiPath.Python.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Download_NewContract_General" sap:VirtualizedContainerService.HintSize="762.8000000000001,6587.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Download_NewContract_General" sap:VirtualizedContainerService.HintSize="634,7794.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="ui:UiElement" Name="browserInstance" />
       <Variable x:TypeArguments="x:String" Default="False" Name="IS_MANUAL" />
@@ -166,14 +169,15 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:GetRobotAsset>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Edge NGS - 영업지원 시스템(1)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="486.4,6038.4" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="Simulate" ScopeGuid="c6188149-66ec-4687-993f-31fb3e11ec14" Version="V2">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Edge NGS - 영업지원 시스템(1)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="486.4,7245.6" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="Simulate" ScopeGuid="c6188149-66ec-4687-993f-31fb3e11ec14" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="484.8,5844.8" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="484.8,7052" sap2010:WorkflowViewState.IdRef="Sequence_4">
             <Sequence.Variables>
+              <Variable x:TypeArguments="ui:UiElement" Name="dialog" />
               <Variable x:TypeArguments="x:String" Name="str_Script" />
               <Variable x:TypeArguments="x:String" Name="variable1" />
               <Variable x:TypeArguments="x:String" Name="str_URL" />
@@ -288,7 +292,7 @@
               </uix:NClick.Target>
             </uix:NClick>
             <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_5" />
-            <uix:NCheckState DisplayName="Check App State 'lottero.lotteins.co.kr …'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_2" ScopeIdentifier="c6188149-66ec-4687-993f-31fb3e11ec14" Version="V5">
+            <uix:NCheckState DisplayName="Check App State 'lottero.lotteins.co.kr …'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,679.2" sap2010:WorkflowViewState.IdRef="NCheckState_2" ScopeIdentifier="c6188149-66ec-4687-993f-31fb3e11ec14" Version="V5">
               <uix:NCheckState.IfExists>
                 <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_7">
                   <sap:WorkflowViewStateService.ViewState>
@@ -317,58 +321,86 @@
               </uix:NCheckState.Target>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </uix:NCheckState>
-            <uix:NApplicationCard AttachMode="ByInstance" DisplayName="웹 페이지 메시지" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" ScopeGuid="638ebee0-7382-4edb-9b58-12558cfebd7d" Version="V2">
-              <uix:NApplicationCard.Body>
-                <ActivityAction x:TypeArguments="x:Object">
-                  <ActivityAction.Argument>
-                    <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
-                  </ActivityAction.Argument>
-                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,296" sap2010:WorkflowViewState.IdRef="Sequence_13">
+            <Sequence DisplayName="Close Dialog" sap:VirtualizedContainerService.HintSize="451.2,584.8" sap2010:WorkflowViewState.IdRef="Sequence_21">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_15" />
+              <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,256.8" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_4" InteractionMode="HardwareEvents" ScopeIdentifier="c6188149-66ec-4687-993f-31fb3e11ec14" Shortcuts="[d(hk)][k(Enter)][u(hk)]" Version="V5" />
+              <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="Delay_16" />
+            </Sequence>
+            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+              <ui:CommentOut.Body>
+                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="449.6,108" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NApplicationCard AttachMode="ByInstance" DisplayName="웹 페이지 메시지" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" ScopeGuid="638ebee0-7382-4edb-9b58-12558cfebd7d" Version="V2">
+                    <uix:NApplicationCard.Body>
+                      <ActivityAction x:TypeArguments="x:Object">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,296" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,236" sap2010:WorkflowViewState.IdRef="NClick_16" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="638ebee0-7382-4edb-9b58-12558cfebd7d" Version="V5">
+                            <uix:NClick.Target>
+                              <uix:TargetAnchorable ContentHash="zxP71kGlRUm0c4gvF0BemQ" DesignTimeRectangle="403, 159, 100, 33" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd title='확인' /&gt;" Guid="dd775541-28d2-4be7-a93c-bd974055f45f" InformativeScreenshot="42394bb4ec19ab4b9ec46eb89398eee0.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/aKDnTlmREE2y70b7WmHRQQ" ScopeSelectorArgument="&lt;wnd app='iexplore.exe' cls='#32770' title='웹 페이지 메시지' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None" />
+                            </uix:NClick.Target>
+                          </uix:NClick>
+                        </Sequence>
+                      </ActivityAction>
+                    </uix:NApplicationCard.Body>
+                    <uix:NApplicationCard.OCREngine>
+                      <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
+                        <ActivityFunc.Argument>
+                          <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                        </ActivityFunc.Argument>
+                      </ActivityFunc>
+                    </uix:NApplicationCard.OCREngine>
+                    <uix:NApplicationCard.TargetApp>
+                      <uix:TargetApp Area="702, 439, 534, 216" ContentHash="ekpw5UiLc0ejzRBeEp9P9Q" FilePath="C:\Program Files (x86)\Internet Explorer\iexplore.exe" IconBase64="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" InformativeScreenshot="68fd15eb54af065d39ba90f8210bf8d0.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/WgvdWfZtU0CGNJdRNfXt_w" Selector="&lt;wnd app='iexplore.exe' cls='#32770' title='웹 페이지 메시지' /&gt;" Version="V2">
+                        <uix:TargetApp.Arguments>
+                          <InArgument x:TypeArguments="x:String" />
+                        </uix:TargetApp.Arguments>
+                        <uix:TargetApp.Url>
+                          <InArgument x:TypeArguments="x:String" />
+                        </uix:TargetApp.Url>
+                        <uix:TargetApp.WorkingDirectory>
+                          <InArgument x:TypeArguments="x:String" />
+                        </uix:TargetApp.WorkingDirectory>
+                      </uix:TargetApp>
+                    </uix:NApplicationCard.TargetApp>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,236" sap2010:WorkflowViewState.IdRef="NClick_16" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="638ebee0-7382-4edb-9b58-12558cfebd7d" Version="V5">
-                      <uix:NClick.Target>
-                        <uix:TargetAnchorable ContentHash="zxP71kGlRUm0c4gvF0BemQ" DesignTimeRectangle="403, 159, 100, 33" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd title='확인' /&gt;" Guid="dd775541-28d2-4be7-a93c-bd974055f45f" InformativeScreenshot="42394bb4ec19ab4b9ec46eb89398eee0.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/aKDnTlmREE2y70b7WmHRQQ" ScopeSelectorArgument="&lt;wnd app='iexplore.exe' cls='#32770' title='웹 페이지 메시지' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None" />
-                      </uix:NClick.Target>
-                    </uix:NClick>
-                  </Sequence>
-                </ActivityAction>
-              </uix:NApplicationCard.Body>
-              <uix:NApplicationCard.OCREngine>
-                <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
-                  <ActivityFunc.Argument>
-                    <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
-                  </ActivityFunc.Argument>
-                </ActivityFunc>
-              </uix:NApplicationCard.OCREngine>
-              <uix:NApplicationCard.TargetApp>
-                <uix:TargetApp Area="702, 439, 534, 216" ContentHash="ekpw5UiLc0ejzRBeEp9P9Q" FilePath="C:\Program Files (x86)\Internet Explorer\iexplore.exe" IconBase64="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" InformativeScreenshot="68fd15eb54af065d39ba90f8210bf8d0.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/WgvdWfZtU0CGNJdRNfXt_w" Selector="&lt;wnd app='iexplore.exe' cls='#32770' title='웹 페이지 메시지' /&gt;" Version="V2">
-                  <uix:TargetApp.Arguments>
-                    <InArgument x:TypeArguments="x:String" />
-                  </uix:TargetApp.Arguments>
-                  <uix:TargetApp.Url>
-                    <InArgument x:TypeArguments="x:String" />
-                  </uix:TargetApp.Url>
-                  <uix:TargetApp.WorkingDirectory>
-                    <InArgument x:TypeArguments="x:String" />
-                  </uix:TargetApp.WorkingDirectory>
-                </uix:TargetApp>
-              </uix:NApplicationCard.TargetApp>
+                  </uix:NApplicationCard>
+                </Sequence>
+              </ui:CommentOut.Body>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-            </uix:NApplicationCard>
+            </ui:CommentOut>
             <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '출력물'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_6" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="c6188149-66ec-4687-993f-31fb3e11ec14" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="lottero.lotteins.co.kr/ncrmwebroot/webfw/html/nawmain.html" ContentHash="NfLujrIzSUSoIL-J6ld6uA" DesignTimeRectangle="19, 925, 57, 29" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='movCOMN001' tag='BUTTON' type='button' /&gt;" Guid="c9e5a862-4a28-4596-a0d7-32d73f8bcf39" InformativeScreenshot="eeb8c710121655e4c373dc103d30e443.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/NHgD-fHBwUmT5hnGDbtoFA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='NGS - 영업지원 시스템' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
