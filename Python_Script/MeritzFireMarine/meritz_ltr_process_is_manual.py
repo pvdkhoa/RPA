@@ -10,9 +10,9 @@ CLIENT_SECRET = "!ys?YRKf6^e4Lbapq6SN0cq?GwNSO_#Q7s*~VwNt!BqDElg$F$srGJpiP7v8k$X
 ORG_UNIT_ID   = "946773"
 BASE_URL      = "https://cloud.uipath.com/rpacaxjvjr/DefaultTenant/orchestrator_"
 
-IS_MANUAL_ASSET_NAME    = "IS_MANUAL"
-END_DATE_ASSET_NAME     = "END_DATE_DOWNLOAD"
-START_DATE_ASSET_NAME   = "START_DATE_DOWNLOAD"
+TOGGLE_MANUAL_DOWNLOAD = "TOGGLE_MANUAL_DOWNLOAD"  # Value: "ON" / "OFF"
+END_DATE_ASSET_NAME    = "END_DATE_DOWNLOAD"
+START_DATE_ASSET_NAME  = "START_DATE_DOWNLOAD"
 
 # ===== WIN32 SETUP =====
 shell = win32com.client.Dispatch("WScript.Shell")
@@ -46,10 +46,14 @@ def type_text(text):
 
 def clear_and_type(x, y, text):
     click(x, y)
+    time.sleep(0.5)
+    hwnd = get_hwnd()
+    win32gui.SetForegroundWindow(hwnd)
+    time.sleep(0.3)
     shell.SendKeys("^a")
-    time.sleep(0.1)
+    time.sleep(0.2)
     shell.SendKeys("{DELETE}")
-    time.sleep(0.1)
+    time.sleep(0.2)
     type_text(text)
 
 # ===== ORCHESTRATOR FUNCTIONS =====
@@ -84,49 +88,57 @@ def get_asset_by_name(token, asset_name):
     return assets[0]
 
 def get_asset_value(asset):
-    """Extract string value từ asset object (Text/Bool/Integer...)"""
     return str(asset.get("Value", asset.get("StringValue", ""))).strip()
 
-# ===== CHECK IS_MANUAL & SET DATE =====
+def convert_date(date_str):
+    """Chuyển format yyyy-mm-dd → yyyymmdd"""
+    return date_str.replace("-", "")
+
+# ===== CHECK TOGGLE_MANUAL_DOWNLOAD & SET DATE =====
 def check_and_apply_manual_date():
     """
-    Gọi API lấy IS_MANUAL.
-    - Nếu TRUE  → lấy thêm START_DATE_DOWNLOAD, END_DATE_DOWNLOAD rồi type vào UI.
-    - Nếu FALSE → không làm gì, giữ default của app.
+    Gọi API lấy TOGGLE_MANUAL_DOWNLOAD.
+    - Nếu ON  → lấy START_DATE_DOWNLOAD, END_DATE_DOWNLOAD,
+                 convert từ yyyy-mm-dd → yyyymmdd, rồi type vào UI.
+    - Nếu OFF → không làm gì, giữ default của app.
     """
     try:
         token = get_access_token()
 
-        is_manual_asset = get_asset_by_name(token, IS_MANUAL_ASSET_NAME)
-        if is_manual_asset is None:
-            print("[IS_MANUAL] Asset không tồn tại, giữ nguyên default.")
+        toggle_asset = get_asset_by_name(token, TOGGLE_MANUAL_DOWNLOAD)
+        if toggle_asset is None:
+            print("[TOGGLE] Asset không tồn tại, giữ nguyên default.")
             return
 
-        is_manual_value = get_asset_value(is_manual_asset).upper()
-        print(f"[IS_MANUAL] Value = {is_manual_value}")
+        toggle_value = get_asset_value(toggle_asset).upper()
+        print(f"[TOGGLE] TOGGLE_MANUAL_DOWNLOAD = {toggle_value}")
 
-        if is_manual_value == "TRUE":
+        if toggle_value == "ON":
             start_asset = get_asset_by_name(token, START_DATE_ASSET_NAME)
             end_asset   = get_asset_by_name(token, END_DATE_ASSET_NAME)
 
             if not start_asset or not end_asset:
-                print("[IS_MANUAL] Thiếu asset ngày tháng, giữ nguyên default.")
+                print("[TOGGLE] Thiếu asset ngày tháng, giữ nguyên default.")
                 return
 
-            START_DATE = get_asset_value(start_asset)
-            END_DATE   = get_asset_value(end_asset)
+            START_DATE = convert_date(get_asset_value(start_asset))  # yyyymmdd
+            END_DATE   = convert_date(get_asset_value(end_asset))    # yyyymmdd
 
-            print(f"[IS_MANUAL] START_DATE={START_DATE}, END_DATE={END_DATE}")
-            print("Check is manual add time period")
+            print(f"[TOGGLE] START_DATE={START_DATE}, END_DATE={END_DATE}")
+            print("[TOGGLE] ON → Applying manual date range...")
             clear_and_type(423, 161, START_DATE)
+            time.sleep(2)
             clear_and_type(542, 160, END_DATE)
 
+        elif toggle_value == "OFF":
+            print("[TOGGLE] OFF → Giữ nguyên date default của app.")
+
         else:
-            print("[IS_MANUAL] FALSE → Giữ nguyên date default của app.")
+            print(f"[TOGGLE] Giá trị không hợp lệ: '{toggle_value}'. Giữ nguyên default.")
 
     except Exception as e:
-        print(f"[IS_MANUAL] Lỗi khi kiểm tra asset: {e}")
-        print("[IS_MANUAL] Fallback: giữ nguyên date default.")
+        print(f"[TOGGLE] Lỗi khi kiểm tra asset: {e}")
+        print("[TOGGLE] Fallback: giữ nguyên date default.")
 
 # ===== MAIN FLOW =====
 check_and_apply_manual_date()

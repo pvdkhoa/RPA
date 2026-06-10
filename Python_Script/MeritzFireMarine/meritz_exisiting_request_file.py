@@ -53,20 +53,24 @@ def clear_and_type(x, y, text):
     time.sleep(0.1)
     type_text(text)
 
-print('Click New Request')
-click(1307,758)
+print('Click Close popup search data')
+click(788,495)
 time.sleep(2)
 
-print('Click Close Popup')
-click(1020,195)
-time.sleep(1)
+print('Click Close popup search data')
+click(788,495)
+time.sleep(2)
+
+print('Click New Request')
+click(1312,758)
+time.sleep(2)
 
 print('Click Include Maturity')
-click(940,412)
+click(924,412)
 time.sleep(1)
 
 print('Click Apply')
-click(733,481)
+click(736,478)
 time.sleep(1)
 
 print('Click Completed Popup')

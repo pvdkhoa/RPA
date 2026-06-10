@@ -38,6 +38,7 @@ def clear_and_type(x, y, text):
     time.sleep(0.1)
     type_text(text)
 
+
 print('Click Payment Type: New Contract')
 click(1195,160)
 time.sleep(0.5)
