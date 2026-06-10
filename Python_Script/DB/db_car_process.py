@@ -40,6 +40,7 @@ def clear_and_type(x, y, text):
 
 print('Bat dau click...')
 
+time.sleep(5)
 # Selection Box Insurance type
 click(649, 171)
 print('Da click Selection Box Insurance type')
