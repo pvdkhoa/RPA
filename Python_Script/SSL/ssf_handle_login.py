@@ -1,4 +1,4 @@
-import shutil
+﻿import shutil
 import os
 import sys
 import win32api, win32con, win32gui, win32com.client, time
@@ -29,8 +29,7 @@ log = logging.getLogger(__name__)
 # ─────────────────────────────────────────
 # PARSE ARGUMENTS
 # username = sys.argv[1]
-# password = sys.argv[2]
-# Pass password as base64 to avoid special character issues
+# password = sys.argv[2]  (base64 encoded)
 # ─────────────────────────────────────────
 import base64
 
@@ -40,7 +39,6 @@ if len(sys.argv) < 3:
 
 ARG_USERNAME = sys.argv[1]
 
-# Decode base64 password to handle special characters: !! @@ ## $$ &&
 try:
     ARG_PASSWORD = base64.b64decode(sys.argv[2]).decode("utf-8")
     log.info(f"[ARGS] Username: '{ARG_USERNAME}'")
@@ -56,16 +54,26 @@ shell = win32com.client.Dispatch("WScript.Shell")
 
 PYTHON_EXE  = r"C:\Users\RPA02\AppData\Local\Programs\Python\Python311\python.exe"
 OCR_SCRIPT  = r"ocr_check.py"
-MAX_RETRY   = 5   # Number of OCR retries before restarting browser
+MAX_RETRY   = 6   # Number of reload + OCR attempts before restarting the browser
 MAX_RESTART = 2   # Number of browser restarts if still failing
+
+# Wait time for local security agent (K-Defense / MaWebDRM) to complete handshake.
+# This is the real bottleneck causing blank pages: WebSquare only renders after
+# the agent at 127.0.0.1 reports READY. Extra time added to avoid race condition.
+SECURITY_WARMUP_SEC = 8
+POST_LOGIN_SETTLE   = 12   # Wait for security handshake to stabilize after clicking login
 
 CLIENT_ID     = "f03a6679-36df-4e04-987e-b73d8a905970"
 CLIENT_SECRET = "!ys?YRKf6^e4Lbapq6SN0cq?GwNSO_#Q7s*~VwNt!BqDElg$F$srGJpiP7v8k$XS"
 ORG_UNIT_ID   = "946773"
 BASE_URL      = "https://cloud.uipath.com/rpacaxjvjr/defaulttenant/orchestrator_"
 
+# Security agent process names (verify against Task Manager on RPA02 and adjust if needed).
+# Used to wait for the agent to be alive before opening Edge.
+SECURITY_PROCESSES = ["MaWebDRM", "MarkAny", "KStdWeb", "KGenia", "KSecureWeb", "kos"]
+
 # ─────────────────────────────────────────
-# UIPATH API
+# UIPATH ORCHESTRATOR API
 # ─────────────────────────────────────────
 def get_access_token():
     url = "https://cloud.uipath.com/identity_/connect/token"
@@ -82,15 +90,12 @@ def get_access_token():
     return token
 
 def get_ssl_assets(token):
-    """Fetch SSL_AST_OTP and SSL_AST_URL assets from Orchestrator"""
     url = f"{BASE_URL}/odata/Assets"
     headers = {
         "Authorization": f"Bearer {token}",
         "X-UIPATH-OrganizationUnitId": ORG_UNIT_ID,
     }
-    params = {
-        "$filter": "startswith(Name,'SSL_AST')"
-    }
+    params = {"$filter": "startswith(Name,'SSL_AST')"}
     response = requests.get(url, headers=headers, params=params)
     response.raise_for_status()
     assets = response.json().get("value", [])
@@ -98,18 +103,7 @@ def get_ssl_assets(token):
     return assets
 
 def parse_ssl_credentials(assets):
-    """
-    Parse credentials:
-    - username/password: from command line arguments (base64 encoded)
-    - otp/url: from Orchestrator assets
-    """
-    result = {
-        "username": ARG_USERNAME,
-        "password": ARG_PASSWORD,
-        "otp": "",
-        "url": ""
-    }
-
+    result = {"username": ARG_USERNAME, "password": ARG_PASSWORD, "otp": "", "url": ""}
     for asset in assets:
         name = asset.get("Name", "")
         if name == "SSL_AST_OTP":
@@ -119,21 +113,87 @@ def parse_ssl_credentials(assets):
             result["url"] = asset.get("StringValue", "")
             log.info(f"[PARSE] SSL_AST_URL -> url='{result['url']}'")
 
-    # Validate
     if not result["username"] or not result["password"]:
         raise ValueError("[ERROR] Username or password argument is empty!")
     if not result["url"]:
         raise ValueError("[ERROR] SSL_AST_URL is empty!")
     if not result["otp"]:
         raise ValueError("[ERROR] SSL_AST_OTP is empty!")
-
     return result
+
+# ─────────────────────────────────────────
+# UPDATE SSL LOGIN STATUS ASSET
+# Using for checking Alive SSL Y/N
+# SSL 활성화 여부 확인용 (Y/N)
+# ─────────────────────────────────────────
+def update_ssl_login_status(token, status: str):
+    """Update SSL_LOGIN_STATUS asset value to 'Y' (success) or 'N' (failed)."""
+    # Step 1: Get the Asset ID of SSL_LOGIN_STATUS
+    url = f"{BASE_URL}/odata/Assets"
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "X-UIPATH-OrganizationUnitId": ORG_UNIT_ID,
+    }
+    params = {"$filter": "Name eq 'SSL_LOGIN_STATUS'"}
+    response = requests.get(url, headers=headers, params=params)
+    response.raise_for_status()
+    assets = response.json().get("value", [])
+
+    if not assets:
+        log.error("[STATUS] SSL_LOGIN_STATUS asset not found in Orchestrator!")
+        return False
+
+    asset_id = assets[0]["Id"]
+    log.info(f"[STATUS] SSL_LOGIN_STATUS asset ID: {asset_id}")
+
+    # Step 2: Update the asset value
+    update_url = f"{BASE_URL}/odata/Assets({asset_id})"
+    payload = {
+        "Name": "SSL_LOGIN_STATUS",
+        "ValueScope": "Global",
+        "ValueType": "Text",
+        "StringValue": status
+    }
+    response = requests.put(update_url, headers=headers, json=payload)
+    response.raise_for_status()
+    log.info(f"[STATUS] SSL_LOGIN_STATUS updated to '{status}' successfully")
+    return True
+
+# ─────────────────────────────────────────
+# SECURITY AGENT WARM-UP
+# WebSquare only renders when the security agent (K-Defense/MaWebDRM) reports READY.
+# Wait for the agent process to be alive + warm-up before opening Edge to avoid race condition.
+# ─────────────────────────────────────────
+def is_process_running(name_part):
+    try:
+        out = subprocess.run(
+            ["tasklist"], capture_output=True, text=True,
+            encoding="utf-8", errors="replace"
+        ).stdout.lower()
+        return name_part.lower() in out
+    except Exception:
+        return False
+
+def wait_security_agents(timeout=20):
+    log.info("[AGENT] Waiting for local security agents...")
+    start = time.time()
+    found = []
+    while time.time() - start < timeout:
+        found = [p for p in SECURITY_PROCESSES if is_process_running(p)]
+        if found:
+            log.info(f"[AGENT] Security agent(s) detected: {found}")
+            break
+        time.sleep(1)
+    if not found:
+        log.warning("[AGENT] No known security agent detected "
+                    "(please verify process names in SECURITY_PROCESSES).")
+    log.info(f"[AGENT] Warming up for {SECURITY_WARMUP_SEC}s to complete handshake...")
+    time.sleep(SECURITY_WARMUP_SEC)
 
 # ─────────────────────────────────────────
 # BROWSER FUNCTIONS
 # ─────────────────────────────────────────
 def open_edge(url):
-    """Open Edge browser with no session restore"""
     subprocess.Popen([
         r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
         "--start-maximized",
@@ -145,30 +205,35 @@ def open_edge(url):
     time.sleep(20)
 
 def close_edge():
-    """Close Edge gracefully: WM_CLOSE first, then force kill"""
     log.info("[BROWSER] Closing Edge gracefully...")
-
     def callback(hwnd, _):
         if win32gui.IsWindowVisible(hwnd):
-            cls = win32gui.GetClassName(hwnd)
-            if cls == 'Chrome_WidgetWin_1':
+            if win32gui.GetClassName(hwnd) == 'Chrome_WidgetWin_1':
                 win32gui.PostMessage(hwnd, win32con.WM_CLOSE, 0, 0)
     win32gui.EnumWindows(callback, None)
     time.sleep(3)
-
     os.system("taskkill /f /im msedge.exe 2>nul")
     time.sleep(2)
     log.info("[BROWSER] Edge closed")
 
 def clear_edge_data():
-    """Clear Edge cache, cookies and session data"""
+    """
+    Clear Edge cache & cookies for a clean login session.
+
+    IMPORTANT: Do NOT delete Local Storage / IndexedDB / Session Storage.
+    The security agent (MaWebDRM / K-Defense) likely caches its handshake
+    state there. Deleting them forces a cold-start handshake from scratch,
+    which races with WebSquare rendering and causes blank pages requiring
+    many reloads. This is one of the main root causes of 'many reloads needed'.
+    """
     base = Path(r"C:\Users\RPA02\AppData\Local\Microsoft\Edge\User Data\Default")
     targets = [
         base / "Cache", base / "Code Cache", base / "GPUCache",
         base / "Cookies", base / "Cookies-journal",
-        base / "Session Storage", base / "Local Storage", base / "IndexedDB",
         base / "Sessions", base / "Current Session", base / "Current Tabs",
         base / "Last Session", base / "Last Tabs",
+        # ── REMOVED (preserving security agent state) ──
+        # base / "Session Storage", base / "Local Storage", base / "IndexedDB",
     ]
     for target in targets:
         try:
@@ -180,10 +245,9 @@ def clear_edge_data():
                 log.info(f"[CLEAR] Deleted file: {target.name}")
         except Exception as e:
             log.warning(f"[CLEAR] Could not delete {target.name}: {e}")
-    log.info("[CLEAR] Edge browser data cleared")
+    log.info("[CLEAR] Edge browser data cleared (agent state preserved)")
 
 def get_hwnd_samsunglife():
-    """Find Samsung Life browser window handle"""
     result = []
     def callback(hwnd, _):
         if win32gui.IsWindowVisible(hwnd):
@@ -194,7 +258,6 @@ def get_hwnd_samsunglife():
     return result
 
 def get_hwnd_popup_edge():
-    """Find Edge popup window handle"""
     result = []
     def callback(hwnd, _):
         if win32gui.IsWindowVisible(hwnd):
@@ -207,7 +270,6 @@ def get_hwnd_popup_edge():
     return result
 
 def close_popup_if_exists(timeout=10):
-    """Wait for Edge popup and close it if found"""
     log.info("[POPUP] Checking for Edge popup...")
     start = time.time()
     while time.time() - start < timeout:
@@ -223,7 +285,6 @@ def close_popup_if_exists(timeout=10):
     return False
 
 def wait_for_samsunglife(timeout=30):
-    """Wait for Samsung Life browser to appear"""
     log.info("[BROWSER] Waiting for Samsung Life browser...")
     start = time.time()
     while time.time() - start < timeout:
@@ -239,7 +300,6 @@ def wait_for_samsunglife(timeout=30):
 # WINDOW CONTROL
 # ─────────────────────────────────────────
 def force_foreground(hwnd):
-    """Force window to foreground using AttachThreadInput"""
     fgwin = ctypes.windll.user32.GetForegroundWindow()
     fgthread = ctypes.windll.user32.GetWindowThreadProcessId(fgwin, None)
     curthread = ctypes.windll.kernel32.GetCurrentThreadId()
@@ -251,7 +311,6 @@ def force_foreground(hwnd):
     time.sleep(0.8)
 
 def click(hwnd, x, y):
-    """Hardware mouse click at coordinates"""
     force_foreground(hwnd)
     win32api.SetCursorPos((x, y))
     time.sleep(0.3)
@@ -260,7 +319,6 @@ def click(hwnd, x, y):
     time.sleep(0.5)
 
 def clear_and_type(hwnd, x, y, text):
-    """Click field, select all, delete, then type text"""
     force_foreground(hwnd)
     click(hwnd, x, y)
     shell.SendKeys("^a")
@@ -274,7 +332,6 @@ def clear_and_type(hwnd, x, y, text):
 # POPUP CLOSE FLOW
 # ─────────────────────────────────────────
 def close_all_popups(hwnd_main):
-    """Close all portal popups after login"""
     log.info("[POPUP] Closing portal popups...")
     click(hwnd_main, 773, 538)
     time.sleep(2)
@@ -287,39 +344,65 @@ def close_all_popups(hwnd_main):
     log.info("[POPUP] All popups closed")
 
 # ─────────────────────────────────────────
-# OCR CHECK
+# OCR CHECK  (HARDENED - prevents false positives)
+# Old bug: easyocr progress bar / download messages written to stdout,
+# crashed cp949 encoding, but garbage strings leaked through -> counted as 'loaded'.
+# This version: forces UTF-8, checks exit code, filters out all noise.
 # ─────────────────────────────────────────
 def run_ocr_check():
-    """Run ocr_check.py as subprocess and return recognized text"""
     log.info("[OCR] Running ocr_check.py...")
+    env = os.environ.copy()
+    env["PYTHONIOENCODING"] = "utf-8"   # prevent cp949 crash from subprocess
+
     result = subprocess.run(
         [PYTHON_EXE, OCR_SCRIPT],
-        capture_output=True,
-        text=True
+        capture_output=True, text=True,
+        encoding="utf-8", errors="replace",
+        env=env,
     )
-    text = result.stdout.strip()
+
     if result.stderr:
-        log.warning(f"[OCR] STDERR: {result.stderr.strip()}")
+        log.warning(f"[OCR] STDERR: {result.stderr.strip()[:300]}")
+
+    # If ocr_check.py crashes -> must NOT be counted as loaded
+    if result.returncode != 0:
+        log.error(f"[OCR] ocr_check.py exit code {result.returncode} -> treat as blank")
+        return ""
+
+    # Filter out easyocr noise (progress bars, download messages, etc.)
+    NOISE = ("Progress:", "Downloading", "Using CPU", "Using GPU",
+             "CUDA", "This may take", "Complete")
+    clean = []
+    for ln in (result.stdout or "").splitlines():
+        s = ln.strip()
+        if not s:
+            continue
+        if "|" in s and any(n in s for n in NOISE):   # progress bar line
+            continue
+        if any(s.startswith(n) for n in NOISE):
+            continue
+        clean.append(s)
+
+    text = "\n".join(clean).strip()
     log.info(f"[OCR] Result: '{text if text else '(empty)'}'")
     return text
 
 # ─────────────────────────────────────────
-# RELOAD + RETRY LOGIC
+# RELOAD + RETRY LOGIC  (proven working reload method)
+# Note: Do NOT use bare URL / new ticket anymore.
+#   - websquare.html (no ticket) -> empty ticket -> blank page (confirmed).
+#   - https://ga.samsunglife.com/ (request new ticket) -> still blank (confirmed).
+#   => Correct recovery = F5 reload the current tab with existing ?ticket=... URL.
 # ─────────────────────────────────────────
-def reload_and_close_popups(hwnd_main):
-    """F5 reload page, wait, then close all popups"""
+def reload_and_close_popups(hwnd_main, wait_load=15):
     log.info("[RELOAD] Reloading page (F5)...")
     force_foreground(hwnd_main)
     shell.SendKeys("{F5}")
-    time.sleep(15)
+    time.sleep(wait_load)
     close_all_popups(hwnd_main)
 
 def check_main_loaded_and_retry(hwnd_main, max_retry=MAX_RETRY):
-    """
-    Retry OCR up to max_retry times.
-    Each failure: reload -> close popups -> OCR again.
-    Returns True if page loaded successfully.
-    """
+    """Run OCR; if blank -> F5 reload -> close popups -> OCR again, up to max_retry times."""
     for attempt in range(1, max_retry + 1):
         log.info(f"[OCR] Checking main page (attempt {attempt}/{max_retry})...")
         time.sleep(3)
@@ -327,11 +410,9 @@ def check_main_loaded_and_retry(hwnd_main, max_retry=MAX_RETRY):
         if text:
             log.info(f"[OCR] Page loaded on attempt {attempt}. Text: '{text}'")
             return True
-        else:
-            log.warning(f"[OCR] Blank page on attempt {attempt}/{max_retry}")
-            if attempt < max_retry:
-                reload_and_close_popups(hwnd_main)
-
+        log.warning(f"[OCR] Blank page on attempt {attempt}/{max_retry}")
+        if attempt < max_retry:
+            reload_and_close_popups(hwnd_main)
     log.error(f"[OCR] Failed to load page after {max_retry} attempts")
     return False
 
@@ -339,7 +420,6 @@ def check_main_loaded_and_retry(hwnd_main, max_retry=MAX_RETRY):
 # LOGIN FLOW
 # ─────────────────────────────────────────
 def do_login(hwnd, creds):
-    """Perform login using credentials from arguments + Orchestrator assets"""
     force_foreground(hwnd)
     time.sleep(2)
 
@@ -357,19 +437,24 @@ def do_login(hwnd, creds):
 
     log.info("[LOGIN] Clicking login button...")
     click(hwnd, 1110, 558)
+
+    # Wait for page loading + security handshake (race condition prone -> keep generous)
     time.sleep(25)
+    log.info(f"[LOGIN] Settling {POST_LOGIN_SETTLE}s for security handshake...")
+    time.sleep(POST_LOGIN_SETTLE)
 
     close_all_popups(hwnd)
     log.info("[LOGIN] Login flow completed")
 
 # ─────────────────────────────────────────
-# RESTART BROWSER
+# RESTART BROWSER (last resort fallback)
+# Restart does NOT wipe Local Storage/IndexedDB (preserves agent state).
 # ─────────────────────────────────────────
 def restart_and_open(creds):
-    """Close Edge -> reopen URL -> login -> close popups"""
     log.info("[RESTART] Starting browser restart...")
     close_edge()
     time.sleep(3)
+    wait_security_agents()
     open_edge(creds["url"])
     close_popup_if_exists(timeout=10)
 
@@ -390,7 +475,7 @@ log.info("========== START ==========")
 hwnd_cmd = ctypes.windll.kernel32.GetConsoleWindow()
 ctypes.windll.user32.ShowWindow(hwnd_cmd, 6)
 
-# Step 1: Fetch OTP and URL from Orchestrator API
+# Step 1: Fetch OTP and URL from Orchestrator
 log.info("[INIT] Fetching OTP and URL from Orchestrator...")
 try:
     token = get_access_token()
@@ -401,9 +486,10 @@ except Exception as e:
     log.error(f"[INIT] Failed to fetch credentials: {e}")
     sys.exit(1)
 
-# Step 2: Clear cache, open browser, login
+# Step 2: Clear (cache + cookies, preserve agent state) -> warm-up agent -> open -> login
 clear_edge_data()
 time.sleep(3)
+wait_security_agents()          # wait for security agent to be alive before opening Edge
 open_edge(creds["url"])
 close_popup_if_exists(timeout=10)
 
@@ -414,29 +500,36 @@ if not hwnd_main:
 
 do_login(hwnd_main, creds)
 
-# Step 3: OCR retry up to MAX_RETRY times
+# Step 3: OCR + reload retry (proven working method; bare URL/new ticket has been ruled out)
 success = check_main_loaded_and_retry(hwnd_main, max_retry=MAX_RETRY)
 
-# Step 4: If still failing -> restart browser up to MAX_RESTART times
+# Step 4: If still failing -> restart browser (preserve agent state) up to MAX_RESTART times
 if not success:
     for restart_num in range(1, MAX_RESTART + 1):
         log.warning(f"[RESTART] Attempt {restart_num}/{MAX_RESTART}")
-
         hwnd_main = restart_and_open(creds)
         if not hwnd_main:
             log.error(f"[RESTART] Attempt {restart_num}: Browser not found")
             continue
-
         success = check_main_loaded_and_retry(hwnd_main, max_retry=3)
         if success:
             break
-        else:
-            log.warning(f"[RESTART] Attempt {restart_num}: Still failed after 3 OCR retries")
+        log.warning(f"[RESTART] Attempt {restart_num}: Still failed after 3 OCR retries")
 
 # Final result
 if success:
     log.info("[END] Login completed successfully!")
+    # Update SSL_LOGIN_STATUS = 'Y' (login alive)
+    try:
+        update_ssl_login_status(token, "Y")
+    except Exception as e:
+        log.error(f"[STATUS] Failed to update SSL_LOGIN_STATUS to Y: {e}")
 else:
     log.error(f"[END] Failed after {MAX_RETRY} retries + {MAX_RESTART} restarts")
+    # Update SSL_LOGIN_STATUS = 'N' (login failed)
+    try:
+        update_ssl_login_status(token, "N")
+    except Exception as e:
+        log.error(f"[STATUS] Failed to update SSL_LOGIN_STATUS to N: {e}")
 
 log.info("========== END ==========")
