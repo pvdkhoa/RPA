@@ -115,8 +115,11 @@
       <AssemblyReference>REF_RPA.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Login_CALS" sap:VirtualizedContainerService.HintSize="910,9967.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Login_CALS" sap:VirtualizedContainerService.HintSize="775.6,10999.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="IS_MANUAL" />
+      <Variable x:TypeArguments="x:String" Name="END_PERIOD" />
+      <Variable x:TypeArguments="x:String" Name="START_PERIOD" />
       <Variable x:TypeArguments="x:String" Name="DEV_URL" />
       <Variable x:TypeArguments="x:String" Name="PROD_URL" />
       <Variable x:TypeArguments="x:String" Default="DEV" Name="ENV" />
@@ -129,40 +132,79 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="SSL_NEW_PATH" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="556.8,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="START_DATE_DOWNLOAD" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="556.8,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_5">
+      <ui:GetRobotAsset.Value>
+        <OutArgument x:TypeArguments="x:String">[START_PERIOD]</OutArgument>
+      </ui:GetRobotAsset.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:GetRobotAsset>
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="END_DATE_DOWNLOAD" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="556.8,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_6">
+      <ui:GetRobotAsset.Value>
+        <OutArgument x:TypeArguments="x:String">[END_PERIOD]</OutArgument>
+      </ui:GetRobotAsset.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:GetRobotAsset>
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="TOGGLE_MANUAL_DOWNLOAD" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="556.8,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_7">
+      <ui:GetRobotAsset.Value>
+        <OutArgument x:TypeArguments="x:String">[IS_MANUAL]</OutArgument>
+      </ui:GetRobotAsset.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:GetRobotAsset>
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="SSL_NEW_PATH" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="556.8,56.8" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
       <ui:GetRobotAsset.Value>
         <OutArgument x:TypeArguments="x:String">[SSL_NEW_PATH]</OutArgument>
       </ui:GetRobotAsset.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
     </ui:GetRobotAsset>
-    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="ENV" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="556.8,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="ENV" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="556.8,56.8" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
       <ui:GetRobotAsset.Value>
         <OutArgument x:TypeArguments="x:String">[ENV]</OutArgument>
       </ui:GetRobotAsset.Value>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:GetRobotAsset>
-    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="CALS_URL_DEV" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="556.8,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_3">
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="CALS_URL_DEV" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="556.8,56.8" sap2010:WorkflowViewState.IdRef="GetRobotAsset_3">
       <ui:GetRobotAsset.Value>
         <OutArgument x:TypeArguments="x:String">[DEV_URL]</OutArgument>
       </ui:GetRobotAsset.Value>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:GetRobotAsset>
-    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="CALS_URL_PROD" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="556.8,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_4">
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="CALS_URL_PROD" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="556.8,56.8" sap2010:WorkflowViewState.IdRef="GetRobotAsset_4">
       <ui:GetRobotAsset.Value>
         <OutArgument x:TypeArguments="x:String">[PROD_URL]</OutArgument>
       </ui:GetRobotAsset.Value>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
@@ -209,13 +251,13 @@
         </Sequence>
       </If.Else>
     </If>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome 홈 - OPENGA(1)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="556.8,8653.6" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" InteractionMode="DebuggerApi" OutUiElement="[browserInstance]" ScopeGuid="b5fbf5cf-128b-4df5-9038-1861fc870a84" Version="V2">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome 홈 - OPENGA(1)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="556.8,9633.6" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" InteractionMode="DebuggerApi" OutUiElement="[browserInstance]" ScopeGuid="b5fbf5cf-128b-4df5-9038-1861fc870a84" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="555.2,8460" sap2010:WorkflowViewState.IdRef="Sequence_14">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="555.2,9440" sap2010:WorkflowViewState.IdRef="Sequence_14">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -268,38 +310,115 @@
                 </uix:TargetAnchorable>
               </uix:NClick.Target>
             </uix:NClick>
-            <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="521.6,122.4" sap2010:WorkflowViewState.IdRef="Delay_37" />
-            <uix:NSetClipboard DisplayName="Set Clipboard" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="521.6,56.8" sap2010:WorkflowViewState.IdRef="NSetClipboard_1" ScopeIdentifier="b5fbf5cf-128b-4df5-9038-1861fc870a84" Text="삼성생명" Version="V5">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </uix:NSetClipboard>
-            <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="521.6,56.8" sap2010:WorkflowViewState.IdRef="Delay_38">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </Delay>
-            <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="521.6,56.8" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_5" InteractionMode="SameAsCard" ScopeIdentifier="b5fbf5cf-128b-4df5-9038-1861fc870a84" Shortcuts="[d(hk)][k(Tab)][u(hk)][d(hk)][k(Tab)][u(hk)][d(hk)][k(Tab)][u(hk)][d(hk)][k(Tab)][u(hk)][d(hk)][k(Tab)][u(hk)][d(hk)][k(Tab)][u(hk)][d(hk)][k(Tab)][u(hk)][d(hk)][k(Tab)][u(hk)][d(hk)][k(Tab)][u(hk)][d(hk)][d(ctrl)]v[u(ctrl)][u(hk)][d(hk)][k(Down)][u(hk)][d(hk)][k(Enter)][u(hk)]" Version="V5">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </uix:NKeyboardShortcuts>
-            <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="521.6,122.4" sap2010:WorkflowViewState.IdRef="Delay_39" />
-            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="521.6,218.4" sap2010:WorkflowViewState.IdRef="CommentOut_1">
-              <ui:CommentOut.Body>
-                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="449.6,108" sap2010:WorkflowViewState.IdRef="Sequence_53">
+            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="521.6,122.4" sap2010:WorkflowViewState.IdRef="Delay_42" />
+            <If Condition="[IS_MANUAL = &quot;ON&quot;]" sap:VirtualizedContainerService.HintSize="521.6,1304.8" sap2010:WorkflowViewState.IdRef="If_2">
+              <If.Then>
+                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,888" sap2010:WorkflowViewState.IdRef="Sequence_56">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:SetToClipboard DisplayName="Set To Clipboard" sap:VirtualizedContainerService.HintSize="416,92" sap2010:WorkflowViewState.IdRef="SetToClipboard_1" Text="[START_PERIOD]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:SetToClipboard>
+                  <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,297.6" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_6" InteractionMode="SameAsCard" ScopeIdentifier="b5fbf5cf-128b-4df5-9038-1861fc870a84" Shortcuts="[d(hk)][k(Tab)][u(hk)][d(hk)][k(Tab)][u(hk)][d(hk)][k(Tab)][u(hk)][d(hk)][k(Tab)][u(hk)][d(hk)][k(Tab)][u(hk)][d(hk)][k(Tab)][u(hk)][d(hk)][k(Tab)][u(hk)][d(hk)][d(ctrl)]v[u(ctrl)][u(hk)][d(hk)][k(Enter)][u(hk)]" Version="V5">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uix:NKeyboardShortcuts>
+                  <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_43">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Delay>
+                  <uix:NSetClipboard DisplayName="Set Clipboard" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NSetClipboard_2" ScopeIdentifier="b5fbf5cf-128b-4df5-9038-1861fc870a84" Text="삼성생명" Version="V5">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uix:NSetClipboard>
+                  <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_44">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Delay>
+                  <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,268" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_9" InteractionMode="SameAsCard" ScopeIdentifier="b5fbf5cf-128b-4df5-9038-1861fc870a84" Shortcuts="[d(hk)][k(Tab)][u(hk)][d(hk)][k(Tab)][u(hk)][d(hk)][d(ctrl)]v[u(ctrl)][u(hk)][d(hk)][k(Down)][u(hk)][d(hk)][k(Enter)][u(hk)]" Version="V5">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uix:NKeyboardShortcuts>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,278.4" sap2010:WorkflowViewState.IdRef="Sequence_57">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_37">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Delay>
+                  <uix:NSetClipboard DisplayName="Set Clipboard" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NSetClipboard_1" ScopeIdentifier="b5fbf5cf-128b-4df5-9038-1861fc870a84" Text="삼성생명" Version="V5">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uix:NSetClipboard>
+                  <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_38">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Delay>
+                  <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_10" InteractionMode="SameAsCard" ScopeIdentifier="b5fbf5cf-128b-4df5-9038-1861fc870a84" Shortcuts="[d(hk)][k(Tab)][u(hk)][d(hk)][k(Tab)][u(hk)][d(hk)][k(Tab)][u(hk)][d(hk)][k(Tab)][u(hk)][d(hk)][k(Tab)][u(hk)][d(hk)][k(Tab)][u(hk)][d(hk)][k(Tab)][u(hk)][d(hk)][k(Tab)][u(hk)][d(hk)][k(Tab)][u(hk)][d(hk)][d(ctrl)]v[u(ctrl)][u(hk)][d(hk)][k(Down)][u(hk)][d(hk)][k(Enter)][u(hk)]" Version="V5">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uix:NKeyboardShortcuts>
+                </Sequence>
+              </If.Else>
+            </If>
+            <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="521.6,122.4" sap2010:WorkflowViewState.IdRef="Delay_39" />
+            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="521.6,56.8" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+              <ui:CommentOut.Body>
+                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_53">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                   <p:CVScope ContinueOnError="{x:Null}" DelayBefore="{x:Null}" ScopeId="{x:Null}" ScrollOffset="{x:Null}" Server="{x:Null}" CvMethod="ElementDetection, OCR" DesignTimeCacheId="cee5c0ad-808c-4bf3-be03-9a80b05d07bf" DisplayName="CV Screen Scope 'DIV'" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="CVScope_19" SendOnPremData="False" Version="V6">
@@ -1151,6 +1270,12 @@
                   </p:CVScope>
                 </Sequence>
               </ui:CommentOut.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
             </ui:CommentOut>
             <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '조회'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="521.6,193.6" sap2010:WorkflowViewState.IdRef="NClick_19" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="b5fbf5cf-128b-4df5-9038-1861fc870a84" Version="V5">
               <uix:NClick.Target>
@@ -1182,13 +1307,13 @@
               </sap:WorkflowViewStateService.ViewState>
             </uix:NKeyboardShortcuts>
             <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="521.6,122.4" sap2010:WorkflowViewState.IdRef="Delay_19" />
-            <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome [삼성생명] 신계약 검증_장기 (마감년월 202603)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="521.6,5837.6" sap2010:WorkflowViewState.IdRef="NApplicationCard_5" InteractionMode="DebuggerApi" OutUiElement="[browserInstance]" ScopeGuid="3e98c7d3-6cb7-4b9a-9963-5d9f7e073645" Version="V2">
+            <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome [삼성생명] 신계약 검증_장기 (마감년월 202603)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="521.6,5844.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_5" InteractionMode="DebuggerApi" OutUiElement="[browserInstance]" ScopeGuid="3e98c7d3-6cb7-4b9a-9963-5d9f7e073645" Version="V2">
               <uix:NApplicationCard.Body>
                 <ActivityAction x:TypeArguments="x:Object">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="520,5644" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="520,5651.2" sap2010:WorkflowViewState.IdRef="Sequence_20">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1210,7 +1335,7 @@
                       </ui:InvokeWorkflowFile.Arguments>
                     </ui:InvokeWorkflowFile>
                     <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_41" />
-                    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="486.4,218.4" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+                    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="CommentOut_2">
                       <ui:CommentOut.Body>
                         <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="449.6,108" sap2010:WorkflowViewState.IdRef="Sequence_55">
                           <sap:WorkflowViewStateService.ViewState>
@@ -1334,6 +1459,12 @@
                           </p:CVScope>
                         </Sequence>
                       </ui:CommentOut.Body>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
                     </ui:CommentOut>
                     <uix:NCheckState DisplayName="Check App State 'app.calssvc-openga.cals…'" EnableIfNotExists="False" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="486.4,1756" sap2010:WorkflowViewState.IdRef="NCheckState_2" ScopeIdentifier="3e98c7d3-6cb7-4b9a-9963-5d9f7e073645" Version="V5">
                       <uix:NCheckState.DelayBefore>
@@ -1427,7 +1558,7 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </Delay>
-                    <p:CVScope ContinueOnError="{x:Null}" DelayBefore="{x:Null}" ScopeId="{x:Null}" ScrollOffset="{x:Null}" Server="{x:Null}" CvMethod="ElementDetection, OCR" DesignTimeCacheId="02852067-2e99-4488-9572-aaae49d0cacc" DisplayName="CV Screen Scope 'DIV'" sap:VirtualizedContainerService.HintSize="486.4,599.2" sap2010:WorkflowViewState.IdRef="CVScope_12" SendOnPremData="False" Version="V6">
+                    <p:CVScope ContinueOnError="{x:Null}" DelayBefore="{x:Null}" ScopeId="{x:Null}" ScrollOffset="{x:Null}" Server="{x:Null}" CvMethod="ElementDetection, OCR" DesignTimeCacheId="02852067-2e99-4488-9572-aaae49d0cacc" DisplayName="CV Screen Scope 'DIV'" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="CVScope_12" SendOnPremData="False" Version="V6">
                       <p:CVScope.Body>
                         <ActivityAction x:TypeArguments="x:Object">
                           <ActivityAction.Argument>
@@ -1534,7 +1665,7 @@
                       </p:CVScope.UseLocalServer>
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
@@ -1652,134 +1783,34 @@
                       </sap:WorkflowViewStateService.ViewState>
                     </uix:NClick>
                     <Delay Duration="00:00:40" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_35" />
-                    <uix:NCheckState DisplayName="Check App State 'app.calssvc-openga.cals…(2)'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="486.4,477.6" sap2010:WorkflowViewState.IdRef="NCheckState_4" ScopeIdentifier="3e98c7d3-6cb7-4b9a-9963-5d9f7e073645" Version="V5">
+                    <uix:NCheckState DisplayName="Check App State 'app.calssvc-openga.cals…(2)'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="486.4,865.6" sap2010:WorkflowViewState.IdRef="NCheckState_4" ScopeIdentifier="3e98c7d3-6cb7-4b9a-9963-5d9f7e073645" Version="V5">
                       <uix:NCheckState.IfExists>
-                        <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,108" sap2010:WorkflowViewState.IdRef="Sequence_43">
+                        <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,431.2" sap2010:WorkflowViewState.IdRef="Sequence_43">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               <x:Boolean x:Key="IsPinned">False</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="NClick_25" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="3e98c7d3-6cb7-4b9a-9963-5d9f7e073645" Version="V5">
-                            <uix:NClick.Target>
-                              <uix:TargetAnchorable BrowserURL="app.calssvc-openga.calsplatz.com/excel/popup/excelUploadPop" CVScreenId="addb8bc9-bae2-4896-a158-ce80d5218e45" ContentHash="mJHGfq6v60eIqa3cv8yDPg" CvElementArea="1127, 178, 96, 62" CvTextArea="1158, 198, 33, 20" CvTextArgument="#21" CvType="Button" DesignTimeRectangle="1135, 186, 80, 48" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='app.calssvc-openga.calsplatz.com:4430 내용:' role='dialog' /&gt;&lt;ctrl name='확인' role='push button' /&gt;" Guid="2ce903a8-f40e-40df-ba3f-a36c33ab32d6" InformativeScreenshot="b41f17a8ba2df8ba70492111384dfc9d.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/ke8Q9vAbbk-czsyecEeoiQ" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='[삼성생명] 신계약 검증_장기 (마감년월: 202604) - Chrome' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
-                            </uix:NClick.Target>
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                          </uix:NClick>
+                          <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts 'sandbox.calssvc-openga.…'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,371.2" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_7" InteractionMode="HardwareEvents" ScopeIdentifier="3e98c7d3-6cb7-4b9a-9963-5d9f7e073645" Shortcuts="[d(hk)][k(Enter)][u(hk)]" Version="V5">
+                            <uix:NKeyboardShortcuts.Target>
+                              <uix:TargetAnchorable BrowserURL="sandbox.calssvc-openga.calsplatz.com/excel/popup/excelUploadPop" ContentHash="GhRdlHazg02Ml8cPaUlOMg" DesignTimeRectangle="680, 70, 578, 201" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='*calssvc*내용:' role='dialog' /&gt;&#xA;&lt;ctrl idx='2' role='pane' /&gt;" Guid="5748ec94-d8cf-4fc7-952b-d5041c892b3b" InformativeScreenshot="364ffe2c1a95764619ed6f2036fce2ca.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/ldOIYJKF5UO3P3AiKcGeSw" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='[삼성생명] 신계약 검증_장기 (마감년월: 202605) - Chrome' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                            </uix:NKeyboardShortcuts.Target>
+                          </uix:NKeyboardShortcuts>
                         </Sequence>
                       </uix:NCheckState.IfExists>
                       <uix:NCheckState.IfNotExists>
-                        <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_44">
+                        <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_44">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               <x:Boolean x:Key="IsPinned">False</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <p:CVScope ContinueOnError="{x:Null}" DelayBefore="{x:Null}" ScopeId="{x:Null}" ScrollOffset="{x:Null}" Server="{x:Null}" CvMethod="ElementDetection, OCR" DesignTimeCacheId="714dfb52-9723-4bac-b32e-44fdd0fa285f" DisplayName="CV Screen Scope 'pane'" sap:VirtualizedContainerService.HintSize="433.6,550.4" sap2010:WorkflowViewState.IdRef="CVScope_17" SendOnPremData="False" Version="V6">
-                            <p:CVScope.Body>
-                              <ActivityAction x:TypeArguments="x:Object">
-                                <ActivityAction.Argument>
-                                  <DelegateInArgument x:TypeArguments="x:Object" Name="CVSessionData" />
-                                </ActivityAction.Argument>
-                                <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_39">
-                                  <p:CvClickWithDescriptor DelayBefore="{x:Null}" DelayMS="{x:Null}" DelayScreenshotAfterScroll="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" Descriptor="[&quot;Target: Button (358,0,76,42)&quot;]" DesignTimeCacheId="714dfb52-9723-4bac-b32e-44fdd0fa285f" DesignTimeScaleFactor="1.25" DisplayName="CV Click - 'Button'" sap:VirtualizedContainerService.HintSize="400,209.6" sap2010:WorkflowViewState.IdRef="CvClickWithDescriptor_28" InformativeScreenshot="265cfb7fa2c2865471c3c8b238d57150" KeyModifiers="None" MouseButton="BTN_LEFT" NumberOfScrolls="2" ScrollDirection="None" Version="V6">
-                                    <p:CvClickWithDescriptor.CursorPosition>
-                                      <ui:CursorPosition Position="Center">
-                                        <ui:CursorPosition.OffsetX>
-                                          <InArgument x:TypeArguments="x:Int32" />
-                                        </ui:CursorPosition.OffsetX>
-                                        <ui:CursorPosition.OffsetY>
-                                          <InArgument x:TypeArguments="x:Int32" />
-                                        </ui:CursorPosition.OffsetY>
-                                      </ui:CursorPosition>
-                                    </p:CvClickWithDescriptor.CursorPosition>
-                                    <p:CvClickWithDescriptor.DesignTimeDescriptor>
-                                      <uc:CvDescriptor Id="1d4b1c29-4ce0-4155-a462-52cd575e118d">
-                                        <uc:CvDescriptor.Target>
-                                          <uc:CvElementDescriptor CellExtraInfo="{x:Null}" DesignTimeArea="358, 0, 76, 42" ElementType="Button" />
-                                        </uc:CvDescriptor.Target>
-                                      </uc:CvDescriptor>
-                                    </p:CvClickWithDescriptor.DesignTimeDescriptor>
-                                    <p:CvClickWithDescriptor.Target>
-                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="bf4bb662-deb2-4327-b4bf-11f0e767a5ab">
-                                        <ui:Target.TimeoutMS>
-                                          <InArgument x:TypeArguments="x:Int32" />
-                                        </ui:Target.TimeoutMS>
-                                        <ui:Target.WaitForReady>
-                                          <InArgument x:TypeArguments="ui:WaitForReady" />
-                                        </ui:Target.WaitForReady>
-                                      </ui:Target>
-                                    </p:CvClickWithDescriptor.Target>
-                                  </p:CvClickWithDescriptor>
-                                </Sequence>
-                              </ActivityAction>
-                            </p:CVScope.Body>
-                            <p:CVScope.DesignTimeCache>
-                              <uc:CVCache CvUiElements="{x:Null}" OcrTexts="{x:Null}" DataSent="False" />
-                            </p:CVScope.DesignTimeCache>
-                            <p:CVScope.DesignTimeCacheContainer>
-                              <uc:CvCacheContainer>
-                                <uc:CvCacheContainer.Caches>
-                                  <scg:List x:TypeArguments="uc:CVCache" Capacity="1">
-                                    <uc:CVCache DataSent="False" DisplayName="Screen CV Click - Button (Main)" Id="714dfb52-9723-4bac-b32e-44fdd0fa285f" InformativeScreenshot="3b3b06bc26452622b9d5bb23c06883a7" LogicalPosition="680, 186" OcrText="*l" Position="680, 186" ScaleFactor="1.25" ScreenshotGuid="75ab51f7-e042-4771-9b6b-b937833323db" ServerVersion="24.10">
-                                      <uc:CVCache.CvAnchorRelations>
-                                        <scg:List x:TypeArguments="uc:AnchorRelationInfo" Capacity="0" />
-                                      </uc:CVCache.CvAnchorRelations>
-                                      <uc:CVCache.CvUiElements>
-                                        <scg:List x:TypeArguments="uc:CvElementInfo" Capacity="8">
-                                          <uc:CvElementInfo Category="Button" Description="Button" Region="358, 0, 76, 42" />
-                                          <uc:CvElementInfo Description="{x:Null}" Category="Icon" Confidence="Runtime" Region="356, 0, 78, 44" />
-                                          <uc:CvElementInfo Description="{x:Null}" Category="Icon" Confidence="Runtime" Region="377, 4, 40, 30" />
-                                          <uc:CvElementInfo Description="{x:Null}" Category="CheckBox" Confidence="Runtime" Region="359, 0, 72, 42" />
-                                          <uc:CvElementInfo Description="{x:Null}" Category="CloseButton" Confidence="Runtime" Region="358, 0, 76, 42" />
-                                        </scg:List>
-                                      </uc:CVCache.CvUiElements>
-                                      <uc:CVCache.OcrTexts>
-                                        <scg:List x:TypeArguments="uc:OcrTextInfo" Capacity="1">
-                                          <uc:OcrTextInfo Region="381, 10, 28, 16" Text="*l" />
-                                        </scg:List>
-                                      </uc:CVCache.OcrTexts>
-                                    </uc:CVCache>
-                                  </scg:List>
-                                </uc:CvCacheContainer.Caches>
-                              </uc:CvCacheContainer>
-                            </p:CVScope.DesignTimeCacheContainer>
-                            <p:CVScope.OCREngine>
-                              <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
-                                <ActivityFunc.Argument>
-                                  <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
-                                </ActivityFunc.Argument>
-                                <p1:UiPathScreenOCR ApiKey="{x:Null}" Endpoint="{x:Null}" Output="{x:Null}" PredictionId="{x:Null}" Text="{x:Null}" UseAccents="{x:Null}" UseLocalServer="{x:Null}" ComputeSkewAngle="False" ExtractWords="True" sap:VirtualizedContainerService.HintSize="400,24.8" sap2010:WorkflowViewState.IdRef="UiPathScreenOCR_16" Image="[Image]" Language="en" NoopExecution="False" Profile="Screen" Scale="1" Timeout="100000" UseSeparateOcrProcess="True" />
-                              </ActivityFunc>
-                            </p:CVScope.OCREngine>
-                            <p:CVScope.Target>
-                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="4e9a6756-29ad-4ac2-bbed-ef1d176b4e7a" InformativeScreenshot="f799be9c67d0cce396aaf4a0b3a13215" Selector="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='[삼성생명] 신계약 검증_장기 (마감년월: 202604) - Chrome' /&gt;&lt;ctrl name='app.calssvc-openga.calsplatz.com:4430 내용:' role='dialog' /&gt;&lt;ctrl idx='6' role='pane' /&gt;" WaitForReady="INTERACTIVE">
-                                <ui:Target.TimeoutMS>
-                                  <InArgument x:TypeArguments="x:Int32" />
-                                </ui:Target.TimeoutMS>
-                              </ui:Target>
-                            </p:CVScope.Target>
-                            <p:CVScope.UseLocalServer>
-                              <InArgument x:TypeArguments="x:Boolean" />
-                            </p:CVScope.UseLocalServer>
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                          </p:CVScope>
                         </Sequence>
                       </uix:NCheckState.IfNotExists>
                       <uix:NCheckState.Target>
-                        <uix:TargetAnchorable BrowserURL="app.calssvc-openga.calsplatz.com/excel/popup/excelUploadPop" ContentHash="6f7fiIMu1kqkyXG04WbzUg" DesignTimeRectangle="671, 70, 578, 200" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='app.calssvc-openga.calsplatz.com:4430 내용:' role='dialog' /&gt;&lt;ctrl idx='2' role='pane' /&gt;" Guid="790edcf5-1c75-449b-8a07-ef34daca5f17" InformativeScreenshot="9e62ae9bc1158b14f0c44334696624a4.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/9_oYVKKSmEWfrxBmApQivA" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='[삼성생명] 신계약 검증_장기 (마감년월: 202604) - Chrome' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                        <uix:TargetAnchorable BrowserURL="sandbox.openga.calsplatz.com/new_policy_upload" DesignTimeRectangle="680, 70, 578, 201" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='*calssvc*내용:' role='dialog' /&gt;&#xA;&lt;ctrl idx='2' role='pane' /&gt;" Guid="6120e37e-4ca1-4433-b521-0b4a0be97c8b" InformativeScreenshot="9f60867ab5482619c25423e656eb8ef8.jpg" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='[삼성생명] 신계약 검증_장기 (마감년월: 202605) - Chrome' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                       </uix:NCheckState.Target>
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -1814,100 +1845,11 @@
                       </sap:WorkflowViewStateService.ViewState>
                     </uix:NClick>
                     <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_32" />
-                    <p:CVScope ContinueOnError="{x:Null}" DelayBefore="{x:Null}" ScopeId="{x:Null}" ScrollOffset="{x:Null}" Server="{x:Null}" CvMethod="ElementDetection, OCR" DesignTimeCacheId="8e994ea6-5bcc-49a4-a5cf-fe37d6748b4a" DisplayName="CV Screen Scope 'pane'" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="CVScope_18" SendOnPremData="False" Version="V6">
-                      <p:CVScope.Body>
-                        <ActivityAction x:TypeArguments="x:Object">
-                          <ActivityAction.Argument>
-                            <DelegateInArgument x:TypeArguments="x:Object" Name="CVSessionData" />
-                          </ActivityAction.Argument>
-                          <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_40">
-                            <p:CvClickWithDescriptor DelayBefore="{x:Null}" DelayMS="{x:Null}" DelayScreenshotAfterScroll="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" Descriptor="[&quot;Target: Button (358,0,76,42)&quot;]" DesignTimeCacheId="8e994ea6-5bcc-49a4-a5cf-fe37d6748b4a" DesignTimeScaleFactor="1.25" DisplayName="CV Click - 'Button'" sap:VirtualizedContainerService.HintSize="400,209.6" sap2010:WorkflowViewState.IdRef="CvClickWithDescriptor_29" InformativeScreenshot="265cfb7fa2c2865471c3c8b238d57150" KeyModifiers="None" MouseButton="BTN_LEFT" NumberOfScrolls="2" ScrollDirection="None" Version="V6">
-                              <p:CvClickWithDescriptor.CursorPosition>
-                                <ui:CursorPosition Position="Center">
-                                  <ui:CursorPosition.OffsetX>
-                                    <InArgument x:TypeArguments="x:Int32" />
-                                  </ui:CursorPosition.OffsetX>
-                                  <ui:CursorPosition.OffsetY>
-                                    <InArgument x:TypeArguments="x:Int32" />
-                                  </ui:CursorPosition.OffsetY>
-                                </ui:CursorPosition>
-                              </p:CvClickWithDescriptor.CursorPosition>
-                              <p:CvClickWithDescriptor.DesignTimeDescriptor>
-                                <uc:CvDescriptor Id="c7a04ae5-478b-4c54-8175-df6a86e06419">
-                                  <uc:CvDescriptor.Target>
-                                    <uc:CvElementDescriptor CellExtraInfo="{x:Null}" DesignTimeArea="358, 0, 76, 42" ElementType="Button" />
-                                  </uc:CvDescriptor.Target>
-                                </uc:CvDescriptor>
-                              </p:CvClickWithDescriptor.DesignTimeDescriptor>
-                              <p:CvClickWithDescriptor.Target>
-                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="59d7fff5-1c85-4d21-8609-d68c2bc228aa">
-                                  <ui:Target.TimeoutMS>
-                                    <InArgument x:TypeArguments="x:Int32" />
-                                  </ui:Target.TimeoutMS>
-                                  <ui:Target.WaitForReady>
-                                    <InArgument x:TypeArguments="ui:WaitForReady" />
-                                  </ui:Target.WaitForReady>
-                                </ui:Target>
-                              </p:CvClickWithDescriptor.Target>
-                            </p:CvClickWithDescriptor>
-                          </Sequence>
-                        </ActivityAction>
-                      </p:CVScope.Body>
-                      <p:CVScope.DesignTimeCache>
-                        <uc:CVCache CvUiElements="{x:Null}" OcrTexts="{x:Null}" DataSent="False" />
-                      </p:CVScope.DesignTimeCache>
-                      <p:CVScope.DesignTimeCacheContainer>
-                        <uc:CvCacheContainer>
-                          <uc:CvCacheContainer.Caches>
-                            <scg:List x:TypeArguments="uc:CVCache" Capacity="1">
-                              <uc:CVCache DataSent="False" DisplayName="Screen CV Click - Button (Main)" Id="8e994ea6-5bcc-49a4-a5cf-fe37d6748b4a" InformativeScreenshot="e83a24d253b5050bc3a91784216c0c52" LogicalPosition="680, 186" OcrText="*l" Position="680, 186" ScaleFactor="1.25" ScreenshotGuid="d0b776d8-20fb-4274-be51-445f89cc5d35" ServerVersion="24.10">
-                                <uc:CVCache.CvAnchorRelations>
-                                  <scg:List x:TypeArguments="uc:AnchorRelationInfo" Capacity="0" />
-                                </uc:CVCache.CvAnchorRelations>
-                                <uc:CVCache.CvUiElements>
-                                  <scg:List x:TypeArguments="uc:CvElementInfo" Capacity="8">
-                                    <uc:CvElementInfo Category="Button" Description="Button" Region="358, 0, 76, 42" />
-                                    <uc:CvElementInfo Description="{x:Null}" Category="Icon" Confidence="Runtime" Region="356, 0, 78, 44" />
-                                    <uc:CvElementInfo Description="{x:Null}" Category="Icon" Confidence="Runtime" Region="377, 4, 40, 30" />
-                                    <uc:CvElementInfo Description="{x:Null}" Category="CheckBox" Confidence="Runtime" Region="359, 0, 72, 42" />
-                                    <uc:CvElementInfo Description="{x:Null}" Category="CloseButton" Confidence="Runtime" Region="358, 0, 76, 42" />
-                                  </scg:List>
-                                </uc:CVCache.CvUiElements>
-                                <uc:CVCache.OcrTexts>
-                                  <scg:List x:TypeArguments="uc:OcrTextInfo" Capacity="1">
-                                    <uc:OcrTextInfo Region="381, 10, 28, 16" Text="*l" />
-                                  </scg:List>
-                                </uc:CVCache.OcrTexts>
-                              </uc:CVCache>
-                            </scg:List>
-                          </uc:CvCacheContainer.Caches>
-                        </uc:CvCacheContainer>
-                      </p:CVScope.DesignTimeCacheContainer>
-                      <p:CVScope.OCREngine>
-                        <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
-                          <ActivityFunc.Argument>
-                            <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
-                          </ActivityFunc.Argument>
-                          <p1:UiPathScreenOCR ApiKey="{x:Null}" Endpoint="{x:Null}" Output="{x:Null}" PredictionId="{x:Null}" Text="{x:Null}" UseAccents="{x:Null}" UseLocalServer="{x:Null}" ComputeSkewAngle="False" ExtractWords="True" sap:VirtualizedContainerService.HintSize="400,24.8" sap2010:WorkflowViewState.IdRef="UiPathScreenOCR_17" Image="[Image]" Language="en" NoopExecution="False" Profile="Screen" Scale="1" Timeout="100000" UseSeparateOcrProcess="True" />
-                        </ActivityFunc>
-                      </p:CVScope.OCREngine>
-                      <p:CVScope.Target>
-                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="cd778413-09c9-4b20-8214-d04c91d88c19" InformativeScreenshot="7fb44a1f2d713da5f87e1dccb18866ee" Selector="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='Open GA - Chrome' /&gt;&lt;ctrl name='app.calssvc-openga.calsplatz.com:4430 내용:' role='dialog' /&gt;&lt;ctrl idx='6' role='pane' /&gt;" WaitForReady="INTERACTIVE">
-                          <ui:Target.TimeoutMS>
-                            <InArgument x:TypeArguments="x:Int32" />
-                          </ui:Target.TimeoutMS>
-                        </ui:Target>
-                      </p:CVScope.Target>
-                      <p:CVScope.UseLocalServer>
-                        <InArgument x:TypeArguments="x:Boolean" />
-                      </p:CVScope.UseLocalServer>
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                    </p:CVScope>
+                    <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts 'sandbox.calssvc-openga.…(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,380" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_8" InteractionMode="HardwareEvents" ScopeIdentifier="3e98c7d3-6cb7-4b9a-9963-5d9f7e073645" Shortcuts="[d(hk)][k(Enter)][u(hk)]" Version="V5">
+                      <uix:NKeyboardShortcuts.Target>
+                        <uix:TargetAnchorable BrowserURL="sandbox.calssvc-openga.calsplatz.com/excel/popup/excelUploadData" ContentHash="2UWXIiTL5UKRvL62hmtyUA" DesignTimeRectangle="680, 70, 578, 201" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='*calssvc*내용:' role='dialog' /&gt;&#xA;&lt;ctrl idx='2' role='pane' /&gt;" Guid="af57214c-e8e8-4c0a-ba0a-6de8ee827be3" InformativeScreenshot="e3bc4cc984cc798606362b97d472822e.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/qBXT7tfNZE2aQu8oPfNwKw" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='Open GA - Chrome' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                      </uix:NKeyboardShortcuts.Target>
+                    </uix:NKeyboardShortcuts>
                     <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="486.4,113.6" sap2010:WorkflowViewState.IdRef="Delay_18">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
