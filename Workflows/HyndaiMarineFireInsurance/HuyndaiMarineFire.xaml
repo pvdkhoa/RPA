@@ -109,7 +109,7 @@
       <AssemblyReference>REF_RPA.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="HuyndaiMarineFire" sap:VirtualizedContainerService.HintSize="773.2,7096.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="HuyndaiMarineFire" sap:VirtualizedContainerService.HintSize="779.6,8474.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="HDG_OTP" />
       <Variable x:TypeArguments="x:String" Name="HDG_UID" />
@@ -140,9 +140,7 @@
     <ui:SetAsset TimeoutMS="{x:Null}" AssetName="HDG_NEW_CAR_PATH" DisplayName="Clear HDG CAR Path" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="521.6,227.2" sap2010:WorkflowViewState.IdRef="SetAsset_3" Value="[&quot;empty&quot;]" />
     <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim files = Directory.GetFiles(&quot;C:\RPA\TempDownload&quot;, in_Prefix &amp; &quot;*&quot;)&#xA;For Each f In files&#xA;    File.Delete(f)&#xA;Next" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="521.6,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_2">
       <ui:InvokeCode.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="in_Prefix">
-          <Literal x:TypeArguments="x:String">HDG</Literal>
-        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Prefix">HDG</InArgument>
       </ui:InvokeCode.Arguments>
     </ui:InvokeCode>
     <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="521.6,56.8" sap2010:WorkflowViewState.IdRef="Delay_7">
@@ -153,19 +151,163 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Delay>
-    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Always]" DisplayName="Edge 현대해상 영업포탈 시스템" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="521.6,5612.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OutUiElement="[browser_instance]" ScopeGuid="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V2" WindowResize="Maximize">
+    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Always]" DisplayName="Edge 현대해상 영업포탈 시스템" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="521.6,6990.4" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OutUiElement="[browser_instance]" ScopeGuid="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V2" WindowResize="Maximize">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="520,5419.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="520,6796.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <Delay Duration="00:00:10" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_6" />
+            <If Condition="[runType = &quot;CHECK&quot;]" DisplayName="Handle Check Open Website Available" sap:VirtualizedContainerService.HintSize="486.4,1469.6" sap2010:WorkflowViewState.IdRef="If_2">
+              <If.Then>
+                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="484.8,1241.6" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="CHECKING_ID" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="451.2,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_4">
+                    <ui:GetRobotAsset.Value>
+                      <OutArgument x:TypeArguments="x:String">[CHECKING_ID]</OutArgument>
+                    </ui:GetRobotAsset.Value>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:GetRobotAsset>
+                  <uix:NCheckState DisplayName="Check App State '휴대폰인증'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,1006.4" sap2010:WorkflowViewState.IdRef="NCheckState_2" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
+                    <uix:NCheckState.IfExists>
+                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,335.2" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Checking Alive - Is Openned - Y&quot;]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:LogMessage>
+                        <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_10">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Delay>
+                        <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ====== Create JSON file path ======&#xA;Dim jsonPath As String = System.IO.Path.Combine(checkingFilePath, &quot;result_&quot; &amp; checkingId &amp; &quot;.json&quot;)&#xA;&#xA;' ====== Read current JSON file ======&#xA;Dim jsonContent As String = System.IO.File.ReadAllText(jsonPath, System.Text.Encoding.UTF8)&#xA;Dim jsonArray   As Newtonsoft.Json.Linq.JArray = Newtonsoft.Json.Linq.JArray.Parse(jsonContent)&#xA;&#xA;' ====== Find by compCode and update ======&#xA;For Each item As Newtonsoft.Json.Linq.JObject In jsonArray&#xA;    If item(&quot;compCode&quot;).ToString() = compCode Then&#xA;        item(&quot;isOpenned&quot;)   = &quot;Y&quot;&#xA;        item(&quot;processTime&quot;) = DateTime.Now.ToString(&quot;yyyyMMdd HH:mm:ss&quot;)&#xA;        Exit For&#xA;    End If&#xA;Next&#xA;&#xA;' ====== Rewrite JSON file (overwrite) ======&#xA;System.IO.File.WriteAllText(jsonPath, jsonArray.ToString(), System.Text.Encoding.UTF8)" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="InvokeCode_4">
+                          <ui:InvokeCode.Arguments>
+                            <InArgument x:TypeArguments="x:String" x:Key="checkingId">[CHECKING_ID]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="checkingFilePath">[CHECKING_FILE_PATH]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="compCode">[COMP_CODE]</InArgument>
+                          </ui:InvokeCode.Arguments>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:InvokeCode>
+                        <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_11">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Delay>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot; Checking Alive - Is Openned - Y Finish.....&quot;]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:LogMessage>
+                      </Sequence>
+                    </uix:NCheckState.IfExists>
+                    <uix:NCheckState.IfNotExists>
+                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,335.2" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;Checking Alive - Is Openned - N&quot;]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:LogMessage>
+                        <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_12">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Delay>
+                        <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ====== Create JSON file path ======&#xA;Dim jsonPath As String = System.IO.Path.Combine(checkingFilePath, &quot;result_&quot; &amp; checkingId &amp; &quot;.json&quot;)&#xA;&#xA;' ====== Read current JSON file ======&#xA;Dim jsonContent As String = System.IO.File.ReadAllText(jsonPath, System.Text.Encoding.UTF8)&#xA;Dim jsonArray   As Newtonsoft.Json.Linq.JArray = Newtonsoft.Json.Linq.JArray.Parse(jsonContent)&#xA;&#xA;' ====== Find by compCode and update ======&#xA;For Each item As Newtonsoft.Json.Linq.JObject In jsonArray&#xA;    If item(&quot;compCode&quot;).ToString() = compCode Then&#xA;        item(&quot;isOpenned&quot;)   = &quot;N&quot;&#xA;        item(&quot;processTime&quot;) = DateTime.Now.ToString(&quot;yyyyMMdd HH:mm:ss&quot;)&#xA;        Exit For&#xA;    End If&#xA;Next&#xA;&#xA;' ====== Rewrite JSON file (overwrite) ======&#xA;System.IO.File.WriteAllText(jsonPath, jsonArray.ToString(), System.Text.Encoding.UTF8)" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="InvokeCode_5">
+                          <ui:InvokeCode.Arguments>
+                            <InArgument x:TypeArguments="x:String" x:Key="checkingId">[CHECKING_ID]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="checkingFilePath">[CHECKING_FILE_PATH]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="compCode">[COMP_CODE]</InArgument>
+                          </ui:InvokeCode.Arguments>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:InvokeCode>
+                        <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_13">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Delay>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;Checking Alive - Is Openned - N  Finish.....&quot;]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:LogMessage>
+                      </Sequence>
+                    </uix:NCheckState.IfNotExists>
+                    <uix:NCheckState.Target>
+                      <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" ContentHash="jRmt9x3lp0G4TfsTDxS-ag" DesignTimeRectangle="995, 578, 473, 62" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='btn_login' tag='INPUT' /&gt;" Guid="b05a8bd8-79a8-45a8-b51a-b9df04504ebe" InformativeScreenshot="8a68821e1701b4901c2fe93ff55b066a.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/IG9XvR0rSkGVeGEWR7rCsA" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                    </uix:NCheckState.Target>
+                  </uix:NCheckState>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="484.8,89.6" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </If.Else>
+            </If>
             <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into ''977786''" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="SameAsCard" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Text="[HDG_UID]" Version="V5">
               <uix:NTypeInto.Target>
                 <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" CVScreenId="e842ab03-b452-4e9a-b096-ed2d3cff85f4" CvElementArea="993, 361, 476, 57" CvType="InputBox" DesignTimeRectangle="995, 363, 473, 55" DesignTimeScaleFactor="1.25" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ipt_id' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl id='ipt_id' tag='INPUT' type='text' class='w2input ' placeholder='사용자 ID' aaname='' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="2d8ddb11-320b-412e-98e9-aeb56f896a32" InformativeScreenshot="11e9042b42879b90ee34f8747321e013.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector, CV" Version="V6">
@@ -196,85 +338,57 @@
             </uix:NClick>
             <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''IMG''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_3" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
               <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" DesignTimeRectangle="371, 783, 76, 130" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-role='button' idx='18' tag='IMG' /&gt;" Guid="19d0f831-85ba-42d6-ba88-64aedc37019e" InformativeScreenshot="e9a182185079f8c7524e3d4786bdaf1f.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" DesignTimeRectangle="449, 650, 77, 130" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-role='button' idx='8' tag='IMG' /&gt;" Guid="dfaa316b-e2e5-4e6f-977c-f2ef647ae0cc" InformativeScreenshot="aba013850d1c74f144c8472f79ed2a67.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
             <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''IMG''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_4" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
               <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" DesignTimeRectangle="528, 783, 76, 130" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-role='button' idx='19' tag='IMG' /&gt;" Guid="9369833d-8648-48d0-9bb4-88e9252c97cb" InformativeScreenshot="7a3aa293241571e5f71140f3f191abdc.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" DesignTimeRectangle="528, 650, 76, 130" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-role='button' idx='9' tag='IMG' /&gt;" Guid="3b9ac5d7-da78-4e2a-93fe-d0a3c70e4977" InformativeScreenshot="c1dc7772ccb72e8bba6fd04b20a2d636.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
             <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''IMG''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_5" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
               <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" DesignTimeRectangle="607, 783, 76, 130" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-role='button' idx='20' tag='IMG' /&gt;" Guid="eb379fa7-e49b-45cb-a7ad-6ff2ec116996" InformativeScreenshot="bb0707e765ecaa931263c66e1ede98dc.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" DesignTimeRectangle="607, 650, 76, 130" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-role='button' idx='10' tag='IMG' /&gt;" Guid="840bafb3-80a5-4455-b8cb-32ed494fcec2" InformativeScreenshot="16234a95ad41a996fcd7ddd80dce2109.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
             <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''IMG''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_6" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
               <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" DesignTimeRectangle="686, 783, 76, 130" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-role='button' idx='21' tag='IMG' /&gt;" Guid="1b783eae-7fe8-4c3a-a505-548f5479dfb4" InformativeScreenshot="c0c652827af60e8fb3dd15ac78d9721d.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" DesignTimeRectangle="686, 650, 76, 130" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-role='button' idx='11' tag='IMG' /&gt;" Guid="4c667166-061f-46b8-a9c9-5e5f77feccc2" InformativeScreenshot="f2e1b6e17def65e7548b5bec9c9adc4a.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
             <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''IMG''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_7" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
               <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" DesignTimeRectangle="449, 518, 77, 130" DesignTimeScaleFactor="1.25" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-role='button' idx='35' tag='IMG' /&gt;" FuzzySelectorArgument="&lt;webctrl aria-role='button' type='' tag='IMG' class='' aaname='' matching:aria-role='fuzzy' fuzzylevel:aria-role='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="dafd6c62-97fc-4f42-b3e8-48c09e85e7c8" InformativeScreenshot="6f4bf8c7481b7731158174dc5956f271.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector" Version="V6">
-                  <uix:TargetAnchorable.PointOffset>
-                    <uix:PointOffset />
-                  </uix:TargetAnchorable.PointOffset>
-                </uix:TargetAnchorable>
+                <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" DesignTimeRectangle="449, 518, 77, 130" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-role='button' idx='35' tag='IMG' /&gt;" Guid="dafd6c62-97fc-4f42-b3e8-48c09e85e7c8" InformativeScreenshot="07fbb9a790ff59b7bed07c76fd5cdf79.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
             <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''IMG''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_8" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
               <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" CVScreenId="e842ab03-b452-4e9a-b096-ed2d3cff85f4" CvElementArea="993, 575, 476, 65" CvTextArea="1216, 596, 58, 23" CvTextArgument="וمحج" CvType="Button" DesignTimeRectangle="1237, 518, 76, 130" DesignTimeScaleFactor="1.25" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-role='button' idx='43' tag='IMG' /&gt;" FuzzySelectorArgument="&lt;webctrl aria-role='button' type='' tag='IMG' class='' aaname='' matching:aria-role='fuzzy' fuzzylevel:aria-role='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="47bb5494-07c7-4302-8957-b48e75080bc6" InformativeScreenshot="540fed97fc78149af394e46f837301c7.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector, CV" Version="V6">
-                  <uix:TargetAnchorable.PointOffset>
-                    <uix:PointOffset />
-                  </uix:TargetAnchorable.PointOffset>
-                </uix:TargetAnchorable>
+                <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" CVScreenId="e842ab03-b452-4e9a-b096-ed2d3cff85f4" CvElementArea="993, 575, 476, 65" CvTextArea="1216, 596, 58, 23" CvTextArgument="וمحج" CvType="Button" DesignTimeRectangle="1237, 518, 76, 130" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-role='button' idx='43' tag='IMG' /&gt;" Guid="47bb5494-07c7-4302-8957-b48e75080bc6" InformativeScreenshot="f6cf4e04b806752a16795c4c0ca2cf1e.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
             <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''IMG''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_9" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
               <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" DesignTimeRectangle="449, 518, 77, 130" DesignTimeScaleFactor="1.25" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-role='button' idx='35' tag='IMG' /&gt;" FuzzySelectorArgument="&lt;webctrl aria-role='button' type='' tag='IMG' class='' aaname='' matching:aria-role='fuzzy' fuzzylevel:aria-role='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="df98d7f3-e062-4011-987b-23ab169ddd05" InformativeScreenshot="2c510fdd11f9766606fd07056c5c0724.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector" Version="V6">
-                  <uix:TargetAnchorable.PointOffset>
-                    <uix:PointOffset />
-                  </uix:TargetAnchorable.PointOffset>
-                </uix:TargetAnchorable>
+                <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" DesignTimeRectangle="449, 518, 77, 130" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-role='button' idx='35' tag='IMG' /&gt;" Guid="df98d7f3-e062-4011-987b-23ab169ddd05" InformativeScreenshot="07fbb9a790ff59b7bed07c76fd5cdf79.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
             <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''IMG''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_10" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
               <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" DesignTimeRectangle="922, 518, 76, 130" DesignTimeScaleFactor="1.25" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-role='button' idx='39' tag='IMG' /&gt;" FuzzySelectorArgument="&lt;webctrl aria-role='button' type='' tag='IMG' class='' aaname='' matching:aria-role='fuzzy' fuzzylevel:aria-role='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="5d0db722-de5c-4131-a3a4-cffb416781f3" InformativeScreenshot="18fee8c23c8a1bcfe6ac30c5dca95e15.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector" Version="V6">
-                  <uix:TargetAnchorable.PointOffset>
-                    <uix:PointOffset />
-                  </uix:TargetAnchorable.PointOffset>
-                </uix:TargetAnchorable>
+                <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" DesignTimeRectangle="843, 518, 77, 130" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-role='button' idx='39' tag='IMG' /&gt;" Guid="5d0db722-de5c-4131-a3a4-cffb416781f3" InformativeScreenshot="fde333e223c8b0972d3ee5500e600206.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
             <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''IMG''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_11" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
               <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" CVScreenId="e48d6267-837b-443a-b8c9-affe55bf7e4a" CvElementArea="1314, 621, 237, 107" CvTextArea="1387, 656, 52, 35" CvTextArgument="A/" CvType="Button" DesignTimeRectangle="1316, 624, 234, 104" DesignTimeScaleFactor="1.25" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-role='button' idx='7' tag='IMG' /&gt;" FuzzySelectorArgument="&lt;webctrl aria-role='button' type='' tag='IMG' class='' aaname='' matching:aria-role='fuzzy' fuzzylevel:aria-role='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="8ce341ce-d678-45a7-8888-72827df70326" InformativeScreenshot="895d908c45808e29cedcbba1556ef0c0.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector, CV" Version="V6">
-                  <uix:TargetAnchorable.PointOffset>
-                    <uix:PointOffset />
-                  </uix:TargetAnchorable.PointOffset>
-                </uix:TargetAnchorable>
+                <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" CVScreenId="e48d6267-837b-443a-b8c9-affe55bf7e4a" CvElementArea="1314, 621, 237, 107" CvTextArea="1387, 656, 52, 35" CvTextArgument="A/" CvType="Button" DesignTimeRectangle="1316, 624, 234, 104" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-role='button' idx='7' tag='IMG' /&gt;" Guid="8ce341ce-d678-45a7-8888-72827df70326" InformativeScreenshot="602e140a07d4eeeb9fb5a51b5b60e9fd.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
             <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''IMG''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_12" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
               <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" CVScreenId="e48d6267-837b-443a-b8c9-affe55bf7e4a" CvElementArea="367, 514, 82, 132" CvTextArea="397, 556, 21, 48" CvTextArgument="1" CvType="Button" DesignTimeRectangle="371, 518, 76, 130" DesignTimeScaleFactor="1.25" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-role='button' idx='120' tag='IMG' /&gt;" FuzzySelectorArgument="&lt;webctrl aria-role='button' type='' tag='IMG' class='' aaname='' matching:aria-role='fuzzy' fuzzylevel:aria-role='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="d887825a-1c6d-4dee-809c-57bf71072e8a" InformativeScreenshot="93a9ff798af0c19c797a655d48aa8400.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector, CV" Version="V6">
-                  <uix:TargetAnchorable.PointOffset>
-                    <uix:PointOffset />
-                  </uix:TargetAnchorable.PointOffset>
-                </uix:TargetAnchorable>
+                <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" CVScreenId="e48d6267-837b-443a-b8c9-affe55bf7e4a" CvElementArea="367, 514, 82, 132" CvTextArea="397, 556, 21, 48" CvTextArgument="1" CvType="Button" DesignTimeRectangle="371, 518, 76, 130" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-role='button' idx='120' tag='IMG' /&gt;" Guid="d887825a-1c6d-4dee-809c-57bf71072e8a" InformativeScreenshot="7ac9e1690d9bded79fa9141cd3addd55.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
             <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''IMG''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_13" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
               <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" CVScreenId="e48d6267-837b-443a-b8c9-affe55bf7e4a" CvElementArea="367, 514, 82, 132" CvTextArea="397, 556, 21, 48" CvTextArgument="1" CvType="Button" DesignTimeRectangle="371, 518, 76, 130" DesignTimeScaleFactor="1.25" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-role='button' idx='120' tag='IMG' /&gt;" FuzzySelectorArgument="&lt;webctrl aria-role='button' type='' tag='IMG' class='' aaname='' matching:aria-role='fuzzy' fuzzylevel:aria-role='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="6e06fa97-794f-4194-9b6d-2865cbdbd9c2" InformativeScreenshot="2eb2386ae08fc1d3245db7d46c93c534.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector, CV" Version="V6">
-                  <uix:TargetAnchorable.PointOffset>
-                    <uix:PointOffset />
-                  </uix:TargetAnchorable.PointOffset>
-                </uix:TargetAnchorable>
+                <uix:TargetAnchorable BrowserURL="sp.hi.co.kr/websquare/websquare.html" CVScreenId="e48d6267-837b-443a-b8c9-affe55bf7e4a" CvElementArea="367, 514, 82, 132" CvTextArea="397, 556, 21, 48" CvTextArgument="1" CvType="Button" DesignTimeRectangle="371, 518, 76, 130" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aria-role='button' idx='120' tag='IMG' /&gt;" Guid="6e06fa97-794f-4194-9b6d-2865cbdbd9c2" InformativeScreenshot="7ac9e1690d9bded79fa9141cd3addd55.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='현대해상 영업포탈 시스템' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
             <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''IMG''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_14" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="009d0fe2-a653-42a5-80a0-36cbdd0180c1" Version="V5">
@@ -325,9 +439,9 @@
                 <InArgument x:TypeArguments="ui:UiElement" x:Key="in_Browser">[browser_instance]</InArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
-            <If Condition="[runType = &quot;CHECK&quot;]" sap:VirtualizedContainerService.HintSize="486.4,1683.2" sap2010:WorkflowViewState.IdRef="If_1">
+            <If Condition="[runType = &quot;CHECK&quot;]" DisplayName="Handle Check Login Available" sap:VirtualizedContainerService.HintSize="486.4,1591.2" sap2010:WorkflowViewState.IdRef="If_1">
               <If.Then>
-                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="484.8,1326.4" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="484.8,1234.4" sap2010:WorkflowViewState.IdRef="Sequence_4">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -341,26 +455,7 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </Delay>
-                  <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="CHECKING_ID" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="451.2,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_3">
-                    <ui:GetRobotAsset.Value>
-                      <OutArgument x:TypeArguments="x:String">[CHECKING_ID]</OutArgument>
-                    </ui:GetRobotAsset.Value>
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                  </ui:GetRobotAsset>
-                  <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="Delay_4">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                  </Delay>
-                  <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ====== Tạo đường dẫn file JSON ======&#xA;Dim jsonPath As String = System.IO.Path.Combine(checkingFilePath, &quot;result_&quot; &amp; checkingId &amp; &quot;.json&quot;)&#xA;&#xA;' ====== Đọc file JSON hiện tại ======&#xA;Dim jsonContent As String = System.IO.File.ReadAllText(jsonPath, System.Text.Encoding.UTF8)&#xA;Dim jsonArray   As Newtonsoft.Json.Linq.JArray = Newtonsoft.Json.Linq.JArray.Parse(jsonContent)&#xA;&#xA;' ====== Tìm theo compCode và Update ======&#xA;For Each item As Newtonsoft.Json.Linq.JObject In jsonArray&#xA;    If item(&quot;compCode&quot;).ToString() = compCode Then&#xA;        item(&quot;isLogined&quot;)   = &quot;Y&quot;&#xA;        item(&quot;processTime&quot;) = DateTime.Now.ToString(&quot;yyyyMMdd HH:mm:ss&quot;)&#xA;        Exit For&#xA;    End If&#xA;Next&#xA;&#xA;' ====== Ghi lại file JSON (ghi đè) ======&#xA;System.IO.File.WriteAllText(jsonPath, jsonArray.ToString(), System.Text.Encoding.UTF8)" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+                  <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ====== Create JSON file path ======&#xA;Dim jsonPath As String = System.IO.Path.Combine(checkingFilePath, &quot;result_&quot; &amp; checkingId &amp; &quot;.json&quot;)&#xA;&#xA;' ====== Read current JSON file ======&#xA;Dim jsonContent As String = System.IO.File.ReadAllText(jsonPath, System.Text.Encoding.UTF8)&#xA;Dim jsonArray   As Newtonsoft.Json.Linq.JArray = Newtonsoft.Json.Linq.JArray.Parse(jsonContent)&#xA;&#xA;' ====== Find by compCode and update ======&#xA;For Each item As Newtonsoft.Json.Linq.JObject In jsonArray&#xA;    If item(&quot;compCode&quot;).ToString() = compCode Then&#xA;        item(&quot;isLogined&quot;)   = &quot;Y&quot;&#xA;        item(&quot;processTime&quot;) = DateTime.Now.ToString(&quot;yyyyMMdd HH:mm:ss&quot;)&#xA;        Exit For&#xA;    End If&#xA;Next&#xA;&#xA;' ====== Rewrite JSON file (overwrite) ======&#xA;System.IO.File.WriteAllText(jsonPath, jsonArray.ToString(), System.Text.Encoding.UTF8)" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="451.2,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
                     <ui:InvokeCode.Arguments>
                       <InArgument x:TypeArguments="x:String" x:Key="checkingId">[CHECKING_ID]</InArgument>
                       <InArgument x:TypeArguments="x:String" x:Key="checkingFilePath">[CHECKING_FILE_PATH]</InArgument>
@@ -368,7 +463,7 @@
                     </ui:InvokeCode.Arguments>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
