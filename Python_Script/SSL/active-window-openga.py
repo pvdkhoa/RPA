@@ -2,15 +2,13 @@ import win32api, win32con, win32gui
 import ctypes
 import time
 
-# Danh sách 14 công ty
+# List of 14 companies
 COMPANY_TITLES = [
     '삼성생명', '라이나생명', 'DB생명', '메트라이프', 'KB라이프',
     '카디프생명', '현대해상', '메리츠화재', 'DB손보', 'KB손보',
-    '삼성화재', '한화손보', '흥국화재', '롯데손보', '영업 홈', 'BNP 파리바 카디프생명', 'NGS - 영업지원시스템'
-]
-
+    '삼성화재', '한화손보', '흥국화재', '롯데손보']
 def get_hwnd_by_company():
-    """Lấy hwnd browser có title chứa tên 1 trong 14 công ty"""
+    """Gets the browser hwnd that contains the name of one of the 14 companies in its title."""
     result = []
     def callback(hwnd, _):
         if win32gui.IsWindowVisible(hwnd):
@@ -48,15 +46,22 @@ print("Start")
 hwnd_cmd = ctypes.windll.kernel32.GetConsoleWindow()
 ctypes.windll.user32.ShowWindow(hwnd_cmd, 6)
 
-# Tìm browser
+# Find browser
 windows = get_hwnd_by_company()
 if not windows:
-    print("Không tìm thấy browser nào!")
+    print("Cannot find any browser!")
     exit()
 
 hwnd, title, company = windows[0]
 print(f"Found: [{company}] {title}")
 
-# Click vào tọa độ 278, 145
+# Click at coordinates
+time.sleep(3)
 click(hwnd, 98, 24)
-print("Click done!")
+print("Active Done!")
+
+time.sleep(3)
+click(hwnd, 230, 134)
+print("Click Upload Icon!")
+
+time.sleep(3)

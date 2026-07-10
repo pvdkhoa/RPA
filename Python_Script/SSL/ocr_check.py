@@ -5,9 +5,16 @@ import easyocr
 from pathlib import Path
 from datetime import datetime
 
-SAVE_DIR = Path.home() / "Downloads"
+"""
+This script uses easyocr to extract text from a specific screen region (login status area).
+It is intended to be called as a subprocess by login handlers (like ssf_handle_login.py) 
+to verify if the login was successful or if the page is still loading.
+"""
 
-reader = easyocr.Reader(["en", "ko"], gpu=False)
+SAVE_DIR = Path(r"C:\Users\RPA02\Documents\UiPath\RPA\Python_Script\Log")
+SAVE_DIR.mkdir(parents=True, exist_ok=True)
+
+reader = easyocr.Reader(["en", "ko"], gpu=False, verbose=False)
 
 x1, y1, x2, y2 = 14, 100, 105, 140 
 width  = x2 - x1
@@ -15,8 +22,8 @@ height = y2 - y1
 
 screenshot = pyautogui.screenshot(region=(x1, y1, width, height))
 
-# Lưu ảnh debug
-save_path = SAVE_DIR / f"ocr_raw_{datetime.now().strftime('%H%M%S')}.png"
+# Save debug image
+save_path = SAVE_DIR / f"ocr_raw_ssl_{datetime.now().strftime('%H%M%S')}.png"
 screenshot.save(str(save_path))
 
 img = np.array(screenshot)

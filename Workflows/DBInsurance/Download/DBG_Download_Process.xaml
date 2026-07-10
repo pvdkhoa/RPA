@@ -112,9 +112,19 @@
       <AssemblyReference>UiPath.Excel</AssemblyReference>
       <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Download_Process_01" sap:VirtualizedContainerService.HintSize="832.4000000000001,4321.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Download_Process_01" sap:VirtualizedContainerService.HintSize="762,6008" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="PYTHON_PATH">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:String">C:\Users\RPA02\Documents\UiPath\RPA\Python_Script\DB\</Literal>
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="x:String" Name="clipboard_data" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -129,7 +139,7 @@
       </sap:WorkflowViewStateService.ViewState>
       <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Python Start Process" sap:VirtualizedContainerService.HintSize="451.2,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="python-workflow.cs">
         <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="x:String" x:Key="scriptPath">C:\UipathScript\DB\db_ltr_process_is_manual.py</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "db_ltr_process_is_manual.py"]</InArgument>
           <InArgument x:TypeArguments="x:String" x:Key="mode" />
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
@@ -140,9 +150,6 @@
               <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
             </ActivityAction.Argument>
             <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,645.6" sap2010:WorkflowViewState.IdRef="Sequence_4">
-              <Sequence.Variables>
-                <Variable x:TypeArguments="x:String" Name="variable1" />
-              </Sequence.Variables>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -167,10 +174,10 @@
               </Delay>
               <ui:GetFromClipboard TimeoutMS="{x:Null}" DisplayName="Get From Clipboard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="GetFromClipboard_1">
                 <ui:GetFromClipboard.Result>
-                  <OutArgument x:TypeArguments="x:String">[variable1]</OutArgument>
+                  <OutArgument x:TypeArguments="x:String">[clipboard_data]</OutArgument>
                 </ui:GetFromClipboard.Result>
               </ui:GetFromClipboard>
-              <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[variable1]" />
+              <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[clipboard_data]" />
               <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="Done Processs">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -216,7 +223,7 @@
       </uix:NApplicationCard>
       <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Python Enter Value" sap:VirtualizedContainerService.HintSize="451.2,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="python-workflow.cs">
         <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="x:String" x:Key="scriptPath">C:\UipathScript\DB\db_enter_value_process.py</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "db_enter_value_process.py"]</InArgument>
           <InArgument x:TypeArguments="x:String" x:Key="mode" />
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
@@ -285,7 +292,7 @@
       </uix:NApplicationCard>
       <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Python Download Process" sap:VirtualizedContainerService.HintSize="451.2,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="python-workflow.cs">
         <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="x:String" x:Key="scriptPath">C:\UipathScript\DB\db_download_process.py</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "db_download_process.py"]</InArgument>
           <InArgument x:TypeArguments="x:String" x:Key="mode" />
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
@@ -308,34 +315,31 @@
       <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_8" />
       <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Python Rename File LTR" sap:VirtualizedContainerService.HintSize="451.2,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="python-workflow.cs">
         <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="x:String" x:Key="scriptPath">C:\UipathScript\DB\rename_db_ltr.py</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "rename_db_ltr.py"]</InArgument>
           <InArgument x:TypeArguments="x:String" x:Key="mode" />
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
     </Sequence>
-    <Sequence DisplayName="Download New Car Sequence" sap:VirtualizedContainerService.HintSize="484.8,1014.4" sap2010:WorkflowViewState.IdRef="Sequence_11">
+    <Sequence DisplayName="Download New Car Sequence" sap:VirtualizedContainerService.HintSize="484.8,1857.6" sap2010:WorkflowViewState.IdRef="Sequence_11">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Python Start Car process" sap:VirtualizedContainerService.HintSize="416,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="python-workflow.cs">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Python Start Car process" sap:VirtualizedContainerService.HintSize="451.2,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="python-workflow.cs">
         <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="x:String" x:Key="scriptPath">C:\UipathScript\DB\db_car_process.py</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "db_car_process.py"]</InArgument>
           <InArgument x:TypeArguments="x:String" x:Key="mode" />
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
-      <uix:NApplicationCard AttachMode="ByInstance" DisplayName="DB손해보험-통합[340087221]  - [건별매출명세-WBDG020UM]" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_4" ScopeGuid="1596d9dd-e003-43ac-8fb3-0e9ef97dbcbc" Version="V2">
+      <uix:NApplicationCard AttachMode="ByInstance" DisplayName="DB손해보험-통합[340087221]  - [건별매출명세-WBDG020UM]" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="451.2,900" sap2010:WorkflowViewState.IdRef="NApplicationCard_4" ScopeGuid="1596d9dd-e003-43ac-8fb3-0e9ef97dbcbc" Version="V2">
         <uix:NApplicationCard.Body>
           <ActivityAction x:TypeArguments="x:Object">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
             </ActivityAction.Argument>
             <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,645.6" sap2010:WorkflowViewState.IdRef="Sequence_12">
-              <Sequence.Variables>
-                <Variable x:TypeArguments="x:String" Name="variable1" />
-              </Sequence.Variables>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -360,10 +364,10 @@
               </Delay>
               <ui:GetFromClipboard TimeoutMS="{x:Null}" DisplayName="Get From Clipboard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="GetFromClipboard_2">
                 <ui:GetFromClipboard.Result>
-                  <OutArgument x:TypeArguments="x:String">[variable1]</OutArgument>
+                  <OutArgument x:TypeArguments="x:String">[clipboard_data]</OutArgument>
                 </ui:GetFromClipboard.Result>
               </ui:GetFromClipboard>
-              <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="WriteLine_3" Text="[variable1]" />
+              <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="WriteLine_3" Text="[clipboard_data]" />
               <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="WriteLine_4" Text="Done Processs">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -402,18 +406,18 @@
         </uix:NApplicationCard.TargetApp>
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </uix:NApplicationCard>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Python Enter Value" sap:VirtualizedContainerService.HintSize="416,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="python-workflow.cs">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Python Enter Value" sap:VirtualizedContainerService.HintSize="451.2,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="python-workflow.cs">
         <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="x:String" x:Key="scriptPath">C:\UipathScript\DB\db_enter_value_process.py</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "db_enter_value_process.py"]</InArgument>
           <InArgument x:TypeArguments="x:String" x:Key="mode" />
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
-      <uix:NApplicationCard AttachMode="ByInstance" DisplayName="DB손해보험-통합[340087221]  - [건별매출명세-WBDG020UM](1)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_5" ScopeGuid="4b2db3e9-e7f8-470c-83e5-034d61ca60c5" Version="V2">
+      <uix:NApplicationCard AttachMode="ByInstance" DisplayName="DB손해보험-통합[340087221]  - [건별매출명세-WBDG020UM](1)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_5" ScopeGuid="4b2db3e9-e7f8-470c-83e5-034d61ca60c5" Version="V2">
         <uix:NApplicationCard.Body>
           <ActivityAction x:TypeArguments="x:Object">
             <ActivityAction.Argument>
@@ -476,9 +480,9 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </uix:NApplicationCard>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Python Download process" sap:VirtualizedContainerService.HintSize="416,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="python-workflow.cs">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Python Download process" sap:VirtualizedContainerService.HintSize="451.2,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="python-workflow.cs">
         <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="x:String" x:Key="scriptPath">C:\UipathScript\DB\db_download_process.py</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "db_download_process.py"]</InArgument>
           <InArgument x:TypeArguments="x:String" x:Key="mode" />
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
@@ -498,36 +502,33 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:KillProcess>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Python Rename Car" sap:VirtualizedContainerService.HintSize="416,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="python-workflow.cs">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Python Rename Car" sap:VirtualizedContainerService.HintSize="451.2,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="python-workflow.cs">
         <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="x:String" x:Key="scriptPath">C:\UipathScript\DB\rename_db_car.py</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "rename_db_car.py"]</InArgument>
           <InArgument x:TypeArguments="x:String" x:Key="mode" />
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
     </Sequence>
-    <Sequence DisplayName="Download New General Sequence" sap:VirtualizedContainerService.HintSize="484.8,1304" sap2010:WorkflowViewState.IdRef="Sequence_20">
+    <Sequence DisplayName="Download New General Sequence" sap:VirtualizedContainerService.HintSize="484.8,2147.2" sap2010:WorkflowViewState.IdRef="Sequence_20">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Python Start General process" sap:VirtualizedContainerService.HintSize="416,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="python-workflow.cs">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Python Start General process" sap:VirtualizedContainerService.HintSize="451.2,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="python-workflow.cs">
         <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="x:String" x:Key="scriptPath">C:\UipathScript\DB\db_general_process.py</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "db_general_process.py"]</InArgument>
           <InArgument x:TypeArguments="x:String" x:Key="mode" />
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
-      <uix:NApplicationCard AttachMode="ByInstance" DisplayName="DB손해보험-통합[340087221]  - [건별매출명세-WBDG020UM]" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_6" ScopeGuid="1596d9dd-e003-43ac-8fb3-0e9ef97dbcbc" Version="V2">
+      <uix:NApplicationCard AttachMode="ByInstance" DisplayName="DB손해보험-통합[340087221]  - [건별매출명세-WBDG020UM]" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="451.2,900" sap2010:WorkflowViewState.IdRef="NApplicationCard_6" ScopeGuid="1596d9dd-e003-43ac-8fb3-0e9ef97dbcbc" Version="V2">
         <uix:NApplicationCard.Body>
           <ActivityAction x:TypeArguments="x:Object">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
             </ActivityAction.Argument>
             <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,645.6" sap2010:WorkflowViewState.IdRef="Sequence_19">
-              <Sequence.Variables>
-                <Variable x:TypeArguments="x:String" Name="variable1" />
-              </Sequence.Variables>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -552,10 +553,10 @@
               </Delay>
               <ui:GetFromClipboard TimeoutMS="{x:Null}" DisplayName="Get From Clipboard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="GetFromClipboard_3">
                 <ui:GetFromClipboard.Result>
-                  <OutArgument x:TypeArguments="x:String">[variable1]</OutArgument>
+                  <OutArgument x:TypeArguments="x:String">[clipboard_data]</OutArgument>
                 </ui:GetFromClipboard.Result>
               </ui:GetFromClipboard>
-              <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="WriteLine_5" Text="[variable1]" />
+              <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="WriteLine_5" Text="[clipboard_data]" />
               <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="WriteLine_6" Text="Done Processs">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -594,18 +595,18 @@
         </uix:NApplicationCard.TargetApp>
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </uix:NApplicationCard>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Python enter value" sap:VirtualizedContainerService.HintSize="416,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="python-workflow.cs">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Python enter value" sap:VirtualizedContainerService.HintSize="451.2,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="python-workflow.cs">
         <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="x:String" x:Key="scriptPath">C:\UipathScript\DB\db_enter_value_process.py</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "db_enter_value_process.py"]</InArgument>
           <InArgument x:TypeArguments="x:String" x:Key="mode" />
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
-      <uix:NApplicationCard AttachMode="ByInstance" DisplayName="DB손해보험-통합[340087221]  - [건별매출명세-WBDG020UM](1)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_7" ScopeGuid="4b2db3e9-e7f8-470c-83e5-034d61ca60c5" Version="V2">
+      <uix:NApplicationCard AttachMode="ByInstance" DisplayName="DB손해보험-통합[340087221]  - [건별매출명세-WBDG020UM](1)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_7" ScopeGuid="4b2db3e9-e7f8-470c-83e5-034d61ca60c5" Version="V2">
         <uix:NApplicationCard.Body>
           <ActivityAction x:TypeArguments="x:Object">
             <ActivityAction.Argument>
@@ -668,9 +669,9 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </uix:NApplicationCard>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Python Download Process" sap:VirtualizedContainerService.HintSize="416,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_11" UnSafe="False" WorkflowFileName="python-workflow.cs">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Python Download Process" sap:VirtualizedContainerService.HintSize="451.2,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_11" UnSafe="False" WorkflowFileName="python-workflow.cs">
         <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="x:String" x:Key="scriptPath">C:\UipathScript\DB\db_download_process.py</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "db_download_process.py"]</InArgument>
           <InArgument x:TypeArguments="x:String" x:Key="mode" />
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
@@ -690,16 +691,16 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:KillProcess>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Python Rename General" sap:VirtualizedContainerService.HintSize="416,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" UnSafe="False" WorkflowFileName="python-workflow.cs">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Python Rename General" sap:VirtualizedContainerService.HintSize="451.2,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" UnSafe="False" WorkflowFileName="python-workflow.cs">
         <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="x:String" x:Key="scriptPath">C:\UipathScript\DB\rename_db_general.py</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "rename_db_general.py"]</InArgument>
           <InArgument x:TypeArguments="x:String" x:Key="mode" />
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
       <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_21" />
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="DB close program" sap:VirtualizedContainerService.HintSize="416,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_13" UnSafe="False" WorkflowFileName="python-workflow.cs">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="DB close program" sap:VirtualizedContainerService.HintSize="451.2,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_13" UnSafe="False" WorkflowFileName="python-workflow.cs">
         <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="x:String" x:Key="scriptPath">C:\UipathScript\DB\db_close_program.py</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "db_close_program.py"]</InArgument>
           <InArgument x:TypeArguments="x:String" x:Key="mode" />
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>

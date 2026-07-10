@@ -2,7 +2,10 @@ import win32api, win32con, win32gui, win32com.client, time
 shell = win32com.client.Dispatch("WScript.Shell")
 
 def get_hwnd():
-    """Tìm hwnd của cửa sổ 메리츠화재 động"""
+    """
+    Finds and returns the window handle (hwnd) of the Meritz Fire & Marine Insurance application.
+    Raises an exception if the window is not found.
+    """
     result = []
     def callback(hwnd, _):
         if win32gui.IsWindowVisible(hwnd):
@@ -11,12 +14,14 @@ def get_hwnd():
                 result.append(hwnd)
     win32gui.EnumWindows(callback, None)
     if not result:
-        raise Exception("Không tìm thấy cửa sổ 메리츠화재!")
-    print(f"Tim thay cua so: hwnd={result[0]}")
+        raise Exception("Cannot find the Meritz Fire & Marine Insurance window!")
+    print(f"Found window: hwnd={result[0]}")
     return result[0]
 
 def close_popups():
-    """Đóng tất cả popup ComShareMsiePopup"""
+    """
+    Closes all 'ComShareMsiePopup' windows that might be blocking the main UI.
+    """
     count = 0
     def callback(hwnd, _):
         nonlocal count
@@ -24,12 +29,16 @@ def close_popups():
             title = win32gui.GetWindowText(hwnd)
             if 'ComShareMsiePopup' in title:
                 win32gui.PostMessage(hwnd, win32con.WM_CLOSE, 0, 0)
-                print(f"Da dong popup: hwnd={hwnd}")
+                print(f"Closed popup: hwnd={hwnd}")
                 count += 1
     win32gui.EnumWindows(callback, None)
-    print(f"Tong so popup da dong: {count}")
+    print(f"Total popups closed: {count}")
 
 def click(x, y):
+    """
+    Brings the application window to the foreground and simulates a left mouse click 
+    at the specified (x, y) coordinates.
+    """
     hwnd = get_hwnd()
     win32gui.SetForegroundWindow(hwnd)
     time.sleep(0.3)
@@ -40,10 +49,17 @@ def click(x, y):
     time.sleep(0.5)
 
 def type_text(text):
+    """
+    Simulates typing text using WScript.Shell SendKeys.
+    """
     shell.SendKeys(str(text))
     time.sleep(0.3)
 
 def clear_and_type(x, y, text):
+    """
+    Clicks on a specified (x, y) input field, clears its existing content, 
+    and types the new text.
+    """
     click(x, y)
     shell.SendKeys("^a")
     time.sleep(0.1)
@@ -51,7 +67,7 @@ def clear_and_type(x, y, text):
     time.sleep(0.1)
     type_text(text)
 
-print('Bat dau...')
+print('Started process...')
 
 click(540,50)
 time.sleep(1)

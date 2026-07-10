@@ -134,8 +134,13 @@
       <AssemblyReference>UiPath.OrchestratorClient</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="MRF_NEW_CAR Sequence" sap:VirtualizedContainerService.HintSize="757.2,9400.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="MRF_NEW_CAR Sequence" sap:VirtualizedContainerService.HintSize="762,9486.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="PYTHON_PATH">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:String">C:\Users\RPA02\Documents\UiPath\RPA\Python_Script\MeritzFireMarine\ExtraData\</Literal>
+        </Variable.Default>
+      </Variable>
       <Variable x:TypeArguments="sd:DataTable" Default="[New DataTable()]" Name="MRF_NEW_CAR_data_table_rule5" />
       <Variable x:TypeArguments="x:String" Name="MRF_NEW_CAR_time" />
       <Variable x:TypeArguments="x:String" Default="MRF_NEW_CAR_" Name="MRF_NEW_CAR_prefix_file_name" />
@@ -227,7 +232,7 @@
             </sap:WorkflowViewStateService.ViewState>
             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="python-workflow - Invoke Workflow File (python-workflow.cs)" sap:VirtualizedContainerService.HintSize="486.4,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="python-workflow.cs">
               <ui:InvokeWorkflowFile.Arguments>
-                <InArgument x:TypeArguments="x:String" x:Key="scriptPath">C:\UipathScript\MeritzFireMarine\ExtraData\meritz_start_car_extra_data_process.py</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "meritz_start_car_extra_data_process.py"]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="mode" />
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
@@ -250,7 +255,7 @@
                     <ui:SetToClipboard DisplayName="Set To Clipboard" sap:VirtualizedContainerService.HintSize="451.2,92" sap2010:WorkflowViewState.IdRef="SetToClipboard_1" Text="[CurrentRow(&quot;Search Data&quot;).ToString()]" />
                     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="python-workflow - Invoke Workflow File (python-workflow.cs)" sap:VirtualizedContainerService.HintSize="451.2,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="python-workflow.cs">
                       <ui:InvokeWorkflowFile.Arguments>
-                        <InArgument x:TypeArguments="x:String" x:Key="scriptPath">C:\UipathScript\MeritzFireMarine\ExtraData\meritz_car_click_clear.py</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "meritz_car_click_clear.py"]</InArgument>
                         <InArgument x:TypeArguments="x:String" x:Key="mode" />
                       </ui:InvokeWorkflowFile.Arguments>
                     </ui:InvokeWorkflowFile>
@@ -270,7 +275,7 @@
                             <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_4" />
                             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="python-workflow - Invoke Workflow File (python-workflow.cs)" sap:VirtualizedContainerService.HintSize="416,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="python-workflow.cs">
                               <ui:InvokeWorkflowFile.Arguments>
-                                <InArgument x:TypeArguments="x:String" x:Key="scriptPath">C:\UipathScript\MeritzFireMarine\ExtraData\meritz_car_search_extra.py</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "meritz_car_search_extra.py"]</InArgument>
                                 <InArgument x:TypeArguments="x:String" x:Key="mode" />
                               </ui:InvokeWorkflowFile.Arguments>
                             </ui:InvokeWorkflowFile>
@@ -450,7 +455,7 @@
                     <ui:SetToClipboard DisplayName="Set To Clipboard" sap:VirtualizedContainerService.HintSize="451.2,92" sap2010:WorkflowViewState.IdRef="SetToClipboard_2" Text="[CurrentRow(&quot;Search Data&quot;).ToString()]" />
                     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Python Click And Clear" sap:VirtualizedContainerService.HintSize="451.2,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="python-workflow.cs">
                       <ui:InvokeWorkflowFile.Arguments>
-                        <InArgument x:TypeArguments="x:String" x:Key="scriptPath">C:\UipathScript\MeritzFireMarine\ExtraData\meritz_car_click_clear.py</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "meritz_car_click_clear.py"]</InArgument>
                         <InArgument x:TypeArguments="x:String" x:Key="mode" />
                       </ui:InvokeWorkflowFile.Arguments>
                     </ui:InvokeWorkflowFile>
@@ -647,22 +652,22 @@
         </If.Else>
       </If>
     </Sequence>
-    <Sequence DisplayName="3. Copy Template And Import Data On Data Table To Coppied File" sap:VirtualizedContainerService.HintSize="555.2,945.6" sap2010:WorkflowViewState.IdRef="Sequence_4">
+    <Sequence DisplayName="3. Copy Template And Import Data On Data Table To Coppied File" sap:VirtualizedContainerService.HintSize="555.2,1031.2" sap2010:WorkflowViewState.IdRef="Sequence_4">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <If Condition="[MRF_NEW_CAR_data_table_rule4.Rows.Count &gt; 0 OrElse MRF_NEW_CAR_data_table_rule5.Rows.Count &gt; 0]" sap:VirtualizedContainerService.HintSize="451.2,862.4" sap2010:WorkflowViewState.IdRef="If_2">
+      <If Condition="[MRF_NEW_CAR_data_table_rule4.Rows.Count &gt; 0 OrElse MRF_NEW_CAR_data_table_rule5.Rows.Count &gt; 0]" sap:VirtualizedContainerService.HintSize="451.2,948" sap2010:WorkflowViewState.IdRef="If_2">
         <If.Then>
-          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,559.2" sap2010:WorkflowViewState.IdRef="Sequence_8">
+          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,644.8" sap2010:WorkflowViewState.IdRef="Sequence_8">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Assign sap:VirtualizedContainerService.HintSize="416,88.8" sap2010:WorkflowViewState.IdRef="Assign_2">
+            <Assign sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="Assign_2">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[MRF_NEW_CAR_coppied_file_path]</OutArgument>
               </Assign.To>

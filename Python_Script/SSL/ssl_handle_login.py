@@ -1,4 +1,4 @@
-﻿import shutil
+import shutil
 import os
 import sys
 import win32api, win32con, win32gui, win32com.client, time
@@ -6,16 +6,17 @@ import ctypes
 import subprocess
 import logging
 import requests
+import json
 from pathlib import Path
 from datetime import datetime
 
 # ─────────────────────────────────────────
 # LOGGING
 # ─────────────────────────────────────────
-SAVE_DIR = Path.home() / "Downloads"
+SAVE_DIR = Path(r"C:\Users\RPA02\Documents\UiPath\RPA\Python_Script\Log")
 SAVE_DIR.mkdir(parents=True, exist_ok=True)
 
-LOG_FILE = SAVE_DIR / f"ocr_log_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
+LOG_FILE = SAVE_DIR / f"ocr_log_ssl_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
@@ -34,7 +35,7 @@ log = logging.getLogger(__name__)
 import base64
 
 if len(sys.argv) < 3:
-    log.error("[ARGS] Missing arguments. Usage: ssl_handle_login.py <username> <base64_password>")
+    log.error("[ARGS] Missing arguments. Usage: ssl_handle_login.py <username> <base64_password> [checkID]")
     sys.exit(1)
 
 ARG_USERNAME = sys.argv[1]
@@ -46,6 +47,10 @@ try:
 except Exception as e:
     log.error(f"[ARGS] Failed to decode password: {e}")
     sys.exit(1)
+
+ARG_CHECK_ID = sys.argv[3] if len(sys.argv) > 3 else ""
+if ARG_CHECK_ID:
+    log.info(f"[ARGS] CheckID provided: '{ARG_CHECK_ID}'")
 
 # ─────────────────────────────────────────
 # CONFIG
@@ -63,10 +68,10 @@ MAX_RESTART = 2   # Number of browser restarts if still failing
 SECURITY_WARMUP_SEC = 8
 POST_LOGIN_SETTLE   = 12   # Wait for security handshake to stabilize after clicking login
 
-CLIENT_ID     = "f03a6679-36df-4e04-987e-b73d8a905970"
-CLIENT_SECRET = "!ys?YRKf6^e4Lbapq6SN0cq?GwNSO_#Q7s*~VwNt!BqDElg$F$srGJpiP7v8k$XS"
-ORG_UNIT_ID   = "946773"
-BASE_URL      = "https://cloud.uipath.com/rpacaxjvjr/defaulttenant/orchestrator_"
+CLIENT_ID     = "a864297e-5ec8-4ca0-a456-3e8cbe0c2d95"
+CLIENT_SECRET = "GG_Y9OPAKtiVfgML*de*B0_Xvv1Q?Bic@Gu2$PA31icIJ%dnt4(dDm5hEnY?Tx(v"
+ORG_UNIT_ID   = "8773"
+BASE_URL      = "https://cloud.uipath.com/miraeassetfp/DefaultTenant/orchestrator_"
 
 # Security agent process names (verify against Task Manager on RPA02 and adjust if needed).
 # Used to wait for the agent to be alive before opening Edge.
@@ -124,16 +129,21 @@ def parse_ssl_credentials(assets):
 # ─────────────────────────────────────────
 # UPDATE SSL LOGIN STATUS ASSET
 # Using for checking Alive SSL Y/N
-# SSL 활성화 여부 확인용 (Y/N)
+# For checking SSL activation status (Y/N)
 # ─────────────────────────────────────────
-def update_ssl_login_status(token, status: str):
+def update_ssl_login_status(status: str):
     """Update SSL_LOGIN_STATUS asset value to 'Y' (success) or 'N' (failed)."""
-    # Step 1: Get the Asset ID of SSL_LOGIN_STATUS
-    url = f"{BASE_URL}/odata/Assets"
+    # Step 1: Get fresh token (same pattern as ocr_script)
+    token = get_access_token()
+
     headers = {
         "Authorization": f"Bearer {token}",
         "X-UIPATH-OrganizationUnitId": ORG_UNIT_ID,
+        "Content-Type": "application/json",
     }
+
+    # Step 2: Get asset by name (same as get_asset_by_name in ocr_script)
+    url = f"{BASE_URL}/odata/Assets"
     params = {"$filter": "Name eq 'SSL_LOGIN_STATUS'"}
     response = requests.get(url, headers=headers, params=params)
     response.raise_for_status()
@@ -143,18 +153,19 @@ def update_ssl_login_status(token, status: str):
         log.error("[STATUS] SSL_LOGIN_STATUS asset not found in Orchestrator!")
         return False
 
-    asset_id = assets[0]["Id"]
+    asset = assets[0]
+    asset_id = asset["Id"]
     log.info(f"[STATUS] SSL_LOGIN_STATUS asset ID: {asset_id}")
 
-    # Step 2: Update the asset value
+    # Step 3: Update asset (same as update_asset in ocr_script)
     update_url = f"{BASE_URL}/odata/Assets({asset_id})"
-    payload = {
+    body = {
+        "Id": asset_id,
         "Name": "SSL_LOGIN_STATUS",
-        "ValueScope": "Global",
         "ValueType": "Text",
-        "StringValue": status
+        "StringValue": status,
     }
-    response = requests.put(update_url, headers=headers, json=payload)
+    response = requests.put(update_url, headers=headers, json=body)
     response.raise_for_status()
     log.info(f"[STATUS] SSL_LOGIN_STATUS updated to '{status}' successfully")
     return True
@@ -284,6 +295,27 @@ def close_popup_if_exists(timeout=10):
     log.info("[POPUP] No popup found")
     return False
 
+def update_json_is_openned(status):
+    if not ARG_CHECK_ID:
+        return
+    json_path = os.path.join(r"C:\RPA\CheckAvailableComp", f"result_{ARG_CHECK_ID}.json")
+    if not os.path.exists(json_path):
+        log.warning(f"[JSON] JSON file not found: {json_path}")
+        return
+    try:
+        with open(json_path, 'r', encoding='utf-8-sig') as f:
+            data = json.load(f)
+        for item in data:
+            if str(item.get("compCode")) == "SSL":
+                item["isOpenned"] = status
+                item["processTime"] = datetime.now().strftime("%Y%m%d %H:%M:%S")
+                break
+        with open(json_path, 'w', encoding='utf-8-sig') as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+        log.info(f"[JSON] Successfully updated isOpenned to '{status}' for SSL")
+    except Exception as e:
+        log.error(f"[JSON] Failed to update JSON file: {e}")
+
 def wait_for_samsunglife(timeout=30):
     log.info("[BROWSER] Waiting for Samsung Life browser...")
     start = time.time()
@@ -291,9 +323,11 @@ def wait_for_samsunglife(timeout=30):
         windows = get_hwnd_samsunglife()
         if windows:
             log.info(f"[BROWSER] Browser ready: {windows[0][1]}")
+            update_json_is_openned("Y")
             return windows[0][0]
         time.sleep(1)
     log.error("[BROWSER] Timeout! Samsung Life browser not found")
+    update_json_is_openned("N")
     return None
 
 # ─────────────────────────────────────────
@@ -350,6 +384,10 @@ def close_all_popups(hwnd_main):
 # This version: forces UTF-8, checks exit code, filters out all noise.
 # ─────────────────────────────────────────
 def run_ocr_check():
+    """
+    Executes the external ocr_check.py script as a subprocess to extract text from the screen.
+    This is used to verify if the main page has fully loaded after login.
+    """
     log.info("[OCR] Running ocr_check.py...")
     env = os.environ.copy()
     env["PYTHONIOENCODING"] = "utf-8"   # prevent cp949 crash from subprocess
@@ -519,16 +557,14 @@ if not success:
 # Final result
 if success:
     log.info("[END] Login completed successfully!")
-    # Update SSL_LOGIN_STATUS = 'Y' (login alive)
     try:
-        update_ssl_login_status(token, "Y")
+        update_ssl_login_status("Y")
     except Exception as e:
         log.error(f"[STATUS] Failed to update SSL_LOGIN_STATUS to Y: {e}")
 else:
     log.error(f"[END] Failed after {MAX_RETRY} retries + {MAX_RESTART} restarts")
-    # Update SSL_LOGIN_STATUS = 'N' (login failed)
     try:
-        update_ssl_login_status(token, "N")
+        update_ssl_login_status("N")
     except Exception as e:
         log.error(f"[STATUS] Failed to update SSL_LOGIN_STATUS to N: {e}")
 

@@ -115,7 +115,7 @@
       <AssemblyReference>System.Linq.Expressions</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Upload_NewContract_General" sap:VirtualizedContainerService.HintSize="835.6,8996.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Upload_NewContract_General" sap:VirtualizedContainerService.HintSize="762,8996.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="END_DATE_DOWNLOAD" />
       <Variable x:TypeArguments="x:String" Name="IS_MANUAL" />
@@ -125,6 +125,11 @@
       <Variable x:TypeArguments="x:String" Default="DEV" Name="ENV" />
       <Variable x:TypeArguments="ui:UiElement" Name="browserInstance" />
       <Variable x:TypeArguments="x:String" Name="MRF_NEW_GEN_PATH" />
+      <Variable x:TypeArguments="x:String" Name="PYTHON_PATH">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:String">C:\Users\RPA02\Documents\UiPath\RPA\Python_Script\Utils\</Literal>
+        </Variable.Default>
+      </Variable>
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -1315,9 +1320,9 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                     <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="484.8,122.4" sap2010:WorkflowViewState.IdRef="Delay_7" />
-                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="python-workflow - Invoke Workflow File (python-workflow.cs)" sap:VirtualizedContainerService.HintSize="484.8,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="python-workflow.cs">
+                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Python Active Window" sap:VirtualizedContainerService.HintSize="484.8,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="python-workflow.cs">
                       <ui:InvokeWorkflowFile.Arguments>
-                        <InArgument x:TypeArguments="x:String" x:Key="scriptPath">C:\UipathScript\SSL\active-window-openga.py</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "active-window-openga.py"]</InArgument>
                         <InArgument x:TypeArguments="x:String" x:Key="mode" />
                       </ui:InvokeWorkflowFile.Arguments>
                       <sap:WorkflowViewStateService.ViewState>
@@ -1807,8 +1812,8 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </Delay>
-                    <uix:NKeyboardShortcuts ActivateBefore="False" ClickBeforeMode="None" ContinueOnError="True" DisplayName="Keyboard Shortcuts" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,308" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_10" InteractionMode="HardwareEvents" ScopeIdentifier="3e98c7d3-6cb7-4b9a-9963-5d9f7e073645" Shortcuts="[d(hk)][d(ctrl)]w[u(ctrl)][u(hk)]" Version="V5" />
-                    <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_28" />
+                    <uix:NKeyboardShortcuts ActivateBefore="False" ClickBeforeMode="None" ContinueOnError="True" DisplayName="Keyboard Shortcuts" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="484.8,308" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_10" InteractionMode="HardwareEvents" ScopeIdentifier="3e98c7d3-6cb7-4b9a-9963-5d9f7e073645" Shortcuts="[d(hk)][d(ctrl)]w[u(ctrl)][u(hk)]" Version="V5" />
+                    <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="484.8,122.4" sap2010:WorkflowViewState.IdRef="Delay_28" />
                     <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="451.2,48" sap2010:WorkflowViewState.IdRef="CommentOut_3">
                       <ui:CommentOut.Body>
                         <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="449.6,431.2" sap2010:WorkflowViewState.IdRef="Sequence_20">

@@ -1,4 +1,4 @@
-<Activity xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p1="http://schemas.uipath.com/workflow/activities/ocr" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd2="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" mc:Ignorable="sap sap2010" x:Class="DBG_Search_ExtraData" VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="DBG_Search_ExtraData_1">
+<Activity mc:Ignorable="sap sap2010" x:Class="DBG_Search_ExtraData" VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="DBG_Search_ExtraData_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/ocr" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd2="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -135,38 +135,35 @@
       <AssemblyReference>UiPath.IntegrationService.Activities.Runtime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="DBG_Search_ExtraData" sap:VirtualizedContainerService.HintSize="861.6,414.8566666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="DBG_Search_ExtraData" sap:VirtualizedContainerService.HintSize="762,3501.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="x:String" Name="region_ocr"/>
-      <Variable x:TypeArguments="x:String" Name="DBG_car_fee"/>
-      <Variable x:TypeArguments="x:String" Default="DBG_NEW_CAR_*.xlsx" Name="DBG_sufix_file_name"/>
-      <Variable x:TypeArguments="x:String" Name="DBG_download_file"/>
-      <Variable x:TypeArguments="sd:DataTable" Name="DBG_data_table">
+      <Variable x:TypeArguments="x:String" Name="region_ocr" />
+      <Variable x:TypeArguments="x:String" Name="DBG_car_fee" />
+      <Variable x:TypeArguments="x:String" Default="DBG_NEW_CAR_*.xlsx" Name="DBG_sufix_file_name" />
+      <Variable x:TypeArguments="x:String" Name="DBG_download_file" />
+      <Variable x:TypeArguments="sd:DataTable" Default="[New DataTable()]" Name="DBG_data_table" />
+      <Variable x:TypeArguments="x:String" Name="DBG_template_file" />
+      <Variable x:TypeArguments="x:String" Name="DBG_file" />
+      <Variable x:TypeArguments="x:String" Default="C:\RPA\TargetExtraData" Name="DBG_target_path" />
+      <Variable x:TypeArguments="x:String" Default="C:\RPA\TempExtraData" Name="DBG_temp_path" />
+      <Variable x:TypeArguments="x:String" Default="C:\RPA\TempDownload" Name="DBG_download_path" />
+      <Variable x:TypeArguments="sd:DataTable" Default="[New DataTable()]" Name="DBG_raw_table" />
+      <Variable x:TypeArguments="x:Int32" Default="0" Name="rowIndex" />
+      <Variable x:TypeArguments="x:String" Name="PYTHON_PATH">
         <Variable.Default>
-          <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="New DataTable()"/>
+          <Literal x:TypeArguments="x:String">C:\Users\RPA02\Documents\UiPath\RPA\Python_Script\DB\</Literal>
         </Variable.Default>
       </Variable>
-      <Variable x:TypeArguments="x:String" Name="DBG_template_file"/>
-      <Variable x:TypeArguments="x:String" Name="DBG_file"/>
-      <Variable x:TypeArguments="x:String" Default="C:\RPA\TargetExtraData" Name="DBG_target_path"/>
-      <Variable x:TypeArguments="x:String" Default="C:\RPA\TempExtraData" Name="DBG_temp_path"/>
-      <Variable x:TypeArguments="x:String" Default="C:\RPA\TempDownload" Name="DBG_download_path"/>
-      <Variable x:TypeArguments="sd:DataTable" Name="DBG_raw_table">
-        <Variable.Default>
-          <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="New DataTable()"/>
-        </Variable.Default>
-      </Variable>
-      <Variable x:TypeArguments="x:Int32" Default="0" Name="rowIndex"/>
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Check Exist and Read File" sap:VirtualizedContainerService.HintSize="518.4,56.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence DisplayName="Check Exist and Read File" sap:VirtualizedContainerService.HintSize="587.2,1397.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
@@ -196,7 +193,7 @@
               <ueab:ExcelProcessScopeX.Body>
                 <ActivityAction x:TypeArguments="ui:IExcelProcess">
                   <ActivityAction.Argument>
-                    <DelegateInArgument x:TypeArguments="ui:IExcelProcess" Name="ExcelProcessScopeTag"/>
+                    <DelegateInArgument x:TypeArguments="ui:IExcelProcess" Name="ExcelProcessScopeTag" />
                   </ActivityAction.Argument>
                   <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,108" sap2010:WorkflowViewState.IdRef="Sequence_6">
                     <sap:WorkflowViewStateService.ViewState>
@@ -204,11 +201,11 @@
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ueab:ExcelApplicationCard ReadFormatting="{x:Null}" SensitivityLabel="{x:Null}" CreateNewFile="False" DisplayName="Use Excel File" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_1" ResizeWindow="None" SensitivityOperation="None" WorkbookPath="[DBG_download_file]">
+                    <ueab:ExcelApplicationCard CreateNewFile="False" DisplayName="Use Excel File" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_1" ResizeWindow="None" WorkbookPath="[DBG_download_file]">
                       <ueab:ExcelApplicationCard.Body>
                         <ActivityAction x:TypeArguments="ue:IWorkbookQuickHandle">
                           <ActivityAction.Argument>
-                            <DelegateInArgument x:TypeArguments="ue:IWorkbookQuickHandle" Name="Excel"/>
+                            <DelegateInArgument x:TypeArguments="ue:IWorkbookQuickHandle" Name="Excel" />
                           </ActivityAction.Argument>
                           <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,220" sap2010:WorkflowViewState.IdRef="Sequence_4">
                             <sap:WorkflowViewStateService.ViewState>
@@ -216,7 +213,7 @@
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <ueab:ReadRangeX DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="416,160" sap2010:WorkflowViewState.IdRef="ReadRangeX_1" Range="[Excel.Sheet(&quot;건별매출명세&quot;).Range(&quot;A8&quot;)]" SaveTo="[DBG_raw_table]"/>
+                            <ueab:ReadRangeX DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="416,160" sap2010:WorkflowViewState.IdRef="ReadRangeX_1" Range="[Excel.Sheet(&quot;건별매출명세&quot;).Range(&quot;A8&quot;)]" SaveTo="[DBG_raw_table]" />
                           </Sequence>
                         </ActivityAction>
                       </ueab:ExcelApplicationCard.Body>
@@ -231,8 +228,8 @@
                 </ActivityAction>
               </ueab:ExcelProcessScopeX.Body>
             </ueab:ExcelProcessScopeX>
-            <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_1"/>
-            <ui:InvokeCode ContinueOnError="{x:Null}" Code="DBG_data_table = New DataTable()&#10;DBG_data_table.Columns.Add(&quot;search_data&quot;, GetType(String))&#10;DBG_data_table.Columns.Add(&quot;updated_data&quot;, GetType(String))&#10;&#10;For Each row As DataRow In DBG_raw_table.Rows&#10;    Dim contractCode As String = row(&quot;증권번호&quot;).ToString().Trim()&#10;    Dim paymentMethod As String = row(&quot;납입방법&quot;).ToString().Trim()&#10;&#10;    If String.IsNullOrEmpty(contractCode) Then Continue For&#10;&#10;    If Not (paymentMethod.Contains(&quot;월납&quot;) OrElse paymentMethod.Contains(&quot;일시납&quot;)) Then&#10;        Dim newRow As DataRow = DBG_data_table.NewRow()&#10;        newRow(&quot;search_data&quot;) = contractCode&#10;        newRow(&quot;updated_data&quot;) = &quot;&quot;&#10;        DBG_data_table.Rows.Add(newRow)&#10;    End If&#10;Next" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="451.2,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+            <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_1" />
+            <ui:InvokeCode ContinueOnError="{x:Null}" Code="DBG_data_table = New DataTable()&#xA;DBG_data_table.Columns.Add(&quot;search_data&quot;, GetType(String))&#xA;DBG_data_table.Columns.Add(&quot;updated_data&quot;, GetType(String))&#xA;&#xA;For Each row As DataRow In DBG_raw_table.Rows&#xA;    Dim contractCode As String = row(&quot;증권번호&quot;).ToString().Trim()&#xA;    Dim paymentMethod As String = row(&quot;납입방법&quot;).ToString().Trim()&#xA;&#xA;    If String.IsNullOrEmpty(contractCode) Then Continue For&#xA;&#xA;    If Not (paymentMethod.Contains(&quot;월납&quot;) OrElse paymentMethod.Contains(&quot;일시납&quot;)) Then&#xA;        Dim newRow As DataRow = DBG_data_table.NewRow()&#xA;        newRow(&quot;search_data&quot;) = contractCode&#xA;        newRow(&quot;updated_data&quot;) = &quot;&quot;&#xA;        DBG_data_table.Rows.Add(newRow)&#xA;    End If&#xA;Next" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="451.2,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
               <ui:InvokeCode.Arguments>
                 <OutArgument x:TypeArguments="sd:DataTable" x:Key="DBG_data_table">[DBG_data_table]</OutArgument>
                 <InArgument x:TypeArguments="sd:DataTable" x:Key="DBG_raw_table">[DBG_raw_table]</InArgument>
@@ -242,7 +239,7 @@
               <ui:ForEachRow.Body>
                 <ActivityAction x:TypeArguments="sd:DataRow">
                   <ActivityAction.Argument>
-                    <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow"/>
+                    <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
                   </ActivityAction.Argument>
                   <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="449.6,173.6" sap2010:WorkflowViewState.IdRef="Sequence_10">
                     <sap:WorkflowViewStateService.ViewState>
@@ -250,7 +247,7 @@
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;Output &quot;+ CurrentRow(&quot;search_data&quot;).ToString()]"/>
+                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;Output &quot;+ CurrentRow(&quot;search_data&quot;).ToString()]" />
                   </Sequence>
                 </ActivityAction>
               </ui:ForEachRow.Body>
@@ -268,116 +265,124 @@
         </If.Else>
       </If>
     </Sequence>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="518.4,209.6" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="587.2,2080.8" sap2010:WorkflowViewState.IdRef="CommentOut_3">
       <ui:CommentOut.Body>
-        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="483.2,108" sap2010:WorkflowViewState.IdRef="Sequence_13">
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="552,1979.2" sap2010:WorkflowViewState.IdRef="Sequence_13">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Sequence DisplayName="handle and search data" sap:VirtualizedContainerService.HintSize="449.6,48" sap2010:WorkflowViewState.IdRef="Sequence_7">
+          <Sequence DisplayName="handle and search data" sap:VirtualizedContainerService.HintSize="518.4,1919.2" sap2010:WorkflowViewState.IdRef="Sequence_7">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="484.8,1809.6" sap2010:WorkflowViewState.IdRef="Sequence_8">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="python-workflow - Invoke Workflow File (python-workflow.cs)" sap:VirtualizedContainerService.HintSize="451.2,174.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="python-workflow.cs">
-                      <ui:InvokeWorkflowFile.Arguments><InArgument x:TypeArguments="x:String" x:Key="scriptPath">C:\UipathScript\DB\ExtraData\db_start_car_process.py</InArgument><InArgument x:TypeArguments="x:String" x:Key="mode"/></ui:InvokeWorkflowFile.Arguments></ui:InvokeWorkflowFile>
-                    <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_3"/>
-                    <uix:NSetClipboard DisplayName="Set Clipboard" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="NSetClipboard_1" Text="220252592015000" Version="V5">
-                      <uix:NSetClipboard.HealingAgentBehavior>
-                        <InArgument x:TypeArguments="uix:NChildHealingAgentBehavior">
-                          <Literal x:TypeArguments="uix:NChildHealingAgentBehavior" sap2010:WorkflowViewState.IdRef="Literal`1_1"/>
-                        </InArgument>
-                      </uix:NSetClipboard.HealingAgentBehavior>
-                    </uix:NSetClipboard>
-                    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="DB손해보험-통합[340087221]  -" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="451.2,684.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" ScopeGuid="e65b87a4-8828-4e45-abdb-9352603003da" Version="V2">
-                      <uix:NApplicationCard.Body>
-                        <ActivityAction x:TypeArguments="x:Object">
-                          <ActivityAction.Argument>
-                            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData"/>
-                          </ActivityAction.Argument>
-                          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,430.4" sap2010:WorkflowViewState.IdRef="Sequence_9">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                            <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,256.8" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_1" InteractionMode="HardwareEvents" ScopeIdentifier="e65b87a4-8828-4e45-abdb-9352603003da" Shortcuts="[d(hk)][d(ctrl)]v[u(ctrl)][u(hk)]" Version="V5"/>
-                            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="Delay_2"/>
-                          </Sequence>
-                        </ActivityAction>
-                      </uix:NApplicationCard.Body>
-                      <uix:NApplicationCard.OCREngine>
-                        <ActivityFunc x:TypeArguments="sd1:Image, scg:IEnumerable(scg:KeyValuePair(sd2:Rectangle, x:String))">
-                          <ActivityFunc.Argument>
-                            <DelegateInArgument x:TypeArguments="sd1:Image" Name="Image"/>
-                          </ActivityFunc.Argument>
-                        </ActivityFunc>
-                      </uix:NApplicationCard.OCREngine>
-                      <uix:NApplicationCard.TargetApp>
-                        <uix:TargetApp Area="170, 0, 1580, 1080" ContentHash="TjYb3Az_IUGpnbamsRioeA" FilePath="C:\Program Files (x86)\nexacro\14\nexacro.exe" IconBase64="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" InformativeScreenshot="dfce2373f4daca7dc086eb083108026a.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/65QoT5VjS0GT8o2nYk76Aw" Selector="&lt;wnd app='nexacro.exe' cls='CyNexacroWClass13' title='DB손해보험-통합[34008722:1]  - *' /&gt;" Version="V2">
-                          <uix:TargetApp.Arguments>
-                            <InArgument x:TypeArguments="x:String"/>
-                          </uix:TargetApp.Arguments>
-                          <uix:TargetApp.WorkingDirectory>
-                            <InArgument x:TypeArguments="x:String"/>
-                          </uix:TargetApp.WorkingDirectory>
-                        </uix:TargetApp>
-                      </uix:NApplicationCard.TargetApp>
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="484.8,1836" sap2010:WorkflowViewState.IdRef="Sequence_8">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="python-workflow - Invoke Workflow File (python-workflow.cs)" sap:VirtualizedContainerService.HintSize="451.2,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="python-workflow.cs">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "db_start_car_process.py"]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="mode" />
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+              <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_3" />
+              <uix:NSetClipboard DisplayName="Set Clipboard" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="NSetClipboard_1" Text="220252592015000" Version="V5">
+                <uix:NSetClipboard.HealingAgentBehavior>
+                  <InArgument x:TypeArguments="uix:NChildHealingAgentBehavior">
+                    <Literal x:TypeArguments="uix:NChildHealingAgentBehavior" sap2010:WorkflowViewState.IdRef="Literal`1_1" />
+                  </InArgument>
+                </uix:NSetClipboard.HealingAgentBehavior>
+              </uix:NSetClipboard>
+              <uix:NApplicationCard AttachMode="ByInstance" DisplayName="DB손해보험-통합[340087221]  -" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="451.2,684.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" ScopeGuid="e65b87a4-8828-4e45-abdb-9352603003da" Version="V2">
+                <uix:NApplicationCard.Body>
+                  <ActivityAction x:TypeArguments="x:Object">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,430.4" sap2010:WorkflowViewState.IdRef="Sequence_9">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                    </uix:NApplicationCard>
-                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="python-workflow - Invoke Workflow File (python-workflow.cs)" sap:VirtualizedContainerService.HintSize="451.2,174.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="python-workflow.cs">
-                      <ui:InvokeWorkflowFile.Arguments><InArgument x:TypeArguments="x:String" x:Key="scriptPath">C:\UipathScript\DB\ExtraData\db_search_data.py</InArgument><InArgument x:TypeArguments="x:String" x:Key="mode"/></ui:InvokeWorkflowFile.Arguments></ui:InvokeWorkflowFile>
-                    <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_4"/>
-                    <Assign sap:VirtualizedContainerService.HintSize="451.2,174.4" sap2010:WorkflowViewState.IdRef="Assign_2">
-                      <Assign.To>
-                        <OutArgument x:TypeArguments="x:String">[region_ocr]</OutArgument>
-                      </Assign.To>
-                      <Assign.Value>
-                        <InArgument x:TypeArguments="x:String">[New UiPath.Core.Region(New System.Drawing.Rectangle(100, 200, 300, 150)).ToString()]</InArgument>
-                      </Assign.Value>
-                    </Assign>
-                    <ui:GetOCRText WordsInfo="{x:Null}" DisplayName="Get OCR Text" sap:VirtualizedContainerService.HintSize="451.2,174.4" sap2010:WorkflowViewState.IdRef="GetOCRText_2">
-                      <ui:GetOCRText.OCREngine>
-                        <ActivityFunc x:TypeArguments="sd1:Image, scg:IEnumerable(scg:KeyValuePair(sd2:Rectangle, x:String))">
-                          <ActivityFunc.Argument>
-                            <DelegateInArgument x:TypeArguments="sd1:Image" Name="Image"/>
-                          </ActivityFunc.Argument>
-                          <p1:UiPathDocumentOCR ApiKey="{x:Null}" Endpoint="{x:Null}" Output="{x:Null}" PredictionId="{x:Null}" Text="{x:Null}" UseLocalServer="{x:Null}" ComputeSkewAngle="False" DisplayName="UiPath Document OCR" ExtractWords="True" sap:VirtualizedContainerService.HintSize="300,24.8" sap2010:WorkflowViewState.IdRef="UiPathDocumentOCR_2" Image="[Image]" Language="auto" NoopExecution="False" Profile="None" Scale="1" Timeout="100000" UseSeparateOcrProcess="True"/>
-                        </ActivityFunc>
-                      </ui:GetOCRText.OCREngine>
-                      <ui:GetOCRText.Target>
-                        <ui:Target Element="{x:Null}" Selector="{x:Null}" Id="a04e8950-c631-49bf-b5f8-d6f0f0d0094e">
-                          <ui:Target.ClippingRegion>
-                            <ui:Region Rectangle="1264, 669, -1160, -650"/>
-                          </ui:Target.ClippingRegion>
-                          <ui:Target.TimeoutMS>
-                            <InArgument x:TypeArguments="x:Int32"/>
-                          </ui:Target.TimeoutMS>
-                          <ui:Target.WaitForReady>
-                            <InArgument x:TypeArguments="ui:WaitForReady"/>
-                          </ui:Target.WaitForReady>
-                        </ui:Target>
-                      </ui:GetOCRText.Target>
-                      <ui:GetOCRText.Text>
-                        <OutArgument x:TypeArguments="x:String">[DBG_car_fee]</OutArgument>
-                      </ui:GetOCRText.Text>
-                    </ui:GetOCRText>
-                  </Sequence>
+                      <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,256.8" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_1" InteractionMode="HardwareEvents" ScopeIdentifier="e65b87a4-8828-4e45-abdb-9352603003da" Shortcuts="[d(hk)][d(ctrl)]v[u(ctrl)][u(hk)]" Version="V5" />
+                      <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="Delay_2" />
+                    </Sequence>
+                  </ActivityAction>
+                </uix:NApplicationCard.Body>
+                <uix:NApplicationCard.OCREngine>
+                  <ActivityFunc x:TypeArguments="sd1:Image, scg:IEnumerable(scg:KeyValuePair(sd2:Rectangle, x:String))">
+                    <ActivityFunc.Argument>
+                      <DelegateInArgument x:TypeArguments="sd1:Image" Name="Image" />
+                    </ActivityFunc.Argument>
+                  </ActivityFunc>
+                </uix:NApplicationCard.OCREngine>
+                <uix:NApplicationCard.TargetApp>
+                  <uix:TargetApp Area="170, 0, 1580, 1080" ContentHash="TjYb3Az_IUGpnbamsRioeA" FilePath="C:\Program Files (x86)\nexacro\14\nexacro.exe" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAYJSURBVFhHxZdrTFNnHMb/p/QGizGiyT5tWbIvZt8m0JbeaU8vZFdnpkwQ7KRYaCuX4QW5WBDFC96NRpxDpnFmF3Az27ziotUp6BC1qESnLtPp3KKJxg28PMt5XzgKm25ZorzJL6d9/8/zPk9Pc5qUSFr1yTZapYvSKl0vrdLhKSNlRGlpio1l06IUK6009NBKA54xPbREZyNaYYzSCiOGiCjRcksvLbdgaDD3Ei2zYUihpWkYUmiJA0MK1TsxpFC9iL+x+F8YrP+/Hgla7ILMIheCu1fhi7MH0Hz2AFq6o+z1lq5WrO3Yjhn7GvDKh1NAC0Wm7WfFsRY0d0eZvt/zSdc+bOj8FlUHmjB6vW+g59FMWuSGzEI3Gk/sxJPWgwcPsPnkHgyrfwNUJ4IWuBC7fnGwbMDqvXcX45vnguY7mV7KkTNpoQcydW40dvICsasXMKGpAuMayzC+qRyFLcuwt7udFZDWoZ9OQTPPC5rrROxXXuDzzlZk9HkyPq5ExTfrcPH3K2x27fYNKCNOpqc6F2iB9IE9IFrghcx8NxqP8wJ7zrSB8pNB+SmgkA4U1jMmb6rB/Qf3maamtQlUYUfs2gX2PvL1elAgGVTw0GNemsdm0hq9OBNUmQaqdYHqPDyT5kvBfdS60dixgxc4fQTkT+IFphlARUZQUSoobEDDwW1Mc+POLWhnOdjdYgW2N4DykkAFOlBhKvM4V4fkAi9UvQWaaQVFRNA8D8+keemQmetB4w99d6CrDZQnhaeCpltBZWmgWXZQqRWGZX75UOvyfMR++ZEX+KoBFEjBi5GxsKwNI3NrLU5fu8Rm+7s7QAEdqMQMqpS+Cg/PpNp0yFQ/UuB0W5/BAip3giJuToWIYZXpcoGcxmrELp+XC7xU8Tbu3r8nz6V1p+cPvFw+FjRVByo2gyqcoBoPz6SadMhEPGg8xgvs7joCCuhBJVYWStVeUI2XaYZFXpcP922IDCjw3DQ7Wjr348SV87h555asO3SuEyOKRVCx9IH6z0sHCdXpkKl6pEDsCISpegjFVgjlIoSIl2siXhjXFcoH2+r8iP3MC1R/2QAhTw8hZIIwzQwhaETS3GxcuXGdzdfub4ZQZIUwW4Qwh59HijnpkKn0YONRXmCXVMCvh1BohaJMhKLKyzVVXmzq2MM0v926Cc0Uw8MC2xq4J2iCImyGUGBk7+t3bGbzM1cvQQiboZjhhKLCA8UcL0hR6YVMuRsbj/KnYNepwxBy9VCELVDMFJkhrtKL0m8b5N+C0q3LIWQnDSwgeUJmKIpsnJAZO04dZvOOS2chBFKhKLFDUeZiZ1JcuRcyZW5sbOcFpEPfXFGC19ZMx8TNtajZuwnHr5xjM2l91r4HKp8eiuxkucD2jv3Ia5qPvC0LMfXTJSjathp7u4/JnpqW9VBM0SMubEXcDBFxsz0gZZkHMjNdaGrjBR63bv95BxXNa6HyGRCXnYw4nw6xy/wxfNJqbm9Fgi+V6eOCFihLnVDOcoPUM92QKXVh+rY12HnqMHZ2HsKuzkPs+k3nQWz5fgdCmxbh+ZAbyuwUKCelQOnTQ+U34qPodrR2tWNfrB3fxfh198nD+LxtL6pbGmCI5ECZlQRlVjKU7xugCtmg/kCEeoYbpCl1Q6ZEhDpshzrXCFVWMlTvjYFqYhJ/PSllID491HkmqAusUAcs7I6oMpOgyngVqoljHnqyJJI5k/s84TSWpSl1gbQlLsgUi9BIw6kWqCcboJ6kgzorhV8lsvV8/30j02iCdmglfdAGjd8EdY6e6/vp90n7vlRo/GZoCmzQFjpYlpRJ8UUiZApFxIcd0BbYoc2zQJtrhnaKiZNrgtZv5vsBG+KDaUwbP82J+JAD2nwbtH7J06eXfWa+H7Cyc2WPlFUkghLCTgwg5ERC0IGEgjQk5NsHIu1JSHNJJ3scSAj2zQZ7+n3M4xiYFXaChuU78M+kPYbBukGewCP8Bx8Nz7X3Ds+1Y4jopcQcazQxx4ohIkoj3jXYRmaae0ZmmvGM6UmckMr/ISe+o7eNyjBFR2WYekdlmPCUkTKiieMMLPwvXsZeOkSPHXYAAAAASUVORK5CYII=" InformativeScreenshot="dfce2373f4daca7dc086eb083108026a.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/65QoT5VjS0GT8o2nYk76Aw" Selector="&lt;wnd app='nexacro.exe' cls='CyNexacroWClass13' title='DB손해보험-통합[34008722:1]  - *' /&gt;" Version="V2">
+                    <uix:TargetApp.Arguments>
+                      <InArgument x:TypeArguments="x:String" />
+                    </uix:TargetApp.Arguments>
+                    <uix:TargetApp.WorkingDirectory>
+                      <InArgument x:TypeArguments="x:String" />
+                    </uix:TargetApp.WorkingDirectory>
+                  </uix:TargetApp>
+                </uix:NApplicationCard.TargetApp>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NApplicationCard>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="python-workflow - Invoke Workflow File (python-workflow.cs)" sap:VirtualizedContainerService.HintSize="451.2,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="python-workflow.cs">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "db_search_data.py"]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="mode" />
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+              <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_4" />
+              <Assign sap:VirtualizedContainerService.HintSize="451.2,174.4" sap2010:WorkflowViewState.IdRef="Assign_2">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[region_ocr]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[New UiPath.Core.Region(New System.Drawing.Rectangle(100, 200, 300, 150)).ToString()]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <ui:GetOCRText WordsInfo="{x:Null}" DisplayName="Get OCR Text" sap:VirtualizedContainerService.HintSize="451.2,174.4" sap2010:WorkflowViewState.IdRef="GetOCRText_2">
+                <ui:GetOCRText.OCREngine>
+                  <ActivityFunc x:TypeArguments="sd1:Image, scg:IEnumerable(scg:KeyValuePair(sd2:Rectangle, x:String))">
+                    <ActivityFunc.Argument>
+                      <DelegateInArgument x:TypeArguments="sd1:Image" Name="Image" />
+                    </ActivityFunc.Argument>
+                    <p:UiPathDocumentOCR ApiKey="{x:Null}" Endpoint="{x:Null}" Output="{x:Null}" PredictionId="{x:Null}" Text="{x:Null}" UseLocalServer="{x:Null}" ComputeSkewAngle="False" DisplayName="UiPath Document OCR" ExtractWords="True" sap:VirtualizedContainerService.HintSize="300,24.8" sap2010:WorkflowViewState.IdRef="UiPathDocumentOCR_2" Image="[Image]" Language="auto" NoopExecution="False" Profile="None" Scale="1" Timeout="100000" UseSeparateOcrProcess="True" />
+                  </ActivityFunc>
+                </ui:GetOCRText.OCREngine>
+                <ui:GetOCRText.Target>
+                  <ui:Target Element="{x:Null}" Selector="{x:Null}" Id="a04e8950-c631-49bf-b5f8-d6f0f0d0094e">
+                    <ui:Target.ClippingRegion>
+                      <ui:Region Rectangle="1264, 669, -1160, -650" />
+                    </ui:Target.ClippingRegion>
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                    <ui:Target.WaitForReady>
+                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                    </ui:Target.WaitForReady>
+                  </ui:Target>
+                </ui:GetOCRText.Target>
+                <ui:GetOCRText.Text>
+                  <OutArgument x:TypeArguments="x:String">[DBG_car_fee]</OutArgument>
+                </ui:GetOCRText.Text>
+              </ui:GetOCRText>
+            </Sequence>
           </Sequence>
         </Sequence>
       </ui:CommentOut.Body>

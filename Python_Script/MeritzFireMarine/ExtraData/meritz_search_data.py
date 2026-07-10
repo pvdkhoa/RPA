@@ -14,7 +14,10 @@ reader = easyocr.Reader(['en'])
 # WINDOW HANDLE
 # =========================
 def get_hwnd():
-    """Tìm hwnd của cửa sổ 메리츠화재 động"""
+    """
+    Finds and returns the window handle (hwnd) of the Meritz Fire & Marine Insurance application.
+    Raises an exception if the window is not found.
+    """
     result = []
     def callback(hwnd, _):
         if win32gui.IsWindowVisible(hwnd):
@@ -23,14 +26,18 @@ def get_hwnd():
                 result.append(hwnd)
     win32gui.EnumWindows(callback, None)
     if not result:
-        raise Exception("Không tìm thấy cửa sổ 메리츠화재!")
-    print(f"Tim thay cua so: hwnd={result[0]}")
+        raise Exception("Cannot find the Meritz Fire & Marine Insurance window!")
+    print(f"Found window: hwnd={result[0]}")
     return result[0]
 
 # =========================
 # CLICK
 # =========================
 def click(x, y):
+    """
+    Brings the application window to the foreground and simulates a left mouse click 
+    at the specified (x, y) coordinates.
+    """
     hwnd = get_hwnd()
     win32gui.SetForegroundWindow(hwnd)
     time.sleep(0.3)
@@ -47,12 +54,16 @@ def click(x, y):
 # OCR FROM REGION
 # =========================
 def get_ocr_from_region():
+    """
+    Captures a specific region of the screen, processes the image to improve OCR accuracy, 
+    and extracts text (specifically numbers) using easyocr.
+    """
     import numpy as np
     import cv2
     import re
     from PIL import ImageGrab
 
-    # ===== TỌA ĐỘ ABSOLUTE (UPDATED) =====
+    # ===== ABSOLUTE COORDINATES (UPDATED) =====
     left = 711
     top = 676
     right = 776
@@ -70,12 +81,12 @@ def get_ocr_from_region():
     # ===== PREPROCESS =====
     gray = cv2.cvtColor(img_np, cv2.COLOR_BGR2GRAY)
 
-    # upscale giúp OCR tốt hơn
+    # Upscaling for better OCR accuracy
     gray = cv2.resize(gray, None, fx=3, fy=3, interpolation=cv2.INTER_CUBIC)
 
     cv2.imwrite("debug_processed.png", gray)
 
-    # ===== OCR (2 lần cho chắc) =====
+    # ===== OCR (Run twice for reliability) =====
     result1 = reader.readtext(gray, detail=0, allowlist='0123456789,')
     result2 = reader.readtext(img_np, detail=0, allowlist='0123456789,')
 
@@ -94,7 +105,7 @@ def get_ocr_from_region():
 # =========================
 # MAIN FLOW
 # =========================
-print('Bat dau click...')
+print('Started clicking process...')
 time.sleep(3)
 
 # ===== OCR =====

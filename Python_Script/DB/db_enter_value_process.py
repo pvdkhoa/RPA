@@ -1,9 +1,16 @@
+"""
+This script automates downloading an Excel file by entering specific values 
+(like a start row or value) in a popup window.
+"""
 import win32api, win32con, win32gui, win32com.client, time
 
 shell = win32com.client.Dispatch("WScript.Shell")
 
 def get_hwnd():
-    """Tìm hwnd của cửa sổ DB손보 động"""
+    """
+    Finds and returns the window handle (hwnd) of the DB Insurance application.
+    Raises an exception if the window is not found.
+    """
     result = []
     def callback(hwnd, _):
         if win32gui.IsWindowVisible(hwnd):
@@ -12,11 +19,15 @@ def get_hwnd():
                 result.append(hwnd)
     win32gui.EnumWindows(callback, None)
     if not result:
-        raise Exception("Không tìm thấy cửa sổ DB손해보험!")
-    print(f"Tim thay cua so: hwnd={result[0]}")
+        raise Exception("Cannot find the DB Insurance window!")
+    print(f"Found window: hwnd={result[0]}")
     return result[0]
 
 def click(x, y):
+    """
+    Brings the application window to the foreground and simulates a left mouse click 
+    at the specified (x, y) coordinates.
+    """
     hwnd = get_hwnd()
     win32gui.SetForegroundWindow(hwnd)
     time.sleep(0.3)
@@ -27,10 +38,17 @@ def click(x, y):
     time.sleep(0.5)
 
 def type_text(text):
+    """
+    Simulates typing text using WScript.Shell SendKeys.
+    """
     shell.SendKeys(str(text))
     time.sleep(0.3)
 
 def clear_and_type(x, y, text):
+    """
+    Clicks on a specified (x, y) input field, clears its existing content, 
+    and types the new text.
+    """
     click(x, y)
     shell.SendKeys("^a")
     time.sleep(0.1)
@@ -38,19 +56,19 @@ def clear_and_type(x, y, text):
     time.sleep(0.1)
     type_text(text)
 
-print('Bat dau click...')
+print('Started process: clicking...')
 
 # Download
 click(1357, 760)
-print('Da click Download button')
+print('Clicked Download button')
 time.sleep(1)
 
 # Popup Excel Download
 clear_and_type(631, 435, 1)
-print('Da nhap Start: 1')
+print('Entered value Start: 1')
 
 click(777, 432)
-print('Da click End')
+print('Clicked End')
 time.sleep(1)
 
 
