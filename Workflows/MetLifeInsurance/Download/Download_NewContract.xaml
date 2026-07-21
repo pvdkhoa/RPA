@@ -106,11 +106,14 @@
       <AssemblyReference>NPOI.Core</AssemblyReference>
       <AssemblyReference>System.Linq.Async</AssemblyReference>
       <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>REF_RPA.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Download_NewContract" sap:VirtualizedContainerService.HintSize="912.4000000000001,4128.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Download_NewContract" sap:VirtualizedContainerService.HintSize="756.4000000000001,5672.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="x:String" Name="IS_MANUAL" />
+      <Variable x:TypeArguments="ui:UiElement" Name="browserInstance" />
+      <Variable x:TypeArguments="x:String" Default="OFF" Name="IS_MANUAL" />
       <Variable x:TypeArguments="x:String" Name="START_PERIOD" />
       <Variable x:TypeArguments="x:String" Name="END_PERIOD" />
       <Variable x:TypeArguments="x:String" Name="latestFilePath" />
@@ -121,46 +124,46 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="START_DATE_DOWNLOAD" CacheStrategy="None" DisplayName="Get Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="START_DATE_DOWNLOAD" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="486.4,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
       <ui:GetRobotAsset.Value>
         <OutArgument x:TypeArguments="x:String">[START_PERIOD]</OutArgument>
       </ui:GetRobotAsset.Value>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:GetRobotAsset>
-    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="END_DATE_DOWNLOAD" CacheStrategy="None" DisplayName="Get Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="END_DATE_DOWNLOAD" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="486.4,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
       <ui:GetRobotAsset.Value>
         <OutArgument x:TypeArguments="x:String">[END_PERIOD]</OutArgument>
       </ui:GetRobotAsset.Value>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:GetRobotAsset>
-    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="IS_MANUAL" CacheStrategy="None" DisplayName="Get Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="GetRobotAsset_3">
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="TOGGLE_MANUAL_DOWNLOAD" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="486.4,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_3">
       <ui:GetRobotAsset.Value>
         <OutArgument x:TypeArguments="x:String">[IS_MANUAL]</OutArgument>
       </ui:GetRobotAsset.Value>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:GetRobotAsset>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome MetPlus - 메트라이프 법인영업포탈" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="486.4,3935.2" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="d5862d1d-d24e-44f0-9323-d8d575118388" Version="V2">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome MetPlus - 메트라이프 법인영업포탈" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="486.4,5124" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OutUiElement="[browserInstance]" ScopeGuid="d5862d1d-d24e-44f0-9323-d8d575118388" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="484.8,3741.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="484.8,4930.4" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -183,17 +186,24 @@
                 <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" CVScreenId="177bb917-4d3a-4fee-98eb-a774781ffa47" ContentHash="ZjcsKeO3q0mvc7Dso122Ng" CvTextArea="190, 229, 152, 18" CvTextArgument="GAZE VOe Es|" CvType="Text" DesignTimeRectangle="192, 221, 282, 32" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='GA건별 청약사항 조회' tag='DIV' /&gt;" Guid="124bf353-e50b-431b-99f7-7f7d02f3e895" InformativeScreenshot="e7ff9b01e95254c09229c7ef002106d3.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/_4_wERZe_0i388fbNZ8CSQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus - 메트라이프 법인영업포탈' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
-            <If Condition="[IS_MANUAL = &quot;TRUE&quot;]" sap:VirtualizedContainerService.HintSize="451.2,845.6" sap2010:WorkflowViewState.IdRef="If_2">
+            <If Condition="[IS_MANUAL = &quot;ON&quot;]" sap:VirtualizedContainerService.HintSize="451.2,1397.6" sap2010:WorkflowViewState.IdRef="If_2">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
               <If.Then>
-                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,542.4" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,716.8" sap2010:WorkflowViewState.IdRef="Sequence_5">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;Download Manual Period&quot;]" />
                   <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '2026-03-01'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_3" InteractionMode="SameAsCard" ScopeIdentifier="d5862d1d-d24e-44f0-9323-d8d575118388" Text="[START_PERIOD]" Version="V5">
                     <uix:NTypeInto.Target>
-                      <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" CVScreenId="ec94facc-add2-4ff0-8c8e-caf1673c6888" ContentHash="F-EvipV7OE6PPwpNYP2Dew" CvElementArea="93, 275, 110, 28" CvType="InputBox" DesignTimeRectangle="99, 277, 80, 23" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;input' idx='4' tag='INPUT' /&gt;" Guid="caa87cac-fa84-4ead-9034-8187ac0d9d60" InformativeScreenshot="67c3d3a7445af3983d30c1b403583cf3.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/VPRzMvGEBEer-uJG0Hs23Q" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus - 메트라이프 법인영업포탈' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
+                      <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" DesignTimeRectangle="99, 277, 80, 23" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;input' idx='4' tag='INPUT' /&gt;" Guid="6a3a56c5-4ab5-4334-987c-023c1d8407db" InformativeScreenshot="67c3d3a7445af3983d30c1b403583cf3.jpg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus - 실적&amp;gt;Sales Results&amp;gt;GA건별 청약사항 조회(stsr13m00)' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                     </uix:NTypeInto.Target>
                     <uix:NTypeInto.VerifyOptions>
                       <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
@@ -214,7 +224,7 @@
                   </uix:NTypeInto>
                   <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '2026-03-20'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,236.8" sap2010:WorkflowViewState.IdRef="NTypeInto_4" InteractionMode="SameAsCard" ScopeIdentifier="d5862d1d-d24e-44f0-9323-d8d575118388" Text="[END_PERIOD]" Version="V5">
                     <uix:NTypeInto.Target>
-                      <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" CVScreenId="fa5c6a32-9c4b-45b6-a0da-4f3884047399" ContentHash="6badb_NKXE-OBtlOLrKGYA" CvElementArea="227, 274, 110, 28" CvType="InputBox" DesignTimeRectangle="234, 277, 80, 23" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;input' idx='5' tag='INPUT' /&gt;" Guid="d67bdbe4-d059-42c5-a0c8-573cb990a3cc" InformativeScreenshot="edf6dc74e41c3c8be6e460dd46bfc010.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/IUFRLU1k3kOgmjUxkqr16A" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus - 메트라이프 법인영업포탈' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
+                      <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" DesignTimeRectangle="234, 277, 80, 23" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;input' idx='5' tag='INPUT' /&gt;" Guid="b0e350d3-69fa-4b59-ad71-1e54d5849a30" InformativeScreenshot="edf6dc74e41c3c8be6e460dd46bfc010.jpg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus - 실적&amp;gt;Sales Results&amp;gt;GA건별 청약사항 조회(stsr13m00)' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                     </uix:NTypeInto.Target>
                     <uix:NTypeInto.VerifyOptions>
                       <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
@@ -236,13 +246,13 @@
                 </Sequence>
               </If.Then>
               <If.Else>
-                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,164.8" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,542.4" sap2010:WorkflowViewState.IdRef="Sequence_6">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '2026-03-01'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="SameAsCard" ScopeIdentifier="d5862d1d-d24e-44f0-9323-d8d575118388" Text="[New DateTime(Now.Year, Now.Month, 1).ToString(&quot;yyyy-MM-dd&quot;)]" Version="V5">
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '2026-03-01'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="SameAsCard" ScopeIdentifier="d5862d1d-d24e-44f0-9323-d8d575118388" Text="[New DateTime(Now.Year, Now.Month, 1).ToString(&quot;yyyy-MM-dd&quot;)]" Version="V5">
                     <uix:NTypeInto.Target>
                       <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" CVScreenId="ec94facc-add2-4ff0-8c8e-caf1673c6888" ContentHash="F-EvipV7OE6PPwpNYP2Dew" CvElementArea="93, 275, 110, 28" CvType="InputBox" DesignTimeRectangle="99, 277, 80, 23" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;input' idx='4' tag='INPUT' /&gt;" Guid="caa87cac-fa84-4ead-9034-8187ac0d9d60" InformativeScreenshot="67c3d3a7445af3983d30c1b403583cf3.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/VPRzMvGEBEer-uJG0Hs23Q" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus - 메트라이프 법인영업포탈' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
                     </uix:NTypeInto.Target>
@@ -258,12 +268,12 @@
                     </uix:NTypeInto.VerifyOptions>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </uix:NTypeInto>
-                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '2026-03-20'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="SameAsCard" ScopeIdentifier="d5862d1d-d24e-44f0-9323-d8d575118388" Text="[New DateTime(Now.Year, Now.Month, DateTime.DaysInMonth(Now.Year, Now.Month)).ToString(&quot;yyyy-MM-dd&quot;)]" Version="V5">
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '2026-03-20'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,236.8" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="SameAsCard" ScopeIdentifier="d5862d1d-d24e-44f0-9323-d8d575118388" Text="[New DateTime(Now.Year, Now.Month, DateTime.DaysInMonth(Now.Year, Now.Month)).ToString(&quot;yyyy-MM-dd&quot;)]" Version="V5">
                     <uix:NTypeInto.Target>
                       <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" CVScreenId="fa5c6a32-9c4b-45b6-a0da-4f3884047399" ContentHash="6badb_NKXE-OBtlOLrKGYA" CvElementArea="227, 274, 110, 28" CvType="InputBox" DesignTimeRectangle="234, 277, 80, 23" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;input' idx='5' tag='INPUT' /&gt;" Guid="d67bdbe4-d059-42c5-a0c8-573cb990a3cc" InformativeScreenshot="edf6dc74e41c3c8be6e460dd46bfc010.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/IUFRLU1k3kOgmjUxkqr16A" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus - 메트라이프 법인영업포탈' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
                     </uix:NTypeInto.Target>
@@ -279,7 +289,7 @@
                     </uix:NTypeInto.VerifyOptions>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
@@ -287,100 +297,142 @@
                 </Sequence>
               </If.Else>
             </If>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'DIV'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_8" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="d5862d1d-d24e-44f0-9323-d8d575118388" Version="V5">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" ContentHash="ziLAYUWAKk-b1lN1mImg0w" DesignTimeRectangle="778, 277, 86, 23" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;input' idx='3' tag='INPUT' /&gt;" Guid="dcb91b4e-8149-4994-b12f-8f50b9858aa2" InformativeScreenshot="edf6dc74e41c3c8be6e460dd46bfc010.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/0qrvUWzXH0-RgzlLnQkMrQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus - 실적&amp;gt;Sales Results&amp;gt;GA건별 청약사항 조회(stsr13m00)' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+              </uix:NClick.Target>
+            </uix:NClick>
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_7" />
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'ALL'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_9" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="d5862d1d-d24e-44f0-9323-d8d575118388" Version="V5">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" ContentHash="CMltwRldk0mIDgzbb5B_-w" DesignTimeRectangle="777, 302, 163, 25" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='**ALL**' tag='DIV' /&gt;" Guid="961d2e08-bb80-4ddc-861f-f51975053924" InformativeScreenshot="20629ca157a8ad0a8793cca5634e64d5.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/-pIQhtLfNUSNziQ-gPQWVw" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus - 실적&amp;gt;Sales Results&amp;gt;GA건별 청약사항 조회(stsr13m00)' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+              </uix:NClick.Target>
+            </uix:NClick>
             <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'DIV'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_4" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="d5862d1d-d24e-44f0-9323-d8d575118388" Version="V5">
               <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" CVScreenId="5ef86242-4b99-48d9-a536-a7742b1aba29" ContentHash="yMNfpvTWW0u_s3RAaCqZqQ" CvElementArea="896, 274, 103, 29" CvType="InputBox" DesignTimeRectangle="975, 277, 21, 23" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='43' isleaf='1' tag='DIV' /&gt;" Guid="c01b5e58-b997-4ce4-9f79-0380bab19d60" InformativeScreenshot="edf6dc74e41c3c8be6e460dd46bfc010.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/iosvYa2Iz06RXstwRrkDCA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus - 메트라이프 법인영업포탈' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
+                <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" DesignTimeRectangle="905, 277, 62, 23" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;input' idx='5' tag='INPUT' /&gt;" Guid="b57af954-c262-4042-92a1-deca0d1fd5ac" InformativeScreenshot="edf6dc74e41c3c8be6e460dd46bfc010.jpg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus - 실적&amp;gt;Sales Results&amp;gt;GA건별 청약사항 조회(stsr13m00)' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
             <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_3" />
             <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'ALL'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_5" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="d5862d1d-d24e-44f0-9323-d8d575118388" Version="V5">
               <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" CVScreenId="b032ad16-c1c1-4590-90ce-7278af496a83" ContentHash="fiMQTDqGT0CxSP6eWdjz6w" CvTextArea="902, 306, 50, 15" CvTextArgument="**ALL**" CvType="Text" DesignTimeRectangle="905, 302, 85, 25" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='**ALL**' tag='DIV' /&gt;" Guid="4ed9e6b4-e216-470e-a3c1-1cf2c15979a6" InformativeScreenshot="321d7f48f4e96e320a465fcdb5f1089f.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/0bbY2EWViECydy1EGCxl_w" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus - 실적&amp;gt;Sales Results&amp;gt;GA건별 청약사항 조회(stsr13m00)' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
+                <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" DesignTimeRectangle="905, 302, 72, 25" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='**ALL**' idx='2' tag='DIV' /&gt;" Guid="1f3e6c63-134b-44ca-ac5d-e19222a3143a" InformativeScreenshot="321d7f48f4e96e320a465fcdb5f1089f.jpg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus - 실적&amp;gt;Sales Results&amp;gt;GA건별 청약사항 조회(stsr13m00)' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
             <uix:NClick ActivateBefore="True" ClickType="[UiPath.UIAutomationNext.Enums.NClickType.Double]" DisplayName="Click '조회'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_6" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="d5862d1d-d24e-44f0-9323-d8d575118388" Version="V5">
               <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" CVScreenId="ebe4e35b-ada8-469f-af9e-49e1014d15c8" ContentHash="kXx8NnanTkSpsu6FY-Onaw" CvElementArea="1181, 272, 70, 31" CvTextArea="1191, 277, 48, 18" CvTextArgument="Qx5|" CvType="Button" DesignTimeRectangle="1184, 274, 65, 27" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='조회' tag='DIV' /&gt;" Guid="365d21df-de65-4ada-bee0-6373164fa8b0" InformativeScreenshot="5d00d93c615d0568fde0a15e4500a675.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/4UVifc1ib0uJE_d44pAZ5g" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus - 실적&amp;gt;Sales Results&amp;gt;GA건별 청약사항 조회(stsr13m00)' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
+                <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" DesignTimeRectangle="1184, 274, 65, 27" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='조회' tag='DIV' /&gt;" Guid="e69828aa-2c69-4d2b-8d89-280c3d05cd41" InformativeScreenshot="5d00d93c615d0568fde0a15e4500a675.jpg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus - 실적&amp;gt;Sales Results&amp;gt;GA건별 청약사항 조회(stsr13m00)' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="451.2,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_3" Message="[&quot;Searching Data&quot;]" />
             <Delay Duration="00:00:10" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_4" />
             <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '엑셀'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_7" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="d5862d1d-d24e-44f0-9323-d8d575118388" Version="V5">
               <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" CVScreenId="4eda0bcc-bf7a-4ac5-9bb6-7833b1966267" ContentHash="NTLguxYCp0i_2q6q5pt6ww" CvElementArea="1193, 916, 70, 28" CvTextArea="1211, 921, 32, 18" CvTextArgument="01" CvType="Button" DesignTimeRectangle="1196, 918, 66, 25" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='엑셀' tag='DIV' /&gt;" Guid="79feef82-2bba-4788-af3a-fdae90f610f3" InformativeScreenshot="321d7f48f4e96e320a465fcdb5f1089f.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/mxQeEHKm3EGlKKoesgYhPA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus - 실적&amp;gt;Sales Results&amp;gt;GA건별 청약사항 조회(stsr13m00)' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
+                <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" CVScreenId="4eda0bcc-bf7a-4ac5-9bb6-7833b1966267" ContentHash="NTLguxYCp0i_2q6q5pt6ww" CvElementArea="1193, 916, 70, 28" CvTextArea="1211, 921, 32, 18" CvTextArgument="01" CvType="Button" DesignTimeRectangle="1196, 913, 66, 25" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='엑셀' tag='DIV' /&gt;" Guid="79feef82-2bba-4788-af3a-fdae90f610f3" InformativeScreenshot="70e4a6a80ba928f8824201cf942e9b37.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/mxQeEHKm3EGlKKoesgYhPA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='MetPlus - 실적&amp;gt;Sales Results&amp;gt;GA건별 청약사항 조회(stsr13m00)' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target DesignTimeRectangle="25, 880, 1234, 19" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='44' tag='DIV' /&gt;" Guid="6a9c2214-d191-4262-8523-94ee3589a775" SearchSteps="Selector" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
               </uix:NClick.Target>
             </uix:NClick>
             <Delay Duration="00:00:10" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_5" />
-            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="Delay_6">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </Delay>
-            <Assign sap:VirtualizedContainerService.HintSize="451.2,174.4" sap2010:WorkflowViewState.IdRef="Assign_1">
-              <Assign.To>
-                <OutArgument x:TypeArguments="x:String">[latestFilePath]</OutArgument>
-              </Assign.To>
-              <Assign.Value>
-                <InArgument x:TypeArguments="x:String">[Directory.GetFiles("C:\RPA\TempDownload", "*.xlsx").OrderByDescending(Function(f) New FileInfo(f).LastWriteTime).FirstOrDefault()]</InArgument>
-              </Assign.Value>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </Assign>
-            <If Condition="[String.IsNullOrEmpty(latestFilePath)]" sap:VirtualizedContainerService.HintSize="451.2,637.6" sap2010:WorkflowViewState.IdRef="If_1">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-              <If.Then>
-                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,225.6" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <uix:NCheckState DisplayName="Check App State 'Intermediate D3D Window'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,821.6" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="d5862d1d-d24e-44f0-9323-d8d575118388" Version="V5">
+              <uix:NCheckState.IfExists>
+                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,396" sap2010:WorkflowViewState.IdRef="Sequence_7">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Not Found FileName&quot;]" />
-                </Sequence>
-              </If.Then>
-              <If.Else>
-                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,282.4" sap2010:WorkflowViewState.IdRef="Sequence_4">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <Assign sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="Assign_2">
-                    <Assign.To>
-                      <OutArgument x:TypeArguments="x:String">[newFilePath]</OutArgument>
-                    </Assign.To>
-                    <Assign.Value>
-                      <InArgument x:TypeArguments="x:String">[Path.Combine("C:\RPA\TempDownload", "MTL_NEW_LIF_" &amp; DateTime.Now.ToString("yyyyMMdd_HHmmss") &amp; "_" &amp; Path.GetFileName(latestFilePath))]</InArgument>
-                    </Assign.Value>
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                  </Assign>
-                  <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[newFilePath]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="MoveFile_1" Path="[latestFilePath]">
+                  <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_6">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                  </ui:MoveFile>
+                  </Delay>
+                  <Assign sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Assign_1">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[latestFilePath]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[Directory.GetFiles("C:\RPA\TempDownload", "*.xlsx").OrderByDescending(Function(f) New FileInfo(f).LastWriteTime).FirstOrDefault()]</InArgument>
+                    </Assign.Value>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Assign>
+                  <If Condition="[String.IsNullOrEmpty(latestFilePath)]" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="If_1">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If.Then>
+                      <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,225.6" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Not Found FileName&quot;]" />
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,282.4" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Assign sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="Assign_2">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[newFilePath]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">[Path.Combine("C:\RPA\TempDownload", "MTL_NEW_LIF_" &amp; DateTime.Now.ToString("yyyyMMdd_HHmmss") &amp; "_" &amp; Path.GetFileName(latestFilePath))]</InArgument>
+                          </Assign.Value>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Assign>
+                        <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[newFilePath]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="MoveFile_1" Path="[latestFilePath]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:MoveFile>
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_4" Message="[&quot;Download Successfully&quot;]" />
                 </Sequence>
-              </If.Else>
-            </If>
+              </uix:NCheckState.IfExists>
+              <uix:NCheckState.IfNotExists>
+                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </uix:NCheckState.IfNotExists>
+              <uix:NCheckState.Target>
+                <uix:TargetAnchorable BrowserURL="metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" ContentHash="rU8SiziH_UCoNiAYilTecg" DesignTimeRectangle="0, 0, 419, 695" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd cls='Intermediate D3D Window' /&gt;" Guid="28fab8ec-43e5-416f-bcc9-4116079928b2" InformativeScreenshot="9f7c70f1e40535395d749b32b8ccfd7d.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/qs3kQ9TqjEqcfrFXH9DgkQ" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='최근 다운로드 기록' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+              </uix:NCheckState.Target>
+            </uix:NCheckState>
           </Sequence>
         </ActivityAction>
       </uix:NApplicationCard.Body>
@@ -392,7 +444,14 @@
         </ActivityFunc>
       </uix:NApplicationCard.OCREngine>
       <uix:NApplicationCard.TargetApp>
-        <uix:TargetApp Area="-9, -9, 1938, 1038" BrowserType="Chrome" ContentHash="WZpFmDNdEEqSZ-1XmjJFbQ" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAElSURBVDhPY2CgGEy49ZJhwq3rDBNuVTFMuCWMLo0OlpzzE15yzq9qyTm/60vO+b0EGfAfCX9gmHCrkGHCLWYsGpmXnPMrXHLO78OSc37/YRjdABjexTDhFj+SZv4l5/x2IWskZAAIX2aYcEtwyTk/EL6MrpEYA/4z9N88sOBM4AF0TcQbULL9rFNv/Vl0TcQZ0H3lM0Pigh+MiQt+TDoU/hldI2EDCrecZkhc8B+ELdpaTqNrxG9A/83/DEkL38EMYEqa/27RWX8MzbgNaD37DKYZhuu3Jj5D14zbgLJdcOfDsOfEGqzewG5A/sYT6AYYNHacQNeM24Cs1WfQDVAom3AGXTNuA3LWnkI3QLWy7xS6ZpgBoNyIakDBJgwvGDe3YfPCSwCwzR8lRPaG4gAAAABJRU5ErkJggg==" InformativeScreenshot="4aba9c4a080bdf8145ae0036e5db60be.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/IDLjgWUpW0-t8g_a5MhtrA" Selector="&lt;html app='chrome.exe' title='MetPlus*' /&gt;" Url="https://metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" Version="V2" />
+        <uix:TargetApp Area="-9, -9, 1938, 1038" BrowserType="Chrome" ContentHash="WZpFmDNdEEqSZ-1XmjJFbQ" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAElSURBVDhPY2CgGEy49ZJhwq3rDBNuVTFMuCWMLo0OlpzzE15yzq9qyTm/60vO+b0EGfAfCX9gmHCrkGHCLWYsGpmXnPMrXHLO78OSc37/YRjdABjexTDhFj+SZv4l5/x2IWskZAAIX2aYcEtwyTk/EL6MrpEYA/4z9N88sOBM4AF0TcQbULL9rFNv/Vl0TcQZ0H3lM0Pigh+MiQt+TDoU/hldI2EDCrecZkhc8B+ELdpaTqNrxG9A/83/DEkL38EMYEqa/27RWX8MzbgNaD37DKYZhuu3Jj5D14zbgLJdcOfDsOfEGqzewG5A/sYT6AYYNHacQNeM24Cs1WfQDVAom3AGXTNuA3LWnkI3QLWy7xS6ZpgBoNyIakDBJgwvGDe3YfPCSwCwzR8lRPaG4gAAAABJRU5ErkJggg==" InformativeScreenshot="4aba9c4a080bdf8145ae0036e5db60be.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/IDLjgWUpW0-t8g_a5MhtrA" Selector="&lt;html app='chrome.exe' title='MetPlus*' /&gt;" Url="https://metplus.metlife.co.kr/nexacro/AgentPortal/index.jsp" Version="V2">
+          <uix:TargetApp.Arguments>
+            <InArgument x:TypeArguments="x:String" />
+          </uix:TargetApp.Arguments>
+          <uix:TargetApp.WorkingDirectory>
+            <InArgument x:TypeArguments="x:String" />
+          </uix:TargetApp.WorkingDirectory>
+        </uix:TargetApp>
       </uix:NApplicationCard.TargetApp>
     </uix:NApplicationCard>
   </Sequence>

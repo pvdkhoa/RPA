@@ -41,6 +41,10 @@
       <x:String>UiPath.UIAutomationNext.Contracts</x:String>
       <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
       <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>UiPath.CV</x:String>
+      <x:String>UiPath.CV.Activities</x:String>
+      <x:String>UiPath.Shared.Telemetry</x:String>
+      <x:String>UiPath.CV.Activities.Interfaces</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -103,14 +107,20 @@
       <AssemblyReference>NPOI.Core</AssemblyReference>
       <AssemblyReference>System.Linq.Async</AssemblyReference>
       <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>UiPath.CV.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Python.Activities</AssemblyReference>
+      <AssemblyReference>REF_RPA.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Download_NewContract" sap:VirtualizedContainerService.HintSize="912.4000000000001,4906.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Download_NewContract" sap:VirtualizedContainerService.HintSize="835.6,3697.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
+      <Variable x:TypeArguments="ui:UiElement" Name="browserInstance" />
       <Variable x:TypeArguments="s:DateTime" Name="dt" />
       <Variable x:TypeArguments="x:String" Name="resultEnd" />
       <Variable x:TypeArguments="x:String" Name="resultStart" />
-      <Variable x:TypeArguments="x:String" Name="IS_MANUAL" />
+      <Variable x:TypeArguments="x:String" Default="False" Name="IS_MANUAL" />
       <Variable x:TypeArguments="x:String" Name="START_PERIOD" />
       <Variable x:TypeArguments="x:String" Name="END_PERIOD" />
       <Variable x:TypeArguments="x:String" Name="latestFilePath" />
@@ -121,65 +131,70 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="START_DATE_DOWNLOAD" CacheStrategy="None" DisplayName="Get Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="START_DATE_DOWNLOAD" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="521.6,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
       <ui:GetRobotAsset.Value>
         <OutArgument x:TypeArguments="x:String">[START_PERIOD]</OutArgument>
       </ui:GetRobotAsset.Value>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:GetRobotAsset>
-    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="END_DATE_DOWNLOAD" CacheStrategy="None" DisplayName="Get Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="END_DATE_DOWNLOAD" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="521.6,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
       <ui:GetRobotAsset.Value>
         <OutArgument x:TypeArguments="x:String">[END_PERIOD]</OutArgument>
       </ui:GetRobotAsset.Value>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:GetRobotAsset>
-    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="IS_MANUAL" CacheStrategy="None" DisplayName="Get Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="GetRobotAsset_3">
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="TOGGLE_MANUAL_DOWNLOAD" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="521.6,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_3">
       <ui:GetRobotAsset.Value>
         <OutArgument x:TypeArguments="x:String">[IS_MANUAL]</OutArgument>
       </ui:GetRobotAsset.Value>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:GetRobotAsset>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome GA - 차세대 시스템" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="486.4,4712.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="5d22a12e-cb97-4556-96c1-8162b8b1ba35" Version="V2">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome GA - 차세대 시스템" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="521.6,3148.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="Simulate" OutUiElement="[browserInstance]" ScopeGuid="5d22a12e-cb97-4556-96c1-8162b8b1ba35" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="484.8,4519.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="520,2955.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_8" />
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '통계·수수료'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="5d22a12e-cb97-4556-96c1-8162b8b1ba35" Version="V5">
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '통계·수수료'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="5d22a12e-cb97-4556-96c1-8162b8b1ba35" Version="V5">
               <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="ga.lina.co.kr/webfw/html/nawmain.html" DesignTimeRectangle="822, 149, 117, 67" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='MN73' tag='A' /&gt;" Guid="58d79951-6e05-42e1-9fef-2b95d8083083" InformativeScreenshot="731e14f75a3496eba5efe9fb232393c8.jpg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='GA - 차세대 시스템' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                <uix:TargetAnchorable BrowserURL="ga.lina.co.kr/webfw/html/nawmain.html" DesignTimeRectangle="822, 149, 117, 67" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='MN74' tag='A' /&gt;" Guid="557922e9-33a6-475c-bbe3-21019a0b141b" InformativeScreenshot="2e345e3a9a1eec75ee3fe7d10e6479fc.jpg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='GA - 차세대 시스템' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
-            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_1" />
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '계약건별실시간조회'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="5d22a12e-cb97-4556-96c1-8162b8b1ba35" Version="V5">
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_1" />
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '계약건별실시간조회'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="5d22a12e-cb97-4556-96c1-8162b8b1ba35" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="ga.lina.co.kr/webfw/html/nawmain.html" CVScreenId="633b512b-3050-4b84-b001-26829c7501a1" ContentHash="qR8evVcx00C1hUkWTQ0_BA" CvTextArea="515, 314, 128, 18" CvTextArgument="75NAZEG|" CvType="Text" DesignTimeRectangle="517, 312, 126, 22" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='계약건별실시간조회' parentid='sub-menu' tag='A' /&gt;" Guid="f38845fd-a664-4687-837a-8677c296c82e" InformativeScreenshot="13478f56447de7edb70dc9270eae1b5e.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/ysCqddclc02dvIpviw5PBA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='GA - 차세대 시스템' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
-            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_2" />
-            <If Condition="[IS_MANUAL = &quot;TRUE&quot;]" sap:VirtualizedContainerService.HintSize="451.2,959.2" sap2010:WorkflowViewState.IdRef="If_2">
+            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_2" />
+            <If Condition="[IS_MANUAL = &quot;ON&quot;]" sap:VirtualizedContainerService.HintSize="486.4,959.2" sap2010:WorkflowViewState.IdRef="If_2">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
               <If.Then>
                 <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,599.2" sap2010:WorkflowViewState.IdRef="Sequence_9">
                   <sap:WorkflowViewStateService.ViewState>
@@ -187,11 +202,11 @@
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '계약일자'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_3" InteractionMode="SameAsCard" ScopeIdentifier="5d22a12e-cb97-4556-96c1-8162b8b1ba35" Text="[START_PERIOD]" Version="V5">
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into start date" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_3" InteractionMode="SameAsCard" ScopeIdentifier="5d22a12e-cb97-4556-96c1-8162b8b1ba35" Text="[START_PERIOD]" Version="V5">
                     <uix:NTypeInto.Target>
                       <uix:TargetAnchorable BrowserURL="ga.lina.co.kr/webfw/html/nawmain.html" CVScreenId="f2101d91-2ad8-48c8-90b4-e1f177bcac58" ContentHash="_aBfqisQgUSfXx0inhcCVw" CvElementArea="194, 312, 84, 28" CvType="InputBox" DesignTimeRectangle="197, 383, 82, 25" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='container_1' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='calDtFrom' type='text' tag='INPUT' class='date sun' aaname='' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="3882f824-f767-4c4f-9852-1ad21fa4c0eb" InformativeScreenshot="79998f6ece69cb27b13132a761e58a03.jpg" IsResponsive="True" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/7WQOORAkUku7pXc-JJzcnQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='GA - 차세대 시스템' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
                         <uix:TargetAnchorable.Anchors>
-                          <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
                             <uix:Target CVScreenId="f2101d91-2ad8-48c8-90b4-e1f177bcac58" CvTextArea="121, 317, 57, 16" CvTextArgument="7Q2AH" CvType="Text" DesignTimeRectangle="31, 382, 164, 27" ElementType="Text" FuzzySelectorArgument="&lt;webctrl id='container_1' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='TH' class='state-required' aaname='계약일자' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='계약일자' /&gt;" Guid="29dcada0-be5b-4476-a6f9-2d0093fa96a6" SearchSteps="FuzzySelector, CV" />
                           </scg:List>
                         </uix:TargetAnchorable.Anchors>
@@ -224,7 +239,7 @@
                   </Delay>
                   <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '2026-03-16'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,236.8" sap2010:WorkflowViewState.IdRef="NTypeInto_4" InteractionMode="SameAsCard" ScopeIdentifier="5d22a12e-cb97-4556-96c1-8162b8b1ba35" Text="[END_PERIOD]" Version="V5">
                     <uix:NTypeInto.Target>
-                      <uix:TargetAnchorable BrowserURL="ga.lina.co.kr/webfw/html/nawmain.html" CVScreenId="f2101d91-2ad8-48c8-90b4-e1f177bcac58" ContentHash="YuB6R4mbi0qXcjqiHBAOeQ" CvElementArea="315, 312, 84, 27" CvType="InputBox" DesignTimeRectangle="317, 383, 82, 25" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='container_1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='calDtTo' tableRow='1' tag='INPUT' /&gt;" Guid="eca7a9a9-c042-4a9e-af7e-16c966995379" InformativeScreenshot="f790cd49db096a0b6e6ff5a1b723621e.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/hDVPt17ueU6IXHMbDw92Qg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='GA - 차세대 시스템' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
+                      <uix:TargetAnchorable BrowserURL="ga.lina.co.kr/webfw/html/nawmain.html" DesignTimeRectangle="317, 313, 82, 25" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='container_1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='calDtTo' tag='INPUT' rowName='계약일자' /&gt;" Guid="306e79b4-63bc-41ae-b78e-43d46a93607e" InformativeScreenshot="8a14e1a3b25aa70cb7513bcc2785aa0b.jpg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='GA - 차세대 시스템' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None" />
                     </uix:NTypeInto.Target>
                     <uix:NTypeInto.VerifyOptions>
                       <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
@@ -311,177 +326,235 @@
                 </Sequence>
               </If.Else>
             </If>
-            <Delay Duration="00:00:00.2000000" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_4" />
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '조회'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_3" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="5d22a12e-cb97-4556-96c1-8162b8b1ba35" Version="V5">
+            <Delay Duration="00:00:00.2000000" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_4" />
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '조회'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_3" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="5d22a12e-cb97-4556-96c1-8162b8b1ba35" Version="V5">
               <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="ga.lina.co.kr/webfw/html/nawmain.html" CVScreenId="f2101d91-2ad8-48c8-90b4-e1f177bcac58" ContentHash="8GB1dlH_j0u4glcnfHKq0w" CvElementArea="1844, 310, 59, 31" CvTextArea="1857, 314, 31, 17" CvTextArgument="K8|" CvType="Button" DesignTimeRectangle="1847, 383, 54, 25" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='container_1' tag='IFRAME' /&gt;&lt;webctrl id='btnRSearch' tag='BUTTON' /&gt;" Guid="f01a75f2-7edb-46a2-ba71-27896ce4d247" InformativeScreenshot="3cb1d6694e9ec9ff90d5230038af717d.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/c4yXUHJ1aUiVU3BDKvDbmw" ScopeSelectorArgument="&lt;html app='chrome.exe' title='GA - 차세대 시스템' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
-                  <uix:TargetAnchorable.Anchors>
-                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                      <uix:Target DesignTimeRectangle="1742, 412, 92, 25" ElementType="InputBox" FullSelectorArgument="&lt;webctrl id='container_1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl class='combox-input' tableRow='2' tag='INPUT' /&gt;" Guid="a4254cf5-a8fe-4e49-98c2-7f9b341d9730" SearchSteps="Selector" />
-                    </scg:List>
-                  </uix:TargetAnchorable.Anchors>
-                </uix:TargetAnchorable>
+                <uix:TargetAnchorable BrowserURL="ga.lina.co.kr/webfw/html/nawmain.html" DesignTimeRectangle="1847, 313, 54, 25" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='container_1' tag='IFRAME' /&gt;&lt;webctrl id='btnRSearch' tag='BUTTON' aaname='조회' auth='true' class='dosearch' innertext='조회' parentclass='buttonset' parentid='divCont' type='button' visibleinnertext='조회' /&gt;" Guid="049dd4dd-3bf3-4e4a-b3a4-d919ef3d110d" InformativeScreenshot="49cd806399bec160cb409abeeea10b6c.jpg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='GA - 차세대 시스템' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None" />
               </uix:NClick.Target>
             </uix:NClick>
-            <Delay Duration="00:00:15" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_5" />
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Excel'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_4" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="5d22a12e-cb97-4556-96c1-8162b8b1ba35" Version="V5">
-              <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="ga.lina.co.kr/webfw/html/nawmain.html" CVScreenId="77ae3dfa-d0bd-4844-8874-422f2a54e009" ContentHash="NMSClz7CI0yqBQ9GbmzbNw" CvElementArea="24, 968, 58, 29" CvTextArea="41, 974, 32, 13" CvTextArgument="Excel" CvType="Button" DesignTimeRectangle="26, 969, 55, 25" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='container_1' tag='IFRAME' /&gt;&lt;webctrl id='btnRDn' tag='BUTTON' /&gt;" Guid="e2a0b601-028e-42c7-856a-9b4987f4a1d0" InformativeScreenshot="95189743ae1b85016ed49f7ef9c61b37.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/HTghDiHaMkmmfZbc7JANfw" ScopeSelectorArgument="&lt;html app='chrome.exe' title='GA - 차세대 시스템' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
-              </uix:NClick.Target>
-            </uix:NClick>
-            <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_6" />
-            <uix:NCheckState DisplayName="Check App State '개인정보 포함된 화면의 엑셀 다운로드시, …'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,873.6" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="5d22a12e-cb97-4556-96c1-8162b8b1ba35" Version="V5">
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="CheckPageLoadingStatus - Invoke Workflow File (Utils\CheckPageLoadingStatus.xaml)" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Utils\CheckPageLoadingStatus.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InArgument x:TypeArguments="ui:UiElement" x:Key="in_Browser">[browserInstance]</InArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:InvokeWorkflowFile>
+            <uix:NCheckState DisplayName="Check App State 'Excel'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="486.4,931.2" sap2010:WorkflowViewState.IdRef="NCheckState_3" ScopeIdentifier="5d22a12e-cb97-4556-96c1-8162b8b1ba35" Version="V5">
               <uix:NCheckState.IfExists>
-                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,439.2" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="484.8,89.6" sap2010:WorkflowViewState.IdRef="Sequence_12">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <uix:NCheck Action="Check" DisplayName="Check/Uncheck 'Y87Q 8x22 &amp; QE4Q2 S3'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,194.4" sap2010:WorkflowViewState.IdRef="NCheck_1" ScopeIdentifier="5d22a12e-cb97-4556-96c1-8162b8b1ba35" Version="V5">
-                    <uix:NCheck.Target>
-                      <uix:TargetAnchorable BrowserURL="ga.lina.co.kr/webfw/html/nawmain.html" CVScreenId="e56b1c0c-e78d-4fd7-93d6-777a6cee90f5" ContentHash="h-BO9vBM0EWhnB12sC1Jeg" CvElementArea="646, 617, 18, 17" CvType="CheckBox" DesignTimeRectangle="646, 617, 18, 16" ElementType="CheckBox" ElementVisibilityArgument="Interactive" Guid="e529b60e-fb3e-4473-b9aa-8687089ddeee" InformativeScreenshot="fab29a181c4b17deb8e49cce457f566e.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/oZ8JWLw5PkWbABY8o7WHjw" ScopeSelectorArgument="&lt;html app='chrome.exe' title='GA - 차세대 시스템' /&gt;" SearchSteps="CV" TargetType="ComputerVisionBased" Version="V6" WaitForReadyArgument="Interactive">
-                        <uix:TargetAnchorable.Anchors>
-                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                            <uix:Target CVScreenId="e56b1c0c-e78d-4fd7-93d6-777a6cee90f5" CvTextArea="669, 614, 271, 18" CvTextArgument="Y87Q 8x22 &amp; QE4Q2 S3" CvType="Text" DesignTimeRectangle="666, 613, 274, 20" ElementType="Text" FuzzySelectorArgument="&lt;webctrl id='container_1' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl id='popup_1' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl tag='LABEL' type='' class='' aaname=' 보유계약 유지관리 등 모집계약관리 목적' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='보유계약 유지관리 등 모집계약관리 목적' /&gt;" Guid="48b5bab2-16b7-4b3f-9e79-79920804af1b" SearchSteps="FuzzySelector, CV" />
-                          </scg:List>
-                        </uix:TargetAnchorable.Anchors>
-                      </uix:TargetAnchorable>
-                    </uix:NCheck.Target>
-                  </uix:NCheck>
-                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_6" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="5d22a12e-cb97-4556-96c1-8162b8b1ba35" Version="V5">
-                    <uix:NClick.Target>
-                      <uix:TargetAnchorable BrowserURL="ga.lina.co.kr/webfw/html/nawmain.html" CVScreenId="81437ba1-ad9a-432e-a8bf-af206d3b1098" ContentHash="xSUzpufTv0SbCpSqm0-9rQ" CvElementArea="944, 717, 47, 29" CvTextArea="951, 720, 32, 18" CvTextArgument="RHp" CvType="Button" DesignTimeRectangle="948, 753, 42, 25" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='container_1' tag='IFRAME' /&gt;&lt;webctrl id='popup_1' tag='IFRAME' /&gt;&lt;webctrl id='btnRSave' tag='BUTTON' /&gt;" Guid="0516359e-b6dd-4c15-a2bb-968b4f117d1e" InformativeScreenshot="d81ce0c2d0301d6f924a2296fcd9515d.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/QCKz1iMM-kW3f26yx1l7lg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='GA - 차세대 시스템' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
-                    </uix:NClick.Target>
-                  </uix:NClick>
                 </Sequence>
               </uix:NCheckState.IfExists>
               <uix:NCheckState.IfNotExists>
-                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="484.8,505.6" sap2010:WorkflowViewState.IdRef="Sequence_13">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                </Sequence>
-              </uix:NCheckState.IfNotExists>
-              <uix:NCheckState.Target>
-                <uix:TargetAnchorable BrowserURL="ga.lina.co.kr/webfw/html/nawmain.html" DesignTimeRectangle="948, 753, 42, 25" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='container_1' tag='IFRAME' /&gt;&lt;webctrl id='popup_1' tag='IFRAME' /&gt;&lt;webctrl id='btnRSave' tag='BUTTON' /&gt;" Guid="6ab626e5-d575-4149-81d0-b57d1bd574b8" InformativeScreenshot="7ef97e1fce98d0637d6c9bd68f874be7.jpg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='GA - 차세대 시스템' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-              </uix:NCheckState.Target>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </uix:NCheckState>
-            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="Delay_7">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </Delay>
-            <uix:NCheckState DisplayName="Check App State 'ga.lina.co.kr 내용 정상적으로…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_2" ScopeIdentifier="5d22a12e-cb97-4556-96c1-8162b8b1ba35" Version="V5">
-              <uix:NCheckState.IfExists>
-                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_5">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_7" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="5d22a12e-cb97-4556-96c1-8162b8b1ba35" Version="V5">
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Excel'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NClick_4" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="5d22a12e-cb97-4556-96c1-8162b8b1ba35" Version="V5">
                     <uix:NClick.Target>
-                      <uix:TargetAnchorable BrowserURL="ga.lina.co.kr/webfw/html/nawmain.html" CVScreenId="24423abf-e66b-43e4-9581-821573bf9a3e" ContentHash="ZE16kn3Q4Ei7b3cd-v-JdA" CvElementArea="1135, 215, 97, 62" CvTextArea="1165, 236, 35, 20" CvTextArgument="ġpI" CvType="Button" DesignTimeRectangle="1144, 223, 80, 49" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='ga.lina.co.kr 내용:' role='dialog' /&gt;&lt;ctrl name='확인' role='push button' /&gt;" Guid="68e2b7ea-36ef-4b5b-8a79-86ed121dc639" InformativeScreenshot="57f1e5645feabaa71642cd7c499181ca.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/uEc7sS_NXEuTd4pMT063UQ" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='GA - 차세대 시스템 - Chrome' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
+                      <uix:TargetAnchorable BrowserURL="ga.lina.co.kr/webfw/html/nawmain.html" CVScreenId="77ae3dfa-d0bd-4844-8874-422f2a54e009" ContentHash="NMSClz7CI0yqBQ9GbmzbNw" CvElementArea="24, 968, 58, 29" CvTextArea="41, 974, 32, 13" CvTextArgument="Excel" CvType="Button" DesignTimeRectangle="26, 969, 55, 25" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='container_1' tag='IFRAME' /&gt;&lt;webctrl id='btnRDn' tag='BUTTON' /&gt;" Guid="e2a0b601-028e-42c7-856a-9b4987f4a1d0" InformativeScreenshot="95189743ae1b85016ed49f7ef9c61b37.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/HTghDiHaMkmmfZbc7JANfw" ScopeSelectorArgument="&lt;html app='chrome.exe' title='GA - 차세대 시스템' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
                     </uix:NClick.Target>
-                  </uix:NClick>
-                </Sequence>
-              </uix:NCheckState.IfExists>
-              <uix:NCheckState.IfNotExists>
-                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_6">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                </Sequence>
-              </uix:NCheckState.IfNotExists>
-              <uix:NCheckState.Target>
-                <uix:TargetAnchorable BrowserURL="ga.lina.co.kr/webfw/html/nawmain.html" ContentHash="S-hEU68-tkuPsdJ6tiHbDw" DesignTimeRectangle="680, 107, 578, 201" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='ga.lina.co.kr 내용:' role='dialog' /&gt;&lt;ctrl idx='2' role='pane' /&gt;" Guid="856be8b6-88fe-48cd-b1c2-4d21f0441f01" InformativeScreenshot="93c62c5e39992282396ec6a49b0eaa9b.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/4nQT5-OKEEGQOnAcCX0HfQ" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='GA - 차세대 시스템 - Chrome' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-              </uix:NCheckState.Target>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </uix:NCheckState>
-            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="Delay_10">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </Delay>
-            <Assign sap:VirtualizedContainerService.HintSize="451.2,174.4" sap2010:WorkflowViewState.IdRef="Assign_1">
-              <Assign.To>
-                <OutArgument x:TypeArguments="x:String">[latestFilePath]</OutArgument>
-              </Assign.To>
-              <Assign.Value>
-                <InArgument x:TypeArguments="x:String">[Directory.GetFiles("C:\RPA\TempDownload", "*.xlsx").OrderByDescending(Function(f) New FileInfo(f).LastWriteTime).FirstOrDefault()]</InArgument>
-              </Assign.Value>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </Assign>
-            <If Condition="[String.IsNullOrEmpty(latestFilePath)]" sap:VirtualizedContainerService.HintSize="451.2,772.8" sap2010:WorkflowViewState.IdRef="If_1">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-              <If.Then>
-                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,225.6" sap2010:WorkflowViewState.IdRef="Sequence_8">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Not Found FileName&quot;]" />
-                </Sequence>
-              </If.Then>
-              <If.Else>
-                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,417.6" sap2010:WorkflowViewState.IdRef="Sequence_7">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <Assign sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="Assign_2">
-                    <Assign.To>
-                      <OutArgument x:TypeArguments="x:String">[newFilePath]</OutArgument>
-                    </Assign.To>
-                    <Assign.Value>
-                      <InArgument x:TypeArguments="x:String">[Path.Combine("C:\RPA\TempDownload", "LNF_NEW_LIF_" &amp; DateTime.Now.ToString("yyyyMMdd_HHmmss") &amp; "_" &amp; Path.GetFileName(latestFilePath))]</InArgument>
-                    </Assign.Value>
-                  </Assign>
-                  <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[newFilePath]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="416,183.2" sap2010:WorkflowViewState.IdRef="MoveFile_1" Path="[latestFilePath]">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                  </ui:MoveFile>
+                  </uix:NClick>
+                  <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="Delay_6">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Delay>
+                  <uix:NCheckState DisplayName="Check App State '개인정보 포함된 화면의 엑셀 다운로드시, …'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="5d22a12e-cb97-4556-96c1-8162b8b1ba35" Version="V5">
+                    <uix:NCheckState.IfExists>
+                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,560.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_12" />
+                        <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'unchecked'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_8" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="5d22a12e-cb97-4556-96c1-8162b8b1ba35" Version="V5">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable BrowserURL="ga.lina.co.kr/webfw/html/nawmain.html" ContentHash="67n_F6cJlkei45WpleMvVg" DesignTimeRectangle="649, 293, 14, 14" ElementType="CheckBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='container_1' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl id='popup_1' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl id='dsXlsDwldRscd01' tag='INPUT' type='checkbox' class='' aaname=' 보유계약 유지관리 등 모집계약관리 목적' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="47b879e6-cab5-4708-8cc9-da57977ee165" InformativeScreenshot="8929d00dc86ec5e6eae309e32603d0e6.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/hFIzt_Yus0SO9TpWrcCafw" ScopeSelectorArgument="&lt;html app='chrome.exe' title='GA - 차세대 시스템' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target DesignTimeRectangle="666, 288, 274, 20" ElementType="Text" FuzzySelectorArgument="&lt;webctrl id='container_1' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl id='popup_1' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl tag='LABEL' type='' class='' aaname=' 보유계약 유지관리 등 모집계약관리 목적' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='보유계약 유지관리 등 모집계약관리 목적' /&gt;" Guid="595c59c7-f4fc-4f99-b8fe-8db9e29df823" SearchSteps="FuzzySelector" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NClick.Target>
+                        </uix:NClick>
+                        <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_6" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="5d22a12e-cb97-4556-96c1-8162b8b1ba35" Version="V5">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable BrowserURL="ga.lina.co.kr/webfw/html/nawmain.html" CVScreenId="81437ba1-ad9a-432e-a8bf-af206d3b1098" ContentHash="xSUzpufTv0SbCpSqm0-9rQ" CvElementArea="944, 717, 47, 29" CvTextArea="951, 720, 32, 18" CvTextArgument="RHp" CvType="Button" DesignTimeRectangle="948, 753, 42, 25" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='container_1' tag='IFRAME' /&gt;&lt;webctrl id='popup_1' tag='IFRAME' /&gt;&lt;webctrl id='btnRSave' tag='BUTTON' /&gt;" Guid="0516359e-b6dd-4c15-a2bb-968b4f117d1e" InformativeScreenshot="d81ce0c2d0301d6f924a2296fcd9515d.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/QCKz1iMM-kW3f26yx1l7lg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='GA - 차세대 시스템' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
+                          </uix:NClick.Target>
+                        </uix:NClick>
+                      </Sequence>
+                    </uix:NCheckState.IfExists>
+                    <uix:NCheckState.IfNotExists>
+                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </Sequence>
+                    </uix:NCheckState.IfNotExists>
+                    <uix:NCheckState.Target>
+                      <uix:TargetAnchorable BrowserURL="ga.lina.co.kr/webfw/html/nawmain.html" DesignTimeRectangle="948, 753, 42, 25" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='container_1' tag='IFRAME' /&gt;&lt;webctrl id='popup_1' tag='IFRAME' /&gt;&lt;webctrl id='btnRSave' tag='BUTTON' /&gt;" Guid="6ab626e5-d575-4149-81d0-b57d1bd574b8" InformativeScreenshot="7ef97e1fce98d0637d6c9bd68f874be7.jpg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='GA - 차세대 시스템' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                    </uix:NCheckState.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uix:NCheckState>
+                  <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="Delay_7">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Delay>
+                  <uix:NCheckState DisplayName="Check App State 'ga.lina.co.kr 내용 정상적으로…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_2" ScopeIdentifier="5d22a12e-cb97-4556-96c1-8162b8b1ba35" Version="V5">
+                    <uix:NCheckState.IfExists>
+                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="518.4,380" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="484.8,135.2" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                          <ui:CommentOut.Body>
+                            <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts '확인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,320" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_1" InteractionMode="SameAsCard" ScopeIdentifier="5d22a12e-cb97-4556-96c1-8162b8b1ba35" Shortcuts="[d(hk)][k(Enter)][u(hk)]" Version="V5">
+                                <uix:NKeyboardShortcuts.Target>
+                                  <uix:TargetAnchorable BrowserURL="ga.lina.co.kr/webfw/html/nawmain.html" ContentHash="QtOlhniBBEeLl3uMz-bXtA" DesignTimeRectangle="689, 223, 560, 74" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='ga.lina.co.kr 내용:' role='dialog' /&gt;&lt;ctrl idx='6' role='pane' /&gt;" Guid="564102a7-a96c-4a7b-a820-a51bd62c7127" InformativeScreenshot="2947f7b57e76670a0472b9d14a440d9c.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/2nz0xXM100agtx_WDYFArQ" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='GA - 차세대 시스템 - Chrome' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                                </uix:NKeyboardShortcuts.Target>
+                              </uix:NKeyboardShortcuts>
+                            </Sequence>
+                          </ui:CommentOut.Body>
+                        </ui:CommentOut>
+                        <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="484.8,184.8" sap2010:WorkflowViewState.IdRef="NClick_9" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="5d22a12e-cb97-4556-96c1-8162b8b1ba35" Version="V5">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable BrowserURL="ga.lina.co.kr/webfw/html/nawmain.html" ContentHash="2_rwACPK0EKY6_aLDFjszg" DesignTimeRectangle="1144, 223, 80, 49" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='ga.lina.co.kr 내용:' role='dialog' /&gt;&lt;ctrl name='확인' role='push button' /&gt;" Guid="15b71e13-a6e3-4f01-b2f4-6f27bb9361dd" InformativeScreenshot="588825e843e80ebf1fd8b060d0d51614.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/iM0XvQmdlEiudf5Dep5wBg" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='GA - 차세대 시스템 - Chrome' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                          </uix:NClick.Target>
+                        </uix:NClick>
+                      </Sequence>
+                    </uix:NCheckState.IfExists>
+                    <uix:NCheckState.IfNotExists>
+                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="518.4,89.6" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </Sequence>
+                    </uix:NCheckState.IfNotExists>
+                    <uix:NCheckState.Target>
+                      <uix:TargetAnchorable BrowserURL="ga.lina.co.kr/webfw/html/nawmain.html" ContentHash="S-hEU68-tkuPsdJ6tiHbDw" DesignTimeRectangle="680, 107, 578, 201" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='ga.lina.co.kr 내용:' role='dialog' /&gt;&lt;ctrl idx='2' role='pane' /&gt;" Guid="856be8b6-88fe-48cd-b1c2-4d21f0441f01" InformativeScreenshot="93c62c5e39992282396ec6a49b0eaa9b.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/4nQT5-OKEEGQOnAcCX0HfQ" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='GA - 차세대 시스템 - Chrome' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                    </uix:NCheckState.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uix:NCheckState>
+                  <Delay Duration="00:00:10" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="Delay_10">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Delay>
+                  <Assign sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="Assign_1">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[latestFilePath]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[Directory.GetFiles("C:\RPA\TempDownload", "*.xlsx").OrderByDescending(Function(f) New FileInfo(f).LastWriteTime).FirstOrDefault()]</InArgument>
+                    </Assign.Value>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Assign>
+                  <If Condition="[String.IsNullOrEmpty(latestFilePath)]" sap:VirtualizedContainerService.HintSize="451.2,48" sap2010:WorkflowViewState.IdRef="If_1">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If.Then>
+                      <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,225.6" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Not Found FileName&quot;]" />
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,417.6" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Assign sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="Assign_2">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[newFilePath]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">[Path.Combine("C:\RPA\TempDownload", "LNF_NEW_LIF_" &amp; DateTime.Now.ToString("yyyyMMdd_HHmmss") &amp; "_" &amp; Path.GetFileName(latestFilePath))]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[newFilePath]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="416,183.2" sap2010:WorkflowViewState.IdRef="MoveFile_1" Path="[latestFilePath]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:MoveFile>
+                      </Sequence>
+                    </If.Else>
+                  </If>
                 </Sequence>
-              </If.Else>
-            </If>
+              </uix:NCheckState.IfNotExists>
+              <uix:NCheckState.Target>
+                <uix:TargetAnchorable BrowserURL="ga.lina.co.kr/webfw/html/nawmain.html" ContentHash="sKsNFpw_U0uJK8wu-VotTw" DesignTimeRectangle="26, 970, 55, 25" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='container_1' tag='IFRAME' /&gt;&lt;webctrl id='btnRDn' tag='BUTTON' disabled='1' /&gt;" Guid="c910d2f1-c9b9-4cf4-93f8-b86e28cd3f8f" InformativeScreenshot="d90725a8236b081c35be35cd09694d6c.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/KHOskLivLE2GMnakeVcOmA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='GA - 차세대 시스템' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None" />
+              </uix:NCheckState.Target>
+            </uix:NCheckState>
           </Sequence>
         </ActivityAction>
       </uix:NApplicationCard.Body>
@@ -493,7 +566,7 @@
         </ActivityFunc>
       </uix:NApplicationCard.OCREngine>
       <uix:NApplicationCard.TargetApp>
-        <uix:TargetApp Area="-9, -9, 1938, 1038" BrowserType="Chrome" ContentHash="eda4_lGRhkCzn9Dfs-a5NA" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAE/SURBVEhL7da9SgNREIbh3IWCwszhO2BwJRYxIARRjEQiuP53FmLpTykigraKRdTGpLIwEAghFkrAC5DcgLWktNNCG7GwFJ3NmrPMNiK81Sm+pxtOAsSxlpBPuv1hYAC4Lfqtct61m6LfFQDivc3Fj+se19qVdLeANea+NC0nwnMAQOwXJl/r/XIlJDcAxBcHS3IlJGcg5Q0+XmXkUKecARBvrM3JoU5FAUDcPJuVW4FFBHLj2eca5JwsIgDi451lOSeLDiStfbgck4tqAIhXVwrvjV45qgaAuHq0IEc1gdFM+qnqyV01AMT7W2FHUAGwxrTKeTmtBoB4fib3Vu+T62oAiEuHwUdQDRge8tqVkRgBEG+vBxxBTQDEd+c/j6AyMDWRfamZGAEQn+x+O4L6QNLa5unXB8fh26LSP/Brn/0LE65OWMH+AAAAAElFTkSuQmCC" InformativeScreenshot="d6c1b21191968daeebce54706de9fd0b.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/S9KgUDs-hEKkC7VQ3EZzwg" Selector="&lt;html app='chrome.exe' title='GA - 차세대 시스템' /&gt;" Url="https://ga.lina.co.kr/webfw/html/nawmain.html" Version="V2">
+        <uix:TargetApp Area="-9, -9, 1938, 1038" BrowserType="Chrome" ContentHash="_ic7i8t1_kunj0hcFeRaQg" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAE/SURBVEhL7da9SgNREIbh3IWCwszhO2BwJRYxIARRjEQiuP53FmLpTykigraKRdTGpLIwEAghFkrAC5DcgLWktNNCG7GwFJ3NmrPMNiK81Sm+pxtOAsSxlpBPuv1hYAC4Lfqtct61m6LfFQDivc3Fj+se19qVdLeANea+NC0nwnMAQOwXJl/r/XIlJDcAxBcHS3IlJGcg5Q0+XmXkUKecARBvrM3JoU5FAUDcPJuVW4FFBHLj2eca5JwsIgDi451lOSeLDiStfbgck4tqAIhXVwrvjV45qgaAuHq0IEc1gdFM+qnqyV01AMT7W2FHUAGwxrTKeTmtBoB4fib3Vu+T62oAiEuHwUdQDRge8tqVkRgBEG+vBxxBTQDEd+c/j6AyMDWRfamZGAEQn+x+O4L6QNLa5unXB8fh26LSP/Brn/0LE65OWMH+AAAAAElFTkSuQmCC" InformativeScreenshot="d6c1b21191968daeebce54706de9fd0b.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/06cczt5yfEiDd8ZR16uCUA" Selector="&lt;html app='chrome.exe' title='GA - 차세대 시스템' /&gt;" Url="https://ga.lina.co.kr/webfw/html/nawmain.html" Version="V2">
           <uix:TargetApp.Arguments>
             <InArgument x:TypeArguments="x:String" />
           </uix:TargetApp.Arguments>

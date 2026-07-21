@@ -42,6 +42,7 @@
       <x:String>UiPath.CV.Activities.Interfaces</x:String>
       <x:String>UiPath.Platform.ResourceHandling</x:String>
       <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Security</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -108,44 +109,216 @@
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
       <AssemblyReference>NPOI.Core</AssemblyReference>
       <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>REF_RPA.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Download_NewContract_Longterm" sap:VirtualizedContainerService.HintSize="854.8000000000001,9424.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Download_NewContract_Longterm" sap:VirtualizedContainerService.HintSize="762,10972.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="ui:UiElement" Name="browserInstance" />
+      <Variable x:TypeArguments="x:String" Name="START_PERIOD" />
+      <Variable x:TypeArguments="x:String" Default="False" Name="IS_MANUAL" />
+      <Variable x:TypeArguments="x:String" Name="END_PERIOD" />
+      <Variable x:TypeArguments="x:String" Name="latestFilePath" />
+      <Variable x:TypeArguments="x:String" Name="newFilePath" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Edge 영업 홈" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="521.6,9401.6" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V2">
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="START_DATE_DOWNLOAD" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="486.4,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+      <ui:GetRobotAsset.Value>
+        <OutArgument x:TypeArguments="x:String">[START_PERIOD]</OutArgument>
+      </ui:GetRobotAsset.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:GetRobotAsset>
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="END_DATE_DOWNLOAD" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="486.4,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
+      <ui:GetRobotAsset.Value>
+        <OutArgument x:TypeArguments="x:String">[END_PERIOD]</OutArgument>
+      </ui:GetRobotAsset.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:GetRobotAsset>
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="TOGGLE_MANUAL_DOWNLOAD" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="486.4,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_3">
+      <ui:GetRobotAsset.Value>
+        <OutArgument x:TypeArguments="x:String">[IS_MANUAL]</OutArgument>
+      </ui:GetRobotAsset.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:GetRobotAsset>
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Edge 영업 홈" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="486.4,10424" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OutUiElement="[browserInstance]" ScopeGuid="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="520,9208" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="484.8,10230.4" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_20" />
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '▼전체(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_23" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
+            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_27" />
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '영업'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NClick_24" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
               <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" CVScreenId="b32c37fa-e7dd-4533-964d-8078c3006bb5" ContentHash="YuKrgEYaZ0azEgKPlj5n2w" DesignTimeRectangle="465, 311, 124, 25" ElementType="DropDown" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-409E98D4-549F-4C81-AC61-57A2E630CB28_0' tag='IFRAME' /&gt;&lt;webctrl idx='2' ui5-class='u5.ComboBox' ui5p-value='전체' /&gt;" Guid="db85f130-ef89-4141-a6f9-4b9d3fe691ac" InformativeScreenshot="9f714b05ce2b791b18b12820f39b1bda.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/elNaH-q3xUmP0wxtt3_YJQ" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None" />
+                <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" ContentHash="aLAvRRViwkScEYj43ndNBA" DesignTimeRectangle="1034, 130, 33, 23" ElementType="Text" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl aaname='영업' tag='SPAN' type='' class='' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='영업' /&gt;" Guid="6bc39233-0956-4032-84e3-312f0d6fbe4a" InformativeScreenshot="97176ac2d29053e94d58c87d98f4b54f.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/2tYAbXtYq0mEofhYrc2rWQ" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target DesignTimeRectangle="1014, 122, 73, 40" ElementType="Button" FuzzySelectorArgument="&lt;webctrl aaname='영업' tag='BUTTON' type='button' class='' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='영업' /&gt;" Guid="2d3e9e90-3d34-4dde-a418-c5fd1f61865a" SearchSteps="FuzzySelector" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NClick.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </uix:NClick>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '판매비'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NClick_25" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" ContentHash="px9x6w8pbUOeVCKkOmkMQw" DesignTimeRectangle="1076, 315, 49, 23" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='판매비' tag='SPAN' /&gt;" Guid="0d232945-343e-4045-8832-2bcca31eb1af" InformativeScreenshot="b5241fb2990829e7b67e3f4584179b98.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/E-JVCuLTeE2CuNShQSCotg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+              </uix:NClick.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </uix:NClick>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '수수료조회-인별'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NClick_26" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" ContentHash="ixvnF6FDyUSbDQEKX3sPZg" DesignTimeRectangle="1101, 351, 121, 22" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='수수료조회-인별' tag='SPAN' /&gt;" Guid="7c31f3d7-14d9-40c9-8b02-cf03e6965653" InformativeScreenshot="efa850d92a7c61a99c12a701c8935cff.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/3SNaWx3oKU2kCVHNZOEQVg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+              </uix:NClick.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </uix:NClick>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '계약건별조회'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NClick_27" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" ContentHash="nMzxw-F7AU-g2NgVSA7meA" DesignTimeRectangle="1116, 626, 97, 23" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='계약건별조회' tag='SPAN' /&gt;" Guid="8be3e066-8054-40f4-a67b-2bfbe65536d2" InformativeScreenshot="01c8d7b6cb35e1bec8e4ed58113bd691.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/MnFMW2_ULUuKbUo8Slcosg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+              </uix:NClick.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </uix:NClick>
+            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_21" />
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="python-workflow - Invoke Workflow File (python-workflow.cs)" sap:VirtualizedContainerService.HintSize="451.2,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="python-workflow.cs">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InArgument x:TypeArguments="x:String" x:Key="scriptPath">C:\Users\RPA02\Documents\UiPath\RPA\Python_Script\SSL\active-window.py</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="mode" />
+              </ui:InvokeWorkflowFile.Arguments>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:InvokeWorkflowFile>
+            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="Delay_23">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </Delay>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '▼전체'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_28" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" ContentHash="JR_caXGYZ0mneyw7leRIWg" DesignTimeRectangle="248, 311, 124, 25" ElementType="DropDown" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-409E98D4-549F-4C81-AC61-57A2E630CB28_0' tag='IFRAME' /&gt;&lt;webctrl ui5-class='u5.ComboBox' ui5p-value='전체' /&gt;" Guid="aaa625ee-7d0c-4d36-8640-1ba0be500c29" InformativeScreenshot="d2c5251f9eb3b8a0d2aaef49606411f4.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/_NLCUt5OvkGnNhw4T5kNNQ" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
-            <uix:NClick ActivateBefore="True" ClickType="[UiPath.UIAutomationNext.Enums.NClickType.Double]" DisplayName="Click '신계약'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_24" />
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '장기'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_29" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
               <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" CVScreenId="ab5e2a3d-d8e5-49cc-8a8a-ccb69ea5cfed" ContentHash="SFq7aSqpckqqtacR3WQ3Vg" CvTextArea="477, 369, 46, 17" CvTextArgument="N72" CvType="Text" DesignTimeRectangle="466, 365, 135, 27" ElementType="ListItem" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-409E98D4-549F-4C81-AC61-57A2E630CB28_0' tag='IFRAME' /&gt;&lt;webctrl ui5-class='sap.ui.commons.ListBox' /&gt;&lt;webctrl ui5-class='sap.ui.core.ListItem' ui5p-text='신계약' /&gt;" Guid="9f32f524-488e-453c-83bb-c57e793a240b" InformativeScreenshot="873c8cefb943fc6b0e2ed1f7e2fdc7d2.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/vcAlOwJp8kWed0OBE8ZMrQ" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
+                <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" ContentHash="rgLA35R3gUyqnC1ZeI5FzA" DesignTimeRectangle="244, 383, 122, 28" ElementType="ListItem" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-409E98D4-549F-4C81-AC61-57A2E630CB28_0' tag='IFRAME' /&gt;&lt;webctrl ui5-class='sap.ui.commons.ListBox' /&gt;&lt;webctrl ui5-class='sap.ui.core.ListItem' ui5p-text='장기' aria-posinset='3' uipath-html-title='장기' visibleinnertext='장기' /&gt;" Guid="02630aec-c298-4f1d-87c0-d8d4d2adcb84" InformativeScreenshot="4ac23ff546ccbbe1b794b3bdbb021811.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/aTrpEWq5X0e5S9pvpwjOnQ" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None" />
               </uix:NClick.Target>
             </uix:NClick>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '검색'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_3" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_25" />
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '▼전체(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_23" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
               <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" CVScreenId="3f917e3a-e1c6-40da-8d48-0d782dd270ca" ContentHash="tA_SfkgpCkeuO4O_rgfGsA" DesignTimeRectangle="1660, 353, 65, 25" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-409E98D4-549F-4C81-AC61-57A2E630CB28_0' tag='IFRAME' /&gt;&lt;webctrl ui5-tooltip='검색' ui5p-icon='/images/dummy.gif' /&gt;" Guid="54b93f14-5afb-403a-b65c-de728a64c0f6" InformativeScreenshot="f5837d5b59dc438d198fca45bc15ce2c.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/loPtyIh-5EuV-gpYTzYDtw" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" DesignTimeRectangle="460, 302, 124, 25" ElementType="DropDown" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-409E98D4-549F-4C81-AC61-57A2E630CB28_0' tag='IFRAME' /&gt;&lt;webctrl ui5-class='u5.ComboBox' ui5p-value='전체' /&gt;" Guid="155e6f65-fda2-4ae0-9d8a-b65fdd30fa10" InformativeScreenshot="10781eafb1c5ea24c35942dc7e12a08c.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
-            <uix:NMouseScroll KeyModifiers="{x:Null}" Direction="Down" DisplayName="Mouse Scroll" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,225.6" sap2010:WorkflowViewState.IdRef="NMouseScroll_1" InteractionMode="HardwareEvents" MovementUnits="10" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5" />
-            <p:CVScope ContinueOnError="{x:Null}" DelayBefore="{x:Null}" ScopeId="{x:Null}" ScrollOffset="{x:Null}" Server="{x:Null}" CvMethod="ElementDetection, OCR" DesignTimeCacheId="df17b213-96f9-48a0-bc8f-e00861a8ccd5" DisplayName="CV Screen Scope 'DIV'" sap:VirtualizedContainerService.HintSize="486.4,559.2" sap2010:WorkflowViewState.IdRef="CVScope_2" SendOnPremData="False" Version="V6">
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_26" />
+            <uix:NClick ActivateBefore="True" ClickType="[UiPath.UIAutomationNext.Enums.NClickType.Double]" DisplayName="Click '신계약'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" DesignTimeRectangle="155, 230, 0, 0" ElementType="ListItem" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-409E98D4-549F-4C81-AC61-57A2E630CB28_0' tag='IFRAME' /&gt;&lt;webctrl idx='2' ui5-class='sap.ui.commons.ListBox' /&gt;&lt;webctrl ui5-class='sap.ui.core.ListItem' ui5p-text='신계약' uipath-html-title='신계약' visibleinnertext='신계약' /&gt;" Guid="dd1ec180-2c33-4c88-be25-74516938b82f" InformativeScreenshot="b71ae824c172fad19eda8bf501c46aa1.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None" />
+              </uix:NClick.Target>
+            </uix:NClick>
+            <If Condition="[IS_MANUAL = &quot;ON&quot;]" sap:VirtualizedContainerService.HintSize="451.2,699.2" sap2010:WorkflowViewState.IdRef="If_2">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,471.2" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Download Manual Period - Longterm&quot;]" />
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '2026-05'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,236.8" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="SameAsCard" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Text="[START_PERIOD.Replace(&quot;-&quot;, &quot;&quot;).Substring(0, 6)]" Version="V5">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" ContentHash="CRCAhFsJUUSHw8RZ64bAOA" DesignTimeRectangle="1163, 305, 124, 25" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-409E98D4-549F-4C81-AC61-57A2E630CB28_0' tag='IFRAME' /&gt;&lt;webctrl ui5-class='u5.MonthPicker' /&gt;" Guid="b00f3c6d-58e4-46d1-b3cf-b70fc45e4680" InformativeScreenshot="8f4260e9c69a6d5471bbef362118ea1e.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/G9epJQo8SkaJ8iaVI594fw" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                    </uix:NTypeInto.Target>
+                    <uix:NTypeInto.VerifyOptions>
+                      <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                        <uix:VerifyExecutionTypeIntoOptions.Retry>
+                          <InArgument x:TypeArguments="x:Boolean" />
+                        </uix:VerifyExecutionTypeIntoOptions.Retry>
+                        <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                          <InArgument x:TypeArguments="x:Double" />
+                        </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                      </uix:VerifyExecutionTypeIntoOptions>
+                    </uix:NTypeInto.VerifyOptions>
+                  </uix:NTypeInto>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </If.Else>
+            </If>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '검색'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_3" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" CVScreenId="3f917e3a-e1c6-40da-8d48-0d782dd270ca" ContentHash="tA_SfkgpCkeuO4O_rgfGsA" DesignTimeRectangle="1680, 409, 65, 25" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-409E98D4-549F-4C81-AC61-57A2E630CB28_0' tag='IFRAME' /&gt;&lt;webctrl ui5-tooltip='검색' ui5p-icon='/images/dummy.gif' /&gt;" Guid="54b93f14-5afb-403a-b65c-de728a64c0f6" InformativeScreenshot="06e344f57597505c86143e1b9f620161.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/loPtyIh-5EuV-gpYTzYDtw" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+              </uix:NClick.Target>
+            </uix:NClick>
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="451.2,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_4" Message="[&quot;Searching Data&quot;]" />
+            <uix:NMouseScroll KeyModifiers="{x:Null}" Direction="Down" DisplayName="Mouse Scroll" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,225.6" sap2010:WorkflowViewState.IdRef="NMouseScroll_1" InteractionMode="SameAsCard" MovementUnits="10" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5" />
+            <p:CVScope ContinueOnError="{x:Null}" DelayBefore="{x:Null}" ScopeId="{x:Null}" ScrollOffset="{x:Null}" Server="{x:Null}" CvMethod="ElementDetection, OCR" DesignTimeCacheId="df17b213-96f9-48a0-bc8f-e00861a8ccd5" DisplayName="CV Screen Scope 'DIV'" sap:VirtualizedContainerService.HintSize="451.2,559.2" sap2010:WorkflowViewState.IdRef="CVScope_2" SendOnPremData="False" Version="V6">
               <p:CVScope.Body>
                 <ActivityAction x:TypeArguments="x:Object">
                   <ActivityAction.Argument>
@@ -286,92 +459,93 @@
                 <InArgument x:TypeArguments="x:Boolean" />
               </p:CVScope.UseLocalServer>
             </p:CVScope>
-            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_2" />
-            <uix:NClick ActivateBefore="True" ClickType="[UiPath.UIAutomationNext.Enums.NClickType.Double]" DisplayName="Click '9999(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_21" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_2" />
+            <uix:NClick ActivateBefore="True" ClickType="[UiPath.UIAutomationNext.Enums.NClickType.Double]" DisplayName="Click '9999(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_21" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
               <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" CVScreenId="b454a50e-1afc-48b6-a940-1f498aa890f1" ContentHash="kohHTuV0SkK7Yqyal-oHLA" DesignTimeRectangle="1729, 891, 86, 28" ElementType="ListItem" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-409E98D4-549F-4C81-AC61-57A2E630CB28_0' tag='IFRAME' /&gt;&lt;webctrl idx='2' ui5-class='sap.ui.commons.ListBox' /&gt;&lt;webctrl ui5-class='sap.ui.core.ListItem' ui5p-text='9999' /&gt;" Guid="7a6eaee5-40fd-4417-b2bc-cc5e6d02e17d" InformativeScreenshot="ee5b5b6e597a1faf779d656c2002724c.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/Nbe13ewS-UuXYTh64lQKGg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" DesignTimeRectangle="155, 197, 0, 0" ElementType="ListItem" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-409E98D4-549F-4C81-AC61-57A2E630CB28_0' tag='IFRAME' /&gt;&lt;webctrl idx='3' ui5-class='sap.ui.commons.ListBox' /&gt;&lt;webctrl ui5-class='sap.ui.core.ListItem' ui5p-text='9999' ui5p-key='9999' uipath-html-title='9999' visibleinnertext='9999' /&gt;" Guid="894a0eef-3bfd-49a1-9f95-93b6c86c4988" InformativeScreenshot="8cd5b4296c5dadb7dba6b5c4e528ff8b.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None" />
               </uix:NClick.Target>
             </uix:NClick>
-            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_3" />
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '다음'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_4" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
-              <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" CVScreenId="ab447c5d-30df-40d4-965b-5ecf1dedb22b" ContentHash="XZzAI7lxCEyuFrorYqB9EA" DesignTimeRectangle="1686, 920, 50, 25" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-409E98D4-549F-4C81-AC61-57A2E630CB28_0' tag='IFRAME' /&gt;&lt;webctrl ui5-tooltip='다음' /&gt;" Guid="66673ef4-a3aa-4f02-90c5-90033d3dd725" InformativeScreenshot="126ec6723ca82bba3713230a341eb659.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/eJPRnyNiqUWOE1VhcH0KOA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-              </uix:NClick.Target>
-            </uix:NClick>
-            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_4" />
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '다음'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_7" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_3" />
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '다음'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_4" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" CVScreenId="ab447c5d-30df-40d4-965b-5ecf1dedb22b" ContentHash="XZzAI7lxCEyuFrorYqB9EA" DesignTimeRectangle="1686, 920, 50, 25" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-409E98D4-549F-4C81-AC61-57A2E630CB28_0' tag='IFRAME' /&gt;&lt;webctrl ui5-tooltip='다음' /&gt;" Guid="66673ef4-a3aa-4f02-90c5-90033d3dd725" InformativeScreenshot="126ec6723ca82bba3713230a341eb659.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/eJPRnyNiqUWOE1VhcH0KOA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
-            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_5" />
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '다음'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_8" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_4" />
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '다음'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_7" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" CVScreenId="ab447c5d-30df-40d4-965b-5ecf1dedb22b" ContentHash="XZzAI7lxCEyuFrorYqB9EA" DesignTimeRectangle="1686, 920, 50, 25" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-409E98D4-549F-4C81-AC61-57A2E630CB28_0' tag='IFRAME' /&gt;&lt;webctrl ui5-tooltip='다음' /&gt;" Guid="66673ef4-a3aa-4f02-90c5-90033d3dd725" InformativeScreenshot="126ec6723ca82bba3713230a341eb659.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/eJPRnyNiqUWOE1VhcH0KOA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
-            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_6" />
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '다음'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_9" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_5" />
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="451.2,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_5" Message="[&quot;Loading More&quot;]" />
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '다음'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_8" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" CVScreenId="ab447c5d-30df-40d4-965b-5ecf1dedb22b" ContentHash="XZzAI7lxCEyuFrorYqB9EA" DesignTimeRectangle="1686, 920, 50, 25" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-409E98D4-549F-4C81-AC61-57A2E630CB28_0' tag='IFRAME' /&gt;&lt;webctrl ui5-tooltip='다음' /&gt;" Guid="66673ef4-a3aa-4f02-90c5-90033d3dd725" InformativeScreenshot="126ec6723ca82bba3713230a341eb659.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/eJPRnyNiqUWOE1VhcH0KOA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
-            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_7" />
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '다음'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_10" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_6" />
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '다음'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_9" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" CVScreenId="ab447c5d-30df-40d4-965b-5ecf1dedb22b" ContentHash="XZzAI7lxCEyuFrorYqB9EA" DesignTimeRectangle="1686, 920, 50, 25" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-409E98D4-549F-4C81-AC61-57A2E630CB28_0' tag='IFRAME' /&gt;&lt;webctrl ui5-tooltip='다음' /&gt;" Guid="66673ef4-a3aa-4f02-90c5-90033d3dd725" InformativeScreenshot="126ec6723ca82bba3713230a341eb659.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/eJPRnyNiqUWOE1VhcH0KOA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
-            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_8" />
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '다음'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_11" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_7" />
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '다음'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_10" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" CVScreenId="ab447c5d-30df-40d4-965b-5ecf1dedb22b" ContentHash="XZzAI7lxCEyuFrorYqB9EA" DesignTimeRectangle="1686, 920, 50, 25" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-409E98D4-549F-4C81-AC61-57A2E630CB28_0' tag='IFRAME' /&gt;&lt;webctrl ui5-tooltip='다음' /&gt;" Guid="66673ef4-a3aa-4f02-90c5-90033d3dd725" InformativeScreenshot="126ec6723ca82bba3713230a341eb659.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/eJPRnyNiqUWOE1VhcH0KOA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
-            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_9" />
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '다음'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_12" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_8" />
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '다음'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_11" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" CVScreenId="ab447c5d-30df-40d4-965b-5ecf1dedb22b" ContentHash="XZzAI7lxCEyuFrorYqB9EA" DesignTimeRectangle="1686, 920, 50, 25" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-409E98D4-549F-4C81-AC61-57A2E630CB28_0' tag='IFRAME' /&gt;&lt;webctrl ui5-tooltip='다음' /&gt;" Guid="66673ef4-a3aa-4f02-90c5-90033d3dd725" InformativeScreenshot="126ec6723ca82bba3713230a341eb659.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/eJPRnyNiqUWOE1VhcH0KOA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
-            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_10" />
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '다음'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_13" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_9" />
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '다음'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_12" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" CVScreenId="ab447c5d-30df-40d4-965b-5ecf1dedb22b" ContentHash="XZzAI7lxCEyuFrorYqB9EA" DesignTimeRectangle="1686, 920, 50, 25" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-409E98D4-549F-4C81-AC61-57A2E630CB28_0' tag='IFRAME' /&gt;&lt;webctrl ui5-tooltip='다음' /&gt;" Guid="66673ef4-a3aa-4f02-90c5-90033d3dd725" InformativeScreenshot="126ec6723ca82bba3713230a341eb659.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/eJPRnyNiqUWOE1VhcH0KOA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
-            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_11" />
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '다음'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_14" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_10" />
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '다음'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_13" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" CVScreenId="ab447c5d-30df-40d4-965b-5ecf1dedb22b" ContentHash="XZzAI7lxCEyuFrorYqB9EA" DesignTimeRectangle="1686, 920, 50, 25" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-409E98D4-549F-4C81-AC61-57A2E630CB28_0' tag='IFRAME' /&gt;&lt;webctrl ui5-tooltip='다음' /&gt;" Guid="66673ef4-a3aa-4f02-90c5-90033d3dd725" InformativeScreenshot="126ec6723ca82bba3713230a341eb659.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/eJPRnyNiqUWOE1VhcH0KOA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
-            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_12" />
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '다음'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_15" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_11" />
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '다음'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_14" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" CVScreenId="ab447c5d-30df-40d4-965b-5ecf1dedb22b" ContentHash="XZzAI7lxCEyuFrorYqB9EA" DesignTimeRectangle="1686, 920, 50, 25" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-409E98D4-549F-4C81-AC61-57A2E630CB28_0' tag='IFRAME' /&gt;&lt;webctrl ui5-tooltip='다음' /&gt;" Guid="66673ef4-a3aa-4f02-90c5-90033d3dd725" InformativeScreenshot="126ec6723ca82bba3713230a341eb659.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/eJPRnyNiqUWOE1VhcH0KOA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
-            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_13" />
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '다음'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_16" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_12" />
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '다음'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_15" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" CVScreenId="ab447c5d-30df-40d4-965b-5ecf1dedb22b" ContentHash="XZzAI7lxCEyuFrorYqB9EA" DesignTimeRectangle="1686, 920, 50, 25" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-409E98D4-549F-4C81-AC61-57A2E630CB28_0' tag='IFRAME' /&gt;&lt;webctrl ui5-tooltip='다음' /&gt;" Guid="66673ef4-a3aa-4f02-90c5-90033d3dd725" InformativeScreenshot="126ec6723ca82bba3713230a341eb659.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/eJPRnyNiqUWOE1VhcH0KOA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
-            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_14" />
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '엑셀 다운로드'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_17" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_13" />
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '다음'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_16" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" CVScreenId="ab447c5d-30df-40d4-965b-5ecf1dedb22b" ContentHash="XZzAI7lxCEyuFrorYqB9EA" DesignTimeRectangle="1686, 920, 50, 25" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-409E98D4-549F-4C81-AC61-57A2E630CB28_0' tag='IFRAME' /&gt;&lt;webctrl ui5-tooltip='다음' /&gt;" Guid="66673ef4-a3aa-4f02-90c5-90033d3dd725" InformativeScreenshot="126ec6723ca82bba3713230a341eb659.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/eJPRnyNiqUWOE1VhcH0KOA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+              </uix:NClick.Target>
+            </uix:NClick>
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_14" />
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '엑셀 다운로드'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_17" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" CVScreenId="d966d421-bcb7-4692-b682-ba2fc46dfc17" ContentHash="pa1S1lsdpECVj4JVZHzf1Q" CvElementArea="250, 972, 131, 28" CvTextArea="311, 975, 62, 18" CvTextArgument="CHz3S" CvType="Button" DesignTimeRectangle="251, 974, 129, 25" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-409E98D4-549F-4C81-AC61-57A2E630CB28_0' tag='IFRAME' /&gt;&lt;webctrl ui5-tooltip='엑셀 다운로드' /&gt;" Guid="0d270014-5e83-4dd9-8294-2b16e125e4bc" InformativeScreenshot="839b0966515db9877a180d42a323007f.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/Wu_4nEO3pUKbcrLUNixTMA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
-            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_15" />
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_18" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_15" />
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_18" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" CVScreenId="f46833dd-9009-474d-ba60-ac661b57e954" ContentHash="UGXMRItVJkeosp9aBXvhUw" CvElementArea="911, 701, 72, 33" CvTextArea="931, 707, 30, 18" CvTextArgument="2191" CvType="Button" DesignTimeRectangle="914, 704, 67, 29" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-409E98D4-549F-4C81-AC61-57A2E630CB28_0' tag='IFRAME' /&gt;&lt;webctrl ui5-tooltip='확인' /&gt;" Guid="1eae2467-9d79-46d5-b6b0-e1c14f8cf334" InformativeScreenshot="f65a1fc2477b7f2d625565ecbe7c2cc4.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/tUPfsZ6q50WyA0pha5RKXg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
-            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_16" />
-            <uix:NCheckState DisplayName="Check App State 'Confirm 조회하신 내용을 엑셀파일로 …'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="486.4,679.2" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_16" />
+            <uix:NCheckState DisplayName="Check App State 'Confirm 조회하신 내용을 엑셀파일로 …'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,679.2" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
               <uix:NCheckState.IfExists>
                 <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
                   <sap:WorkflowViewStateService.ViewState>
@@ -399,38 +573,23 @@
                 <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" ContentHash="TPhwAG77KEWgi8NXT44f9w" DesignTimeRectangle="762, 539, 450, 215" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-409E98D4-549F-4C81-AC61-57A2E630CB28_0' tag='IFRAME' /&gt;&lt;webctrl id='PNLZZZ00000' tag='DIV' /&gt;" Guid="00084ac8-ac5e-4344-82d7-bb2ac1f4b2da" InformativeScreenshot="452900673b829ae9da1f3e6931eba887.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/G31lvjst3E-gZ2jHDeOf6w" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NCheckState.Target>
             </uix:NCheckState>
-            <uix:NCheckState DisplayName="Check App State 'Chrome Legacy Window'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="486.4,2249.6" sap2010:WorkflowViewState.IdRef="NCheckState_2" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
+            <uix:NCheckState DisplayName="Check App State 'edgedownloads-hub'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,830.4" sap2010:WorkflowViewState.IdRef="NCheckState_3" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
               <uix:NCheckState.IfExists>
-                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="484.8,1815.2" sap2010:WorkflowViewState.IdRef="Sequence_5">
-                  <Sequence.Variables>
-                    <Variable x:TypeArguments="x:String" Name="latestFilePath" />
-                    <Variable x:TypeArguments="x:String" Name="newFilePath" />
-                  </Sequence.Variables>
+                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,396" sap2010:WorkflowViewState.IdRef="Sequence_16">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts 'edgedownloadshub'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,369.6" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_3" InteractionMode="HardwareEvents" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Shortcuts="[d(hk)][k(Tab)][u(hk)][d(hk)][k(Tab)][u(hk)][d(hk)][k(Tab)][u(hk)][d(hk)][k(Tab)][u(hk)][d(hk)][k(Tab)][u(hk)][d(hk)][k(Tab)][u(hk)][d(hk)][k(Tab)][u(hk)][d(hk)][k(Enter)][u(hk)]" Version="V5">
-                    <uix:NKeyboardShortcuts.Target>
-                      <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" ContentHash="BGaZBkCJi0mz4rHhkjVYwA" DesignTimeRectangle="37, 21, 450, 232" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='Downloads' role='document' /&gt;" Guid="e8e8c6d6-0b89-4913-adfc-edf0f82d06ec" InformativeScreenshot="53d46482f9e4b6a017df3b4f325c8637.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/dlbJ5OYdb0ig6Do-_D_ayQ" ScopeSelectorArgument="&lt;wnd app='msedge.exe' cls='Chrome_WidgetWin_1' idx='*' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-                    </uix:NKeyboardShortcuts.Target>
-                  </uix:NKeyboardShortcuts>
-                  <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_17" />
-                  <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts 'Downloads ZWICC0001_1_2…'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,328.8" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_4" InteractionMode="HardwareEvents" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Shortcuts="[d(hk)][k(Oem3)][u(hk)][d(hk)][k(Esc)][u(hk)]" Version="V5">
-                    <uix:NKeyboardShortcuts.Target>
-                      <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" ContentHash="udgS9Lvg30OeVD6XTFUP7Q" DesignTimeRectangle="36, 21, 450, 305" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='Downloads' role='dialog' /&gt;&lt;ctrl idx='5' role='pane' /&gt;" Guid="d994c2fe-3af5-4379-8f7d-35cf18952be0" InformativeScreenshot="5407a5c3c17c3fc9b669b8e1dfbb0ab4.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/uTf8f8cxK0KyKsxDCccoVg" ScopeSelectorArgument="&lt;wnd app='msedge.exe' cls='Chrome_WidgetWin_1' idx='*' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-                    </uix:NKeyboardShortcuts.Target>
-                  </uix:NKeyboardShortcuts>
-                  <Delay Duration="00:00:30" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_19">
+                  <Delay Duration="00:00:30" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_20">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </Delay>
-                  <Assign sap:VirtualizedContainerService.HintSize="451.2,174.4" sap2010:WorkflowViewState.IdRef="Assign_1">
+                  <Assign sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Assign_3">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[latestFilePath]</OutArgument>
                     </Assign.To>
@@ -439,36 +598,36 @@
                     </Assign.Value>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </Assign>
-                  <If Condition="[String.IsNullOrEmpty(latestFilePath)]" sap:VirtualizedContainerService.HintSize="451.2,637.6" sap2010:WorkflowViewState.IdRef="If_1">
+                  <If Condition="[String.IsNullOrEmpty(latestFilePath)]" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="If_3">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                     <If.Then>
-                      <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,225.6" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                      <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,225.6" sap2010:WorkflowViewState.IdRef="Sequence_13">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Not Found FileName&quot;]" />
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;Not Found FileName&quot;]" />
                       </Sequence>
                     </If.Then>
                     <If.Else>
-                      <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,282.4" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                      <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,282.4" sap2010:WorkflowViewState.IdRef="Sequence_14">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <Assign sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="Assign_2">
+                        <Assign sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="Assign_4">
                           <Assign.To>
                             <OutArgument x:TypeArguments="x:String">[newFilePath]</OutArgument>
                           </Assign.To>
@@ -482,7 +641,7 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                         </Assign>
-                        <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[newFilePath]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="MoveFile_1" Path="[latestFilePath]">
+                        <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[newFilePath]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="MoveFile_2" Path="[latestFilePath]">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -493,10 +652,11 @@
                       </Sequence>
                     </If.Else>
                   </If>
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_6" Message="[&quot;Download Successfully&quot;]" />
                 </Sequence>
               </uix:NCheckState.IfExists>
               <uix:NCheckState.IfNotExists>
-                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="484.8,89.6" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_17">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -505,18 +665,159 @@
                 </Sequence>
               </uix:NCheckState.IfNotExists>
               <uix:NCheckState.Target>
-                <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" ContentHash="7VkCG44E1EmHlJDeZ6-r-g" DesignTimeRectangle="36, 21, 451, 346" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd cls='Chrome_RenderWidgetHostHWND' title='Chrome Legacy Window' /&gt;" Guid="d6a00086-4eab-47a8-82f7-b7a00d2f4756" InformativeScreenshot="976fefa0b596459a6a562b6ca29ca7ef.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/MMHmU7nFfUynnsHGmO22Cg" ScopeSelectorArgument="&lt;wnd app='msedge.exe' cls='Chrome_WidgetWin_1' idx='*' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" ContentHash="LDNzP40SQUGCBUkKNMAB7w" DesignTimeRectangle="17, 5, 450, 200" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='Downloads' role='document' /&gt;" Guid="34a1eb32-ef4e-457b-a009-f53b09a76b58" InformativeScreenshot="38ca36494c70e79d6ee7382f80cf9082.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/haAzCZ2LW0q9reLSAYMPPQ" ScopeSelectorArgument="&lt;wnd app='msedge.exe' cls='Chrome_WidgetWin_1' idx='*' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NCheckState.Target>
+            </uix:NCheckState>
+            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+              <ui:CommentOut.Body>
+                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="449.6,108" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NCheckState DisplayName="Check App State 'Chrome Legacy Window'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="NCheckState_2" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
+                    <uix:NCheckState.IfExists>
+                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,392" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts 'edgedownloadshub'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_3" InteractionMode="HardwareEvents" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Shortcuts="[d(hk)][k(Tab)][u(hk)][d(hk)][k(Tab)][u(hk)][d(hk)][k(Tab)][u(hk)][d(hk)][k(Tab)][u(hk)][d(hk)][k(Tab)][u(hk)][d(hk)][k(Tab)][u(hk)][d(hk)][k(Tab)][u(hk)][d(hk)][k(Enter)][u(hk)]" Version="V5">
+                          <uix:NKeyboardShortcuts.Target>
+                            <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" ContentHash="BGaZBkCJi0mz4rHhkjVYwA" DesignTimeRectangle="37, 21, 450, 232" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='Downloads' role='document' /&gt;" Guid="e8e8c6d6-0b89-4913-adfc-edf0f82d06ec" InformativeScreenshot="53d46482f9e4b6a017df3b4f325c8637.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/dlbJ5OYdb0ig6Do-_D_ayQ" ScopeSelectorArgument="&lt;wnd app='msedge.exe' cls='Chrome_WidgetWin_1' idx='*' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                          </uix:NKeyboardShortcuts.Target>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </uix:NKeyboardShortcuts>
+                        <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_17">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Delay>
+                        <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts 'Downloads ZWICC0001_1_2…'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_4" InteractionMode="HardwareEvents" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Shortcuts="[d(hk)][k(Oem3)][u(hk)][d(hk)][k(Esc)][u(hk)]" Version="V5">
+                          <uix:NKeyboardShortcuts.Target>
+                            <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" ContentHash="udgS9Lvg30OeVD6XTFUP7Q" DesignTimeRectangle="36, 21, 450, 305" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='Downloads' role='dialog' /&gt;&lt;ctrl idx='5' role='pane' /&gt;" Guid="d994c2fe-3af5-4379-8f7d-35cf18952be0" InformativeScreenshot="5407a5c3c17c3fc9b669b8e1dfbb0ab4.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/uTf8f8cxK0KyKsxDCccoVg" ScopeSelectorArgument="&lt;wnd app='msedge.exe' cls='Chrome_WidgetWin_1' idx='*' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                          </uix:NKeyboardShortcuts.Target>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </uix:NKeyboardShortcuts>
+                        <Delay Duration="00:00:30" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_19">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Delay>
+                        <Assign sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Assign_1">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[latestFilePath]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">[Directory.GetFiles("C:\RPA\TempDownload", "*.xls").OrderByDescending(Function(f) New FileInfo(f).LastWriteTime).FirstOrDefault()]</InArgument>
+                          </Assign.Value>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Assign>
+                        <If Condition="[String.IsNullOrEmpty(latestFilePath)]" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="If_1">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <If.Then>
+                            <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,225.6" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Not Found FileName&quot;]" />
+                            </Sequence>
+                          </If.Then>
+                          <If.Else>
+                            <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,282.4" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <Assign sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="Assign_2">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[newFilePath]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">[Path.Combine("C:\RPA\TempDownload", "SSF_NEW_LTR_" &amp; DateTime.Now.ToString("yyyyMMdd_HHmmss") &amp; "_" &amp; Path.GetFileName(latestFilePath))]</InArgument>
+                                </Assign.Value>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </Assign>
+                              <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[newFilePath]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="MoveFile_1" Path="[latestFilePath]">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:MoveFile>
+                            </Sequence>
+                          </If.Else>
+                        </If>
+                      </Sequence>
+                    </uix:NCheckState.IfExists>
+                    <uix:NCheckState.IfNotExists>
+                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </Sequence>
+                    </uix:NCheckState.IfNotExists>
+                    <uix:NCheckState.Target>
+                      <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" ContentHash="7VkCG44E1EmHlJDeZ6-r-g" DesignTimeRectangle="36, 21, 451, 346" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd cls='Chrome_RenderWidgetHostHWND' title='Chrome Legacy Window' /&gt;" Guid="d6a00086-4eab-47a8-82f7-b7a00d2f4756" InformativeScreenshot="976fefa0b596459a6a562b6ca29ca7ef.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/MMHmU7nFfUynnsHGmO22Cg" ScopeSelectorArgument="&lt;wnd app='msedge.exe' cls='Chrome_WidgetWin_1' idx='*' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                    </uix:NCheckState.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uix:NCheckState>
+                </Sequence>
+              </ui:CommentOut.Body>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-            </uix:NCheckState>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '재설정'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,184.8" sap2010:WorkflowViewState.IdRef="NClick_22" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
+            </ui:CommentOut>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '재설정'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,184.8" sap2010:WorkflowViewState.IdRef="NClick_22" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4c119f16-caa5-41fa-a693-7606c4ac406a" Version="V5">
               <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" CVScreenId="4b71e726-b372-48cb-9be3-f3ec09b11b70" ContentHash="ZClOhhxoFUmiNAkAW10ENQ" DesignTimeRectangle="1729, 353, 79, 25" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-409E98D4-549F-4C81-AC61-57A2E630CB28_0' tag='IFRAME' /&gt;&lt;webctrl ui5-tooltip='재설정' ui5p-icon='/images/dummy.gif' /&gt;" Guid="e8e599a5-0b76-467a-b7ae-b31364686c2a" InformativeScreenshot="e55d8e89297891f54916feebff576741.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/c7PsvzDzIkyn1j1WShKnOQ" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                <uix:TargetAnchorable BrowserURL="qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" CVScreenId="4b71e726-b372-48cb-9be3-f3ec09b11b70" ContentHash="ZClOhhxoFUmiNAkAW10ENQ" DesignTimeRectangle="1724, 313, 79, 25" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='NMNU-409E98D4-549F-4C81-AC61-57A2E630CB28_0' tag='IFRAME' /&gt;&lt;webctrl ui5-tooltip='재설정' ui5p-icon='/images/dummy.gif' /&gt;" Guid="e8e599a5-0b76-467a-b7ae-b31364686c2a" InformativeScreenshot="86b7afc349ad7582b734182b19426530.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/c7PsvzDzIkyn1j1WShKnOQ" ScopeSelectorArgument="&lt;html app='msedge.exe' title='영업 홈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
           </Sequence>
@@ -530,7 +831,7 @@
         </ActivityFunc>
       </uix:NApplicationCard.OCREngine>
       <uix:NApplicationCard.TargetApp>
-        <uix:TargetApp Area="-9, -9, 1938, 1038" BrowserType="Edge" ContentHash="3RkizePGekitKmTrP0pAIw" IconBase64="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" InformativeScreenshot="003a1aba2c76994fe94d8ba18898e3cd.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/aIxhWRGQI0ybbQUEEwyFBA" Selector="&lt;html app='msedge.exe' title='영업 홈' /&gt;" Url="https://qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" Version="V2">
+        <uix:TargetApp Area="-9, -9, 1938, 1038" BrowserType="Edge" ContentHash="Aze_lWZqjEW_afldfbjZkA" IconBase64="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" InformativeScreenshot="003a1aba2c76994fe94d8ba18898e3cd.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/OPHJakXzuEmK21v5Z2_JUA" Selector="&lt;html app='msedge.exe' title='영업 홈' /&gt;" Url="https://qnu.samsungfire.com/ns/p/portal/ui/SPGENSP00001" Version="V2">
           <uix:TargetApp.Arguments>
             <InArgument x:TypeArguments="x:String" />
           </uix:TargetApp.Arguments>

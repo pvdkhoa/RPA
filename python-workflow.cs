@@ -10,7 +10,7 @@ namespace REF_RPA
     public class python_workflow : CodedWorkflow
     {
        [Workflow]
-        public void Execute(string scriptPath, string? mode = "")
+        public void Execute(string scriptPath, string mode = "")
         {
             string pythonExe = @"C:\Users\RPA02\AppData\Local\Programs\Python\Python311\python.exe";
 
@@ -35,7 +35,7 @@ namespace REF_RPA
                 throw new Exception("Working Directory Error " + scriptPath);
             }
 
-            string logDir = @"C:\Users\RPA02\UIPathScript\log";
+            string logDir = @"C:\UipathScript\log";
             Directory.CreateDirectory(logDir);
 
             string stdoutPath = Path.Combine(logDir, "uipath_python_stdout.txt");

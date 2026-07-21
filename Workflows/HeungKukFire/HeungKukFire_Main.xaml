@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="MainSequence" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="MainSequence" this:MainSequence.runType="DOWNLOAD" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="runType" Type="InArgument(x:String)" />
   </x:Members>
@@ -48,6 +48,8 @@
       <x:String>UiPath.Python</x:String>
       <x:String>UiPath.Python.Activities</x:String>
       <x:String>UiPath.Shared.Telemetry</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>UiPath.Core.Activities.Orchestrator</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -96,50 +98,110 @@
       <AssemblyReference>UiPath.Python</AssemblyReference>
       <AssemblyReference>UiPath.Python.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>REF_RPA.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="MainSequence" sap:VirtualizedContainerService.HintSize="832.4000000000001,3924" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="MainSequence" sap:VirtualizedContainerService.HintSize="762,7504.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Default="HKF" Name="COMP_CODE" />
+      <Variable x:TypeArguments="x:String" Default="C:\RPA\CheckAvailableComp" Name="CHECKING_FILE_PATH" />
       <Variable x:TypeArguments="x:String" Name="HKF_OTP" />
       <Variable x:TypeArguments="x:String" Name="HKF_UID" />
       <Variable x:TypeArguments="x:String" Name="HKF_URL" />
+      <Variable x:TypeArguments="ui:UiElement" Name="browser_instance" />
+      <Variable x:TypeArguments="x:String" Name="CHECKING_ID" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="HKF_AST_URL" CacheStrategy="None" DisplayName="Get Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="555.2,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="HKF_AST_URL" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="556.8,56.8" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
       <ui:GetRobotAsset.Value>
         <OutArgument x:TypeArguments="x:String">[HKF_URL]</OutArgument>
       </ui:GetRobotAsset.Value>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:GetRobotAsset>
-    <ui:GetRobotCredential Password="{x:Null}" TimeoutMS="{x:Null}" AssetName="HKF_AST_LOGIN" CacheStrategy="None" DisplayName="Get Credential" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="555.2,175.2" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Username="[HKF_UID]">
+    <ui:GetRobotCredential Password="{x:Null}" TimeoutMS="{x:Null}" AssetName="HKF_AST_LOGIN" CacheStrategy="None" DisplayName="Get Credential" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="556.8,56.8" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Username="[HKF_UID]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:GetRobotCredential>
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="HKF_AST_OTP" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="556.8,56.8" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
+      <ui:GetRobotAsset.Value>
+        <OutArgument x:TypeArguments="x:String">[HKF_OTP]</OutArgument>
+      </ui:GetRobotAsset.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:GetRobotAsset>
+    <ui:SetAsset TimeoutMS="{x:Null}" AssetName="HKF_NEW_LTR_PATH" DisplayName="Clear LTR Path" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="556.8,227.2" sap2010:WorkflowViewState.IdRef="SetAsset_1" Value="[&quot;empty&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-    </ui:GetRobotCredential>
-    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="HKF_AST_OTP" CacheStrategy="None" DisplayName="Get Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="555.2,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
-      <ui:GetRobotAsset.Value>
-        <OutArgument x:TypeArguments="x:String">[HKF_OTP]</OutArgument>
-      </ui:GetRobotAsset.Value>
-    </ui:GetRobotAsset>
-    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Always]" DisplayName="Edge 흥국화재 영업포탈" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="555.2,3375.2" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="af05a3f3-e7b5-4a48-96bc-c55e55ea2789" Version="V2" WindowResize="Maximize">
+    </ui:SetAsset>
+    <ui:SetAsset TimeoutMS="{x:Null}" AssetName="HKF_NEW_GEN_PATH" DisplayName="Clear GEN Path" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="556.8,227.2" sap2010:WorkflowViewState.IdRef="SetAsset_2" Value="[&quot;empty&quot;]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:SetAsset>
+    <ui:SetAsset TimeoutMS="{x:Null}" AssetName="HKF_NEW_CAR_PATH" DisplayName="Clear CAR Path" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="556.8,227.2" sap2010:WorkflowViewState.IdRef="SetAsset_3" Value="[&quot;empty&quot;]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:SetAsset>
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim files As String() = Directory.GetFiles(&quot;C:\RPA\TempDownload&quot;, in_Prefix &amp; &quot;*&quot;)&#xA;For Each f As String In files&#xA;    File.Delete(f)&#xA;Next&#xA;&#xA;files = Directory.GetFiles(&quot;C:\RPA\TempExtraData&quot;, in_Prefix &amp; &quot;*&quot;)&#xA;For Each f As String In files&#xA;    File.Delete(f)&#xA;Next" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="556.8,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_2">
+      <ui:InvokeCode.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Prefix">HKF</InArgument>
+      </ui:InvokeCode.Arguments>
+    </ui:InvokeCode>
+    <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="556.8,56.8" sap2010:WorkflowViewState.IdRef="Delay_9">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </Delay>
+    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Always]" DisplayName="Edge 흥국화재 영업포탈" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="556.8,6376" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OutUiElement="[browser_instance]" ScopeGuid="af05a3f3-e7b5-4a48-96bc-c55e55ea2789" Version="V2" WindowResize="Maximize">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="553.6,3181.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="555.2,6182.4" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Default="61150282" Name="username1" />
             </Sequence.Variables>
@@ -148,25 +210,229 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="520,122.4" sap2010:WorkflowViewState.IdRef="Delay_4" />
-            <uix:NCheckState DisplayName="check if login" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="520,1622.4" sap2010:WorkflowViewState.IdRef="NCheckState_2" ScopeIdentifier="af05a3f3-e7b5-4a48-96bc-c55e55ea2789" Version="V5">
+            <Delay Duration="00:00:10" sap:VirtualizedContainerService.HintSize="521.6,122.4" sap2010:WorkflowViewState.IdRef="Delay_7" />
+            <uix:NCheckState DisplayName="Check App State 'OK'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="521.6,679.2" sap2010:WorkflowViewState.IdRef="NCheckState_5" ScopeIdentifier="af05a3f3-e7b5-4a48-96bc-c55e55ea2789" Version="V5">
               <uix:NCheckState.IfExists>
-                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,1252.8" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'OK(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_20" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="af05a3f3-e7b5-4a48-96bc-c55e55ea2789" Version="V5">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable BrowserURL="sales.heungkukfire.co.kr" ContentHash="dTcheeiD8UWBYT6CCkRgrA" DesignTimeRectangle="1180, 235, 49, 40" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='sales.heungkukfire.co.kr says' role='dialog' /&gt;&lt;ctrl name='OK' role='push button' /&gt;" Guid="54087a89-b3b1-4910-b251-e8cdc88115c4" InformativeScreenshot="97176ac2d29053e94d58c87d98f4b54f.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/8yvoZvW8lkqdbbxK7dO7Kg" ScopeSelectorArgument="&lt;wnd app='msedge.exe' cls='Chrome_WidgetWin_1' title='sales.heungkukfire.co.kr/#/login - Work - Microsoft​ Edge' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                    </uix:NClick.Target>
+                  </uix:NClick>
+                </Sequence>
+              </uix:NCheckState.IfExists>
+              <uix:NCheckState.IfNotExists>
+                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </uix:NCheckState.IfNotExists>
+              <uix:NCheckState.Target>
+                <uix:TargetAnchorable BrowserURL="sales.heungkukfire.co.kr" ContentHash="ZdrX-YDpx0qXBQ_VLdCfKA" DesignTimeRectangle="1180, 235, 49, 40" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='sales.heungkukfire.co.kr says' role='dialog' /&gt;&lt;ctrl name='OK' role='push button' /&gt;" Guid="d901c30c-f330-41c5-97d2-28d97b6d912b" InformativeScreenshot="97176ac2d29053e94d58c87d98f4b54f.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/zAjeVyj7EEi5IHYtzOHTLw" ScopeSelectorArgument="&lt;wnd app='msedge.exe' cls='Chrome_WidgetWin_1' title='sales.heungkukfire.co.kr/#/login - Work - Microsoft​ Edge' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+              </uix:NCheckState.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </uix:NCheckState>
+            <If Condition="[runType = &quot;CHECK&quot;]" DisplayName="Handle Check Open Website Available" sap:VirtualizedContainerService.HintSize="521.6,1955.2" sap2010:WorkflowViewState.IdRef="If_3">
+              <If.Then>
+                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="520,1727.2" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="CHECKING_ID" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="486.4,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_4">
+                    <ui:GetRobotAsset.Value>
+                      <OutArgument x:TypeArguments="x:String">[CHECKING_ID]</OutArgument>
+                    </ui:GetRobotAsset.Value>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:GetRobotAsset>
+                  <uix:NCheckState DisplayName="Check App State '로그인'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="486.4,1492" sap2010:WorkflowViewState.IdRef="NCheckState_10" ScopeIdentifier="af05a3f3-e7b5-4a48-96bc-c55e55ea2789" Version="V5">
+                    <uix:NCheckState.IfExists>
+                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="484.8,335.2" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Checking Alive - Is Openned - Y&quot;]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:LogMessage>
+                        <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_10">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Delay>
+                        <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ====== Create JSON file path ======&#xA;Dim jsonPath As String = System.IO.Path.Combine(checkingFilePath, &quot;result_&quot; &amp; checkingId &amp; &quot;.json&quot;)&#xA;&#xA;' ====== Read current JSON file ======&#xA;Dim jsonContent As String = System.IO.File.ReadAllText(jsonPath, System.Text.Encoding.UTF8)&#xA;Dim jsonArray   As Newtonsoft.Json.Linq.JArray = Newtonsoft.Json.Linq.JArray.Parse(jsonContent)&#xA;&#xA;' ====== Find by compCode and update ======&#xA;For Each item As Newtonsoft.Json.Linq.JObject In jsonArray&#xA;    If item(&quot;compCode&quot;).ToString() = compCode Then&#xA;        item(&quot;isOpenned&quot;)   = &quot;Y&quot;&#xA;        item(&quot;processTime&quot;) = DateTime.Now.ToString(&quot;yyyyMMdd HH:mm:ss&quot;)&#xA;        Exit For&#xA;    End If&#xA;Next&#xA;&#xA;' ====== Rewrite JSON file (overwrite) ======&#xA;System.IO.File.WriteAllText(jsonPath, jsonArray.ToString(), System.Text.Encoding.UTF8)" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="InvokeCode_3">
+                          <ui:InvokeCode.Arguments>
+                            <InArgument x:TypeArguments="x:String" x:Key="checkingId">[CHECKING_ID]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="checkingFilePath">[CHECKING_FILE_PATH]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="compCode">[COMP_CODE]</InArgument>
+                          </ui:InvokeCode.Arguments>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:InvokeCode>
+                        <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_11">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Delay>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot; Checking Alive - Is Openned - Y Finish.....&quot;]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:LogMessage>
+                      </Sequence>
+                    </uix:NCheckState.IfExists>
+                    <uix:NCheckState.IfNotExists>
+                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="484.8,820.8" sap2010:WorkflowViewState.IdRef="Sequence_27">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <uix:NCheckState DisplayName="Check App State '설계청약'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,760.8" sap2010:WorkflowViewState.IdRef="NCheckState_11" ScopeIdentifier="af05a3f3-e7b5-4a48-96bc-c55e55ea2789" Version="V5">
+                          <uix:NCheckState.IfExists>
+                            <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_29">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </Sequence>
+                          </uix:NCheckState.IfExists>
+                          <uix:NCheckState.IfNotExists>
+                            <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,335.2" sap2010:WorkflowViewState.IdRef="Sequence_30">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Checking Alive - Is Openned - N&quot;]">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:LogMessage>
+                              <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_12">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </Delay>
+                              <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ====== Create JSON file path ======&#xA;Dim jsonPath As String = System.IO.Path.Combine(checkingFilePath, &quot;result_&quot; &amp; checkingId &amp; &quot;.json&quot;)&#xA;&#xA;' ====== Read current JSON file ======&#xA;Dim jsonContent As String = System.IO.File.ReadAllText(jsonPath, System.Text.Encoding.UTF8)&#xA;Dim jsonArray   As Newtonsoft.Json.Linq.JArray = Newtonsoft.Json.Linq.JArray.Parse(jsonContent)&#xA;&#xA;' ====== Find by compCode and update ======&#xA;For Each item As Newtonsoft.Json.Linq.JObject In jsonArray&#xA;    If item(&quot;compCode&quot;).ToString() = compCode Then&#xA;        item(&quot;isOpenned&quot;)   = &quot;N&quot;&#xA;        item(&quot;processTime&quot;) = DateTime.Now.ToString(&quot;yyyyMMdd HH:mm:ss&quot;)&#xA;        Exit For&#xA;    End If&#xA;Next&#xA;&#xA;' ====== Rewrite JSON file (overwrite) ======&#xA;System.IO.File.WriteAllText(jsonPath, jsonArray.ToString(), System.Text.Encoding.UTF8)" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="InvokeCode_4">
+                                <ui:InvokeCode.Arguments>
+                                  <InArgument x:TypeArguments="x:String" x:Key="checkingId">[CHECKING_ID]</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="checkingFilePath">[CHECKING_FILE_PATH]</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="compCode">[COMP_CODE]</InArgument>
+                                </ui:InvokeCode.Arguments>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:InvokeCode>
+                              <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_13">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </Delay>
+                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Checking Alive - Is Openned - N  Finish.....&quot;]">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:LogMessage>
+                            </Sequence>
+                          </uix:NCheckState.IfNotExists>
+                          <uix:NCheckState.Target>
+                            <uix:TargetAnchorable BrowserURL="sales.heungkukfire.co.kr" ContentHash="hf5MI8Oo9UymMjT13rvUjg" DesignTimeRectangle="533, 150, 174, 65" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='설계청약 ' tag='SPAN' /&gt;" Guid="eae0fa82-fc48-4317-9850-3dd725415a37" InformativeScreenshot="4837ed0606066ded009fbe7a34917e6f.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/CL4kJBCfUUi6KoRmutjdkA" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='흥국화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                          </uix:NCheckState.Target>
+                        </uix:NCheckState>
+                      </Sequence>
+                    </uix:NCheckState.IfNotExists>
+                    <uix:NCheckState.Target>
+                      <uix:TargetAnchorable BrowserURL="sales.heungkukfire.co.kr" ContentHash="04scvA8Wmkqbg1N7dPu77Q" DesignTimeRectangle="1085, 892, 451, 63" ElementType="Button" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl tag='BUTTON' type='button' class='btn-base' aaname='로그인' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='로그인' /&gt;" Guid="02895a8a-64a1-4275-9122-352b4ec9e74f" InformativeScreenshot="a7c2d59e29d7a08c0b7de7b5383c3833.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/cKfojKENtkCPraqFd-Q-xA" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='Login' title='흥국화재 영업포탈' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                            <uix:Target DesignTimeRectangle="1280, 907, 60, 32" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='로그인' tag='SPAN' type='' class='' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='로그인' /&gt;" Guid="18e5dbdd-baad-4586-8f4d-399d5cc5cbcd" SearchSteps="FuzzySelector" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NCheckState.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uix:NCheckState>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="520,89.6" sap2010:WorkflowViewState.IdRef="Sequence_28">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </If.Else>
+            </If>
+            <uix:NCheckState DisplayName="check if login" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="521.6,2276" sap2010:WorkflowViewState.IdRef="NCheckState_2" ScopeIdentifier="af05a3f3-e7b5-4a48-96bc-c55e55ea2789" Version="V5">
+              <uix:NCheckState.IfExists>
+                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,1757.6" sap2010:WorkflowViewState.IdRef="Sequence_5">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="Signed in" />
-                  <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="sign in">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                  </WriteLine>
                   <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '아이디'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="SameAsCard" ScopeIdentifier="af05a3f3-e7b5-4a48-96bc-c55e55ea2789" Text="[HKF_UID]" Version="V5">
                     <uix:NTypeInto.Target>
                       <uix:TargetAnchorable BrowserURL="sales.heungkukfire.co.kr" CVScreenId="2ad82912-c866-42a0-9904-b3ea3ba3bb3a" ContentHash="E14J0icZgUyPDLoIj-q3RQ" CvTextArea="1079, 414, 37, 12" CvTextArgument="AWge" CvType="Text" DesignTimeRectangle="1066, 409, 116, 25" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl tag='INPUT' type='text' class='-fdp-text-field__input' placeholder='사번입력' aaname='' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="ad294d94-4970-424e-9107-1033fb5bac39" InformativeScreenshot="20629ca157a8ad0a8793cca5634e64d5.jpg" IsResponsive="True" Reference="K7zpdZK9x0eMiASSRd4URg/5CoQjFPbN0qvY7699P3NvA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='흥국화재 영업포탈' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
@@ -177,16 +443,6 @@
                         </uix:TargetAnchorable.Anchors>
                       </uix:TargetAnchorable>
                     </uix:NTypeInto.Target>
-                    <uix:NTypeInto.VerifyOptions>
-                      <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
-                        <uix:VerifyExecutionTypeIntoOptions.Retry>
-                          <InArgument x:TypeArguments="x:Boolean" />
-                        </uix:VerifyExecutionTypeIntoOptions.Retry>
-                        <uix:VerifyExecutionTypeIntoOptions.Timeout>
-                          <InArgument x:TypeArguments="x:Double" />
-                        </uix:VerifyExecutionTypeIntoOptions.Timeout>
-                      </uix:VerifyExecutionTypeIntoOptions>
-                    </uix:NTypeInto.VerifyOptions>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -205,57 +461,57 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </uix:NClick>
-                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'IMG'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="af05a3f3-e7b5-4a48-96bc-c55e55ea2789" Version="V5">
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'IMG'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="af05a3f3-e7b5-4a48-96bc-c55e55ea2789" Version="V5">
                     <uix:NClick.Target>
-                      <uix:TargetAnchorable BrowserURL="sales.heungkukfire.co.kr" DesignTimeRectangle="598, 709, 58, 82" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='kpd-data' idx='12' parentid='nppfs-keypad-usrPswd' tag='IMG' /&gt;" Guid="8bc964c8-3170-4adf-b0ab-d1f0e09e5943" InformativeScreenshot="f724e4d7227857ec10d67a102aa8944e.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='흥국화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                      <uix:TargetAnchorable BrowserURL="sales.heungkukfire.co.kr" DesignTimeRectangle="627, 511, 58, 82" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='kpd-data' idx='22' parentid='nppfs-keypad-usrPswd' tag='IMG' /&gt;" Guid="0cf83916-a159-4a41-9789-3ea4f46f9378" InformativeScreenshot="f724e4d7227857ec10d67a102aa8944e.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='흥국화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                     </uix:NClick.Target>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </uix:NClick>
-                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'IMG(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NClick_3" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="af05a3f3-e7b5-4a48-96bc-c55e55ea2789" Version="V5">
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'IMG(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_3" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="af05a3f3-e7b5-4a48-96bc-c55e55ea2789" Version="V5">
                     <uix:NClick.Target>
-                      <uix:TargetAnchorable BrowserURL="sales.heungkukfire.co.kr" DesignTimeRectangle="722, 709, 58, 82" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='kpd-data' idx='13' parentid='nppfs-keypad-usrPswd' tag='IMG' /&gt;" Guid="326ae9c1-e65b-41a3-9193-210163135969" InformativeScreenshot="f724e4d7227857ec10d67a102aa8944e.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='흥국화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                      <uix:TargetAnchorable BrowserURL="sales.heungkukfire.co.kr" DesignTimeRectangle="690, 511, 57, 82" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='kpd-data' idx='23' parentid='nppfs-keypad-usrPswd' tag='IMG' /&gt;" Guid="ebbf1b0f-0e4d-46f4-afaf-fa18c49cbb81" InformativeScreenshot="f724e4d7227857ec10d67a102aa8944e.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='흥국화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                     </uix:NClick.Target>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </uix:NClick>
-                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'IMG(2)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NClick_4" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="af05a3f3-e7b5-4a48-96bc-c55e55ea2789" Version="V5">
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'IMG(2)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_4" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="af05a3f3-e7b5-4a48-96bc-c55e55ea2789" Version="V5">
                     <uix:NClick.Target>
-                      <uix:TargetAnchorable BrowserURL="sales.heungkukfire.co.kr" DesignTimeRectangle="785, 709, 57, 82" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='kpd-data' idx='14' parentid='nppfs-keypad-usrPswd' tag='IMG' /&gt;" Guid="df600aea-bce0-4eaa-a488-a182758fe889" InformativeScreenshot="f724e4d7227857ec10d67a102aa8944e.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='흥국화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                      <uix:TargetAnchorable BrowserURL="sales.heungkukfire.co.kr" DesignTimeRectangle="813, 511, 58, 82" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='kpd-data' idx='24' parentid='nppfs-keypad-usrPswd' tag='IMG' /&gt;" Guid="a5733a64-5412-4f77-8774-df4bdac46aae" InformativeScreenshot="f724e4d7227857ec10d67a102aa8944e.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='흥국화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                     </uix:NClick.Target>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </uix:NClick>
-                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'IMG(3)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NClick_5" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="af05a3f3-e7b5-4a48-96bc-c55e55ea2789" Version="V5">
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'IMG(3)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_5" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="af05a3f3-e7b5-4a48-96bc-c55e55ea2789" Version="V5">
                     <uix:NClick.Target>
-                      <uix:TargetAnchorable BrowserURL="sales.heungkukfire.co.kr" DesignTimeRectangle="847, 709, 58, 82" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='kpd-data' idx='15' parentid='nppfs-keypad-usrPswd' tag='IMG' /&gt;" Guid="acc1bf29-3a3b-4e58-8088-6018eff74576" InformativeScreenshot="f724e4d7227857ec10d67a102aa8944e.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='흥국화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                      <uix:TargetAnchorable BrowserURL="sales.heungkukfire.co.kr" DesignTimeRectangle="938, 511, 58, 82" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='kpd-data' idx='25' parentid='nppfs-keypad-usrPswd' tag='IMG' /&gt;" Guid="ba86e1cc-7ab2-4b72-8e0d-46b0a63cae7c" InformativeScreenshot="f724e4d7227857ec10d67a102aa8944e.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='흥국화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                     </uix:NClick.Target>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </uix:NClick>
-                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'IMG(4)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NClick_6" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="af05a3f3-e7b5-4a48-96bc-c55e55ea2789" Version="V5">
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'IMG(4)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_6" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="af05a3f3-e7b5-4a48-96bc-c55e55ea2789" Version="V5">
                     <uix:NClick.Target>
                       <uix:TargetAnchorable BrowserURL="sales.heungkukfire.co.kr" DesignTimeRectangle="722, 624, 58, 82" ElementType="Icon" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='kpd-data' idx='3' parentid='nppfs-keypad-usrPswd' tag='IMG' /&gt;" Guid="066c8175-b169-4407-a1b7-ba574a21fb46" InformativeScreenshot="8049f7805227745fa3c6231a790d6df8.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='흥국화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                     </uix:NClick.Target>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
@@ -372,43 +628,90 @@
                   </Delay>
                   <uix:NCheckState DisplayName="Check App State '인증번호 XMOTP X공인인증서 X 확인 …'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="af05a3f3-e7b5-4a48-96bc-c55e55ea2789" Version="V5">
                     <uix:NCheckState.IfExists>
-                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,612.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="484.8,707.2" sap2010:WorkflowViewState.IdRef="Sequence_3">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'INPUT'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="SameAsCard" ScopeIdentifier="af05a3f3-e7b5-4a48-96bc-c55e55ea2789" Text="[HKF_OTP]" Version="V5">
-                          <uix:NTypeInto.Target>
-                            <uix:TargetAnchorable BrowserURL="sales.heungkukfire.co.kr" ContentHash="9qZN-Ofd3ky0t4_mFrARew" DesignTimeRectangle="732, 546, 473, 35" ElementType="InputBoxPassword" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl parentname='-fdp-modal' tag='INPUT' type='password' /&gt;" Guid="4627df01-09ac-4c3a-9f4c-3e51d2b5ab9e" InformativeScreenshot="c0b919e8b5480a65ef93933a32da34cc.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/1R0svhapZE6qJhn2ODlGoA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='흥국화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-                          </uix:NTypeInto.Target>
-                          <uix:NTypeInto.VerifyOptions>
-                            <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
-                              <uix:VerifyExecutionTypeIntoOptions.Retry>
-                                <InArgument x:TypeArguments="x:Boolean" />
-                              </uix:VerifyExecutionTypeIntoOptions.Retry>
-                              <uix:VerifyExecutionTypeIntoOptions.Timeout>
-                                <InArgument x:TypeArguments="x:Double" />
-                              </uix:VerifyExecutionTypeIntoOptions.Timeout>
-                            </uix:VerifyExecutionTypeIntoOptions>
-                          </uix:NTypeInto.VerifyOptions>
-                        </uix:NTypeInto>
-                        <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_15" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="af05a3f3-e7b5-4a48-96bc-c55e55ea2789" Version="V5">
-                          <uix:NClick.Target>
-                            <uix:TargetAnchorable BrowserURL="sales.heungkukfire.co.kr" ContentHash="X2xfRfB550GlgDFH2XnY2Q" DesignTimeRectangle="594, 687, 750, 50" ElementType="Button" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl class='btn-base' parentname='-fdp-modal' tag='BUTTON' type='button' aaname='확인' matching:class='fuzzy' fuzzylevel:class='0.0' matching:parentname='fuzzy' fuzzylevel:parentname='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='확인' /&gt;" Guid="85143fc8-7872-4f54-8100-2bdbcfe843cb" InformativeScreenshot="881a82e0d0428ad1f5ff9bd8d9abdf03.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/RxfJByx8G0KQwC5iPHL_OQ" ScopeSelectorArgument="&lt;html app='msedge.exe' title='흥국화재 영업포탈' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
-                              <uix:TargetAnchorable.Anchors>
-                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                                  <uix:Target DesignTimeRectangle="954, 698, 30, 25" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='확인' parentname='-fdp-modal' tag='SPAN' type='' class='' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:parentname='fuzzy' fuzzylevel:parentname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='확인' /&gt;" Guid="24de8ecf-cb68-46f8-8012-8c353a6cd0bb" SearchSteps="FuzzySelector" />
-                                </scg:List>
-                              </uix:TargetAnchorable.Anchors>
-                            </uix:TargetAnchorable>
-                          </uix:NClick.Target>
-                        </uix:NClick>
-                        <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="Delay_3" />
+                        <uix:NCheckState DisplayName="Check App State 'INPUT(1)'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,647.2" sap2010:WorkflowViewState.IdRef="NCheckState_8" ScopeIdentifier="af05a3f3-e7b5-4a48-96bc-c55e55ea2789" Version="V5">
+                          <uix:NCheckState.IfExists>
+                            <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,221.6" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'INPUT'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="SameAsCard" ScopeIdentifier="af05a3f3-e7b5-4a48-96bc-c55e55ea2789" Text="[HKF_OTP]" Version="V5">
+                                <uix:NTypeInto.Target>
+                                  <uix:TargetAnchorable BrowserURL="sales.heungkukfire.co.kr" ContentHash="9qZN-Ofd3ky0t4_mFrARew" DesignTimeRectangle="732, 546, 473, 35" ElementType="InputBoxPassword" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl parentname='-fdp-modal' tag='INPUT' type='password' /&gt;" Guid="4627df01-09ac-4c3a-9f4c-3e51d2b5ab9e" InformativeScreenshot="c0b919e8b5480a65ef93933a32da34cc.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/1R0svhapZE6qJhn2ODlGoA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='흥국화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                                </uix:NTypeInto.Target>
+                                <uix:NTypeInto.VerifyOptions>
+                                  <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                                    <uix:VerifyExecutionTypeIntoOptions.Retry>
+                                      <InArgument x:TypeArguments="x:Boolean" />
+                                    </uix:VerifyExecutionTypeIntoOptions.Retry>
+                                    <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                                      <InArgument x:TypeArguments="x:Double" />
+                                    </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                                  </uix:VerifyExecutionTypeIntoOptions>
+                                </uix:NTypeInto.VerifyOptions>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </uix:NTypeInto>
+                              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NClick_15" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="af05a3f3-e7b5-4a48-96bc-c55e55ea2789" Version="V5">
+                                <uix:NClick.Target>
+                                  <uix:TargetAnchorable BrowserURL="sales.heungkukfire.co.kr" ContentHash="X2xfRfB550GlgDFH2XnY2Q" DesignTimeRectangle="594, 687, 750, 50" ElementType="Button" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl class='btn-base' parentname='-fdp-modal' tag='BUTTON' type='button' aaname='확인' matching:class='fuzzy' fuzzylevel:class='0.0' matching:parentname='fuzzy' fuzzylevel:parentname='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='확인' /&gt;" Guid="85143fc8-7872-4f54-8100-2bdbcfe843cb" InformativeScreenshot="881a82e0d0428ad1f5ff9bd8d9abdf03.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/RxfJByx8G0KQwC5iPHL_OQ" ScopeSelectorArgument="&lt;html app='msedge.exe' title='흥국화재 영업포탈' /&gt;" SearchSteps="FuzzySelector" Version="V6">
+                                    <uix:TargetAnchorable.Anchors>
+                                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                        <uix:Target DesignTimeRectangle="954, 698, 30, 25" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='확인' parentname='-fdp-modal' tag='SPAN' type='' class='' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:parentname='fuzzy' fuzzylevel:parentname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='확인' /&gt;" Guid="24de8ecf-cb68-46f8-8012-8c353a6cd0bb" SearchSteps="FuzzySelector" />
+                                      </scg:List>
+                                    </uix:TargetAnchorable.Anchors>
+                                    <uix:TargetAnchorable.WaitForReadyArgument>
+                                      <InArgument x:TypeArguments="uix:NWaitForReady">
+                                        <Literal x:TypeArguments="uix:NWaitForReady" sap2010:WorkflowViewState.IdRef="Literal`1_1" Value="Interactive" />
+                                      </InArgument>
+                                    </uix:TargetAnchorable.WaitForReadyArgument>
+                                  </uix:TargetAnchorable>
+                                </uix:NClick.Target>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </uix:NClick>
+                              <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="Delay_3">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </Delay>
+                            </Sequence>
+                          </uix:NCheckState.IfExists>
+                          <uix:NCheckState.IfNotExists>
+                            <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </Sequence>
+                          </uix:NCheckState.IfNotExists>
+                          <uix:NCheckState.Target>
+                            <uix:TargetAnchorable BrowserURL="sales.heungkukfire.co.kr" ContentHash="KIFKfPkmyEW0muFnfzyzyQ" DesignTimeRectangle="732, 574, 473, 35" ElementType="InputBoxPassword" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl parentname='-fdp-modal' tag='INPUT' type='password' /&gt;" Guid="576775e5-3c83-490c-a69f-9dbfa033808a" InformativeScreenshot="0b17b40f04b6e76f9f5dbc85315d539a.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/p1vSDvduIkO5BfP5aurSlQ" ScopeSelectorArgument="&lt;html app='msedge.exe' title='흥국화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                          </uix:NCheckState.Target>
+                        </uix:NCheckState>
                       </Sequence>
                     </uix:NCheckState.IfExists>
                     <uix:NCheckState.IfNotExists>
-                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="484.8,89.6" sap2010:WorkflowViewState.IdRef="Sequence_4">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -429,10 +732,10 @@
                 </Sequence>
               </uix:NCheckState.IfExists>
               <uix:NCheckState.IfNotExists>
-                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,173.6" sap2010:WorkflowViewState.IdRef="Sequence_6">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
@@ -455,15 +758,137 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </uix:NCheckState>
-            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="520,800.8" sap2010:WorkflowViewState.IdRef="CommentOut_1">
-              <ui:CommentOut.Body>
-                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="484.8,690.4" sap2010:WorkflowViewState.IdRef="Sequence_9">
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="CheckPageLoadingStatus - Invoke Workflow File (Utils\CheckPageLoadingStatus.xaml)" sap:VirtualizedContainerService.HintSize="521.6,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_11" UnSafe="False" WorkflowFileName="Utils\CheckPageLoadingStatus.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InArgument x:TypeArguments="ui:UiElement" x:Key="in_Browser">[browser_instance]</InArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
+            <If Condition="[runType = &quot;CHECK&quot;]" DisplayName="Handle Check login Available" sap:VirtualizedContainerService.HintSize="521.6,913.6" sap2010:WorkflowViewState.IdRef="If_1">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,221.6" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_4">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Delay>
+                  <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ====== Tạo đường dẫn file JSON ======&#xA;Dim jsonPath As String = System.IO.Path.Combine(checkingFilePath, &quot;result_&quot; &amp; checkingId &amp; &quot;.json&quot;)&#xA;&#xA;' ====== Đọc file JSON hiện tại ======&#xA;Dim jsonContent As String = System.IO.File.ReadAllText(jsonPath, System.Text.Encoding.UTF8)&#xA;Dim jsonArray   As Newtonsoft.Json.Linq.JArray = Newtonsoft.Json.Linq.JArray.Parse(jsonContent)&#xA;&#xA;' ====== Tìm theo compCode và Update ======&#xA;For Each item As Newtonsoft.Json.Linq.JObject In jsonArray&#xA;    If item(&quot;compCode&quot;).ToString() = compCode Then&#xA;        item(&quot;isLogined&quot;)   = &quot;Y&quot;&#xA;        item(&quot;processTime&quot;) = DateTime.Now.ToString(&quot;yyyyMMdd HH:mm:ss&quot;)&#xA;        Exit For&#xA;    End If&#xA;Next&#xA;&#xA;' ====== Ghi lại file JSON (ghi đè) ======&#xA;System.IO.File.WriteAllText(jsonPath, jsonArray.ToString(), System.Text.Encoding.UTF8)" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+                    <ui:InvokeCode.Arguments>
+                      <InArgument x:TypeArguments="x:String" x:Key="checkingId">[CHECKING_ID]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="checkingFilePath">[CHECKING_FILE_PATH]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="compCode">[COMP_CODE]</InArgument>
+                    </ui:InvokeCode.Arguments>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:InvokeCode>
+                  <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="Delay_6">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Delay>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,562.4" sap2010:WorkflowViewState.IdRef="Sequence_11">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <uix:NCheckState DisplayName="Check App State '◆   완전판매 모니터링이 아래와 같이 미…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,630.4" sap2010:WorkflowViewState.IdRef="NCheckState_3" ScopeIdentifier="af05a3f3-e7b5-4a48-96bc-c55e55ea2789" Version="V5">
+                  <uix:NCheckState DisplayName="Check App State 'UiPath Browser Automat…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_9" ScopeIdentifier="af05a3f3-e7b5-4a48-96bc-c55e55ea2789" Version="V5">
+                    <uix:NCheckState.IfExists>
+                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Cancel'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_23" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="af05a3f3-e7b5-4a48-96bc-c55e55ea2789" Version="V5">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable BrowserURL="sales.heungkukfire.co.kr" ContentHash="FvTcQJQabUSoCIB38dBNgg" DesignTimeRectangle="480, 118, 70, 35" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='흥국화재 영업포탈 - Microsoft Edge' role='pane' /&gt;&lt;ctrl name='Infobar Container' role='grouping' /&gt;&lt;ctrl name='Cancel' role='push button' /&gt;" Guid="db0359ab-0db0-418f-920e-f91941d52426" InformativeScreenshot="af9820f36adc50b5deb7f88b28fe2518.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/3tYnY7V4LEaeituX2XzOnw" ScopeSelectorArgument="&lt;wnd app='msedge.exe' cls='Chrome_WidgetWin_1' title='흥국화재 영업포탈 and 1 more page - Work - Microsoft​ Edge' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                          </uix:NClick.Target>
+                        </uix:NClick>
+                      </Sequence>
+                    </uix:NCheckState.IfExists>
+                    <uix:NCheckState.IfNotExists>
+                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </Sequence>
+                    </uix:NCheckState.IfNotExists>
+                    <uix:NCheckState.Target>
+                      <uix:TargetAnchorable BrowserURL="sales.heungkukfire.co.kr" ContentHash="vAmFLwPuG0CssID7yp_R2w" DesignTimeRectangle="14, 110, 1909, 50" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='흥국화재 영업포탈 - Microsoft Edge' role='pane' /&gt;&lt;ctrl name='Infobar Container' role='grouping' /&gt;&lt;ctrl role='pane' /&gt;" Guid="b5d36195-47b3-4e60-9d4d-4a674052964a" InformativeScreenshot="67bc3566407f8eaff0faa3d15adcb313.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/Ed2PRqzVVEujg2ialbfwZQ" ScopeSelectorArgument="&lt;wnd app='msedge.exe' cls='Chrome_WidgetWin_1' title='흥국화재 영업포탈 and 1 more page - Work - Microsoft​ Edge' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                    </uix:NCheckState.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uix:NCheckState>
+                  <uix:NCheckState DisplayName="Check App State '저회차 수금율 현황알림 팝업 ※ 필독 공지…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_7" ScopeIdentifier="af05a3f3-e7b5-4a48-96bc-c55e55ea2789" Version="V5">
+                    <uix:NCheckState.IfExists>
+                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'BUTTON(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_22" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="af05a3f3-e7b5-4a48-96bc-c55e55ea2789" Version="V5">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable BrowserURL="sales.heungkukfire.co.kr" ContentHash="GNmQ8-u1_UyiiPVq72x_Jg" DesignTimeRectangle="1648, 78, 62, 62" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl parentname='-fdp-modal' tag='BUTTON' type='button' /&gt;" Guid="c23f7cde-ba8b-4432-aba7-4f03982bc0a6" InformativeScreenshot="46629a67510ba5809754eb179d127675.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/rw6z9i5jhUmuP-3PaH3j5Q" ScopeSelectorArgument="&lt;html app='msedge.exe' title='흥국화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None">
+                              <uix:TargetAnchorable.PointOffset>
+                                <uix:PointOffset Position="BottomRight" X="-25" Y="-18" />
+                              </uix:TargetAnchorable.PointOffset>
+                            </uix:TargetAnchorable>
+                          </uix:NClick.Target>
+                        </uix:NClick>
+                      </Sequence>
+                    </uix:NCheckState.IfExists>
+                    <uix:NCheckState.IfNotExists>
+                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </Sequence>
+                    </uix:NCheckState.IfNotExists>
+                    <uix:NCheckState.Target>
+                      <uix:TargetAnchorable BrowserURL="sales.heungkukfire.co.kr" ContentHash="K3LzM8LF3UCN_X-M70xJFg" DesignTimeRectangle="219, 79, 1500, 975" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='ui-modal-wrap' parentname='-fdp-modal' tag='DIV' style='width: 1200px; height: 780px;' visibleinnertext='저회차 수금율 현황알림 팝업&amp;#xA;※ 필독 공지 (저회차 수금율 확인사항)&amp;#xA;&amp;#xA;□ 장기계약 계속분 초년도(2~13回) 수금율 관리 공지&amp;#xA;&amp;#xA;- 저회차 수금율 관리가 효과적으로 이루어 질 수 있도록 만전을 기해주시기 바랍니다.&amp;#xA;&amp;#xA;· 전사수금율 56.2%   · 지점수금율 51.4%&amp;#xA;&amp;#xA;취급점 수금율 현황&amp;#xA;&amp;#xA;(단위:천원, %)&amp;#xA;&amp;#xA;조직코드&amp;#x9;조직명&amp;#x9;회차&amp;#x9;예상수금액&amp;#xA;(자원)&amp;#x9;총수금액&amp;#xA;(실적)&amp;#x9;수금율&amp;#xA;21884&amp;#x9;여의도GA지점&amp;#x9;2&amp;#x9;69,189&amp;#x9;29,165&amp;#x9;42.2%&amp;#xA;21884&amp;#x9;여의도GA지점&amp;#x9;3&amp;#x9;96,808&amp;#x9;47,981&amp;#x9;49.6%&amp;#xA;21884&amp;#x9;여의도GA지점&amp;#x9;4&amp;#x9;73,414&amp;#x9;31,775&amp;#x9;43.3%&amp;#xA;21884&amp;#x9;여의도GA지점&amp;#x9;5&amp;#x9;75,767&amp;#x9;36,089&amp;#x9;47.6%&amp;#xA;21884&amp;#x9;여의도GA지점&amp;#x9;6&amp;#x9;94,905&amp;#x9;47,250&amp;#x9;49.8%&amp;#xA;21884&amp;#x9;여의도GA지점&amp;#x9;7&amp;#x9;67,384&amp;#x9;31,387&amp;#x9;46.6%&amp;#xA;21884&amp;#x9;여의도GA지점&amp;#x9;8&amp;#x9;59,465&amp;#x9;28,934&amp;#x9;48.7%&amp;#xA;21884&amp;#x9;여의도GA지점&amp;#x9;9&amp;#x9;67,090&amp;#x9;33,194&amp;#x9;49.5%&amp;#xA;21884&amp;#x9;여의도G*' /&gt;" Guid="7cc6786a-fe9a-4d4d-a848-0d61f943a245" InformativeScreenshot="7257ff7766dba42d851635a28164aeb9.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/JsQumGGz0Ue39aKIqDjFfg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='흥국화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None" />
+                    </uix:NCheckState.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uix:NCheckState>
+                  <uix:NCheckState DisplayName="Check App State '◆   완전판매 모니터링이 아래와 같이 미…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_3" ScopeIdentifier="af05a3f3-e7b5-4a48-96bc-c55e55ea2789" Version="V5">
                     <uix:NCheckState.DelayBefore>
                       <InArgument x:TypeArguments="x:Double" />
                     </uix:NCheckState.DelayBefore>
@@ -477,15 +902,9 @@
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '닫기'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_16" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="af05a3f3-e7b5-4a48-96bc-c55e55ea2789" Version="V5">
+                        <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '닫기'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_16" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="af05a3f3-e7b5-4a48-96bc-c55e55ea2789" Version="V5">
                           <uix:NClick.Target>
-                            <uix:TargetAnchorable BrowserURL="sales.heungkukfire.co.kr" ContentHash="PKZDFtUK00OC4y_0UP4DEA" DesignTimeRectangle="1432, 854, 150, 50" ElementType="Button" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl class='btn-base' parentname='-fdp-modal' tag='BUTTON' type='button' aaname='닫기' matching:class='fuzzy' fuzzylevel:class='0.0' matching:parentname='fuzzy' fuzzylevel:parentname='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='닫기' /&gt;" Guid="ef3f151d-6e9c-40ad-b018-cf7accc6c22b" InformativeScreenshot="98ed7e0f969f3f7e57b038d628479ed3.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/qiD6pMtYZEG-3VxzwYm5Jw" ScopeSelectorArgument="&lt;html app='msedge.exe' title='흥국화재 영업포탈' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
-                              <uix:TargetAnchorable.Anchors>
-                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                                  <uix:Target DesignTimeRectangle="1491, 864, 31, 25" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='닫기' parentname='-fdp-modal' tag='SPAN' type='' class='' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:parentname='fuzzy' fuzzylevel:parentname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='닫기' /&gt;" Guid="08995058-3d1a-422c-96d2-e4e73dcaba92" SearchSteps="FuzzySelector" />
-                                </scg:List>
-                              </uix:TargetAnchorable.Anchors>
-                            </uix:TargetAnchorable>
+                            <uix:TargetAnchorable BrowserURL="sales.heungkukfire.co.kr" ContentHash="PPvWZnjm-0OPld0g5ECMpg" DesignTimeRectangle="1647, 107, 64, 62" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='흥국화재 영업포탈' role='document' /&gt;&lt;ctrl idx='22' role='grouping' /&gt;" Guid="a031778a-b7d6-4e2a-a8f8-33b705e29db9" InformativeScreenshot="f21a14154ead24c09f58819866c22774.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/qiD6pMtYZEG-3VxzwYm5Jw" ScopeSelectorArgument="&lt;wnd app='msedge.exe' cls='Chrome_WidgetWin_1' title='흥국화재 영업포탈 - Work - Microsoft​ Edge' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                           </uix:NClick.Target>
                         </uix:NClick>
                       </Sequence>
@@ -506,47 +925,137 @@
                       <OutArgument x:TypeArguments="ui:UiElement" />
                     </uix:NCheckState.OutUiElement>
                     <uix:NCheckState.Target>
-                      <uix:TargetAnchorable BrowserURL="sales.heungkukfire.co.kr" ContentHash="fOFSg5MFUU6jd9fThKyNmA" DesignTimeRectangle="344, 279, 1250, 563" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='ui-modal-cont' parentname='-fdp-modal' tag='DIV' /&gt;" Guid="f53fed2a-6b37-4fdf-b669-fc9ff7d5f576" InformativeScreenshot="f12a014d9882ebe4e315980b63fa80f6.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/Q0eCKg3LekencUkeCr934A" ScopeSelectorArgument="&lt;html app='msedge.exe' title='흥국화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                      <uix:TargetAnchorable BrowserURL="sales.heungkukfire.co.kr" ContentHash="39X3qI6UCEmXhzp6GijI8A" DesignTimeRectangle="219, 170, 1500, 562" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='ui-modal-cont' parentname='-fdp-modal' tag='DIV' /&gt;" Guid="f53fed2a-6b37-4fdf-b669-fc9ff7d5f576" InformativeScreenshot="9733a5fc0a93c9653d7f13286b90a10b.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/Q0eCKg3LekencUkeCr934A" ScopeSelectorArgument="&lt;html app='msedge.exe' title='흥국화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
                     </uix:NCheckState.Target>
                     <uix:NCheckState.Timeout>
                       <InArgument x:TypeArguments="x:Double" />
                     </uix:NCheckState.Timeout>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </uix:NCheckState>
+                  <uix:NCheckState DisplayName="Check App State '완전 판매 모니터링 미완료 경과일 안내'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_4" ScopeIdentifier="af05a3f3-e7b5-4a48-96bc-c55e55ea2789" Version="V5">
+                    <uix:NCheckState.IfExists>
+                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'BUTTON'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_19" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="af05a3f3-e7b5-4a48-96bc-c55e55ea2789" Version="V5">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable BrowserURL="sales.heungkukfire.co.kr" ContentHash="R9lmgDyhZ02dPlYq_MycXw" DesignTimeRectangle="1398, 217, 62, 62" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl parentname='-fdp-modal' tag='BUTTON' type='button' /&gt;" Guid="cedc18d8-f3d5-4ad9-bbf8-5eea9cfd12a2" InformativeScreenshot="425d4c18aa0f9c8b8d9c6401c8deb80e.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/je2Kcde9_EqiV9Mfu_EHyw" ScopeSelectorArgument="&lt;html app='msedge.exe' title='흥국화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                          </uix:NClick.Target>
+                        </uix:NClick>
+                      </Sequence>
+                    </uix:NCheckState.IfExists>
+                    <uix:NCheckState.IfNotExists>
+                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </Sequence>
+                    </uix:NCheckState.IfNotExists>
+                    <uix:NCheckState.Target>
+                      <uix:TargetAnchorable BrowserURL="sales.heungkukfire.co.kr" ContentHash="cOjkSH2ra0-hCeAr3L4xXw" DesignTimeRectangle="469, 217, 1000, 62" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='ui-modal-header' parentname='-fdp-modal' tag='DIV' /&gt;" Guid="659d9a1d-ae42-4715-9220-55568318c17a" InformativeScreenshot="f79e76de0fb37c20410b8779fe5d3df5.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/h0nZ4ai1V0Oe9B7UAy45IQ" ScopeSelectorArgument="&lt;html app='msedge.exe' title='흥국화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                    </uix:NCheckState.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uix:NCheckState>
+                  <uix:NCheckState DisplayName="Check App State '저회차 수금율 현황알림 팝업 ※ 필독 공지…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_6" ScopeIdentifier="af05a3f3-e7b5-4a48-96bc-c55e55ea2789" Version="V5">
+                    <uix:NCheckState.IfExists>
+                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'BUTTON(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_21" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="af05a3f3-e7b5-4a48-96bc-c55e55ea2789" Version="V5">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable BrowserURL="sales.heungkukfire.co.kr" ContentHash="LCCs16oLlEywRGxFOc_LRg" DesignTimeRectangle="1648, 79, 62, 63" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl parentname='-fdp-modal' tag='BUTTON' type='button' /&gt;" Guid="1c342b3f-3e40-4ba6-9cae-8bdd4fa87ff4" InformativeScreenshot="51b07f7be4ac97c9f0c16ca49d999ad4.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/rw6z9i5jhUmuP-3PaH3j5Q" ScopeSelectorArgument="&lt;html app='msedge.exe' title='흥국화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive">
+                              <uix:TargetAnchorable.PointOffset>
+                                <uix:PointOffset Position="BottomRight" X="-24" Y="-15" />
+                              </uix:TargetAnchorable.PointOffset>
+                            </uix:TargetAnchorable>
+                          </uix:NClick.Target>
+                        </uix:NClick>
+                      </Sequence>
+                    </uix:NCheckState.IfExists>
+                    <uix:NCheckState.IfNotExists>
+                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </Sequence>
+                    </uix:NCheckState.IfNotExists>
+                    <uix:NCheckState.Target>
+                      <uix:TargetAnchorable BrowserURL="sales.heungkukfire.co.kr" ContentHash="K3LzM8LF3UCN_X-M70xJFg" DesignTimeRectangle="219, 79, 1500, 975" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='ui-modal-wrap' parentname='-fdp-modal' tag='DIV' style='width: 1200px; height: 780px;' visibleinnertext='저회차 수금율 현황알림 팝업&amp;#xA;※ 필독 공지 (저회차 수금율 확인사항)&amp;#xA;&amp;#xA;□ 장기계약 계속분 초년도(2~13回) 수금율 관리 공지&amp;#xA;&amp;#xA;- 저회차 수금율 관리가 효과적으로 이루어 질 수 있도록 만전을 기해주시기 바랍니다.&amp;#xA;&amp;#xA;· 전사수금율 56.2%   · 지점수금율 51.4%&amp;#xA;&amp;#xA;취급점 수금율 현황&amp;#xA;&amp;#xA;(단위:천원, %)&amp;#xA;&amp;#xA;조직코드&amp;#x9;조직명&amp;#x9;회차&amp;#x9;예상수금액&amp;#xA;(자원)&amp;#x9;총수금액&amp;#xA;(실적)&amp;#x9;수금율&amp;#xA;21884&amp;#x9;여의도GA지점&amp;#x9;2&amp;#x9;69,189&amp;#x9;29,165&amp;#x9;42.2%&amp;#xA;21884&amp;#x9;여의도GA지점&amp;#x9;3&amp;#x9;96,808&amp;#x9;47,981&amp;#x9;49.6%&amp;#xA;21884&amp;#x9;여의도GA지점&amp;#x9;4&amp;#x9;73,414&amp;#x9;31,775&amp;#x9;43.3%&amp;#xA;21884&amp;#x9;여의도GA지점&amp;#x9;5&amp;#x9;75,767&amp;#x9;36,089&amp;#x9;47.6%&amp;#xA;21884&amp;#x9;여의도GA지점&amp;#x9;6&amp;#x9;94,905&amp;#x9;47,250&amp;#x9;49.8%&amp;#xA;21884&amp;#x9;여의도GA지점&amp;#x9;7&amp;#x9;67,384&amp;#x9;31,387&amp;#x9;46.6%&amp;#xA;21884&amp;#x9;여의도GA지점&amp;#x9;8&amp;#x9;59,465&amp;#x9;28,934&amp;#x9;48.7%&amp;#xA;21884&amp;#x9;여의도GA지점&amp;#x9;9&amp;#x9;67,090&amp;#x9;33,194&amp;#x9;49.5%&amp;#xA;21884&amp;#x9;여의도G*' /&gt;" Guid="7cc6786a-fe9a-4d4d-a848-0d61f943a245" InformativeScreenshot="7257ff7766dba42d851635a28164aeb9.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/JsQumGGz0Ue39aKIqDjFfg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='흥국화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None" />
+                    </uix:NCheckState.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uix:NCheckState>
+                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_Process_01 - Invoke Workflow File (Workflows\HeungKukFire\Download\Download_Process_01.xaml)" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Workflows\HeungKukFire\Download\Download_NewContract.xaml">
+                    <ui:InvokeWorkflowFile.Arguments>
+                      <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                    </ui:InvokeWorkflowFile.Arguments>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:InvokeWorkflowFile>
+                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="HKF_NEW_CAR_Search_ExtraData - Invoke Workflow File (Workflows\HeungKukFire\ExtraData\HKF_NEW_CAR_Search_ExtraData.xaml)" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Workflows\HeungKukFire\ExtraData\HKF_NEW_CAR_Search_ExtraData.xaml">
+                    <ui:InvokeWorkflowFile.Arguments>
+                      <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                    </ui:InvokeWorkflowFile.Arguments>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:InvokeWorkflowFile>
+                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="HKF_NEW_GEN_Search_ExtraData - Invoke Workflow File (Workflows\HeungKukFire\ExtraData\HKF_NEW_GEN_Search_ExtraData.xaml)" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Workflows\HeungKukFire\ExtraData\HKF_NEW_GEN_Search_ExtraData.xaml">
+                    <ui:InvokeWorkflowFile.Arguments>
+                      <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                    </ui:InvokeWorkflowFile.Arguments>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:InvokeWorkflowFile>
+                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="HKF_NEW_LTR_Search_ExtraData - Invoke Workflow File (Workflows\HeungKukFire\ExtraData\HKF_NEW_LTR_Search_ExtraData.xaml)" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Workflows\HeungKukFire\ExtraData\HKF_NEW_LTR_Search_ExtraData.xaml">
+                    <ui:InvokeWorkflowFile.Arguments>
+                      <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                    </ui:InvokeWorkflowFile.Arguments>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:InvokeWorkflowFile>
                 </Sequence>
-              </ui:CommentOut.Body>
-            </ui:CommentOut>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_Process_01 - Invoke Workflow File (Workflows\HeungKukFire\Download\Download_Process_01.xaml)" sap:VirtualizedContainerService.HintSize="520,56.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Workflows\HeungKukFire\Download\Download_Process_01.xaml">
-              <ui:InvokeWorkflowFile.Arguments>
-                <scg:Dictionary x:TypeArguments="x:String, Argument" />
-              </ui:InvokeWorkflowFile.Arguments>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </ui:InvokeWorkflowFile>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="HKF_NEW_CAR_Search_ExtraData - Invoke Workflow File (Workflows\HeungKukFire\ExtraData\HKF_NEW_CAR_Search_ExtraData.xaml)" sap:VirtualizedContainerService.HintSize="520,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Workflows\HeungKukFire\ExtraData\HKF_NEW_CAR_Search_ExtraData.xaml">
-              <ui:InvokeWorkflowFile.Arguments>
-                <scg:Dictionary x:TypeArguments="x:String, Argument" />
-              </ui:InvokeWorkflowFile.Arguments>
-            </ui:InvokeWorkflowFile>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="HKF_NEW_GEN_Search_ExtraData - Invoke Workflow File (Workflows\HeungKukFire\ExtraData\HKF_NEW_GEN_Search_ExtraData.xaml)" sap:VirtualizedContainerService.HintSize="520,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Workflows\HeungKukFire\ExtraData\HKF_NEW_GEN_Search_ExtraData.xaml">
-              <ui:InvokeWorkflowFile.Arguments>
-                <scg:Dictionary x:TypeArguments="x:String, Argument" />
-              </ui:InvokeWorkflowFile.Arguments>
-            </ui:InvokeWorkflowFile>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="HKF_NEW_LTR_Search_ExtraData - Invoke Workflow File (Workflows\HeungKukFire\ExtraData\HKF_NEW_LTR_Search_ExtraData.xaml)" sap:VirtualizedContainerService.HintSize="520,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Workflows\HeungKukFire\ExtraData\HKF_NEW_LTR_Search_ExtraData.xaml">
-              <ui:InvokeWorkflowFile.Arguments>
-                <scg:Dictionary x:TypeArguments="x:String, Argument" />
-              </ui:InvokeWorkflowFile.Arguments>
-            </ui:InvokeWorkflowFile>
+              </If.Else>
+            </If>
           </Sequence>
         </ActivityAction>
       </uix:NApplicationCard.Body>

@@ -1,0 +1,480 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="NEW_SSL" this:NEW_SSL.runType="CHECK" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="contractType" Type="InArgument(x:String)" />
+    <x:Property Name="runType" Type="InArgument(x:String)" />
+  </x:Members>
+  <this:NEW_SSL.contractType>
+    <InArgument x:TypeArguments="x:String">
+      <Literal x:TypeArguments="x:String" Value="" />
+    </InArgument>
+  </this:NEW_SSL.contractType>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>NEW_SSL_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>UiPath.Shared.Telemetry</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.Python</x:String>
+      <x:String>UiPath.Python.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Platform.SyncObjects</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>UiPath.Core.Activities.Orchestrator</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+      <x:String>System.Net</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.Python.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.Python</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.GSuite.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>REF_RPA.Core</AssemblyReference>
+      <AssemblyReference>System.Net.Primitives</AssemblyReference>
+      <AssemblyReference>System.Net.HttpListener</AssemblyReference>
+      <AssemblyReference>System.Net.WebProxy</AssemblyReference>
+      <AssemblyReference>System.Net.NameResolution</AssemblyReference>
+      <AssemblyReference>System.Net.WebHeaderCollection</AssemblyReference>
+      <AssemblyReference>System.Net.WebClient</AssemblyReference>
+      <AssemblyReference>System.Net.Requests</AssemblyReference>
+      <AssemblyReference>System.Net.ServicePoint</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="NEW_SSL" sap:VirtualizedContainerService.HintSize="961.6,3510.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Default="SSL" Name="COMP_CODE" />
+      <Variable x:TypeArguments="x:String" Name="in_Username" />
+      <Variable x:TypeArguments="ss:SecureString" Name="in_Password" />
+      <Variable x:TypeArguments="x:String" Name="path">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:String">C:\Users\RPA02\Documents\UiPath\RPA\Python_Script\SSL</Literal>
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="x:String" Name="checking_id">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:String" Value="" />
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="x:String" Name="SSL_LOGIN_STATUS" />
+      <Variable x:TypeArguments="x:String" Default="C:\RPA\CheckAvailableComp" Name="CHECKING_FILE_PATH" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Sequence sap:VirtualizedContainerService.HintSize="961.6,503.2" sap2010:WorkflowViewState.IdRef="Sequence_20">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="SSL_AST_LOGIN" CacheStrategy="None" DisplayName="Get Credential" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="416,175.2" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[in_Password]" Username="[in_Username]" />
+      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="WriteLine_4" Text="[in_Username]" />
+      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="WriteLine_3" Text="[CType(New System.Net.NetworkCredential(String.Empty, in_Password).Password, String)]" />
+    </Sequence>
+    <ui:SetAsset TimeoutMS="{x:Null}" AssetName="SSL_NEW_PATH" DisplayName="Set Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="961.6,227.2" sap2010:WorkflowViewState.IdRef="SetAsset_1" Value="[&quot;empty&quot;]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:SetAsset>
+    <ui:SetAsset TimeoutMS="{x:Null}" AssetName="SSL_LOGIN_STATUS" DisplayName="Set Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="961.6,227.2" sap2010:WorkflowViewState.IdRef="SetAsset_3" Value="[&quot;N&quot;]" />
+    <If Condition="[runType = &quot;CHECK&quot;]" sap:VirtualizedContainerService.HintSize="961.6,454.4" sap2010:WorkflowViewState.IdRef="If_4">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,226.4" sap2010:WorkflowViewState.IdRef="Sequence_17">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="CHECKING_ID" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="416,166.4" sap2010:WorkflowViewState.IdRef="GetRobotAsset_7">
+            <ui:GetRobotAsset.Value>
+              <OutArgument x:TypeArguments="x:String">[checking_id]</OutArgument>
+            </ui:GetRobotAsset.Value>
+          </ui:GetRobotAsset>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_18">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Sequence>
+      </If.Else>
+    </If>
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim files = Directory.GetFiles(&quot;C:\RPA\TempDownload&quot;, in_Prefix &amp; &quot;*&quot;)&#xA;For Each f In files&#xA;    File.Delete(f)&#xA;Next" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="961.6,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_3">
+      <ui:InvokeCode.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Prefix">SSL</InArgument>
+      </ui:InvokeCode.Arguments>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:InvokeCode>
+    <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="961.6,56.8" sap2010:WorkflowViewState.IdRef="Delay_7">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </Delay>
+    <ui:StartProcess WorkingDirectory="{x:Null}" Arguments="[&quot;-Command &quot;&quot;Unblock-File -Path '&quot; &amp; path &amp; &quot;'&quot;&quot;&quot;]" DisplayName="Start Process" FileName="powershell.exe" sap:VirtualizedContainerService.HintSize="961.6,120" sap2010:WorkflowViewState.IdRef="StartProcess_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:StartProcess>
+    <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="961.6,122.4" sap2010:WorkflowViewState.IdRef="Delay_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </Delay>
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="961.6,1579.2" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <TryCatch.Try>
+        <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="960,1300" sap2010:WorkflowViewState.IdRef="Sequence_14">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="926.4,122.4" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[&quot;CHECK &quot; + checking_id]" />
+          <ui:InvokeCode ContinueOnError="{x:Null}" Code="' Convert SecureString to String&#xD;&#xA;Dim bstr As IntPtr = System.Runtime.InteropServices.Marshal.SecureStringToBSTR(in_Password)&#xD;&#xA;Dim plainPassword As String = System.Runtime.InteropServices.Marshal.PtrToStringBSTR(bstr)&#xD;&#xA;System.Runtime.InteropServices.Marshal.ZeroFreeBSTR(bstr)&#xD;&#xA;&#xD;&#xA;' Encode password to base64&#xD;&#xA;Dim passwordBytes = System.Text.Encoding.UTF8.GetBytes(plainPassword)&#xD;&#xA;Dim base64Password = System.Convert.ToBase64String(passwordBytes)&#xD;&#xA;&#xD;&#xA;' Config&#xD;&#xA;Dim scriptPath As String = &quot;C:\Users\RPA02\Documents\UiPath\RPA\Python_Script\SSL&quot;&#xD;&#xA;Dim pythonExe As String = &quot;C:\Users\RPA02\AppData\Local\Programs\Python\Python311\python.exe&quot;&#xD;&#xA;&#xD;&#xA;' Build PowerShell arguments&#xD;&#xA;Dim psArgs As String = &quot;-Command &quot;&quot;Set-Location '&quot; &amp; scriptPath &amp; &quot;'; &amp; '&quot; &amp; pythonExe &amp; &quot;' '.\ssl_handle_login.py' '&quot; &amp; in_Username &amp; &quot;' '&quot; &amp; base64Password &amp; &quot;' '&quot; &amp; in_checkId &amp; &quot;'&quot;&quot;&quot;&#xD;&#xA;&#xD;&#xA;' Run PowerShell visible&#xD;&#xA;Dim psi As New System.Diagnostics.ProcessStartInfo()&#xD;&#xA;psi.FileName = &quot;powershell.exe&quot;&#xD;&#xA;psi.Arguments = psArgs&#xD;&#xA;psi.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal&#xD;&#xA;psi.UseShellExecute = True&#xD;&#xA;&#xD;&#xA;Dim p = System.Diagnostics.Process.Start(psi)&#xD;&#xA;p.WaitForExit()" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="926.4,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+            <ui:InvokeCode.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="in_Username">[in_Username]</InArgument>
+              <InArgument x:TypeArguments="ss:SecureString" x:Key="in_Password">[in_Password]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_checkId">[checking_id]</InArgument>
+            </ui:InvokeCode.Arguments>
+          </ui:InvokeCode>
+          <Delay Duration="00:02:30" sap:VirtualizedContainerService.HintSize="926.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Delay>
+          <If Condition="[runType = &quot;CHECK&quot;]" sap:VirtualizedContainerService.HintSize="926.4,798.4" sap2010:WorkflowViewState.IdRef="If_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="484.8,24.8" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="SSL_LOGIN_STATUS" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="520,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
+                  <ui:GetRobotAsset.Value>
+                    <OutArgument x:TypeArguments="x:String">[SSL_LOGIN_STATUS]</OutArgument>
+                  </ui:GetRobotAsset.Value>
+                </ui:GetRobotAsset>
+                <If Condition="[SSL_LOGIN_STATUS = &quot;Y&quot;]" sap:VirtualizedContainerService.HintSize="520,580.8" sap2010:WorkflowViewState.IdRef="If_3">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If.Then>
+                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,361.6" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_4">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </Delay>
+                      <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ====== Tạo đường dẫn file JSON ======&#xA;Dim jsonPath As String = System.IO.Path.Combine(checkingFilePath, &quot;result_&quot; &amp; checkingId &amp; &quot;.json&quot;)&#xA;&#xA;' ====== Đọc file JSON hiện tại ======&#xA;Dim jsonContent As String = System.IO.File.ReadAllText(jsonPath, System.Text.Encoding.UTF8)&#xA;Dim jsonArray   As Newtonsoft.Json.Linq.JArray = Newtonsoft.Json.Linq.JArray.Parse(jsonContent)&#xA;&#xA;' ====== Tìm theo compCode và Update ======&#xA;For Each item As Newtonsoft.Json.Linq.JObject In jsonArray&#xA;    If item(&quot;compCode&quot;).ToString() = compCode Then&#xA;        item(&quot;isLogined&quot;)   = &quot;Y&quot;&#xA;        item(&quot;processTime&quot;) = DateTime.Now.ToString(&quot;yyyyMMdd HH:mm:ss&quot;)&#xA;        Exit For&#xA;    End If&#xA;Next&#xA;&#xA;' ====== Ghi lại file JSON (ghi đè) ======&#xA;System.IO.File.WriteAllText(jsonPath, jsonArray.ToString(), System.Text.Encoding.UTF8)" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_2">
+                        <ui:InvokeCode.Arguments>
+                          <InArgument x:TypeArguments="x:String" x:Key="checkingId">[CHECKING_ID]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="checkingFilePath">[CHECKING_FILE_PATH]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="compCode">[COMP_CODE]</InArgument>
+                        </ui:InvokeCode.Arguments>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:InvokeCode>
+                      <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="Delay_5">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </Delay>
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Sequence>
+                  </If.Else>
+                </If>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="484.8,644" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If Condition="[contractType = &quot;NEW&quot;]" sap:VirtualizedContainerService.HintSize="451.2,584" sap2010:WorkflowViewState.IdRef="If_5">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If.Then>
+                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,227.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_NewContract - Invoke Workflow File (Workflows\SamsungLifeInsurance\Download\Download_NewContract.xaml)" sap:VirtualizedContainerService.HintSize="416,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Workflows\SamsungLifeInsurance\Download\Download_NewContract.xaml">
+                        <ui:InvokeWorkflowFile.Arguments>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_BrowserUrl">https://ga.samsunglife.com/websquare/websquare.html?ticket=*</InArgument>
+                        </ui:InvokeWorkflowFile.Arguments>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:InvokeWorkflowFile>
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,227.2" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_ExistingContract - Invoke Workflow File (Workflows\SamsungLifeInsurance\Download\Download_ExistingContract.xaml)" sap:VirtualizedContainerService.HintSize="416,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Workflows\SamsungLifeInsurance\Download\Download_ExistingContract.xaml">
+                        <ui:InvokeWorkflowFile.Arguments>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_BrowserUrl">https://ga.samsunglife.com/websquare/websquare.html?ticket=*</InArgument>
+                        </ui:InvokeWorkflowFile.Arguments>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:InvokeWorkflowFile>
+                    </Sequence>
+                  </If.Else>
+                </If>
+              </Sequence>
+            </If.Else>
+          </If>
+        </Sequence>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="960,24.8" sap2010:WorkflowViewState.IdRef="Sequence_15">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;Login Exception &quot; + exception.ToString()]" />
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="451.2,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Login Exception &quot; + exception.ToString()]" />
+              <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="CHECKING_ID" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="GetRobotAsset_5">
+                <ui:GetRobotAsset.Value>
+                  <OutArgument x:TypeArguments="x:String">[checking_id]</OutArgument>
+                </ui:GetRobotAsset.Value>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:GetRobotAsset>
+              <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="Delay_12">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </Delay>
+              <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ====== Tạo đường dẫn file JSON ======&#xA;Dim jsonPath As String = System.IO.Path.Combine(checkingFilePath, &quot;result_&quot; &amp; checkingId &amp; &quot;.json&quot;)&#xA;&#xA;' ====== Đọc file JSON hiện tại ======&#xA;Dim jsonContent As String = System.IO.File.ReadAllText(jsonPath, System.Text.Encoding.UTF8)&#xA;Dim jsonArray   As Newtonsoft.Json.Linq.JArray = Newtonsoft.Json.Linq.JArray.Parse(jsonContent)&#xA;&#xA;' ====== Tìm theo compCode và Update ======&#xA;For Each item As Newtonsoft.Json.Linq.JObject In jsonArray&#xA;    If item(&quot;compCode&quot;).ToString() = compCode Then&#xA;        item(&quot;isLogined&quot;)   = &quot;N&quot;&#xA;        item(&quot;processTime&quot;) = DateTime.Now.ToString(&quot;yyyyMMdd HH:mm:ss&quot;)&#xA;        Exit For&#xA;    End If&#xA;Next&#xA;&#xA;' ====== Ghi lại file JSON (ghi đè) ======&#xA;System.IO.File.WriteAllText(jsonPath, jsonArray.ToString(), System.Text.Encoding.UTF8)" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="451.2,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_5">
+                <ui:InvokeCode.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="checkingId">[CHECKING_ID]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="checkingFilePath">[CHECKING_FILE_PATH]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="compCode">[COMP_CODE]</InArgument>
+                </ui:InvokeCode.Arguments>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:InvokeCode>
+              <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="Delay_13">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </Delay>
+              <Throw Exception="[exception]" sap:VirtualizedContainerService.HintSize="451.2,113.6" sap2010:WorkflowViewState.IdRef="Throw_1" />
+            </Sequence>
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+      <TryCatch.Finally>
+        <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="960,89.6" sap2010:WorkflowViewState.IdRef="Sequence_16">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Sequence>
+      </TryCatch.Finally>
+    </TryCatch>
+  </Sequence>
+</Activity>

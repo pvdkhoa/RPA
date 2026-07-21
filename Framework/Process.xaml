@@ -4,7 +4,6 @@
     <x:Property Name="io_LastRunType" Type="InArgument(x:String)" />
     <x:Property Name="io_LastContractType" Type="InArgument(x:String)" />
     <x:Property Name="io_LastCompCode" Type="InArgument(x:String)" />
-    <x:Property Name="io_LastScreenshotPath" Type="InArgument(x:String)" />
     <x:Property Name="io_LastException" Type="InArgument(s:Exception)" />
     <x:Property Name="in_StartTime" Type="InArgument(s:DateTime)" />
     <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="in_TransactionItem" Type="InArgument(sd:DataRow)" />
@@ -105,7 +104,7 @@
       <AssemblyReference>System.Memory.Data</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="912.4000000000001,1746.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="803.6,2154.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="isAll" />
       <Variable x:TypeArguments="x:String" Name="contractType" />
@@ -118,7 +117,7 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Assign DisplayName="Get comp" sap:VirtualizedContainerService.HintSize="537.6,56.8" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <Assign DisplayName="Get comp" sap:VirtualizedContainerService.HintSize="521.6,56.8" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[comp]</OutArgument>
       </Assign.To>
@@ -132,7 +131,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <Assign DisplayName="Get Contract type" sap:VirtualizedContainerService.HintSize="537.6,56.8" sap2010:WorkflowViewState.IdRef="Assign_3">
+    <Assign DisplayName="Get Contract type" sap:VirtualizedContainerService.HintSize="521.6,56.8" sap2010:WorkflowViewState.IdRef="Assign_3">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[contractType]</OutArgument>
       </Assign.To>
@@ -146,7 +145,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <Assign DisplayName="Get isALL" sap:VirtualizedContainerService.HintSize="537.6,56.8" sap2010:WorkflowViewState.IdRef="Assign_4">
+    <Assign DisplayName="Get isALL" sap:VirtualizedContainerService.HintSize="521.6,56.8" sap2010:WorkflowViewState.IdRef="Assign_4">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[IsAll]</OutArgument>
       </Assign.To>
@@ -160,7 +159,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <Assign DisplayName="Get run type" sap:VirtualizedContainerService.HintSize="537.6,56.8" sap2010:WorkflowViewState.IdRef="Assign_2">
+    <Assign DisplayName="Get run type" sap:VirtualizedContainerService.HintSize="521.6,56.8" sap2010:WorkflowViewState.IdRef="Assign_2">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[runType]</OutArgument>
       </Assign.To>
@@ -174,7 +173,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <ui:LogMessage DisplayName="Log Message Process Start" sap:VirtualizedContainerService.HintSize="537.6,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;===== Started Process : Company Code : &quot; + comp + &quot; --- Type : &quot; + runType  + &quot;  ----Contract : &quot; + contractType + &quot; =====&quot;]">
+    <ui:LogMessage DisplayName="Log Message Process Start" sap:VirtualizedContainerService.HintSize="521.6,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;===== Started Process : Company Code : &quot; + comp + &quot; --- Type : &quot; + runType  + &quot;  ----Contract : &quot; + contractType + &quot; =====&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -182,7 +181,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <If Condition="[runType.Trim.ToUpper = &quot;DOWNLOAD&quot; OR runType.Trim.ToUpper = &quot;CHECK&quot;]" sap:VirtualizedContainerService.HintSize="537.6,1244" sap2010:WorkflowViewState.IdRef="If_1">
+    <If Condition="[runType.Trim.ToUpper = &quot;CHECK&quot;]" sap:VirtualizedContainerService.HintSize="521.6,1652" sap2010:WorkflowViewState.IdRef="If_3">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -190,69 +189,142 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="536,227.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="520,227.2" sap2010:WorkflowViewState.IdRef="Sequence_6">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_Main - Invoke Workflow File (Process\Download_Main.xaml)" sap:VirtualizedContainerService.HintSize="502.4,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Process\Download_Main.xaml">
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Check_Available_Main - Invoke Workflow File (Process\Check_Available_Main.xaml)" sap:VirtualizedContainerService.HintSize="486.4,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Process\Check_Available_Main.xaml">
             <ui:InvokeWorkflowFile.Arguments>
-              <InArgument x:TypeArguments="x:String" x:Key="in_CompCode">[comp]</InArgument>
-              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_ContractType">[contractType]</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_IsAll">[isAll]</InArgument>
-              <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_RunType">[runType]</InArgument>
-              <InOutArgument x:TypeArguments="s:Exception" x:Key="io_LastException">[io_LastException]</InOutArgument>
-              <InOutArgument x:TypeArguments="x:String" x:Key="io_LastScreenshotPath">[io_LastScreenshotPath]</InOutArgument>
-              <InOutArgument x:TypeArguments="x:String" x:Key="io_LastCompCode">[io_LastCompCode]</InOutArgument>
-              <InOutArgument x:TypeArguments="x:String" x:Key="io_LastContractType">[io_LastContractType]</InOutArgument>
               <InOutArgument x:TypeArguments="x:String" x:Key="io_LastRunType">[io_LastRunType]</InOutArgument>
+              <InOutArgument x:TypeArguments="x:String" x:Key="io_LastContractType">[io_LastContractType]</InOutArgument>
+              <InOutArgument x:TypeArguments="x:String" x:Key="io_LastCompCode">[io_LastCompCode]</InOutArgument>
+              <InOutArgument x:TypeArguments="s:Exception" x:Key="io_LastException">[io_LastException]</InOutArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_RunType">[runType]</InArgument>
+              <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_IsAll">[isAll]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_ContractType">[contractType]</InArgument>
+              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_CompCode">[comp]</InArgument>
             </ui:InvokeWorkflowFile.Arguments>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
           </ui:InvokeWorkflowFile>
         </Sequence>
       </If.Then>
       <If.Else>
-        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="536,887.2" sap2010:WorkflowViewState.IdRef="Sequence_3">
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="520,1295.2" sap2010:WorkflowViewState.IdRef="Sequence_7">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="502.4,122.4" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[(Not (io_LastException IsNot Nothing AndAlso in_TransactionItem(&quot;RunType&quot;).ToString.Trim.ToUpper = &quot;UPLOAD&quot;)).ToString()]" />
-          <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="502.4,122.4" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[&quot;check &quot; &amp; If(io_LastException Is Nothing, &quot;NOTHING&quot;, io_LastException.ToString())]" />
-          <If Condition="[Not (in_HasDownloadError = &quot;True&quot;)]" sap:VirtualizedContainerService.HintSize="502.4,582.4" sap2010:WorkflowViewState.IdRef="If_2">
+          <If Condition="[runType.Trim.ToUpper = &quot;DOWNLOAD&quot;]" sap:VirtualizedContainerService.HintSize="486.4,1235.2" sap2010:WorkflowViewState.IdRef="If_1">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="500.8,227.2" sap2010:WorkflowViewState.IdRef="Sequence_4">
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="484.8,227.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Upload_Main - Invoke Workflow File (Process\Upload_Main.xaml)" sap:VirtualizedContainerService.HintSize="467.2,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Process\Upload_Main.xaml">
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_Main - Invoke Workflow File (Process\Download_Main.xaml)" sap:VirtualizedContainerService.HintSize="451.2,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Process\Download_Main.xaml">
                   <ui:InvokeWorkflowFile.Arguments>
                     <InArgument x:TypeArguments="x:String" x:Key="in_CompCode">[comp]</InArgument>
+                    <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
                     <InArgument x:TypeArguments="x:String" x:Key="in_ContractType">[contractType]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_IsAll">[isAll]</InArgument>
                     <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_RunType">[runType]</InArgument>
                     <InOutArgument x:TypeArguments="s:Exception" x:Key="io_LastException">[io_LastException]</InOutArgument>
-                    <InOutArgument x:TypeArguments="x:String" x:Key="io_LastScreenshotPath">[io_LastScreenshotPath]</InOutArgument>
                     <InOutArgument x:TypeArguments="x:String" x:Key="io_LastCompCode">[io_LastCompCode]</InOutArgument>
                     <InOutArgument x:TypeArguments="x:String" x:Key="io_LastContractType">[io_LastContractType]</InOutArgument>
                     <InOutArgument x:TypeArguments="x:String" x:Key="io_LastRunType">[io_LastRunType]</InOutArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="in_RunType">[runType]</InArgument>
                   </ui:InvokeWorkflowFile.Arguments>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
                 </ui:InvokeWorkflowFile>
               </Sequence>
             </If.Then>
             <If.Else>
-              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="500.8,225.6" sap2010:WorkflowViewState.IdRef="Sequence_5">
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="484.8,878.4" sap2010:WorkflowViewState.IdRef="Sequence_3">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_3" Message="[&quot;Skipping Upload due to Download error&quot;]" />
+                <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[(Not (io_LastException IsNot Nothing AndAlso in_TransactionItem(&quot;RunType&quot;).ToString.Trim.ToUpper = &quot;UPLOAD&quot;)).ToString()]">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </WriteLine>
+                <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[&quot;check &quot; &amp; If(io_LastException Is Nothing, &quot;NOTHING&quot;, io_LastException.ToString())]">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </WriteLine>
+                <If Condition="[Not (in_HasDownloadError = &quot;True&quot;)]" sap:VirtualizedContainerService.HintSize="451.2,704.8" sap2010:WorkflowViewState.IdRef="If_2">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If.Then>
+                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,227.2" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Upload_Main - Invoke Workflow File (Process\Upload_Main.xaml)" sap:VirtualizedContainerService.HintSize="416,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Process\Upload_Main.xaml">
+                        <ui:InvokeWorkflowFile.Arguments>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_CompCode">[comp]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_ContractType">[contractType]</InArgument>
+                          <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
+                          <InOutArgument x:TypeArguments="s:Exception" x:Key="io_LastException">[io_LastException]</InOutArgument>
+                          <InOutArgument x:TypeArguments="x:String" x:Key="io_LastCompCode">[io_LastCompCode]</InOutArgument>
+                          <InOutArgument x:TypeArguments="x:String" x:Key="io_LastContractType">[io_LastContractType]</InOutArgument>
+                          <InOutArgument x:TypeArguments="x:String" x:Key="io_LastRunType">[io_LastRunType]</InOutArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_RunType">[runType]</InArgument>
+                        </ui:InvokeWorkflowFile.Arguments>
+                      </ui:InvokeWorkflowFile>
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,348" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_3" Message="[&quot;Skipping Upload due to Download error&quot;]" />
+                      <Throw Exception="[io_LastException]" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="Throw_1" />
+                    </Sequence>
+                  </If.Else>
+                </If>
               </Sequence>
             </If.Else>
           </If>

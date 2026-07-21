@@ -1,3 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Activity mc:Ignorable="sap sap2010" x:Class="Login" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="runType" Type="InArgument(x:String)" />
@@ -48,6 +49,7 @@
       <x:String>System.Linq.Expressions</x:String>
       <x:String>UiPath.Python</x:String>
       <x:String>UiPath.Python.Activities</x:String>
+      <x:String>UiPath.Core.Activities.Orchestrator</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -103,45 +105,228 @@
       <AssemblyReference>UiPath.Python</AssemblyReference>
       <AssemblyReference>UiPath.Python.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>REF_RPA.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Login" sap:VirtualizedContainerService.HintSize="832.4000000000001,2604.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Login" sap:VirtualizedContainerService.HintSize="835.6,5860.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="DBG_UID" />
       <Variable x:TypeArguments="ss:SecureString" Name="DBG_PW" />
       <Variable x:TypeArguments="x:String" Name="DBG_URL" />
       <Variable x:TypeArguments="x:String" Name="DBG_OTP" />
+      <Variable x:TypeArguments="ui:UiElement" Name="browser_instance" />
+      <Variable x:TypeArguments="x:String" Name="CHECKING_ID" />
+      <Variable x:TypeArguments="x:String" Default="C:\RPA\CheckAvailableComp" Name="CHECKING_FILE_PATH" />
+      <Variable x:TypeArguments="x:String" Default="DBG" Name="COMP_CODE" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="DBG_AST_OTP" CacheStrategy="None" DisplayName="Get Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="520,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="DBG_AST_OTP" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="521.6,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
       <ui:GetRobotAsset.Value>
         <OutArgument x:TypeArguments="x:String">[DBG_OTP]</OutArgument>
       </ui:GetRobotAsset.Value>
     </ui:GetRobotAsset>
-    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="DBG_AST_URL" CacheStrategy="None" DisplayName="Get Asset" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="520,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="DBG_AST_URL" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="521.6,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
       <ui:GetRobotAsset.Value>
         <OutArgument x:TypeArguments="x:String">[DBG_URL]</OutArgument>
       </ui:GetRobotAsset.Value>
     </ui:GetRobotAsset>
-    <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="DBG_AST_LOGIN" CacheStrategy="None" DisplayName="Get Credential" FolderPath="InsuranceImportData" sap:VirtualizedContainerService.HintSize="520,175.2" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[DBG_PW]" Username="[DBG_UID]" />
-    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" DisplayName="Chrome DB손해보험통합로그인" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="520,2056" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="ae83b98e-9dea-4224-8dd6-bce287761e2d" Version="V2" WindowResize="Maximize">
+    <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="DBG_AST_LOGIN" CacheStrategy="None" DisplayName="Get Credential" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="521.6,175.2" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[DBG_PW]" Username="[DBG_UID]" />
+    <ui:SetAsset TimeoutMS="{x:Null}" AssetName="DBG_NEW_LTR_PATH" DisplayName="Clear DBG LTR Path" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="521.6,227.2" sap2010:WorkflowViewState.IdRef="SetAsset_1" Value="[&quot;empty&quot;]" />
+    <ui:SetAsset TimeoutMS="{x:Null}" AssetName="DBG_NEW_GEN_PATH" DisplayName="Clear DBG GEN Path" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="521.6,227.2" sap2010:WorkflowViewState.IdRef="SetAsset_2" Value="[&quot;empty&quot;]" />
+    <ui:SetAsset TimeoutMS="{x:Null}" AssetName="DBG_NEW_CAR_PATH" DisplayName="Clear DBG CAR Path" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="521.6,227.2" sap2010:WorkflowViewState.IdRef="SetAsset_3" Value="[&quot;empty&quot;]" />
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim files = Directory.GetFiles(&quot;C:\RPA\TempDownload&quot;, in_Prefix &amp; &quot;*&quot;)&#xA;For Each f In files&#xA;    File.Delete(f)&#xA;Next" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="521.6,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_2">
+      <ui:InvokeCode.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Prefix">DBG</InArgument>
+      </ui:InvokeCode.Arguments>
+    </ui:InvokeCode>
+    <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="521.6,56.8" sap2010:WorkflowViewState.IdRef="Delay_7">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </Delay>
+    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" DisplayName="Chrome DB손해보험통합로그인" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="521.6,4376.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OutUiElement="[browser_instance]" ScopeGuid="ae83b98e-9dea-4224-8dd6-bce287761e2d" Version="V2" WindowResize="Maximize">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="518.4,1862.4" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="520,4183.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="484.8,122.4" sap2010:WorkflowViewState.IdRef="Delay_1" />
-            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '사원번호'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="484.8,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="SameAsCard" ScopeIdentifier="ae83b98e-9dea-4224-8dd6-bce287761e2d" Text="[DBG_UID]" Version="V5">
+            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_1" />
+            <If Condition="[runType = &quot;CHECK&quot;]" DisplayName="Check Website Open Available" sap:VirtualizedContainerService.HintSize="486.4,1984.8" sap2010:WorkflowViewState.IdRef="If_4">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="484.8,1756.8" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="CHECKING_ID" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="451.2,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_5">
+                    <ui:GetRobotAsset.Value>
+                      <OutArgument x:TypeArguments="x:String">[CHECKING_ID]</OutArgument>
+                    </ui:GetRobotAsset.Value>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:GetRobotAsset>
+                  <uix:NCheckState DisplayName="Check App State '사원번호'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,1521.6" sap2010:WorkflowViewState.IdRef="NCheckState_4" ScopeIdentifier="ae83b98e-9dea-4224-8dd6-bce287761e2d" Version="V5">
+                    <uix:NCheckState.IfExists>
+                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,710.4" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Checking Alive - Is Openned - Y&quot;]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:LogMessage>
+                        <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_12">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Delay>
+                        <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ====== Create JSON file path ======&#xA;Dim jsonPath As String = System.IO.Path.Combine(checkingFilePath, &quot;result_&quot; &amp; checkingId &amp; &quot;.json&quot;)&#xA;&#xA;' ====== Read current JSON file ======&#xA;Dim jsonContent As String = System.IO.File.ReadAllText(jsonPath, System.Text.Encoding.UTF8)&#xA;Dim jsonArray   As Newtonsoft.Json.Linq.JArray = Newtonsoft.Json.Linq.JArray.Parse(jsonContent)&#xA;&#xA;' ====== Find by compCode and update ======&#xA;For Each item As Newtonsoft.Json.Linq.JObject In jsonArray&#xA;    If item(&quot;compCode&quot;).ToString() = compCode Then&#xA;        item(&quot;isOpenned&quot;)   = &quot;Y&quot;&#xA;        item(&quot;processTime&quot;) = DateTime.Now.ToString(&quot;yyyyMMdd HH:mm:ss&quot;)&#xA;        Exit For&#xA;    End If&#xA;Next&#xA;&#xA;' ====== Rewrite JSON file (overwrite) ======&#xA;System.IO.File.WriteAllText(jsonPath, jsonArray.ToString(), System.Text.Encoding.UTF8)" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_3">
+                          <ui:InvokeCode.Arguments>
+                            <InArgument x:TypeArguments="x:String" x:Key="checkingId">[CHECKING_ID]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="checkingFilePath">[CHECKING_FILE_PATH]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="compCode">[COMP_CODE]</InArgument>
+                          </ui:InvokeCode.Arguments>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:InvokeCode>
+                        <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_13">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Delay>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot; Checking Alive - Is Openned - Y Finish.....&quot;]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:LogMessage>
+                      </Sequence>
+                    </uix:NCheckState.IfExists>
+                    <uix:NCheckState.IfNotExists>
+                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,475.2" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;Checking Alive - Is Openned - N&quot;]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:LogMessage>
+                        <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_14">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Delay>
+                        <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ====== Create JSON file path ======&#xA;Dim jsonPath As String = System.IO.Path.Combine(checkingFilePath, &quot;result_&quot; &amp; checkingId &amp; &quot;.json&quot;)&#xA;&#xA;' ====== Read current JSON file ======&#xA;Dim jsonContent As String = System.IO.File.ReadAllText(jsonPath, System.Text.Encoding.UTF8)&#xA;Dim jsonArray   As Newtonsoft.Json.Linq.JArray = Newtonsoft.Json.Linq.JArray.Parse(jsonContent)&#xA;&#xA;' ====== Find by compCode and update ======&#xA;For Each item As Newtonsoft.Json.Linq.JObject In jsonArray&#xA;    If item(&quot;compCode&quot;).ToString() = compCode Then&#xA;        item(&quot;isOpenned&quot;)   = &quot;N&quot;&#xA;        item(&quot;processTime&quot;) = DateTime.Now.ToString(&quot;yyyyMMdd HH:mm:ss&quot;)&#xA;        Exit For&#xA;    End If&#xA;Next&#xA;&#xA;' ====== Rewrite JSON file (overwrite) ======&#xA;System.IO.File.WriteAllText(jsonPath, jsonArray.ToString(), System.Text.Encoding.UTF8)" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_4">
+                          <ui:InvokeCode.Arguments>
+                            <InArgument x:TypeArguments="x:String" x:Key="checkingId">[CHECKING_ID]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="checkingFilePath">[CHECKING_FILE_PATH]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="compCode">[COMP_CODE]</InArgument>
+                          </ui:InvokeCode.Arguments>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:InvokeCode>
+                        <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_15">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Delay>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[&quot;Checking Alive - Is Openned - N  Finish.....&quot;]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:LogMessage>
+                      </Sequence>
+                    </uix:NCheckState.IfNotExists>
+                    <uix:NCheckState.Target>
+                      <uix:TargetAnchorable BrowserURL="mdbins.com/chrome.html" ContentHash="H9UjzEwVakmSiv43lxAzmg" DesignTimeRectangle="534, 756, 325, 50" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='username_tmp' tag='INPUT' type='text' class='' aaname='' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="da8d0f69-692f-48d2-9817-a5445b5a8775" InformativeScreenshot="4a146d8c1b6327e59967f548d8d98d1c.jpg" IsResponsive="True" Reference="5HjwgH8OmEa1VO6GnukQ2g/2EAXZuO1M0GHNISjJj1iZw" ScopeSelectorArgument="&lt;html app='chrome.exe' htmlwindowname='DINLE_EP_PORTAL' title='DB손해보험::통합로그인' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                            <uix:Target DesignTimeRectangle="409, 768, 73, 25" ElementType="Text" FuzzySelectorArgument="&lt;webctrl tag='LABEL' type='' class='' matching:class='fuzzy' fuzzylevel:class='0.0' aaname='사원번호' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='사원번호' /&gt;" Guid="b6103a49-23c7-4545-b76f-c6f1a3889c32" SearchSteps="FuzzySelector" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NCheckState.Target>
+                  </uix:NCheckState>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="484.8,89.6" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </If.Else>
+            </If>
+            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_8" />
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '사원번호'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="SameAsCard" ScopeIdentifier="ae83b98e-9dea-4224-8dd6-bce287761e2d" Text="[DBG_UID]" Version="V5">
               <uix:NTypeInto.Target>
                 <uix:TargetAnchorable BrowserURL="mdbins.com/chrome.html" CVScreenId="e7208cb4-a63f-45bc-82d7-c72c7eda00da" ContentHash="lE5_DAjItUmRb2mpuTWXbA" CvTextArea="531, 769, 93, 21" CvTextArgument="34008722" CvType="Text" DesignTimeRectangle="534, 756, 325, 50" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='username_tmp' tag='INPUT' type='text' class='' aaname='' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="e27b1057-54e1-4872-9f83-0076d2638d61" InformativeScreenshot="de7b807e08874705b2f33c333d180b0e.jpg" IsResponsive="True" Reference="LSzlVZV4cUeY2_6KywiRkw/P8nGq_8mGEmDfv3Qk_SnhQ" ScopeSelectorArgument="&lt;html app='chrome.exe' htmlwindowname='DINLE_EP_PORTAL' title='DB손해보험::통합로그인' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
                   <uix:TargetAnchorable.Anchors>
@@ -162,7 +347,7 @@
                 </uix:VerifyExecutionTypeIntoOptions>
               </uix:NTypeInto.VerifyOptions>
             </uix:NTypeInto>
-            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '비밀번호'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="484.8,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="SameAsCard" ScopeIdentifier="ae83b98e-9dea-4224-8dd6-bce287761e2d" SecureText="[DBG_PW]" Version="V5">
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '비밀번호'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="SameAsCard" ScopeIdentifier="ae83b98e-9dea-4224-8dd6-bce287761e2d" SecureText="[DBG_PW]" Version="V5">
               <uix:NTypeInto.Target>
                 <uix:TargetAnchorable BrowserURL="mdbins.com/chrome.html" ContentHash="gMCRhy13ukO9qxr39kH42g" DesignTimeRectangle="534, 810, 325, 50" ElementType="InputBoxPassword" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='password' tag='INPUT' type='password' class='' aaname='비밀번호' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="890f918e-cfeb-4858-8961-8ae8352d7079" InformativeScreenshot="e30ca3dee4f2d542fffac3a29bbbbc9c.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/kBnhP3ylmUCquM1baq34eA" ScopeSelectorArgument="&lt;html app='chrome.exe' htmlwindowname='DINLE_EP_PORTAL' title='DB손해보험::통합로그인' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
                   <uix:TargetAnchorable.Anchors>
@@ -183,7 +368,7 @@
                 </uix:VerifyExecutionTypeIntoOptions>
               </uix:NTypeInto.VerifyOptions>
             </uix:NTypeInto>
-            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '생년월일'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="484.8,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_3" InteractionMode="SameAsCard" ScopeIdentifier="ae83b98e-9dea-4224-8dd6-bce287761e2d" Text="[DBG_OTP]" Version="V5">
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '생년월일'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_3" InteractionMode="SameAsCard" ScopeIdentifier="ae83b98e-9dea-4224-8dd6-bce287761e2d" Text="[DBG_OTP]" Version="V5">
               <uix:NTypeInto.Target>
                 <uix:TargetAnchorable BrowserURL="mdbins.com/chrome.html" ContentHash="iqu1xbdFrEmJ9UGCQzUw6w" DesignTimeRectangle="534, 836, 325, 50" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='certno' tag='INPUT' type='text' class='' aaname='생년월일' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="721230b5-14da-4101-9282-16c806990087" InformativeScreenshot="e419388fda813bb3c0e87ef9cf07fa80.jpg" IsResponsive="True" Reference="LSzlVZV4cUeY2_6KywiRkw/mqjP0x0FBE2_9zjO3RUvGw" ScopeSelectorArgument="&lt;html app='chrome.exe' htmlwindowname='DINLE_EP_PORTAL' title='DB손해보험::통합로그인' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
                   <uix:TargetAnchorable.Anchors>
@@ -204,34 +389,67 @@
                 </uix:VerifyExecutionTypeIntoOptions>
               </uix:NTypeInto.VerifyOptions>
             </uix:NTypeInto>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '로그인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="484.8,193.6" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="ae83b98e-9dea-4224-8dd6-bce287761e2d" Version="V5">
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '로그인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="ae83b98e-9dea-4224-8dd6-bce287761e2d" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="mdbins.com/chrome.html" CVScreenId="239e30d5-a103-4338-92fb-f58c839d51df" ContentHash="myzs7hvinES2Xo5dnrZN0g" CvElementArea="864, 726, 193, 108" CvTextArea="921, 765, 77, 28" CvTextArgument="בج9" CvType="Button" DesignTimeRectangle="867, 729, 188, 103" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl parentid='loginf' tag='A' /&gt;" Guid="c7086450-2d64-4ca6-9c95-ad71d133bd77" InformativeScreenshot="57983ebbcc0477b63d34aac3fe1f7cac.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/YBrgleXcREicSzCKTJUG0g" ScopeSelectorArgument="&lt;html app='chrome.exe' htmlwindowname='DINLE_EP_PORTAL' title='DB손해보험::통합로그인' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
-            <Delay Duration="00:01:00" sap:VirtualizedContainerService.HintSize="484.8,122.4" sap2010:WorkflowViewState.IdRef="Delay_2" />
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_Process_01 - Invoke Workflow File (Workflows\DBInsurance\Download\Download_Process_01.xaml)" sap:VirtualizedContainerService.HintSize="484.8,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Workflows\DBInsurance\Download\Download_Process.xaml">
-              <ui:InvokeWorkflowFile.Arguments>
-                <scg:Dictionary x:TypeArguments="x:String, Argument" />
-              </ui:InvokeWorkflowFile.Arguments>
-            </ui:InvokeWorkflowFile>
-            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="484.8,122.4" sap2010:WorkflowViewState.IdRef="Delay_3" />
-            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="484.8,328.8" sap2010:WorkflowViewState.IdRef="CommentOut_1">
-              <ui:CommentOut.Body>
-                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="449.6,227.2" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <Delay Duration="00:01:00" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_2" />
+            <If Condition="[runType = &quot;CHECK&quot;]" DisplayName="Handle Check Login Available" sap:VirtualizedContainerService.HintSize="486.4,727.2" sap2010:WorkflowViewState.IdRef="If_1">
+              <If.Then>
+                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,361.6" sap2010:WorkflowViewState.IdRef="Sequence_4">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="DBG_CAR_Search_ExtraData - Invoke Workflow File (Workflows\DBInsurance\ExtraData\DBG_CAR_Search_ExtraData.xaml)" sap:VirtualizedContainerService.HintSize="416,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Workflows\DBInsurance\ExtraData\DBG_CAR_Search_ExtraData.xaml">
+                  <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_4">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Delay>
+                  <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ====== Create JSON file path ======&#xA;Dim jsonPath As String = System.IO.Path.Combine(checkingFilePath, &quot;result_&quot; &amp; checkingId &amp; &quot;.json&quot;)&#xA;&#xA;' ====== Read current JSON file ======&#xA;Dim jsonContent As String = System.IO.File.ReadAllText(jsonPath, System.Text.Encoding.UTF8)&#xA;Dim jsonArray   As Newtonsoft.Json.Linq.JArray = Newtonsoft.Json.Linq.JArray.Parse(jsonContent)&#xA;&#xA;' ====== Find by compCode and update ======&#xA;For Each item As Newtonsoft.Json.Linq.JObject In jsonArray&#xA;    If item(&quot;compCode&quot;).ToString() = compCode Then&#xA;        item(&quot;isLogined&quot;)   = &quot;Y&quot;&#xA;        item(&quot;processTime&quot;) = DateTime.Now.ToString(&quot;yyyyMMdd HH:mm:ss&quot;)&#xA;        Exit For&#xA;    End If&#xA;Next&#xA;&#xA;' ====== Rewrite JSON file (overwrite) ======&#xA;System.IO.File.WriteAllText(jsonPath, jsonArray.ToString(), System.Text.Encoding.UTF8)" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+                    <ui:InvokeCode.Arguments>
+                      <InArgument x:TypeArguments="x:String" x:Key="checkingId">[CHECKING_ID]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="checkingFilePath">[CHECKING_FILE_PATH]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="compCode">[COMP_CODE]</InArgument>
+                    </ui:InvokeCode.Arguments>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:InvokeCode>
+                  <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="Delay_6">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Delay>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,227.2" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_Process_01 - Invoke Workflow File (Workflows\DBInsurance\Download\Download_Process_01.xaml)" sap:VirtualizedContainerService.HintSize="416,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Workflows\DBInsurance\Download\DBG_Download_Process.xaml">
                     <ui:InvokeWorkflowFile.Arguments>
                       <scg:Dictionary x:TypeArguments="x:String, Argument" />
                     </ui:InvokeWorkflowFile.Arguments>
                   </ui:InvokeWorkflowFile>
                 </Sequence>
-              </ui:CommentOut.Body>
-            </ui:CommentOut>
+              </If.Else>
+            </If>
+            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="486.4,113.6" sap2010:WorkflowViewState.IdRef="Delay_3" />
           </Sequence>
         </ActivityAction>
       </uix:NApplicationCard.Body>
@@ -243,7 +461,7 @@
         </ActivityFunc>
       </uix:NApplicationCard.OCREngine>
       <uix:NApplicationCard.TargetApp>
-        <uix:TargetApp Area="-9, -9, 1938, 1038" BrowserType="Chrome" ContentHash="5DgY-8MuTUiX2wVCL5EVgQ" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFlSURBVDhPY/j//z8jJZgBXQAZK659yiy7+slvoenXr/I0n/BFlyfWgP9C06//52k+8Z8hd2cguhqiDBCedg1mwFV0NYQMYJVeBTGAuwlswH+myFWiOA04KSXLfM1RnBnTgKtwA5gjV0rjNOCUlOzHa47i/x9Eca9/mcMiDjJAec21/50Hlf6X7DD5bz656Kv9Snt2fAb8hxrw/2UOy9WVHb68amsugg2o2q39P3Wz2X/7lfb7Rea5sxJjwP+X5ayJamsu/kUz4L/IPPd87AZIy/6/5oQw4G0Z4/K+w/LS6AYIz3O/SKwBO/sOy8siG2C3wgFkwHe8BjyM5oIZMLPvsLw8yIDKXSgG/MZqwGlZ2f/XncTgBrwrY7BHNiB5E9wAeILCNMAZakAuy2SQGLoB1hAD6nEZ4HndWSz6YTSXLkwMiwEXBee5c2M1ABvuOywv3HFA+W/lLu3XyZvMpluvcOBHlgcAYBiGaiqRbNIAAAAASUVORK5CYII=" InformativeScreenshot="69f1906a1f62eb27b98bf1080dac1f38.jpg" Reference="LSzlVZV4cUeY2_6KywiRkw/yo4a2HslKUeZEnUV0j5cZg" Selector="&lt;html app='chrome.exe' htmlwindowname='DINLE_EP_PORTAL' title='DB손해보험::통합로그인' /&gt;" Url="[DBG_URL]" Version="V2">
+        <uix:TargetApp Area="-9, -9, 1938, 1038" BrowserType="Chrome" ContentHash="1czquAx_g0SZ7ynH0AADVA" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFlSURBVDhPY/j//z8jJZgBXQAZK659yiy7+slvoenXr/I0n/BFlyfWgP9C06//52k+8Z8hd2cguhqiDBCedg1mwFV0NYQMYJVeBTGAuwlswH+myFWiOA04KSXLfM1RnBnTgKtwA5gjV0rjNOCUlOzHa47i/x9Eca9/mcMiDjJAec21/50Hlf6X7DD5bz656Kv9Snt2fAb8hxrw/2UOy9WVHb68amsugg2o2q39P3Wz2X/7lfb7Rea5sxJjwP+X5ayJamsu/kUz4L/IPPd87AZIy/6/5oQw4G0Z4/K+w/LS6AYIz3O/SKwBO/sOy8siG2C3wgFkwHe8BjyM5oIZMLPvsLw8yIDKXSgG/MZqwGlZ2f/XncTgBrwrY7BHNiB5E9wAeILCNMAZakAuy2SQGLoB1hAD6nEZ4HndWSz6YTSXLkwMiwEXBee5c2M1ABvuOywv3HFA+W/lLu3XyZvMpluvcOBHlgcAYBiGaiqRbNIAAAAASUVORK5CYII=" InformativeScreenshot="69f1906a1f62eb27b98bf1080dac1f38.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/5KWwBKW56UueWxEGDObCeQ" Selector="&lt;html app='chrome.exe' htmlwindowname='DINLE_EP_PORTAL' title='DB손해보험::통합로그인' /&gt;" Url="[DBG_URL]" Version="V2">
           <uix:TargetApp.Arguments>
             <InArgument x:TypeArguments="x:String" />
           </uix:TargetApp.Arguments>
