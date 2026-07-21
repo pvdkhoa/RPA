@@ -104,8 +104,9 @@
       <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Download_ExistingContract" sap:VirtualizedContainerService.HintSize="773.2,6364" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Download_ExistingContract" sap:VirtualizedContainerService.HintSize="762,7388.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Default="C:\Users\RPA02\Documents\UiPath\RPA\Python_Script\MeritzFireMarine\" Name="PYTHON_PATH" />
       <Variable x:TypeArguments="x:Boolean" Default="False" Name="MRF_EXT_LTR_is_exist_file" />
       <Variable x:TypeArguments="x:String" Name="MRF_EXT_LTR_is_exist_Data" />
       <Variable x:TypeArguments="x:String" Name="status" />
@@ -125,7 +126,7 @@
       </sap:WorkflowViewStateService.ViewState>
       <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="python-workflow - Invoke Workflow File (python-workflow.cs)" sap:VirtualizedContainerService.HintSize="416,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="python-workflow.cs">
         <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="x:String" x:Key="scriptPath">C:\UipathScript\MeritzFireMarine\meritz_start_process.py</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "meritz_start_process.py"]</InArgument>
           <InArgument x:TypeArguments="x:String" x:Key="mode" />
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
@@ -150,7 +151,7 @@
       <ui:SetAsset TimeoutMS="{x:Null}" AssetName="MRF_EXISTING_IS_EXIST_DATA" DisplayName="Set Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="521.6,227.2" sap2010:WorkflowViewState.IdRef="SetAsset_4" Value="[&quot;NONE&quot;]" />
       <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Navigate Download Existing " sap:VirtualizedContainerService.HintSize="521.6,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="python-workflow.cs">
         <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="x:String" x:Key="scriptPath">C:\UipathScript\MeritzFireMarine\meritz_exisiting_process.py</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "meritz_exisiting_process.py"]</InArgument>
           <InArgument x:TypeArguments="x:String" x:Key="mode" />
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
@@ -164,7 +165,7 @@
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <uasj:RunJob Account="ocr_rpa-unattended" DisplayName="Run RPA: OCR_RPA" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="416,228" sap2010:WorkflowViewState.IdRef="RunJob_1" Machine="Machine_OCR" ProcessName="OCR_RPA" TimeoutMS="600000">
+            <uasj:RunJob Account="robot-ocr-unattended" DisplayName="Run RPA: OCR_RPA" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="416,228" sap2010:WorkflowViewState.IdRef="RunJob_1" Machine="Machine-OCR" ProcessName="OCR_RPA" TimeoutMS="600000">
               <uasj:RunJob.Arguments>
                 <scg:Dictionary x:TypeArguments="x:String, Argument" />
               </uasj:RunJob.Arguments>
@@ -239,7 +240,7 @@
             <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="WriteLine_6" Text="Go NO" />
             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Run Request File" sap:VirtualizedContainerService.HintSize="486.4,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="python-workflow.cs">
               <ui:InvokeWorkflowFile.Arguments>
-                <InArgument x:TypeArguments="x:String" x:Key="scriptPath">C:\UipathScript\MeritzFireMarine\meritz_exisiting_request_file.py</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "meritz_exisiting_request_file.py"]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="mode" />
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
@@ -277,7 +278,7 @@
                             <x:Boolean x:Key="IsPinned">False</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <uasj:RunJob Account="ocr_rpa-unattended" DisplayName="Run RPA: OCR_RPA" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="416,228" sap2010:WorkflowViewState.IdRef="RunJob_3" Machine="Machine_OCR" ProcessName="OCR_RPA" TimeoutMS="600000">
+                        <uasj:RunJob Account="robot-ocr-unattended" DisplayName="Run RPA: OCR_RPA" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="416,228" sap2010:WorkflowViewState.IdRef="RunJob_3" Machine="Machine-OCR" ProcessName="OCR_RPA" TimeoutMS="600000">
                           <uasj:RunJob.Arguments>
                             <scg:Dictionary x:TypeArguments="x:String, Argument" />
                           </uasj:RunJob.Arguments>
@@ -328,7 +329,7 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </Delay>
-                  <ui:SetAsset TimeoutMS="{x:Null}" AssetName="MRF_OCR_STATUS" DisplayName="Reset Loop Condition" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="451.2,227.2" sap2010:WorkflowViewState.IdRef="SetAsset_2" Value="[&quot;pending&quot;]">
+                  <ui:SetAsset TimeoutMS="{x:Null}" AssetName="MRF_OCR_STATUS" DisplayName="Reset Loop Condition" FolderPath="mafs.it@miraeasset.com's workspace" sap:VirtualizedContainerService.HintSize="451.2,227.2" sap2010:WorkflowViewState.IdRef="SetAsset_2" Value="[&quot;pending&quot;]">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -371,12 +372,12 @@
                         </sap:WorkflowViewStateService.ViewState>
                         <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Run Download File" sap:VirtualizedContainerService.HintSize="416,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="python-workflow.cs">
                           <ui:InvokeWorkflowFile.Arguments>
-                            <InArgument x:TypeArguments="x:String" x:Key="scriptPath">C:\UipathScript\MeritzFireMarine\meritz_exisiting_download_file.py</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "meritz_exisiting_download_file.py"]</InArgument>
                             <InArgument x:TypeArguments="x:String" x:Key="mode" />
                           </ui:InvokeWorkflowFile.Arguments>
                         </ui:InvokeWorkflowFile>
                         <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_11" />
-                        <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim srcFolder As String = &quot;C:\Users\RPA02\Downloads&quot;&#xD;&#xA;Dim files = System.IO.Directory.GetFiles(srcFolder) _&#xD;&#xA;            .Select(Function(f) New System.IO.FileInfo(f)) _&#xD;&#xA;            .Where(Function(f) f.Extension = &quot;&quot;) _&#xD;&#xA;            .ToList()&#xD;&#xA;&#xD;&#xA;If files.Count &gt; 0 Then&#xD;&#xA;    MRF_EXT_LTR_is_exist_file = True&#xD;&#xA;Else&#xD;&#xA;    MRF_EXT_LTR_is_exist_file = False&#xD;&#xA;End If" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,188" sap2010:WorkflowViewState.IdRef="InvokeCode_2">
+                        <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim srcFolder As String = &quot;C:\Users\RPA02\Downloads&quot;&#xA;Dim files = System.IO.Directory.GetFiles(srcFolder) _&#xA;            .Select(Function(f) New System.IO.FileInfo(f)) _&#xA;            .Where(Function(f) f.Extension = &quot;&quot;) _&#xA;            .ToList()&#xA;&#xA;If files.Count &gt; 0 Then&#xA;    MRF_EXT_LTR_is_exist_file = True&#xA;Else&#xA;    MRF_EXT_LTR_is_exist_file = False&#xA;End If" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,188" sap2010:WorkflowViewState.IdRef="InvokeCode_2">
                           <ui:InvokeCode.Arguments>
                             <InOutArgument x:TypeArguments="x:Boolean" x:Key="MRF_EXT_LTR_is_exist_file">[MRF_EXT_LTR_is_exist_file]</InOutArgument>
                           </ui:InvokeCode.Arguments>
@@ -409,10 +410,10 @@
         </If.Else>
       </If>
     </Sequence>
-    <Sequence DisplayName="Close Program Sequence" sap:VirtualizedContainerService.HintSize="555.2,48" sap2010:WorkflowViewState.IdRef="Sequence_7">
+    <Sequence DisplayName="Close Program Sequence" sap:VirtualizedContainerService.HintSize="555.2,1072.8" sap2010:WorkflowViewState.IdRef="Sequence_7">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
@@ -428,7 +429,7 @@
             </sap:WorkflowViewStateService.ViewState>
             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Rename File" sap:VirtualizedContainerService.HintSize="416,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="python-workflow.cs">
               <ui:InvokeWorkflowFile.Arguments>
-                <InArgument x:TypeArguments="x:String" x:Key="scriptPath">C:\UipathScript\MeritzFireMarine\rename_meritz_exisiting_ltr.py</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "rename_meritz_exisiting_ltr.py"]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="mode" />
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
@@ -447,7 +448,7 @@
       <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_3" />
       <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Close Program" sap:VirtualizedContainerService.HintSize="451.2,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="python-workflow.cs">
         <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="x:String" x:Key="scriptPath">C:\UipathScript\MeritzFireMarine\meritz_close_program.py</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "meritz_close_program.py"]</InArgument>
           <InArgument x:TypeArguments="x:String" x:Key="mode" />
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>

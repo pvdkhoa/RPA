@@ -1,9 +1,13 @@
 import win32api, win32con, win32gui, win32com.client, time, sys
 from datetime import datetime
 shell = win32com.client.Dispatch("WScript.Shell")
-# ====== Lay ngay hien tai format yyyyMMdd ======
+# ====== Get current date in yyyyMMdd format ======
 today = datetime.now().strftime("%Y%m%d")
 def get_hwnd():
+    """
+    Finds and returns the window handle (hwnd) of the Meritz Fire & Marine Insurance application.
+    Raises an exception if the window is not found.
+    """
     result = []
     def callback(hwnd, _):
         if win32gui.IsWindowVisible(hwnd):
@@ -12,10 +16,13 @@ def get_hwnd():
                 result.append(hwnd)
     win32gui.EnumWindows(callback, None)
     if not result:
-        raise Exception("Khong tim thay cua so \uba54\ub9ac\uce20\ud654\uc7ac!")
-    print(f"Tim thay cua so: hwnd={result[0]}")
+        raise Exception("Cannot find the Meritz Fire & Marine Insurance window!")
+    print(f"Found window: hwnd={result[0]}")
     return result[0]
 def get_hwnd_folder():
+    """
+    Finds and returns the window handle (hwnd) of the folder or save dialog window.
+    """
     result = []
     def callback(hwnd, _):
         if win32gui.IsWindowVisible(hwnd):
@@ -25,6 +32,10 @@ def get_hwnd_folder():
     win32gui.EnumWindows(callback, None)
     return result[0] if result else None
 def click(x, y):
+    """
+    Brings the application window to the foreground and simulates a left mouse click 
+    at the specified (x, y) coordinates.
+    """
     hwnd = get_hwnd()
     win32gui.SetForegroundWindow(hwnd)
     time.sleep(0.3)
@@ -34,24 +45,22 @@ def click(x, y):
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, x, y, 0, 0)
     time.sleep(0.5)
 def type_text(text):
+    """
+    Simulates typing text using WScript.Shell SendKeys.
+    """
     shell.SendKeys(str(text))
     time.sleep(0.3)
 def clear_and_type(x, y, text):
+    """
+    Clicks on a specified (x, y) input field, clears its existing content, 
+    and types the new text.
+    """
     click(x, y)
     shell.SendKeys("^a")
     time.sleep(0.1)
     shell.SendKeys("{DELETE}")
     time.sleep(0.1)
     type_text(text)
-def clear_and_type_enter(x, y, text):
-    click(x, y)
-    shell.SendKeys("^a")
-    time.sleep(0.1)
-    shell.SendKeys("{DELETE}")
-    time.sleep(0.1)
-    type_text(text)
-    shell.SendKeys("{ENTER}")
-    time.sleep(0.3)
 print('Click Selection Box')
 click(204,261)
 time.sleep(0.5)
@@ -70,12 +79,9 @@ time.sleep(8)
 print('Check Folder Dialog...')
 folder_hwnd = get_hwnd_folder()
 if folder_hwnd is None:
-    print('Khong tim thay cua so folder!')
-    raise Exception("Khong tim thay cua so folder/save dialog.")
-print(f'Tim thay cua so folder: hwnd={folder_hwnd}')
-print('Find TempDownload Path')
-clear_and_type_enter(880, 234, "C:\\Users\\RPA02\\Downloads")
-time.sleep(2)
+    print('Cannot find folder window!')
+    raise Exception("Cannot find folder/save dialog window.")
+print(f'Found folder window: hwnd={folder_hwnd}')
 print('Click enter')
 click(952,232)
 time.sleep(1)

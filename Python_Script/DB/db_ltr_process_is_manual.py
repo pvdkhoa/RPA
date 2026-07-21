@@ -1,3 +1,8 @@
+"""
+This script automates Long Term insurance processing in DB Insurance application,
+with additional capabilities to interact with UiPath Orchestrator API to check for 
+manual date overrides and apply them if toggled on.
+"""
 import win32api, win32con, win32gui, win32com.client, time
 import requests
 import logging
@@ -5,10 +10,10 @@ import logging
 log = logging.getLogger(__name__)
 
 # ===== ORCHESTRATOR CONFIG =====
-CLIENT_ID     = "f03a6679-36df-4e04-987e-b73d8a905970"
-CLIENT_SECRET = "!ys?YRKf6^e4Lbapq6SN0cq?GwNSO_#Q7s*~VwNt!BqDElg$F$srGJpiP7v8k$XS"
-ORG_UNIT_ID   = "946773"
-BASE_URL      = "https://cloud.uipath.com/rpacaxjvjr/DefaultTenant/orchestrator_"
+CLIENT_ID     = "a864297e-5ec8-4ca0-a456-3e8cbe0c2d95"
+CLIENT_SECRET = "GG_Y9OPAKtiVfgML*de*B0_Xvv1Q?Bic@Gu2$PA31icIJ%dnt4(dDm5hEnY?Tx(v"
+ORG_UNIT_ID   = "8773"
+BASE_URL      = "https://cloud.uipath.com/miraeassetfp/DefaultTenant/orchestrator_"
 
 TOGGLE_MANUAL_DOWNLOAD = "TOGGLE_MANUAL_DOWNLOAD"  # Value: "ON" / "OFF"
 END_DATE_ASSET_NAME    = "END_DATE_DOWNLOAD"
@@ -18,6 +23,9 @@ START_DATE_ASSET_NAME  = "START_DATE_DOWNLOAD"
 shell = win32com.client.Dispatch("WScript.Shell")
 
 def get_hwnd():
+    """
+    Finds and returns the window handle (hwnd) of the DB Insurance application.
+    """
     result = []
     def callback(hwnd, _):
         if win32gui.IsWindowVisible(hwnd):
@@ -26,11 +34,15 @@ def get_hwnd():
                 result.append(hwnd)
     win32gui.EnumWindows(callback, None)
     if not result:
-        raise Exception("Không tìm thấy cửa sổ DB손해보험!")
-    print(f"Tim thay cua so: hwnd={result[0]}")
+        raise Exception("Cannot find the DB Insurance window!")
+    print(f"Found window: hwnd={result[0]}")
     return result[0]
 
 def click(x, y):
+    """
+    Brings the application window to the foreground and simulates a left mouse click 
+    at the specified (x, y) coordinates.
+    """
     hwnd = get_hwnd()
     win32gui.SetForegroundWindow(hwnd)
     time.sleep(0.3)
@@ -41,17 +53,24 @@ def click(x, y):
     time.sleep(0.5)
 
 def type_text(text):
+    """
+    Simulates typing text using WScript.Shell SendKeys.
+    """
     shell.SendKeys(str(text))
     time.sleep(0.3)
 
 def clear_and_type(x, y, text):
+    """
+    Clicks a field, clears its content by pressing {END} and {BACKSPACE} multiple times, 
+    and types the new text. Specifically useful for date fields.
+    """
     click(x, y)
     time.sleep(0.3)
     
-    # Xóa sạch bằng cách bấm End rồi Backspace nhiều lần
+    # Clear the field completely by pressing End and then Backspace multiple times
     shell.SendKeys("{END}")
     time.sleep(0.1)
-    for _ in range(20):  # 20 lần đủ cho date field yyyy-mm-dd (10 ký tự)
+    for _ in range(20):  # 20 times is enough for yyyy-mm-dd date field (10 chars)
         shell.SendKeys("{BACKSPACE}")
         time.sleep(0.05)
     
@@ -61,6 +80,9 @@ clear_and_click = clear_and_type
 
 # ===== ORCHESTRATOR FUNCTIONS =====
 def get_access_token():
+    """
+    Authenticates with UiPath Cloud using Client Credentials and retrieves an access token.
+    """
     url = "https://cloud.uipath.com/identity_/connect/token"
     data = {
         "grant_type": "client_credentials",
@@ -75,6 +97,9 @@ def get_access_token():
     return token
 
 def get_asset_by_name(token, asset_name):
+    """
+    Queries the UiPath Orchestrator API to get the asset object by its name.
+    """
     url = f"{BASE_URL}/odata/Assets"
     headers = {
         "Authorization": f"Bearer {token}",
@@ -85,32 +110,37 @@ def get_asset_by_name(token, asset_name):
     response.raise_for_status()
     assets = response.json().get("value", [])
     if not assets:
-        log.warning(f"[ASSET] Không tìm thấy asset '{asset_name}'")
+        log.warning(f"[ASSET] Cannot find asset '{asset_name}'")
         return None
-    log.info(f"[ASSET] Tìm thấy asset '{asset_name}'")
+    log.info(f"[ASSET] Found asset '{asset_name}'")
     return assets[0]
 
 def get_asset_value(asset):
+    """
+    Extracts the string value from the given UiPath asset dictionary.
+    """
     return str(asset.get("Value", asset.get("StringValue", ""))).strip()
 
 def convert_date(date_str):
-    """Chuyển format yyyy-mm-dd → yyyymmdd"""
+    """
+    Converts a date string from 'yyyy-mm-dd' format to 'yyyymmdd' format.
+    """
     return date_str.replace("-", "")
 
 # ===== CHECK TOGGLE_MANUAL_DOWNLOAD & SET DATE =====
 def check_and_apply_manual_date():
     """
-    Gọi API lấy TOGGLE_MANUAL_DOWNLOAD.
-    - Nếu ON  → lấy START_DATE_DOWNLOAD, END_DATE_DOWNLOAD,
-                 convert từ yyyy-mm-dd → yyyymmdd, rồi type vào UI.
-    - Nếu OFF → không làm gì, giữ default của app.
+    Fetches TOGGLE_MANUAL_DOWNLOAD asset from Orchestrator.
+    - If ON: fetches START_DATE_DOWNLOAD and END_DATE_DOWNLOAD, 
+             converts them from yyyy-mm-dd to yyyymmdd, and types them into UI date fields.
+    - If OFF: does nothing, relying on the application's default dates.
     """
     try:
         token = get_access_token()
 
         toggle_asset = get_asset_by_name(token, TOGGLE_MANUAL_DOWNLOAD)
         if toggle_asset is None:
-            print("[TOGGLE] Asset không tồn tại, giữ nguyên default.")
+            print("[TOGGLE] Asset does not exist, keeping default.")
             return
 
         toggle_value = get_asset_value(toggle_asset).upper()
@@ -121,7 +151,7 @@ def check_and_apply_manual_date():
             end_asset   = get_asset_by_name(token, END_DATE_ASSET_NAME)
 
             if not start_asset or not end_asset:
-                print("[TOGGLE] Thiếu asset ngày tháng, giữ nguyên default.")
+                print("[TOGGLE] Missing date asset, keeping default.")
                 return
 
             START_DATE = convert_date(get_asset_value(start_asset))  # yyyymmdd
@@ -134,32 +164,32 @@ def check_and_apply_manual_date():
             clear_and_type(458, 172, END_DATE)
 
         elif toggle_value == "OFF":
-            print("[TOGGLE] OFF → Giữ nguyên date default của app.")
+            print("[TOGGLE] OFF → Keeping default date of the app.")
 
         else:
-            print(f"[TOGGLE] Giá trị không hợp lệ: '{toggle_value}'. Giữ nguyên default.")
+            print(f"[TOGGLE] Invalid value: '{toggle_value}'. Keeping default.")
 
     except Exception as e:
-        print(f"[TOGGLE] Lỗi khi kiểm tra asset: {e}")
-        print("[TOGGLE] Fallback: giữ nguyên date default.")
+        print(f"[TOGGLE] Error checking asset: {e}")
+        print("[TOGGLE] Fallback: keeping default date.")
 
 # ===== MAIN FLOW =====
-print('Bat dau click...')
+print('Started process: clicking...')
 
 click(144, 264)
-print('Da click menu chinh')
+print('Clicked main menu')
 time.sleep(0.5)
 click(189, 267)
-print('Da click menu item 1')
+print('Clicked menu item 1')
 time.sleep(0.5)
 click(193, 355)
-print('Da click menu item 2')
+print('Clicked menu item 2')
 time.sleep(0.5)
 click(231, 540)
-print('Da click menu item 3')
+print('Clicked menu item 3')
 time.sleep(0.5)
 click(232, 601)
-print('Da click menu item 4')
+print('Clicked menu item 4')
 time.sleep(3)
 
 # ===== CHECK TOGGLE_MANUAL_DOWNLOAD =====
@@ -167,18 +197,18 @@ check_and_apply_manual_date()
 # ===== END CHECK =====
 
 click(670, 172)
-print('Da click Selection Box Insurance type')
+print('Clicked Selection Box Insurance type')
 time.sleep(1)
 click(638, 240)
-print('Da click Selection Item Long Term')
+print('Clicked Selection Item Long Term')
 time.sleep(1)
 click(871, 175)
-print('Da click Selection Box 2')
+print('Clicked Selection Box 2')
 time.sleep(0.5)
 click(840, 220)
-print('Da click Selection Item 2')
+print('Clicked Selection Item 2')
 time.sleep(1)
 click(1361, 208)
-print('Da click Search button')
+print('Clicked Search button')
 time.sleep(2)
 print('DONE!')

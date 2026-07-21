@@ -114,7 +114,7 @@
       <AssemblyReference>System.Linq.Expressions</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Upload_NewContract_General" sap:VirtualizedContainerService.HintSize="779.6,8867.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Upload_NewContract_General" sap:VirtualizedContainerService.HintSize="762,9175.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="START_PERIOD" />
       <Variable x:TypeArguments="x:String" Name="END_PERIOD" />
@@ -125,6 +125,11 @@
       <Variable x:TypeArguments="x:String" Name="URL" />
       <Variable x:TypeArguments="ui:UiElement" Name="browserInstance" />
       <Variable x:TypeArguments="x:String" Name="SSF_NEW_GEN_PATH" />
+      <Variable x:TypeArguments="x:String" Name="PYTHON_PATH">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:String">C:\Users\RPA02\Documents\UiPath\RPA\Python_Script\Utils\</Literal>
+        </Variable.Default>
+      </Variable>
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -250,13 +255,13 @@
         </Sequence>
       </If.Else>
     </If>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome 홈 - OPENGA(10)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="555.2,7797.6" sap2010:WorkflowViewState.IdRef="NApplicationCard_4" InteractionMode="DebuggerApi" OutUiElement="[browserInstance]" ScopeGuid="b5fbf5cf-128b-4df5-9038-1861fc870a84" Version="V2">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome 홈 - OPENGA(10)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="555.2,8105.6" sap2010:WorkflowViewState.IdRef="NApplicationCard_4" InteractionMode="DebuggerApi" OutUiElement="[browserInstance]" ScopeGuid="b5fbf5cf-128b-4df5-9038-1861fc870a84" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="553.6,7604" sap2010:WorkflowViewState.IdRef="Sequence_14">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="553.6,7912" sap2010:WorkflowViewState.IdRef="Sequence_14">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1351,13 +1356,13 @@
               </sap:WorkflowViewStateService.ViewState>
             </uix:NKeyboardShortcuts>
             <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="520,122.4" sap2010:WorkflowViewState.IdRef="Delay_14" />
-            <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome [삼성생명] 신계약 검증_장기 (마감년월 202603)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="520,4348.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_5" InteractionMode="DebuggerApi" OutUiElement="[browserInstance]" ScopeGuid="3e98c7d3-6cb7-4b9a-9963-5d9f7e073645" Version="V2">
+            <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome [삼성생명] 신계약 검증_장기 (마감년월 202603)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="520,4656.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_5" InteractionMode="DebuggerApi" OutUiElement="[browserInstance]" ScopeGuid="3e98c7d3-6cb7-4b9a-9963-5d9f7e073645" Version="V2">
               <uix:NApplicationCard.Body>
                 <ActivityAction x:TypeArguments="x:Object">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="518.4,4155.2" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="518.4,4463.2" sap2010:WorkflowViewState.IdRef="Sequence_25">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1366,7 +1371,7 @@
                     <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="484.8,122.4" sap2010:WorkflowViewState.IdRef="Delay_23" />
                     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="python-workflow - Invoke Workflow File (python-workflow.cs)" sap:VirtualizedContainerService.HintSize="484.8,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="python-workflow.cs">
                       <ui:InvokeWorkflowFile.Arguments>
-                        <InArgument x:TypeArguments="x:String" x:Key="scriptPath">C:\UipathScript\SSL\active-window-openga.py</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "active-window-openga.py"]</InArgument>
                         <InArgument x:TypeArguments="x:String" x:Key="mode" />
                       </ui:InvokeWorkflowFile.Arguments>
                       <sap:WorkflowViewStateService.ViewState>
@@ -1671,19 +1676,20 @@
                       </ui:CommentOut.Body>
                     </ui:CommentOut>
                     <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="484.8,122.4" sap2010:WorkflowViewState.IdRef="Delay_17" />
-                    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="열기" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="451.2,795.2" sap2010:WorkflowViewState.IdRef="NApplicationCard_6" ScopeGuid="df2a04a5-c220-4fec-9d0b-3652dbdd92f9" Version="V2">
+                    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="열기" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="484.8,1103.2" sap2010:WorkflowViewState.IdRef="NApplicationCard_6" ScopeGuid="df2a04a5-c220-4fec-9d0b-3652dbdd92f9" Version="V2">
                       <uix:NApplicationCard.Body>
                         <ActivityAction x:TypeArguments="x:Object">
                           <ActivityAction.Argument>
                             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
                           </ActivityAction.Argument>
-                          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,592.8" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,900.8" sap2010:WorkflowViewState.IdRef="Sequence_20">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
+                            <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,308" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_13" InteractionMode="HardwareEvents" ScopeIdentifier="df2a04a5-c220-4fec-9d0b-3652dbdd92f9" Shortcuts="[d(hk)][d(ctrl)][u(ctrl)][u(hk)]" Version="V5" />
                             <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '파일 이름(&amp;N)'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,296.8" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="SameAsCard" ScopeIdentifier="df2a04a5-c220-4fec-9d0b-3652dbdd92f9" Text="[SSF_NEW_GEN_PATH]" Version="V5">
                               <uix:NTypeInto.DelayAfter>
                                 <InArgument x:TypeArguments="x:Double" />
@@ -1758,7 +1764,7 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </uix:NApplicationCard>
-                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="CheckAPIStatus - Invoke Workflow File (Utils\CheckAPIStatus.xaml)" sap:VirtualizedContainerService.HintSize="451.2,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Utils\CheckAPIStatus.xaml">
+                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="CheckAPIStatus - Invoke Workflow File (Utils\CheckAPIStatus.xaml)" sap:VirtualizedContainerService.HintSize="484.8,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Utils\CheckAPIStatus.xaml">
                       <ui:InvokeWorkflowFile.Arguments>
                         <InArgument x:TypeArguments="ui:UiElement" x:Key="in_Browser">[browserInstance]</InArgument>
                         <InArgument x:TypeArguments="x:String" x:Key="in_ApiUrlPattern" xml:space="preserve">[If(ENV = "DEV",
@@ -1771,7 +1777,7 @@
                         <InArgument x:TypeArguments="x:String" x:Key="in_HttpMethod">POST</InArgument>
                       </ui:InvokeWorkflowFile.Arguments>
                     </ui:InvokeWorkflowFile>
-                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '매핑 저장'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,244.8" sap2010:WorkflowViewState.IdRef="NClick_11" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="3e98c7d3-6cb7-4b9a-9963-5d9f7e073645" Version="V5">
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '매핑 저장'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="484.8,244.8" sap2010:WorkflowViewState.IdRef="NClick_11" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="3e98c7d3-6cb7-4b9a-9963-5d9f7e073645" Version="V5">
                       <uix:NClick.Target>
                         <uix:TargetAnchorable BrowserURL="app.calssvc-openga.calsplatz.com/excel/popup/excelUploadPop" CVScreenId="4a373dcf-7511-45a1-b2b9-4ae7df1f8c17" ContentHash="ODdi0ev5gEy_zVdY-9XREg" CvElementArea="258, 849, 83, 37" CvTextArea="268, 858, 61, 18" CvTextArgument="OHa AB" CvType="Button" DesignTimeRectangle="260, 852, 80, 34" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='mappingSaveBtn' tag='BUTTON' /&gt;" Guid="937e7b42-e632-4e67-bbad-0ed950beceae" InformativeScreenshot="37d51191b002cded81951489c882c0e9.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/XhvmOS5Wi0ao0ckDTCKdaQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='[삼성생명] 신계약 검증_장기 (마감년월: 202603)' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
                           <uix:TargetAnchorable.Anchors>

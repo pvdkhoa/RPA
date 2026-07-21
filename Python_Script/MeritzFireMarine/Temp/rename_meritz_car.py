@@ -7,37 +7,37 @@ def process_downloaded_file():
     dst_folder = r'C:\RPA\TempDownload'
     prefix = 'MRF_NEW_CAR_'
 
-    # Tạo thư mục đích nếu chưa tồn tại
+    # Create destination folder if it does not exist
     os.makedirs(dst_folder, exist_ok=True)
 
-    # Bước 1: Tìm file .xls/.xlsx mới nhất trong Documents
+    # Step 1: Find the latest .xls/.xlsx file in Documents
     files = [
         f for f in os.listdir(src_folder)
         if f.endswith('.xls') or f.endswith('.xlsx')
     ]
 
     if not files:
-        raise Exception("Không tìm thấy file .xls/.xlsx trong Documents!")
+        raise Exception("Cannot find .xls/.xlsx file in Documents!")
 
-    # Lấy file mới nhất theo thời gian tạo
+    # Get the latest file based on creation time
     latest_file = max(
         files,
         key=lambda f: os.path.getctime(os.path.join(src_folder, f))
     )
-    print(f"File moi nhat: {latest_file}")
+    print(f"Latest file: {latest_file}")
 
-    # Bước 2: Đổi tên file
+    # Step 2: Rename the file
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     new_name = prefix + timestamp + "_" + latest_file
     src_path = os.path.join(src_folder, latest_file)
     renamed_path = os.path.join(src_folder, new_name)
     os.rename(src_path, renamed_path)
-    print(f"Da doi ten: {latest_file} -> {new_name}")
+    print(f"Renamed: {latest_file} -> {new_name}")
 
-    # Bước 3: Chuyển file đến TempDownload
+    # Step 3: Move the file to TempDownload
     dst_path = os.path.join(dst_folder, new_name)
     shutil.move(renamed_path, dst_path)
-    print(f"Da chuyen file den: {dst_path}")
+    print(f"Moved file to: {dst_path}")
 
     return dst_path
 
