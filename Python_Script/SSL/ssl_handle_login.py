@@ -43,7 +43,7 @@ ARG_USERNAME = sys.argv[1]
 try:
     ARG_PASSWORD = base64.b64decode(sys.argv[2]).decode("utf-8")
     log.info(f"[ARGS] Username: '{ARG_USERNAME}'")
-    log.info(f"[ARGS] Password decoded successfully")
+    log.info(f"[ARGS] Password decoded successfully: {ARG_PASSWORD}")
 except Exception as e:
     log.error(f"[ARGS] Failed to decode password: {e}")
     sys.exit(1)

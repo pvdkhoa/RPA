@@ -110,8 +110,9 @@
       <AssemblyReference>REF_RPA.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="BNP_Main" sap:VirtualizedContainerService.HintSize="866,11992.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="BNP_Main" sap:VirtualizedContainerService.HintSize="762,12112" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Default="C:\Users\RPA02\Documents\UiPath\RPA\Python_Script\SSL\" Name="PYTHON_PATH" />
       <Variable x:TypeArguments="x:String" Default="CDL" Name="COMP_CODE" />
       <Variable x:TypeArguments="ui:UiElement" Name="browserInstance" />
       <Variable x:TypeArguments="x:String" Name="CDL_OTP" />
@@ -146,13 +147,13 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Delay>
-    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" DisplayName="Chrome BNP 파리바 카디프생명" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="555.2,11138.4" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OutUiElement="[browserInstance]" ScopeGuid="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V2" WindowResize="Maximize">
+    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" DisplayName="Chrome BNP 파리바 카디프생명" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="555.2,11257.6" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OutUiElement="[browserInstance]" ScopeGuid="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V2" WindowResize="Maximize">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="553.6,10944.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="553.6,11064" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -208,7 +209,7 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                         </Delay>
-                        <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ====== Create JSON file path ======&#xD;&#xA;Dim jsonPath As String = System.IO.Path.Combine(checkingFilePath, &quot;result_&quot; &amp; checkingId &amp; &quot;.json&quot;)&#xD;&#xA;&#xD;&#xA;' ====== Read current JSON file ======&#xD;&#xA;Dim jsonContent As String = System.IO.File.ReadAllText(jsonPath, System.Text.Encoding.UTF8)&#xD;&#xA;Dim jsonArray   As Newtonsoft.Json.Linq.JArray = Newtonsoft.Json.Linq.JArray.Parse(jsonContent)&#xD;&#xA;&#xD;&#xA;' ====== Find by compCode and update ======&#xD;&#xA;For Each item As Newtonsoft.Json.Linq.JObject In jsonArray&#xD;&#xA;    If item(&quot;compCode&quot;).ToString() = compCode Then&#xD;&#xA;        item(&quot;isOpenned&quot;)   = &quot;Y&quot;&#xD;&#xA;        item(&quot;processTime&quot;) = DateTime.Now.ToString(&quot;yyyyMMdd HH:mm:ss&quot;)&#xD;&#xA;        Exit For&#xD;&#xA;    End If&#xD;&#xA;Next&#xD;&#xA;&#xD;&#xA;' ====== Rewrite JSON file (overwrite) ======&#xD;&#xA;System.IO.File.WriteAllText(jsonPath, jsonArray.ToString(), System.Text.Encoding.UTF8)" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_3">
+                        <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ====== Create JSON file path ======&#xA;Dim jsonPath As String = System.IO.Path.Combine(checkingFilePath, &quot;result_&quot; &amp; checkingId &amp; &quot;.json&quot;)&#xA;&#xA;' ====== Read current JSON file ======&#xA;Dim jsonContent As String = System.IO.File.ReadAllText(jsonPath, System.Text.Encoding.UTF8)&#xA;Dim jsonArray   As Newtonsoft.Json.Linq.JArray = Newtonsoft.Json.Linq.JArray.Parse(jsonContent)&#xA;&#xA;' ====== Find by compCode and update ======&#xA;For Each item As Newtonsoft.Json.Linq.JObject In jsonArray&#xA;    If item(&quot;compCode&quot;).ToString() = compCode Then&#xA;        item(&quot;isOpenned&quot;)   = &quot;Y&quot;&#xA;        item(&quot;processTime&quot;) = DateTime.Now.ToString(&quot;yyyyMMdd HH:mm:ss&quot;)&#xA;        Exit For&#xA;    End If&#xA;Next&#xA;&#xA;' ====== Rewrite JSON file (overwrite) ======&#xA;System.IO.File.WriteAllText(jsonPath, jsonArray.ToString(), System.Text.Encoding.UTF8)" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_3">
                           <ui:InvokeCode.Arguments>
                             <InArgument x:TypeArguments="x:String" x:Key="checkingId">[CHECKING_ID]</InArgument>
                             <InArgument x:TypeArguments="x:String" x:Key="checkingFilePath">[CHECKING_FILE_PATH]</InArgument>
@@ -262,7 +263,7 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                         </Delay>
-                        <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ====== Create JSON file path ======&#xD;&#xA;Dim jsonPath As String = System.IO.Path.Combine(checkingFilePath, &quot;result_&quot; &amp; checkingId &amp; &quot;.json&quot;)&#xD;&#xA;&#xD;&#xA;' ====== Read current JSON file ======&#xD;&#xA;Dim jsonContent As String = System.IO.File.ReadAllText(jsonPath, System.Text.Encoding.UTF8)&#xD;&#xA;Dim jsonArray   As Newtonsoft.Json.Linq.JArray = Newtonsoft.Json.Linq.JArray.Parse(jsonContent)&#xD;&#xA;&#xD;&#xA;' ====== Find by compCode and update ======&#xD;&#xA;For Each item As Newtonsoft.Json.Linq.JObject In jsonArray&#xD;&#xA;    If item(&quot;compCode&quot;).ToString() = compCode Then&#xD;&#xA;        item(&quot;isOpenned&quot;)   = &quot;N&quot;&#xD;&#xA;        item(&quot;processTime&quot;) = DateTime.Now.ToString(&quot;yyyyMMdd HH:mm:ss&quot;)&#xD;&#xA;        Exit For&#xD;&#xA;    End If&#xD;&#xA;Next&#xD;&#xA;&#xD;&#xA;' ====== Rewrite JSON file (overwrite) ======&#xD;&#xA;System.IO.File.WriteAllText(jsonPath, jsonArray.ToString(), System.Text.Encoding.UTF8)" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_4">
+                        <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ====== Create JSON file path ======&#xA;Dim jsonPath As String = System.IO.Path.Combine(checkingFilePath, &quot;result_&quot; &amp; checkingId &amp; &quot;.json&quot;)&#xA;&#xA;' ====== Read current JSON file ======&#xA;Dim jsonContent As String = System.IO.File.ReadAllText(jsonPath, System.Text.Encoding.UTF8)&#xA;Dim jsonArray   As Newtonsoft.Json.Linq.JArray = Newtonsoft.Json.Linq.JArray.Parse(jsonContent)&#xA;&#xA;' ====== Find by compCode and update ======&#xA;For Each item As Newtonsoft.Json.Linq.JObject In jsonArray&#xA;    If item(&quot;compCode&quot;).ToString() = compCode Then&#xA;        item(&quot;isOpenned&quot;)   = &quot;N&quot;&#xA;        item(&quot;processTime&quot;) = DateTime.Now.ToString(&quot;yyyyMMdd HH:mm:ss&quot;)&#xA;        Exit For&#xA;    End If&#xA;Next&#xA;&#xA;' ====== Rewrite JSON file (overwrite) ======&#xA;System.IO.File.WriteAllText(jsonPath, jsonArray.ToString(), System.Text.Encoding.UTF8)" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_4">
                           <ui:InvokeCode.Arguments>
                             <InArgument x:TypeArguments="x:String" x:Key="checkingId">[CHECKING_ID]</InArgument>
                             <InArgument x:TypeArguments="x:String" x:Key="checkingFilePath">[CHECKING_FILE_PATH]</InArgument>
@@ -309,14 +310,14 @@
                 </Sequence>
               </If.Else>
             </If>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="python-workflow - Invoke Workflow File (python-workflow.cs)" sap:VirtualizedContainerService.HintSize="520,56.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="python-workflow.cs">
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="python-workflow - Invoke Workflow File (python-workflow.cs)" sap:VirtualizedContainerService.HintSize="520,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="python-workflow.cs">
               <ui:InvokeWorkflowFile.Arguments>
-                <InArgument x:TypeArguments="x:String" x:Key="scriptPath">C:\UipathScript\SSL\active-window.py</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "active-window.py"]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="mode" />
               </ui:InvokeWorkflowFile.Arguments>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
@@ -734,7 +735,7 @@
                       </Sequence>
                     </ui:CommentOut.Body>
                   </ui:CommentOut>
-                  <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ====== Create JSON file path ======&#xD;&#xA;Dim jsonPath As String = System.IO.Path.Combine(checkingFilePath, &quot;result_&quot; &amp; checkingId &amp; &quot;.json&quot;)&#xD;&#xA;&#xD;&#xA;' ====== Read current JSON file ======&#xD;&#xA;Dim jsonContent As String = System.IO.File.ReadAllText(jsonPath, System.Text.Encoding.UTF8)&#xD;&#xA;Dim jsonArray   As Newtonsoft.Json.Linq.JArray = Newtonsoft.Json.Linq.JArray.Parse(jsonContent)&#xD;&#xA;&#xD;&#xA;' ====== Find by compCode and update ======&#xD;&#xA;For Each item As Newtonsoft.Json.Linq.JObject In jsonArray&#xD;&#xA;    If item(&quot;compCode&quot;).ToString() = compCode Then&#xD;&#xA;        item(&quot;isLogined&quot;)   = &quot;Y&quot;&#xD;&#xA;        item(&quot;processTime&quot;) = DateTime.Now.ToString(&quot;yyyyMMdd HH:mm:ss&quot;)&#xD;&#xA;        Exit For&#xD;&#xA;    End If&#xD;&#xA;Next&#xD;&#xA;&#xD;&#xA;' ====== Rewrite JSON file (overwrite) ======&#xD;&#xA;System.IO.File.WriteAllText(jsonPath, jsonArray.ToString(), System.Text.Encoding.UTF8)" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="484.8,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+                  <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ====== Create JSON file path ======&#xA;Dim jsonPath As String = System.IO.Path.Combine(checkingFilePath, &quot;result_&quot; &amp; checkingId &amp; &quot;.json&quot;)&#xA;&#xA;' ====== Read current JSON file ======&#xA;Dim jsonContent As String = System.IO.File.ReadAllText(jsonPath, System.Text.Encoding.UTF8)&#xA;Dim jsonArray   As Newtonsoft.Json.Linq.JArray = Newtonsoft.Json.Linq.JArray.Parse(jsonContent)&#xA;&#xA;' ====== Find by compCode and update ======&#xA;For Each item As Newtonsoft.Json.Linq.JObject In jsonArray&#xA;    If item(&quot;compCode&quot;).ToString() = compCode Then&#xA;        item(&quot;isLogined&quot;)   = &quot;Y&quot;&#xA;        item(&quot;processTime&quot;) = DateTime.Now.ToString(&quot;yyyyMMdd HH:mm:ss&quot;)&#xA;        Exit For&#xA;    End If&#xA;Next&#xA;&#xA;' ====== Rewrite JSON file (overwrite) ======&#xA;System.IO.File.WriteAllText(jsonPath, jsonArray.ToString(), System.Text.Encoding.UTF8)" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="484.8,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
                     <ui:InvokeCode.Arguments>
                       <InArgument x:TypeArguments="x:String" x:Key="checkingId">[CHECKING_ID]</InArgument>
                       <InArgument x:TypeArguments="x:String" x:Key="checkingFilePath">[CHECKING_FILE_PATH]</InArgument>

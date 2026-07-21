@@ -56,6 +56,7 @@
       <x:String>System.ComponentModel</x:String>
       <x:String>UiPath.Core.Activities.Orchestrator</x:String>
       <x:String>System.Activities.Runtime.Collections</x:String>
+      <x:String>System.Net</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -119,14 +120,26 @@
       <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
       <AssemblyReference>REF_RPA.Core</AssemblyReference>
+      <AssemblyReference>System.Net.Primitives</AssemblyReference>
+      <AssemblyReference>System.Net.HttpListener</AssemblyReference>
+      <AssemblyReference>System.Net.WebProxy</AssemblyReference>
+      <AssemblyReference>System.Net.NameResolution</AssemblyReference>
+      <AssemblyReference>System.Net.WebHeaderCollection</AssemblyReference>
+      <AssemblyReference>System.Net.WebClient</AssemblyReference>
+      <AssemblyReference>System.Net.Requests</AssemblyReference>
+      <AssemblyReference>System.Net.ServicePoint</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="NEW_SSL" sap:VirtualizedContainerService.HintSize="961.6,3182.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="NEW_SSL" sap:VirtualizedContainerService.HintSize="961.6,3510.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Default="SSL" Name="COMP_CODE" />
       <Variable x:TypeArguments="x:String" Name="in_Username" />
       <Variable x:TypeArguments="ss:SecureString" Name="in_Password" />
-      <Variable x:TypeArguments="x:String" Default="C:\UipathScript\SSL" Name="path" />
+      <Variable x:TypeArguments="x:String" Name="path">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:String">C:\Users\RPA02\Documents\UiPath\RPA\Python_Script\SSL</Literal>
+        </Variable.Default>
+      </Variable>
       <Variable x:TypeArguments="x:String" Name="checking_id">
         <Variable.Default>
           <Literal x:TypeArguments="x:String" Value="" />
@@ -140,7 +153,16 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="SSL_AST_LOGIN" CacheStrategy="None" DisplayName="Get Credential" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="961.6,175.2" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[in_Password]" Username="[in_Username]" />
+    <Sequence sap:VirtualizedContainerService.HintSize="961.6,503.2" sap2010:WorkflowViewState.IdRef="Sequence_20">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="SSL_AST_LOGIN" CacheStrategy="None" DisplayName="Get Credential" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="416,175.2" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[in_Password]" Username="[in_Username]" />
+      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="WriteLine_4" Text="[in_Username]" />
+      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="WriteLine_3" Text="[CType(New System.Net.NetworkCredential(String.Empty, in_Password).Password, String)]" />
+    </Sequence>
     <ui:SetAsset TimeoutMS="{x:Null}" AssetName="SSL_NEW_PATH" DisplayName="Set Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="961.6,227.2" sap2010:WorkflowViewState.IdRef="SetAsset_1" Value="[&quot;empty&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
