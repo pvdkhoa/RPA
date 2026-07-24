@@ -104,12 +104,16 @@
       <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Download_ExistingContract" sap:VirtualizedContainerService.HintSize="762,2543.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Download_ExistingContract" sap:VirtualizedContainerService.HintSize="762,3949.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="MRF_REQUEST_DATE" />
       <Variable x:TypeArguments="x:String" Name="MRF_REQUEST_STATUS" />
       <Variable x:TypeArguments="x:String" Default="C:\Users\RPA02\Documents\UiPath\RPA\Python_Script\MeritzFireMarine\" Name="PYTHON_PATH" />
-      <Variable x:TypeArguments="x:Boolean" Default="False" Name="MRF_EXT_LTR_is_exist_file" />
+      <Variable x:TypeArguments="x:String" Name="MRF_EXT_LTR_is_exist_file">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:String">True</Literal>
+        </Variable.Default>
+      </Variable>
       <Variable x:TypeArguments="x:String" Name="MRF_EXT_LTR_is_exist_Data" />
       <Variable x:TypeArguments="x:String" Name="status" />
       <Variable x:TypeArguments="x:String" Name="MRF_EXT_LTR_data_status" />
@@ -151,7 +155,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Delay>
-    <Sequence DisplayName="Download Exsiting Contract" sap:VirtualizedContainerService.HintSize="520,1942.4" sap2010:WorkflowViewState.IdRef="Sequence_4">
+    <Sequence DisplayName="Download Exsiting Contract" sap:VirtualizedContainerService.HintSize="520,2127.2" sap2010:WorkflowViewState.IdRef="Sequence_4">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -165,7 +169,7 @@
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
       <Delay Duration="00:00:15" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_2" />
-      <If Condition="[DateTime.Parse(MRF_REQUEST_DATE) &lt;&gt; DateTime.Now.Date]" sap:VirtualizedContainerService.HintSize="486.4,1552" sap2010:WorkflowViewState.IdRef="If_2">
+      <If Condition="[DateTime.Parse(MRF_REQUEST_DATE) &lt;&gt; DateTime.Now.Date]" sap:VirtualizedContainerService.HintSize="486.4,1736.8" sap2010:WorkflowViewState.IdRef="If_2">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -226,16 +230,16 @@
           </Sequence>
         </If.Then>
         <If.Else>
-          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="484.8,916.8" sap2010:WorkflowViewState.IdRef="Sequence_17">
+          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="484.8,1101.6" sap2010:WorkflowViewState.IdRef="Sequence_17">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <If Condition="[MRF_REQUEST_STATUS = &quot;Y&quot;]" sap:VirtualizedContainerService.HintSize="451.2,856.8" sap2010:WorkflowViewState.IdRef="If_5">
+            <If Condition="[MRF_REQUEST_STATUS = &quot;Y&quot;]" sap:VirtualizedContainerService.HintSize="451.2,1041.6" sap2010:WorkflowViewState.IdRef="If_5">
               <If.Then>
-                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,221.6" sap2010:WorkflowViewState.IdRef="Sequence_31">
+                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,406.4" sap2010:WorkflowViewState.IdRef="Sequence_31">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -249,22 +253,22 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </WriteLine>
-                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Run Download File" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="python-workflow.cs">
+                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Run Download File" sap:VirtualizedContainerService.HintSize="416,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="python-workflow.cs">
                     <ui:InvokeWorkflowFile.Arguments>
                       <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "meritz_exisiting_download_file.py"]</InArgument>
                       <InArgument x:TypeArguments="x:String" x:Key="mode" />
                     </ui:InvokeWorkflowFile.Arguments>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </ui:InvokeWorkflowFile>
-                  <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="Delay_11">
+                  <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="Delay_11">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
@@ -273,9 +277,6 @@
               </If.Then>
               <If.Else>
                 <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,505.6" sap2010:WorkflowViewState.IdRef="Sequence_32">
-                  <Sequence.Variables>
-                    <Variable x:TypeArguments="x:String" Name="variable1" />
-                  </Sequence.Variables>
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -332,16 +333,26 @@
         </If.Else>
       </If>
     </Sequence>
-    <Sequence DisplayName="Close Program Sequence" sap:VirtualizedContainerService.HintSize="520,48" sap2010:WorkflowViewState.IdRef="Sequence_7">
+    <Sequence DisplayName="Close Program Sequence" sap:VirtualizedContainerService.HintSize="520,1269.6" sap2010:WorkflowViewState.IdRef="Sequence_7">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_4" />
+      <ui:InvokeCode ContinueOnError="{x:Null}" Code="Try&#xD;&#xA;    Dim hasNoExtensionFile As Boolean = System.IO.Directory.GetFiles(in_DownloadFolder).Any(Function(f) String.IsNullOrEmpty(System.IO.Path.GetExtension(f)))&#xD;&#xA;    io_IsExist = If(hasNoExtensionFile, &quot;True&quot;, &quot;False&quot;)&#xD;&#xA;Catch ex As Exception&#xD;&#xA;    io_IsExist = &quot;False&quot;&#xD;&#xA;    Console.WriteLine(&quot;Error checking download folder: &quot; &amp; ex.Message)&#xD;&#xA;End Try&#xD;&#xA;" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="451.2,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+        <ui:InvokeCode.Arguments>
+          <InArgument x:TypeArguments="x:String" x:Key="in_DownloadFolder ">
+            <Literal x:TypeArguments="x:String">C:\Users\RPA02\Downloads</Literal>
+          </InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="io_IsExist ">
+            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="MRF_EXT_LTR_is_exist_file" />
+          </InArgument>
+        </ui:InvokeCode.Arguments>
+      </ui:InvokeCode>
       <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="WriteLine_5" Text="[&quot;EXIST FILE:  &quot; + MRF_EXT_LTR_is_exist_file.ToString()]" />
-      <If Condition="[MRF_EXT_LTR_is_exist_file = True]" sap:VirtualizedContainerService.HintSize="451.2,455.2" sap2010:WorkflowViewState.IdRef="If_1">
+      <If Condition="[MRF_EXT_LTR_is_exist_file = &quot;True&quot;]" sap:VirtualizedContainerService.HintSize="451.2,455.2" sap2010:WorkflowViewState.IdRef="If_1">
         <If.Then>
           <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,227.2" sap2010:WorkflowViewState.IdRef="Sequence_8">
             <sap:WorkflowViewStateService.ViewState>
