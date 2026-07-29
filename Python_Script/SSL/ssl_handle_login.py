@@ -10,6 +10,11 @@ import json
 from pathlib import Path
 from datetime import datetime
 
+# ── Password-expiry popup screen region (x1, y1, x2, y2) ──
+X1_POPUP, Y1_POPUP, X2_POPUP, Y2_POPUP =685, 458, 1153, 530
+
+# ── Password-expiry popup 'change later' button coordinates ──
+X_LEFT_BUTTON, Y_LEFT_BUTTON = 667, 515  
 # ─────────────────────────────────────────
 # LOGGING
 # ─────────────────────────────────────────
@@ -383,7 +388,7 @@ def close_all_popups(hwnd_main):
 # crashed cp949 encoding, but garbage strings leaked through -> counted as 'loaded'.
 # This version: forces UTF-8, checks exit code, filters out all noise.
 # ─────────────────────────────────────────
-def run_ocr_check():
+def run_ocr_check(region=None):
     """
     Executes the external ocr_check.py script as a subprocess to extract text from the screen.
     This is used to verify if the main page has fully loaded after login.
@@ -391,7 +396,9 @@ def run_ocr_check():
     log.info("[OCR] Running ocr_check.py...")
     env = os.environ.copy()
     env["PYTHONIOENCODING"] = "utf-8"   # prevent cp949 crash from subprocess
-
+    cmd = [PYTHON_EXE, OCR_SCRIPT]
+    if region:
+        cmd += [str(v) for v in region]
     result = subprocess.run(
         [PYTHON_EXE, OCR_SCRIPT],
         capture_output=True, text=True,
@@ -480,6 +487,14 @@ def do_login(hwnd, creds):
     time.sleep(25)
     log.info(f"[LOGIN] Settling {POST_LOGIN_SETTLE}s for security handshake...")
     time.sleep(POST_LOGIN_SETTLE)
+  	
+    log.info("[LOGIN] Clicking Popup Password Expired button...")
+    click(hwnd, 618, 518)
+    time.sleep(1)
+    log.info("[LOGIN] Clicking Popup Password Expired button2...")
+    click(hwnd, 618, 518)
+    time.sleep(1)
+	
 
     close_all_popups(hwnd)
     log.info("[LOGIN] Login flow completed")
@@ -503,8 +518,8 @@ def restart_and_open(creds):
 
     do_login(hwnd, creds)
     return hwnd
-
 # ─────────────────────────────────────────
+
 # MAIN
 # ─────────────────────────────────────────
 log.info("========== START ==========")
