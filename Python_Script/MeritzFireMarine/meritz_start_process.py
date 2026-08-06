@@ -31,24 +31,33 @@ def get_hwnd():
 
 def close_popups():
     """
-    Closes all 'ComShareMsiePopup' windows that might be blocking the main UI.
+    Closes all '팝업공지' popup windows that might be blocking the main UI.
     """
     count = 0
-    
+
     # Step 1: Define a callback function to check each window
     def callback(hwnd, _):
         nonlocal count
         # Step 2: Check if the window is visible
         if win32gui.IsWindowVisible(hwnd):
             title = win32gui.GetWindowText(hwnd)
-            # Step 3: Identify the specific popup by its title
-            if 'ComShareMsiePopup' in title:
-                # Step 4: Send a WM_CLOSE message to gracefully close the popup
+            owner = win32gui.GetWindow(hwnd, win32con.GW_OWNER)
+
+            # Step 3: SAFETY - never touch the main application window.
+            # The popup shares the same class ('CyNexacroWClass13') as the main
+            # window, so we must distinguish them: the popup has an owner,
+            # the main window does not (owner == 0).
+            if owner == 0 or 'DB손해보험-통합' in title:
+                return
+
+            # Step 4: Identify the specific popup by its title
+            if '팝업공지' in title:
+                # Step 5: Send a WM_CLOSE message to gracefully close the popup
                 win32gui.PostMessage(hwnd, win32con.WM_CLOSE, 0, 0)
-                print(f"Closed popup: hwnd={hwnd}")
+                print(f"Closed popup: hwnd={hwnd} title={title!r}")
                 count += 1
-                
-    # Step 5: Enumerate all windows to apply the callback
+
+    # Step 6: Enumerate all windows to apply the callback
     win32gui.EnumWindows(callback, None)
     print(f"Total popups closed: {count}")
 

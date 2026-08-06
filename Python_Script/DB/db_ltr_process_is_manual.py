@@ -114,6 +114,29 @@ def get_asset_by_name(token, asset_name):
         return None
     log.info(f"[ASSET] Found asset '{asset_name}'")
     return assets[0]
+def close_popups():
+    """
+    Closes all 'ComShareMsiePopup' windows that might be blocking the main UI.
+    """
+    count = 0
+    
+    # Step 1: Define a callback function to check each window
+    def callback(hwnd, _):
+        nonlocal count
+        # Step 2: Check if the window is visible
+        if win32gui.IsWindowVisible(hwnd):
+            title = win32gui.GetWindowText(hwnd)
+            # Step 3: Identify the specific popup by its title
+            if 'ComShareMsiePopup' in title:
+                # Step 4: Send a WM_CLOSE message to gracefully close the popup
+                win32gui.PostMessage(hwnd, win32con.WM_CLOSE, 0, 0)
+                print(f"Closed popup: hwnd={hwnd}")
+                count += 1
+                
+    # Step 5: Enumerate all windows to apply the callback
+    win32gui.EnumWindows(callback, None)
+    print(f"Total popups closed: {count}")
+
 
 def get_asset_value(asset):
     """
@@ -175,7 +198,10 @@ def check_and_apply_manual_date():
 
 # ===== MAIN FLOW =====
 print('Started process: clicking...')
-
+time.sleep(3)
+click(504, 24)
+print('Clicked close popup')
+time.sleep(3)
 click(144, 264)
 print('Clicked main menu')
 time.sleep(0.5)
