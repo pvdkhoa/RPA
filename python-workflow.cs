@@ -41,7 +41,7 @@ namespace REF_RPA
             // Runs every time Execute() is called, so no separate Task Scheduler job is needed.
             // Prevents the log folder from growing indefinitely once each run gets its own
             // timestamped log file (see below).
-            CleanupOldLogs(logDir, retentionDays: 30);
+            CleanupOldLogs(logDir, retentionDays: 7);
 
             // ---- Build unique, timestamped log file names for this run ----
             // Using a timestamp (instead of a fixed file name) avoids overwriting the log
