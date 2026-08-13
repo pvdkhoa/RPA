@@ -29,35 +29,40 @@ def get_hwnd():
     # Step 7: Return the first matching window handle
     return result[0]
 
+# Titles of the MAIN application windows - these must NEVER be closed.
+# Add more names here if additional systems are involved.
+MAIN_WINDOW_TITLES = ['메리츠화재', 'DB손해보험-통합']
+
 def close_popups():
     """
-    Closes all '팝업공지' popup windows that might be blocking the main UI.
+    Closes any visible child/owned popup window that is not one of the
+    main application windows. No longer relies on a specific keyword like
+    '팝업공지', since the portal can spawn various types of popups
+    (surveys, ads, system notices, etc.) with unpredictable titles.
     """
     count = 0
 
-    # Step 1: Define a callback function to check each window
     def callback(hwnd, _):
         nonlocal count
-        # Step 2: Check if the window is visible
-        if win32gui.IsWindowVisible(hwnd):
-            title = win32gui.GetWindowText(hwnd)
-            owner = win32gui.GetWindow(hwnd, win32con.GW_OWNER)
+        # Step 1: Skip windows that aren't currently visible
+        if not win32gui.IsWindowVisible(hwnd):
+            return
 
-            # Step 3: SAFETY - never touch the main application window.
-            # The popup shares the same class ('CyNexacroWClass13') as the main
-            # window, so we must distinguish them: the popup has an owner,
-            # the main window does not (owner == 0).
-            if owner == 0 or 'DB손해보험-통합' in title:
-                return
+        title = win32gui.GetWindowText(hwnd)
+        owner = win32gui.GetWindow(hwnd, win32con.GW_OWNER)
 
-            # Step 4: Identify the specific popup by its title
-            if '팝업공지' in title:
-                # Step 5: Send a WM_CLOSE message to gracefully close the popup
-                win32gui.PostMessage(hwnd, win32con.WM_CLOSE, 0, 0)
-                print(f"Closed popup: hwnd={hwnd} title={title!r}")
-                count += 1
+        # Step 2: This is a MAIN window (no owner AND title matches whitelist)
+        # -> leave it alone
+        if owner == 0 and any(name in title for name in MAIN_WINDOW_TITLES):
+            return
 
-    # Step 6: Enumerate all windows to apply the callback
+        # Step 3: Everything else visible (owned windows, or ownerless
+        # windows not in the whitelist) is treated as a popup/ad -> close it
+        win32gui.PostMessage(hwnd, win32con.WM_CLOSE, 0, 0)
+        print(f"Closed popup: hwnd={hwnd} owner={owner} title={title!r}")
+        count += 1
+
+    # Step 4: Enumerate all top-level windows and apply the callback
     win32gui.EnumWindows(callback, None)
     print(f"Total popups closed: {count}")
 
