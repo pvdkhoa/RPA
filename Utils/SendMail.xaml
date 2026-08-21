@@ -136,13 +136,9 @@
       <AssemblyReference>UiPath.GSuite</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="SendMail" sap:VirtualizedContainerService.HintSize="670,2130.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="SendMail" sap:VirtualizedContainerService.HintSize="670,1776" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="scg:List(x:String)" Name="PilotCompanies">
-        <Variable.Default>
-          <VisualBasicValue x:TypeArguments="scg:List(x:String)" ExpressionText="New List(Of String) From {&quot;HKF&quot;, &quot;SSL&quot;,&quot;LNF&quot;,&quot;SSF&quot;,&quot;HDG&quot;,&quot;HWG&quot;,&quot;MTL&quot;,&quot;CDL&quot;}" />
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="scg:List(x:String)" Default="[New List(Of String) From {&quot;HKF&quot;, &quot;SSL&quot;,&quot;LNF&quot;,&quot;SSF&quot;,&quot;HDG&quot;,&quot;HWG&quot;,&quot;MTL&quot;,&quot;CDL&quot;}]" Name="PilotCompanies" />
       <Variable x:TypeArguments="x:String" Name="missingTypesStr" />
       <Variable x:TypeArguments="x:String" Name="tempAssetPath" />
       <Variable x:TypeArguments="x:Boolean" Name="isFileCheckFail" />
@@ -156,7 +152,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence sap:VirtualizedContainerService.HintSize="520,2107.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence sap:VirtualizedContainerService.HintSize="520,1752.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="compTitle" />
         <Variable x:TypeArguments="x:String" Name="logo2" />
@@ -933,125 +929,88 @@
           </If>
         </Sequence>
       </Switch>
-      <If Condition="[PilotCompanies.Contains(compCode)]" sap:VirtualizedContainerService.HintSize="486.4,581.6" sap2010:WorkflowViewState.IdRef="If_18">
-        <If.Then>
-          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,278.4" sap2010:WorkflowViewState.IdRef="Sequence_56">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <ui:InvokeCode ContinueOnError="{x:Null}" Code="AssetNamesToCheck = New List(Of String)&#xA;MissingTypeLabels = New List(Of String)&#xA;isFileCheckFail = False&#xA;&#xA;Select Case compCode&#xA;    Case &quot;CDL&quot;&#xA;        AssetNamesToCheck.Add(&quot;CDL_NEW_PATH&quot;)&#xA;    Case &quot;KBL&quot;&#xA;        AssetNamesToCheck.Add(&quot;KBL_NEW_PATH&quot;)&#xA;    Case &quot;LNF&quot;&#xA;        AssetNamesToCheck.Add(&quot;LNF_NEW_PATH&quot;)&#xA;    Case &quot;MTL&quot;&#xA;        AssetNamesToCheck.Add(&quot;MTL_NEW_PATH&quot;)&#xA;    Case &quot;SSL&quot;&#xA;        AssetNamesToCheck.Add(&quot;SSL_NEW_PATH&quot;)&#xA;    Case &quot;DBG&quot;&#xA;        AssetNamesToCheck.AddRange({&quot;DBG_NEW_CAR_PATH&quot;, &quot;DBG_NEW_GEN_PATH&quot;, &quot;DBG_NEW_LTR_PATH&quot;})&#xA;    Case &quot;HDG&quot;&#xA;        AssetNamesToCheck.AddRange({&quot;HDG_NEW_CAR_PATH&quot;, &quot;HDG_NEW_GEN_PATH&quot;, &quot;HDG_NEW_LTR_PATH&quot;})&#xA;    Case &quot;HKF&quot;&#xA;        AssetNamesToCheck.AddRange({&quot;HKF_NEW_CAR_PATH&quot;, &quot;HKF_NEW_GEN_PATH&quot;, &quot;HKF_NEW_LTR_PATH&quot;})&#xA;    Case &quot;HWG&quot;&#xA;        AssetNamesToCheck.AddRange({&quot;HWG_NEW_CAR_PATH&quot;, &quot;HWG_NEW_GEN_PATH&quot;, &quot;HWG_NEW_LTR_PATH&quot;})&#xA;    Case &quot;KBG&quot;&#xA;        AssetNamesToCheck.AddRange({&quot;KBG_NEW_CAR_PATH&quot;, &quot;KBG_NEW_GEN_PATH&quot;, &quot;KBG_NEW_LTR_PATH&quot;})&#xA;    Case &quot;LTG&quot;&#xA;        AssetNamesToCheck.AddRange({&quot;LTG_NEW_CAR_PATH&quot;, &quot;LTG_NEW_GEN_PATH&quot;, &quot;LTG_NEW_LTR_PATH&quot;})&#xA;    Case &quot;MRF&quot;&#xA;        AssetNamesToCheck.AddRange({&quot;MRF_NEW_CAR_PATH&quot;, &quot;MRF_NEW_GEN_PATH&quot;, &quot;MRF_NEW_LTR_PATH&quot;})&#xA;    Case &quot;SSF&quot;&#xA;        AssetNamesToCheck.AddRange({&quot;SSF_NEW_CAR_PATH&quot;, &quot;SSF_NEW_GEN_PATH&quot;, &quot;SSF_NEW_LTR_PATH&quot;})&#xA;End Select" DisplayName="Invoke Code Determine Assets To Check" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
-              <ui:InvokeCode.Arguments>
-                <InArgument x:TypeArguments="x:String" x:Key="compCode">[compCode]</InArgument>
-                <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="AssetNamesToCheck">[AssetNamesToCheck]</OutArgument>
-                <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="MissingTypeLabels">[MissingTypeLabels]</OutArgument>
-                <OutArgument x:TypeArguments="x:Boolean" x:Key="isFileCheckFail">[isFileCheckFail]</OutArgument>
-              </ui:InvokeCode.Arguments>
+      <ui:InvokeCode ContinueOnError="{x:Null}" Code="AssetNamesToCheck = New List(Of String)&#xD;&#xA;MissingTypeLabels = New List(Of String)&#xD;&#xA;isFileCheckFail = False&#xD;&#xA;&#xD;&#xA;If contractType = &quot;NEW&quot; Then&#xD;&#xA;    Select Case compCode&#xD;&#xA;        Case &quot;CDL&quot;&#xD;&#xA;            AssetNamesToCheck.Add(&quot;CDL_NEW_PATH&quot;)&#xD;&#xA;        Case &quot;KBL&quot;&#xD;&#xA;            AssetNamesToCheck.Add(&quot;KBL_NEW_PATH&quot;)&#xD;&#xA;        Case &quot;LNF&quot;&#xD;&#xA;            AssetNamesToCheck.Add(&quot;LNF_NEW_PATH&quot;)&#xD;&#xA;        Case &quot;MTL&quot;&#xD;&#xA;            AssetNamesToCheck.Add(&quot;MTL_NEW_PATH&quot;)&#xD;&#xA;        Case &quot;SSL&quot;&#xD;&#xA;            AssetNamesToCheck.Add(&quot;SSL_NEW_PATH&quot;)&#xD;&#xA;        Case &quot;DBG&quot;&#xD;&#xA;            AssetNamesToCheck.AddRange({&quot;DBG_NEW_CAR_PATH&quot;, &quot;DBG_NEW_GEN_PATH&quot;, &quot;DBG_NEW_LTR_PATH&quot;})&#xD;&#xA;        Case &quot;HDG&quot;&#xD;&#xA;            AssetNamesToCheck.AddRange({&quot;HDG_NEW_CAR_PATH&quot;, &quot;HDG_NEW_GEN_PATH&quot;, &quot;HDG_NEW_LTR_PATH&quot;})&#xD;&#xA;        Case &quot;HKF&quot;&#xD;&#xA;            AssetNamesToCheck.AddRange({&quot;HKF_NEW_CAR_PATH&quot;, &quot;HKF_NEW_GEN_PATH&quot;, &quot;HKF_NEW_LTR_PATH&quot;})&#xD;&#xA;        Case &quot;HWG&quot;&#xD;&#xA;            AssetNamesToCheck.AddRange({&quot;HWG_NEW_CAR_PATH&quot;, &quot;HWG_NEW_GEN_PATH&quot;, &quot;HWG_NEW_LTR_PATH&quot;})&#xD;&#xA;        Case &quot;KBG&quot;&#xD;&#xA;            AssetNamesToCheck.AddRange({&quot;KBG_NEW_CAR_PATH&quot;, &quot;KBG_NEW_GEN_PATH&quot;, &quot;KBG_NEW_LTR_PATH&quot;})&#xD;&#xA;        Case &quot;LTG&quot;&#xD;&#xA;            AssetNamesToCheck.AddRange({&quot;LTG_NEW_CAR_PATH&quot;, &quot;LTG_NEW_GEN_PATH&quot;, &quot;LTG_NEW_LTR_PATH&quot;})&#xD;&#xA;        Case &quot;MRF&quot;&#xD;&#xA;            AssetNamesToCheck.AddRange({&quot;MRF_NEW_CAR_PATH&quot;, &quot;MRF_NEW_GEN_PATH&quot;, &quot;MRF_NEW_LTR_PATH&quot;})&#xD;&#xA;        Case &quot;SSF&quot;&#xD;&#xA;            AssetNamesToCheck.AddRange({&quot;SSF_NEW_CAR_PATH&quot;, &quot;SSF_NEW_GEN_PATH&quot;, &quot;SSF_NEW_LTR_PATH&quot;})&#xD;&#xA;    End Select&#xD;&#xA;&#xD;&#xA;ElseIf contractType = &quot;EXIST&quot; Then&#xD;&#xA;    Select Case compCode&#xD;&#xA;        Case &quot;CDL&quot;&#xD;&#xA;            AssetNamesToCheck.Add(&quot;CDL_EXT_PATH&quot;)&#xD;&#xA;        Case &quot;DBL&quot;&#xD;&#xA;            AssetNamesToCheck.Add(&quot;DBL_EXT_PATH&quot;)   &#xD;&#xA;        Case &quot;KBL&quot;&#xD;&#xA;            AssetNamesToCheck.Add(&quot;KBL_EXT_PATH&quot;)&#xD;&#xA;        Case &quot;LNF&quot;&#xD;&#xA;            AssetNamesToCheck.Add(&quot;LNF_EXT_PATH&quot;)&#xD;&#xA;        Case &quot;LTG&quot;&#xD;&#xA;            AssetNamesToCheck.Add(&quot;LTG_EXT_PATH&quot;)&#xD;&#xA;        Case &quot;MRF&quot;&#xD;&#xA;            AssetNamesToCheck.Add(&quot;MRF_EXT_PATH&quot;)&#xD;&#xA;        Case &quot;MTL&quot;&#xD;&#xA;            AssetNamesToCheck.Add(&quot;MTL_EXT_PATH&quot;)&#xD;&#xA;        Case &quot;SSL&quot;&#xD;&#xA;            AssetNamesToCheck.Add(&quot;SSL_EXT_PATH&quot;)&#xD;&#xA;    End Select&#xD;&#xA;End If" DisplayName="Invoke Code Determine Assets To Check" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+        <ui:InvokeCode.Arguments>
+          <InArgument x:TypeArguments="x:String" x:Key="compCode">
+            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="compCode" />
+          </InArgument>
+          <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="AssetNamesToCheck">
+            <VisualBasicReference x:TypeArguments="scg:List(x:String)" ExpressionText="AssetNamesToCheck" />
+          </OutArgument>
+          <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="MissingTypeLabels">
+            <VisualBasicReference x:TypeArguments="scg:List(x:String)" ExpressionText="MissingTypeLabels" />
+          </OutArgument>
+          <OutArgument x:TypeArguments="x:Boolean" x:Key="isFileCheckFail">
+            <VisualBasicReference x:TypeArguments="x:Boolean" ExpressionText="isFileCheckFail" />
+          </OutArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="contractType">
+            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="contractType" />
+          </InArgument>
+        </ui:InvokeCode.Arguments>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:InvokeCode>
+      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[&quot;Check to show: &quot; &amp; String.Join(&quot;, &quot;, AssetNamesToCheck)]">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </WriteLine>
+      <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each item" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[AssetNamesToCheck]">
+        <ui:ForEach.Body>
+          <ActivityAction x:TypeArguments="x:String">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="x:String" Name="item" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="449.6,423.2" sap2010:WorkflowViewState.IdRef="Sequence_52">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-            </ui:InvokeCode>
-            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[&quot;Check to show: &quot; &amp; String.Join(&quot;, &quot;, AssetNamesToCheck)]">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </WriteLine>
-            <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each item" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[AssetNamesToCheck]">
-              <ui:ForEach.Body>
-                <ActivityAction x:TypeArguments="x:String">
-                  <ActivityAction.Argument>
-                    <DelegateInArgument x:TypeArguments="x:String" Name="item" />
-                  </ActivityAction.Argument>
-                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="449.6,423.2" sap2010:WorkflowViewState.IdRef="Sequence_52">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="[item]" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="416,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_3">
-                      <ui:GetRobotAsset.Value>
-                        <OutArgument x:TypeArguments="x:String">[tempAssetPath]</OutArgument>
-                      </ui:GetRobotAsset.Value>
-                    </ui:GetRobotAsset>
-                    <ui:InvokeCode ContinueOnError="{x:Null}" Code="If String.IsNullOrWhiteSpace(tempAssetPath) _&#xA;   OrElse tempAssetPath.Trim().ToLower() = &quot;empty&quot; _&#xA;   OrElse Not System.IO.File.Exists(tempAssetPath) Then&#xA;&#xA;    isFileCheckFail = True&#xA;&#xA;    If item.EndsWith(&quot;_LTR_PATH&quot;) Then&#xA;        If Not MissingTypeLabels.Contains(&quot;장기&quot;) Then&#xA;            MissingTypeLabels.Add(&quot;장기&quot;)&#xA;        End If&#xA;    ElseIf item.EndsWith(&quot;_GEN_PATH&quot;) Then&#xA;        If Not MissingTypeLabels.Contains(&quot;일반&quot;) Then&#xA;            MissingTypeLabels.Add(&quot;일반&quot;)&#xA;        End If&#xA;    ElseIf item.EndsWith(&quot;_CAR_PATH&quot;) Then&#xA;        If Not MissingTypeLabels.Contains(&quot;자동차&quot;) Then&#xA;            MissingTypeLabels.Add(&quot;자동차&quot;)&#xA;        End If&#xA;    Else&#xA;        ' Company chỉ có 1 file (không phân loại) — ví dụ SSL_NEW_PATH, KBL_NEW_PATH...&#xA;        If Not MissingTypeLabels.Contains(&quot;신규계약&quot;) Then&#xA;            MissingTypeLabels.Add(&quot;신규계약&quot;)&#xA;        End If&#xA;    End If&#xA;End If" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,188" sap2010:WorkflowViewState.IdRef="InvokeCode_2">
-                      <ui:InvokeCode.Arguments>
-                        <InOutArgument x:TypeArguments="x:String" x:Key="tempAssetPath">[tempAssetPath]</InOutArgument>
-                        <InArgument x:TypeArguments="x:String" x:Key="item">[item]</InArgument>
-                        <InOutArgument x:TypeArguments="x:Boolean" x:Key="isFileCheckFail">[isFileCheckFail]</InOutArgument>
-                        <InOutArgument x:TypeArguments="scg:List(x:String)" x:Key="MissingTypeLabels">[MissingTypeLabels]</InOutArgument>
-                      </ui:InvokeCode.Arguments>
-                    </ui:InvokeCode>
-                  </Sequence>
-                </ActivityAction>
-              </ui:ForEach.Body>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </ui:ForEach>
-            <Assign sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="Assign_32">
-              <Assign.To>
-                <OutArgument x:TypeArguments="x:String">[missingTypesStr]</OutArgument>
-              </Assign.To>
-              <Assign.Value>
-                <InArgument x:TypeArguments="x:String">[If(MissingTypeLabels.Count &gt; 0, "(" &amp; String.Join(" / ", MissingTypeLabels) &amp; ")", "")]</InArgument>
-              </Assign.Value>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </Assign>
-          </Sequence>
-        </If.Then>
-        <If.Else>
-          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,164.8" sap2010:WorkflowViewState.IdRef="Sequence_55">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <Assign sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Assign_33">
-              <Assign.To>
-                <OutArgument x:TypeArguments="x:Boolean">[isFileCheckFail]</OutArgument>
-              </Assign.To>
-              <Assign.Value>
-                <InArgument x:TypeArguments="x:Boolean">[False]</InArgument>
-              </Assign.Value>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </Assign>
-            <Assign sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="Assign_34">
-              <Assign.To>
-                <OutArgument x:TypeArguments="x:String">[missingTypesStr]</OutArgument>
-              </Assign.To>
-              <Assign.Value>
-                <InArgument x:TypeArguments="x:String">[" "]</InArgument>
-              </Assign.Value>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </Assign>
-          </Sequence>
-        </If.Else>
-      </If>
+              <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="[item]" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="416,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_3">
+                <ui:GetRobotAsset.Value>
+                  <OutArgument x:TypeArguments="x:String">[tempAssetPath]</OutArgument>
+                </ui:GetRobotAsset.Value>
+              </ui:GetRobotAsset>
+              <ui:InvokeCode ContinueOnError="{x:Null}" Code="If String.IsNullOrWhiteSpace(tempAssetPath) _&#xA;   OrElse tempAssetPath.Trim().ToLower() = &quot;empty&quot; _&#xA;   OrElse Not System.IO.File.Exists(tempAssetPath) Then&#xA;&#xA;    isFileCheckFail = True&#xA;&#xA;    If item.EndsWith(&quot;_LTR_PATH&quot;) Then&#xA;        If Not MissingTypeLabels.Contains(&quot;장기&quot;) Then&#xA;            MissingTypeLabels.Add(&quot;장기&quot;)&#xA;        End If&#xA;    ElseIf item.EndsWith(&quot;_GEN_PATH&quot;) Then&#xA;        If Not MissingTypeLabels.Contains(&quot;일반&quot;) Then&#xA;            MissingTypeLabels.Add(&quot;일반&quot;)&#xA;        End If&#xA;    ElseIf item.EndsWith(&quot;_CAR_PATH&quot;) Then&#xA;        If Not MissingTypeLabels.Contains(&quot;자동차&quot;) Then&#xA;            MissingTypeLabels.Add(&quot;자동차&quot;)&#xA;        End If&#xA;    Else&#xA;        ' Company chỉ có 1 file (không phân loại) — ví dụ SSL_NEW_PATH, KBL_NEW_PATH...&#xA;        If Not MissingTypeLabels.Contains(&quot;신규계약&quot;) Then&#xA;            MissingTypeLabels.Add(&quot;신규계약&quot;)&#xA;        End If&#xA;    End If&#xA;End If" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,188" sap2010:WorkflowViewState.IdRef="InvokeCode_2">
+                <ui:InvokeCode.Arguments>
+                  <InOutArgument x:TypeArguments="x:String" x:Key="tempAssetPath">[tempAssetPath]</InOutArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="item">[item]</InArgument>
+                  <InOutArgument x:TypeArguments="x:Boolean" x:Key="isFileCheckFail">[isFileCheckFail]</InOutArgument>
+                  <InOutArgument x:TypeArguments="scg:List(x:String)" x:Key="MissingTypeLabels">[MissingTypeLabels]</InOutArgument>
+                </ui:InvokeCode.Arguments>
+              </ui:InvokeCode>
+            </Sequence>
+          </ActivityAction>
+        </ui:ForEach.Body>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:ForEach>
+      <Assign sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="Assign_32">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[missingTypesStr]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[If(MissingTypeLabels.Count &gt; 0, "(" &amp; String.Join(" / ", MissingTypeLabels) &amp; ")", "")]</InArgument>
+        </Assign.Value>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </Assign>
       <If Condition="[isSuccess = &quot;False&quot;]" sap:VirtualizedContainerService.HintSize="486.4,682.4" sap2010:WorkflowViewState.IdRef="If_15">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
