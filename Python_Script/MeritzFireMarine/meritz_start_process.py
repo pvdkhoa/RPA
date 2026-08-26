@@ -51,12 +51,16 @@ def clear_and_type(x, y, text):
     time.sleep(0.1)
     type_text(text)
 
-print('Bat dau close popup...')
+print('Start close popup...')
 close_popups()
+time.sleep(2)
+
+print('Start close new popup...')
+click(1148,212)
 time.sleep(1)
 
 print('Close popup')
 click(997,261)
-time.sleep(0.5)
+time.sleep(1)
 
 print('DONE!')
