@@ -83,7 +83,7 @@ force_foreground(hwnd)
 print('Started process: clicking...')
 time.sleep(5)
 # Selection Box Insurance type
-click(649, 171)
+click(670, 172)
 print('Clicked Selection Box Insurance type')
 time.sleep(3)
 
