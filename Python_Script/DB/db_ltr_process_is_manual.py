@@ -114,28 +114,23 @@ def get_asset_by_name(token, asset_name):
         return None
     log.info(f"[ASSET] Found asset '{asset_name}'")
     return assets[0]
+
+
+
 def close_popups():
-    """
-    Closes all 'ComShareMsiePopup' windows that might be blocking the main UI.
-    """
+    """Đóng tất cả popup ComShareMsiePopup"""
     count = 0
-    
-    # Step 1: Define a callback function to check each window
     def callback(hwnd, _):
         nonlocal count
-        # Step 2: Check if the window is visible
         if win32gui.IsWindowVisible(hwnd):
             title = win32gui.GetWindowText(hwnd)
-            # Step 3: Identify the specific popup by its title
             if 'ComShareMsiePopup' in title:
-                # Step 4: Send a WM_CLOSE message to gracefully close the popup
                 win32gui.PostMessage(hwnd, win32con.WM_CLOSE, 0, 0)
-                print(f"Closed popup: hwnd={hwnd}")
+                print(f"Da dong popup: hwnd={hwnd}")
                 count += 1
-                
-    # Step 5: Enumerate all windows to apply the callback
     win32gui.EnumWindows(callback, None)
-    print(f"Total popups closed: {count}")
+    print(f"Tong so popup da dong: {count}")
+
 
 
 def get_asset_value(asset):
@@ -197,23 +192,39 @@ def check_and_apply_manual_date():
         print("[TOGGLE] Fallback: keeping default date.")
 
 # ===== MAIN FLOW =====
-print('Started process: clicking...')
+print('Started process: closing popups & navigating menu...')
 time.sleep(3)
+
+# 1. Close all blocking popups
+close_popups()
+time.sleep(1)
+# 2. Click static popup close button second
+click(616, 20)
+print('Clicked close popup')
+
+# 2. Click static popup close button
 click(504, 24)
 print('Clicked close popup')
 time.sleep(3)
+
+time.sleep(3)
+# 3. Click main menu items
 click(144, 264)
 print('Clicked main menu')
 time.sleep(0.5)
+
 click(189, 267)
 print('Clicked menu item 1')
 time.sleep(0.5)
+
 click(193, 355)
 print('Clicked menu item 2')
 time.sleep(0.5)
+
 click(231, 540)
 print('Clicked menu item 3')
 time.sleep(0.5)
+
 click(232, 601)
 print('Clicked menu item 4')
 time.sleep(3)
@@ -225,16 +236,21 @@ check_and_apply_manual_date()
 click(670, 172)
 print('Clicked Selection Box Insurance type')
 time.sleep(1)
+
 click(638, 240)
 print('Clicked Selection Item Long Term')
 time.sleep(1)
+
 click(871, 175)
 print('Clicked Selection Box 2')
 time.sleep(0.5)
+
 click(840, 220)
 print('Clicked Selection Item 2')
 time.sleep(1)
+
 click(1361, 208)
 print('Clicked Search button')
 time.sleep(2)
+
 print('DONE!')

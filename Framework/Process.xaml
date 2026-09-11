@@ -104,7 +104,7 @@
       <AssemblyReference>System.Memory.Data</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="679.6,2180.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="679.6,881.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="isAll" />
       <Variable x:TypeArguments="x:String" Name="contractType" />
@@ -181,7 +181,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <If Condition="[runType.Trim.ToUpper = &quot;CHECK&quot;]" sap:VirtualizedContainerService.HintSize="556.8,1796" sap2010:WorkflowViewState.IdRef="If_3">
+    <If Condition="[runType.Trim.ToUpper = &quot;CHECK&quot;]" sap:VirtualizedContainerService.HintSize="556.8,496.8" sap2010:WorkflowViewState.IdRef="If_3">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -219,13 +219,13 @@
         </Sequence>
       </If.Then>
       <If.Else>
-        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="555.2,1439.2" sap2010:WorkflowViewState.IdRef="Sequence_7">
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="555.2,140" sap2010:WorkflowViewState.IdRef="Sequence_7">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <If Condition="[runType.Trim.ToUpper = &quot;DOWNLOAD&quot;]" sap:VirtualizedContainerService.HintSize="521.6,1379.2" sap2010:WorkflowViewState.IdRef="If_1">
+          <If Condition="[runType.Trim.ToUpper = &quot;DOWNLOAD&quot;]" sap:VirtualizedContainerService.HintSize="521.6,473.6" sap2010:WorkflowViewState.IdRef="If_1">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -262,14 +262,14 @@
               </Sequence>
             </If.Then>
             <If.Else>
-              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="520,1022.4" sap2010:WorkflowViewState.IdRef="Sequence_3">
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="520,140" sap2010:WorkflowViewState.IdRef="Sequence_3">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <If Condition="[Not (in_HasDownloadError = &quot;True&quot;)]" sap:VirtualizedContainerService.HintSize="486.4,962.4" sap2010:WorkflowViewState.IdRef="If_2">
+                <If Condition="[Not (in_HasDownloadError = &quot;True&quot;)]" sap:VirtualizedContainerService.HintSize="486.4,939.2" sap2010:WorkflowViewState.IdRef="If_2">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -321,7 +321,7 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                       <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="451.2,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_3" Message="[&quot;Skipping Upload due to Download error&quot;]" />
-                      <Throw Exception="[io_LastException]" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="Throw_1" />
+                      <Throw Exception="[New BusinessRuleException(&quot;Skipping Upload due to Download error: &quot; + If(io_LastException IsNot Nothing, io_LastException.Message, &quot;Download failed&quot;))]" sap:VirtualizedContainerService.HintSize="451.2,113.6" sap2010:WorkflowViewState.IdRef="Throw_1" />
                     </Sequence>
                   </If.Else>
                 </If>

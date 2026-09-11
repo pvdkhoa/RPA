@@ -1,8 +1,9 @@
 """
-kill_processes.py
+close_web.py
 -----------------
-Kill browser/RPA processes dùng wmic.
-Yêu cầu: Python 3.6+, không cần cài thêm thư viện.
+Kill browser/RPA/Nexacro processes using taskkill.
+Compatible with Windows Korean OS (CP949) and international environments.
+Requires: Python 3.6+, no external dependencies required.
 """
 
 import subprocess
@@ -10,79 +11,42 @@ import sys
 
 PROCESS_NAMES = [
     "msedge.exe",
-    "msedgewebview2.exe",
     "chrome.exe",
     "chromedriver.exe",
     "msedgedriver.exe",
     "XPlatform.exe",
     "nexacro.exe",
-    "ChromeNativeMessaging.exe",
+    "nexacroplatform.exe",
 ]
 
 
-def get_pids_by_name(process_name: str) -> list[int]:
-    """Lấy danh sách PID theo tên process dùng tasklist."""
+def kill_via_taskkill(process_name: str) -> bool:
+    """Kill process using standard Windows taskkill command."""
     try:
         result = subprocess.run(
-            ["tasklist", "/FI", f"IMAGENAME eq {process_name}", "/FO", "CSV", "/NH"],
-            capture_output=True,
-            text=True,
-            encoding="cp949",
+            ["taskkill", "/F", "/IM", process_name, "/T"],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            timeout=10,
         )
-        pids = []
-        for line in result.stdout.strip().splitlines():
-            parts = line.strip('"').split('","')
-            if len(parts) >= 2:
-                try:
-                    pids.append(int(parts[1]))
-                except ValueError:
-                    pass
-        return pids
-    except Exception:
-        return []
-
-
-def kill_via_wmic(pid: int) -> tuple[bool, str]:
-    """Kill process bằng wmic."""
-    try:
-        result = subprocess.run(
-            ["wmic", "process", "where", f"processid={pid}", "delete"],
-            capture_output=True,
-            text=True,
-            encoding="cp949",
-        )
-        success = result.returncode == 0 and "삭제했습니다" in result.stdout
-        return success, result.stdout.strip()
+        # returncode == 0 indicates successful termination
+        return result.returncode == 0
     except Exception as e:
-        return False, str(e)
+        print(f"Error killing {process_name}: {e}")
+        return False
 
 
 def main():
     print("=" * 50)
-    print("Kill Browser Processes (wmic)")
+    print("Kill Browser & Nexacro Processes (Taskkill)")
     print("=" * 50)
 
-    # Bước 1: Thu thập tất cả PID
-    print("\n[Step 1] Scanning processes...")
-    all_pids = {}
     for name in PROCESS_NAMES:
-        pids = get_pids_by_name(name)
-        for pid in pids:
-            all_pids[pid] = name
-            print(f"  Found: {name} PID={pid}")
-
-    if not all_pids:
-        print("  No target processes found. Nothing to kill.")
-        return 0
-
-    # Bước 2: Kill từng PID bằng wmic
-    print(f"\n[Step 2] Killing {len(all_pids)} process(es) via wmic...")
-    for pid, name in all_pids.items():
-        success, msg = kill_via_wmic(pid)
+        success = kill_via_taskkill(name)
         if success:
-            print(f"  [OK]   PID {pid} ({name})")
+            print(f"  [OK] Killed: {name}")
         else:
-            print(f"  [FAIL] PID {pid} ({name}) - {msg}")
+            print(f"  [--] Not found or already closed: {name}")
 
     print("\n" + "=" * 50)
     print("Done!")

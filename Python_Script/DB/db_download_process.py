@@ -1,6 +1,6 @@
 """
 This script automates the process of clicking a confirm button to initiate 
-a download process within the DB Insurance application.
+a download process within the DB Insurance application, after clearing any popups.
 """
 import win32api, win32con, win32gui, win32com.client, time
 
@@ -22,6 +22,23 @@ def get_hwnd():
         raise Exception("Cannot find the DB Insurance window!")
     print(f"Found window: hwnd={result[0]}")
     return result[0]
+
+def close_popups(popup_title_keyword='ComShareMsiePopup'):
+    """
+    Closes all popup windows matching the specified keyword.
+    """
+    count = 0
+    def callback(hwnd, _):
+        nonlocal count
+        if win32gui.IsWindowVisible(hwnd):
+            title = win32gui.GetWindowText(hwnd)
+            if popup_title_keyword in title:
+                win32gui.PostMessage(hwnd, win32con.WM_CLOSE, 0, 0)
+                print(f"Closed popup window: hwnd={hwnd}, title={title}")
+                count += 1
+                
+    win32gui.EnumWindows(callback, None)
+    print(f"Total popups closed: {count}")
 
 def click(x, y):
     """
@@ -56,8 +73,13 @@ def clear_and_type(x, y, text):
     time.sleep(0.1)
     type_text(text)
 
-print('Started process: clicking...')
+print('Started process: closing popups & clicking...')
 
+# 1. Close blocking popups first
+close_popups('ComShareMsiePopup')
+time.sleep(1)
+
+# 2. Click Confirm button
 click(908, 431)
 print('Clicked Confirm button')
 
