@@ -15,7 +15,7 @@ def find_latest_no_extension_file(folder: str):
     return latest
 
 # ===================== MAIN =====================
-src_folder = r"C:\Users\RPA02\Downloads"
+src_folder = r"C:\NEXT_UI\MatrixGear\Application"
 dst_folder = r"C:\RPA\TempDownload"
 
 file = find_latest_no_extension_file(src_folder)

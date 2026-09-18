@@ -3,7 +3,7 @@ import shutil
 from datetime import datetime
 
 def process_downloaded_file():
-    src_folder = r'C:\Users\RPA02\Documents'
+    src_folder = r'C:\Users\RPA02\Downloads'
     dst_folder = r'C:\RPA\TempDownload'
     prefix = 'MRF_NEW_LTR_'
 

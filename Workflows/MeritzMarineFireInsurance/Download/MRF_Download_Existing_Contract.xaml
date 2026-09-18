@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Download_ExistingContract" VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="Download_ExistingContract_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Download_ExistingContract" VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="Download_ExistingContract_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -40,6 +40,10 @@
       <x:String>UiPath.Activities.System.Jobs</x:String>
       <x:String>UiPath.Core.Activities.Orchestrator</x:String>
       <x:String>System.ComponentModel</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Models</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -102,10 +106,14 @@
       <AssemblyReference>WindowsBase</AssemblyReference>
       <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>REF_RPA.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Download_ExistingContract" sap:VirtualizedContainerService.HintSize="679.6,4347.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Download_ExistingContract" sap:VirtualizedContainerService.HintSize="776.4000000000001,7900" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="END_PERIOD" />
+      <Variable x:TypeArguments="x:String" Name="START_PERIOD" />
       <Variable x:TypeArguments="x:String" Name="MRF_REQUEST_DATE" />
       <Variable x:TypeArguments="x:String" Name="MRF_REQUEST_STATUS" />
       <Variable x:TypeArguments="x:String" Default="C:\Users\RPA02\Documents\UiPath\RPA\Python_Script\MeritzFireMarine\" Name="PYTHON_PATH" />
@@ -119,272 +127,662 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="MRF_REQUEST_STATUS" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="520,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_5">
-      <ui:GetRobotAsset.Value>
-        <OutArgument x:TypeArguments="x:String">[MRF_REQUEST_STATUS]</OutArgument>
-      </ui:GetRobotAsset.Value>
-    </ui:GetRobotAsset>
-    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="MRF_REQUEST_DATE" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="520,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_6">
-      <ui:GetRobotAsset.Value>
-        <OutArgument x:TypeArguments="x:String">[MRF_REQUEST_DATE]</OutArgument>
-      </ui:GetRobotAsset.Value>
-    </ui:GetRobotAsset>
-    <Sequence DisplayName="Start Process Sequence" sap:VirtualizedContainerService.HintSize="520,56.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="python-workflow - Invoke Workflow File (python-workflow.cs)" sap:VirtualizedContainerService.HintSize="416,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="python-workflow.cs">
-        <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "meritz_start_process.py"]</InArgument>
-          <InArgument x:TypeArguments="x:String" x:Key="mode" />
-        </ui:InvokeWorkflowFile.Arguments>
-      </ui:InvokeWorkflowFile>
-    </Sequence>
-    <Delay Duration="00:00:10" sap:VirtualizedContainerService.HintSize="520,122.4" sap2010:WorkflowViewState.IdRef="Delay_1">
+    <Sequence sap:VirtualizedContainerService.HintSize="660.8,7876.8" sap2010:WorkflowViewState.IdRef="Sequence_33">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-    </Delay>
-    <Sequence DisplayName="Download Exsiting Contract" sap:VirtualizedContainerService.HintSize="520,2524.8" sap2010:WorkflowViewState.IdRef="Sequence_4">
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Navigate Download Existing " sap:VirtualizedContainerService.HintSize="486.4,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="python-workflow.cs">
-        <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "meritz_exisiting_process.py"]</InArgument>
-          <InArgument x:TypeArguments="x:String" x:Key="mode" />
-        </ui:InvokeWorkflowFile.Arguments>
-      </ui:InvokeWorkflowFile>
-      <Delay Duration="00:00:15" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_2" />
-      <If Condition="[DateTime.Parse(MRF_REQUEST_DATE) &lt;&gt; DateTime.Now.Date]" sap:VirtualizedContainerService.HintSize="486.4,2134.4" sap2010:WorkflowViewState.IdRef="If_2">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-        <If.Then>
-          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="484.8,903.2" sap2010:WorkflowViewState.IdRef="Sequence_15">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <ui:SetAsset TimeoutMS="{x:Null}" AssetName="MRF_REQUEST_STATUS" DisplayName="Set Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="451.2,227.2" sap2010:WorkflowViewState.IdRef="SetAsset_10" Value="[&quot;N&quot;]">
+      <uix:NApplicationCard AttachMode="ByInstance" DisplayName="메리츠 화재 영업포탈" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="627.2,7793.6" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" ScopeGuid="36ade3cb-f5cc-423b-add6-ac2ab83dea44" Version="V2">
+        <uix:NApplicationCard.Body>
+          <ActivityAction x:TypeArguments="x:Object">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="625.6,7548" sap2010:WorkflowViewState.IdRef="Sequence_34">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-            </ui:SetAsset>
-            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="WriteLine_6" Text="Go NO">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </WriteLine>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Run Request File" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="python-workflow.cs">
-              <ui:InvokeWorkflowFile.Arguments>
-                <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "meritz_exisiting_request_file.py"]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="mode" />
-              </ui:InvokeWorkflowFile.Arguments>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </ui:InvokeWorkflowFile>
-            <ui:SetAsset TimeoutMS="{x:Null}" AssetName="MRF_REQUEST_DATE" DisplayName="Set Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="SetAsset_8" Value="[DateTime.Now.ToString(&quot;yyyy-MM-dd&quot;)]">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </ui:SetAsset>
-            <ui:SetAsset TimeoutMS="{x:Null}" AssetName="MRF_REQUEST_STATUS" DisplayName="Set Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="451.2,227.2" sap2010:WorkflowViewState.IdRef="SetAsset_9" Value="[&quot;Y&quot;]">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </ui:SetAsset>
-            <ui:SetAsset TimeoutMS="{x:Null}" AssetName="MRF_EXT_PATH" DisplayName="Set Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="451.2,218.4" sap2010:WorkflowViewState.IdRef="SetAsset_12" Value="[&quot;requested&quot;]">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </ui:SetAsset>
-          </Sequence>
-        </If.Then>
-        <If.Else>
-          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="484.8,1101.6" sap2010:WorkflowViewState.IdRef="Sequence_17">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <If Condition="[MRF_REQUEST_STATUS = &quot;Y&quot;]" sap:VirtualizedContainerService.HintSize="451.2,1041.6" sap2010:WorkflowViewState.IdRef="If_5">
-              <If.Then>
-                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,406.4" sap2010:WorkflowViewState.IdRef="Sequence_31">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="WriteLine_7" Text="Go YES">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                  </WriteLine>
-                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Run Download File" sap:VirtualizedContainerService.HintSize="416,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="python-workflow.cs">
-                    <ui:InvokeWorkflowFile.Arguments>
-                      <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "meritz_exisiting_download_file.py"]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="mode" />
-                    </ui:InvokeWorkflowFile.Arguments>
+              <Delay Duration="00:00:20" sap:VirtualizedContainerService.HintSize="592,56.8" sap2010:WorkflowViewState.IdRef="Delay_12">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </Delay>
+              <uix:NCheckState DisplayName="Check App State 'grouping(4)'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="592,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="36ade3cb-f5cc-423b-add6-ac2ab83dea44" Version="V5">
+                <uix:NCheckState.IfExists>
+                  <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_35">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                  </ui:InvokeWorkflowFile>
-                  <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="Delay_11">
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'grouping'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="36ade3cb-f5cc-423b-add6-ac2ab83dea44" Version="V5">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable ContentHash="g9f1R9Pz2EmBPpdqpwYOiQ" DesignTimeRectangle="901, 74, 31, 30" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='메리츠 화재 영업포탈' /&gt;&lt;ctrl name='메리츠 화재 영업포탈' role='document' /&gt;&lt;ctrl name='추석명절 기획전 refresh 일 동안 이창을 열지않음' role='grouping' /&gt;&lt;ctrl idx='8' role='grouping' /&gt;" Guid="9795f7e5-4e14-44ea-9f6f-9d1b01977dde" InformativeScreenshot="fa84a4056487c8c527c6dc378b2264c4.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/e7m4blPBuUiYm8kvItip4w" ScopeSelectorArgument="&lt;wnd app='matrixbrowser.exe' cls='HwndWrapper*' title='메리츠 화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                      </uix:NClick.Target>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </uix:NClick>
+                  </Sequence>
+                </uix:NCheckState.IfExists>
+                <uix:NCheckState.IfNotExists>
+                  <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_36">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                  </Delay>
-                </Sequence>
-              </If.Then>
-              <If.Else>
-                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,505.6" sap2010:WorkflowViewState.IdRef="Sequence_32">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <ui:SetAsset TimeoutMS="{x:Null}" AssetName="MRF_REQUEST_STATUS" DisplayName="Set Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="416,227.2" sap2010:WorkflowViewState.IdRef="SetAsset_11" Value="[&quot;N&quot;]">
+                  </Sequence>
+                </uix:NCheckState.IfNotExists>
+                <uix:NCheckState.Target>
+                  <uix:TargetAnchorable ContentHash="J4BNAZiOBk-AXG4FJOSWWQ" DesignTimeRectangle="901, 74, 31, 30" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='메리츠 화재 영업포탈' /&gt;&lt;ctrl name='메리츠 화재 영업포탈' role='document' /&gt;&lt;ctrl name='추석명절 기획전 refresh 일 동안 이창을 열지않음' role='grouping' /&gt;&lt;ctrl idx='8' role='grouping' /&gt;" Guid="ada5dc49-e812-4d6e-aa5c-ce0370108ea2" InformativeScreenshot="a34bfae35b615db2c47c275e0a15a973.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/tUwKsyvX4EO_OjVRiyl8hA" ScopeSelectorArgument="&lt;wnd app='matrixbrowser.exe' cls='HwndWrapper*' title='메리츠 화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                </uix:NCheckState.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NCheckState>
+              <uix:NCheckState DisplayName="Check App State 'grouping(5)'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="592,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_2" ScopeIdentifier="36ade3cb-f5cc-423b-add6-ac2ab83dea44" Version="V5">
+                <uix:NCheckState.IfExists>
+                  <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_37">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                  </ui:SetAsset>
-                  <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="WriteLine_8" Text="Go NO">
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'grouping(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="36ade3cb-f5cc-423b-add6-ac2ab83dea44" Version="V5">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable ContentHash="1Uug0QO6SUu4cs0FFid9Mw" DesignTimeRectangle="1120, 74, 31, 30" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='메리츠 화재 영업포탈' /&gt;&lt;ctrl name='메리츠 화재 영업포탈' role='document' /&gt;&lt;ctrl idx='57' role='grouping' /&gt;" Guid="dda0e292-cd35-42bf-98e5-898762e25ced" InformativeScreenshot="3c2f415bbf1a80e15516501571cf9047.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/5ws3HTDo8U2p3AEvcEKfjQ" ScopeSelectorArgument="&lt;wnd app='matrixbrowser.exe' cls='HwndWrapper*' title='메리츠 화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                      </uix:NClick.Target>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </uix:NClick>
+                  </Sequence>
+                </uix:NCheckState.IfExists>
+                <uix:NCheckState.IfNotExists>
+                  <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_38">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Sequence>
+                </uix:NCheckState.IfNotExists>
+                <uix:NCheckState.Target>
+                  <uix:TargetAnchorable ContentHash="tKaIF2aQcUSYlwRjrgJmkg" DesignTimeRectangle="1120, 74, 31, 30" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='메리츠 화재 영업포탈' /&gt;&lt;ctrl name='메리츠 화재 영업포탈' role='document' /&gt;&lt;ctrl idx='57' role='grouping' /&gt;" Guid="668f289b-3dd3-4aa0-ad73-af97c4fdb5e9" InformativeScreenshot="72cc2b200c56d05ed8f75ba785db8d23.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/SmQrD2LaqE-qHxmUOGcVOA" ScopeSelectorArgument="&lt;wnd app='matrixbrowser.exe' cls='HwndWrapper*' title='메리츠 화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                </uix:NCheckState.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NCheckState>
+              <uix:NCheckState DisplayName="Check App State 'grouping(6)'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="592,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_3" ScopeIdentifier="36ade3cb-f5cc-423b-add6-ac2ab83dea44" Version="V5">
+                <uix:NCheckState.IfExists>
+                  <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_39">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'grouping(3)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_3" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="36ade3cb-f5cc-423b-add6-ac2ab83dea44" Version="V5">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable ContentHash="8lujFXme30OZ0evON9aZhw" DesignTimeRectangle="995, 74, 31, 30" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='메리츠 화재 영업포탈' /&gt;&lt;ctrl name='메리츠 화재 영업포탈' role='document' /&gt;&lt;ctrl idx='47' role='grouping' /&gt;" Guid="e4afd821-520c-4733-858a-f7b7e4ff5c67" InformativeScreenshot="a21b127b158000ccad38bab6f454645a.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/ga3ksnd70UO88FWahoAdpg" ScopeSelectorArgument="&lt;wnd app='matrixbrowser.exe' cls='HwndWrapper*' title='메리츠 화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive">
+                          <uix:TargetAnchorable.PointOffset>
+                            <uix:PointOffset Position="BottomRight" X="-7" Y="-11" />
+                          </uix:TargetAnchorable.PointOffset>
+                        </uix:TargetAnchorable>
+                      </uix:NClick.Target>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </uix:NClick>
+                  </Sequence>
+                </uix:NCheckState.IfExists>
+                <uix:NCheckState.IfNotExists>
+                  <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_40">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Sequence>
+                </uix:NCheckState.IfNotExists>
+                <uix:NCheckState.Target>
+                  <uix:TargetAnchorable ContentHash="iR6B7NlZikCDDNUVsPbhhA" DesignTimeRectangle="995, 74, 31, 30" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='메리츠 화재 영업포탈' /&gt;&lt;ctrl name='메리츠 화재 영업포탈' role='document' /&gt;&lt;ctrl idx='47' role='grouping' /&gt;" Guid="c0dcddfb-8ff8-4da2-9786-80ba43ea82a1" InformativeScreenshot="2f5da334ce091f6c2ee4462d6c358273.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/ETHCWwbYbEaHMACAFEwNuw" ScopeSelectorArgument="&lt;wnd app='matrixbrowser.exe' cls='HwndWrapper*' title='메리츠 화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                </uix:NCheckState.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NCheckState>
+              <uix:NCheckState DisplayName="Check App State 'grouping(7)'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="592,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_4" ScopeIdentifier="36ade3cb-f5cc-423b-add6-ac2ab83dea44" Version="V5">
+                <uix:NCheckState.IfExists>
+                  <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_41">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'grouping(2)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_4" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="36ade3cb-f5cc-423b-add6-ac2ab83dea44" Version="V5">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable ContentHash="czjU0vOIZ0O_5dSzrDlkyw" DesignTimeRectangle="1304, 474, 31, 31" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='메리츠 화재 영업포탈' /&gt;&lt;ctrl name='메리츠 화재 영업포탈' role='document' /&gt;&lt;ctrl idx='37' role='grouping' /&gt;" Guid="3b9c53f1-229a-455b-b6a9-45b133ef53f9" InformativeScreenshot="3d5ff0d9ac1a586daa7c4355130f7d33.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/ZseZ3qntm06UNgjicRUnNQ" ScopeSelectorArgument="&lt;wnd app='matrixbrowser.exe' cls='HwndWrapper*' title='메리츠 화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                      </uix:NClick.Target>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </uix:NClick>
+                  </Sequence>
+                </uix:NCheckState.IfExists>
+                <uix:NCheckState.IfNotExists>
+                  <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_42">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Sequence>
+                </uix:NCheckState.IfNotExists>
+                <uix:NCheckState.Target>
+                  <uix:TargetAnchorable ContentHash="si6QvwvvFECnDnjk5_qn0Q" DesignTimeRectangle="1304, 474, 31, 31" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='메리츠 화재 영업포탈' /&gt;&lt;ctrl name='메리츠 화재 영업포탈' role='document' /&gt;&lt;ctrl idx='37' role='grouping' /&gt;" Guid="20a210f3-d57f-482f-8688-cbcbc96263ce" InformativeScreenshot="5241dcc52d01df2ab32a7775c287ed76.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/NMGo4-XxN0Cdhi_d8amsmg" ScopeSelectorArgument="&lt;wnd app='matrixbrowser.exe' cls='HwndWrapper*' title='메리츠 화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                </uix:NCheckState.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NCheckState>
+              <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="592,56.8" sap2010:WorkflowViewState.IdRef="Delay_13">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </Delay>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '영업지원'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="592,193.6" sap2010:WorkflowViewState.IdRef="NClick_5" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="36ade3cb-f5cc-423b-add6-ac2ab83dea44" Version="V5">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable ContentHash="OWEgcnuUgkq5Ahzn8vvMsg" DesignTimeRectangle="927, 37, 126, 50" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='메리츠 화재 영업포탈' /&gt;&lt;ctrl name='메리츠 화재 영업포탈' role='document' /&gt;&lt;ctrl name='영업지원' role='link' /&gt;" Guid="1b37dcbf-9c13-4686-b015-a2669929becf" InformativeScreenshot="9eed37a39457f9488482f154eb133d1f.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/ZJSRAA2U_0CdRpoRYNiCpQ" ScopeSelectorArgument="&lt;wnd app='matrixbrowser.exe' cls='HwndWrapper*' title='메리츠 화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                </uix:NClick.Target>
+              </uix:NClick>
+              <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="592,122.4" sap2010:WorkflowViewState.IdRef="Delay_14" />
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '업무지원'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="592,193.6" sap2010:WorkflowViewState.IdRef="NClick_6" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="36ade3cb-f5cc-423b-add6-ac2ab83dea44" Version="V5">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable ContentHash="sMQ5JV9wp06JZ583ryLD_g" DesignTimeRectangle="938, 292, 286, 43" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='메리츠 화재 영업포탈' /&gt;&lt;ctrl name='메리츠 화재 영업포탈' role='document' /&gt;&lt;ctrl name='업무지원' role='link' /&gt;" Guid="40856717-1323-4110-af82-9f1c38749312" InformativeScreenshot="6594265bc72e1a676201f1933ca6b1da.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/R2gSOurHXU6r2BHzMxEMhw" ScopeSelectorArgument="&lt;wnd app='matrixbrowser.exe' cls='HwndWrapper*' title='메리츠 화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                </uix:NClick.Target>
+              </uix:NClick>
+              <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="592,122.4" sap2010:WorkflowViewState.IdRef="Delay_15" />
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'GA보유계약조회'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="592,193.6" sap2010:WorkflowViewState.IdRef="NClick_7" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="36ade3cb-f5cc-423b-add6-ac2ab83dea44" Version="V5">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable ContentHash="APvL2FhnzUCM6TjHVAETQw" DesignTimeRectangle="1245, 642, 286, 43" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='메리츠 화재 영업포탈' /&gt;&lt;ctrl name='메리츠 화재 영업포탈' role='document' /&gt;&lt;ctrl name='GA보유계약조회' role='link' /&gt;" Guid="070aefed-f714-4326-aa5e-14313a53577f" InformativeScreenshot="6457432502b94d88795161f8dd338318.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/nifnwkl6nEaRHOm2_cXWCQ" ScopeSelectorArgument="&lt;wnd app='matrixbrowser.exe' cls='HwndWrapper*' title='메리츠 화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                </uix:NClick.Target>
+              </uix:NClick>
+              <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="556.8,122.4" sap2010:WorkflowViewState.IdRef="Delay_16" />
+              <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '조회일자'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="592,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="SameAsCard" ScopeIdentifier="36ade3cb-f5cc-423b-add6-ac2ab83dea44" Text="[DateTime.Now.ToString(&quot;yyyyMMdd&quot;)]" Version="V5">
+                <uix:NTypeInto.Target>
+                  <uix:TargetAnchorable ContentHash="XzVpgTksBU2KoEaBCwPxPA" DesignTimeRectangle="130, 214, 132, 28" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='메리츠 화재 영업포탈' matching:title='fuzzy' fuzzylevel:title='0.0' /&gt;&lt;ctrl name='메리츠 화재 영업포탈' role='document' matching:name='fuzzy' fuzzylevel:name='0.0' /&gt;&lt;ctrl name='GA보유계약조회' role='property page' matching:name='fuzzy' fuzzylevel:name='0.0' /&gt;&lt;ctrl name='보유계약 다운로드 요청 2주일 전 1개월 전 조회 요청목록 긴급수행 자료 추출은 매일 3회 수행하며, 대상 건수에 *' role='grouping' fuzzylevel:name='0.0' /&gt;&lt;ctrl role='row' /&gt;&lt;ctrl name='2026-09-09 검색 ~ 2026-09-16 검색' role='cell' matching:name='fuzzy' fuzzylevel:name='0.0' /&gt;&lt;ctrl role='editable text' automationid='' matching:automationid='fuzzy' fuzzylevel:automationid='0.0' /&gt;" Guid="abf5c4a3-4d2e-4c31-ad3e-d8a4753303d0" InformativeScreenshot="403df7e4e07d0721dae13a4ea12dffe8.jpg" IsResponsive="True" Reference="5HjwgH8OmEa1VO6GnukQ2g/zMkCoQfUa0yOpUnsChzoeg" ScopeSelectorArgument="&lt;wnd app='matrixbrowser.exe' cls='HwndWrapper*' title='메리츠 화재 영업포탈' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                    <uix:TargetAnchorable.Anchors>
+                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                        <uix:Target DesignTimeRectangle="55, 218, 58, 20" ElementType="Text" FuzzySelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='메리츠 화재 영업포탈' matching:title='fuzzy' fuzzylevel:title='0.0' /&gt;&lt;ctrl name='메리츠 화재 영업포탈' role='document' matching:name='fuzzy' fuzzylevel:name='0.0' /&gt;&lt;ctrl name='GA보유계약조회' role='property page' matching:name='fuzzy' fuzzylevel:name='0.0' /&gt;&lt;ctrl name='보유계약 다운로드 요청 2주일 전 1개월 전 조회 요청목록 긴급수행 자료 추출은 매일 3회 수행하며, 대상 건수에 *' role='grouping' fuzzylevel:name='0.0' /&gt;&lt;ctrl role='row' /&gt;&lt;ctrl name='조회일자' role='row header' matching:name='fuzzy' fuzzylevel:name='0.0' /&gt;&lt;ctrl name='조회일자' role='text' automationid='' matching:name='fuzzy' fuzzylevel:name='0.0' matching:automationid='fuzzy' fuzzylevel:automationid='0.0' check:text='조회일자' /&gt;" Guid="d420e899-1d7d-4195-a402-e6ff22d0da01" SearchSteps="FuzzySelector" />
+                      </scg:List>
+                    </uix:TargetAnchorable.Anchors>
+                  </uix:TargetAnchorable>
+                </uix:NTypeInto.Target>
+                <uix:NTypeInto.VerifyOptions>
+                  <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                    <uix:VerifyExecutionTypeIntoOptions.Retry>
+                      <InArgument x:TypeArguments="x:Boolean" />
+                    </uix:VerifyExecutionTypeIntoOptions.Retry>
+                    <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                      <InArgument x:TypeArguments="x:Double" />
+                    </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                  </uix:VerifyExecutionTypeIntoOptions>
+                </uix:NTypeInto.VerifyOptions>
+              </uix:NTypeInto>
+              <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="592,122.4" sap2010:WorkflowViewState.IdRef="Delay_17" />
+              <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'Label'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="592,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="SameAsCard" ScopeIdentifier="36ade3cb-f5cc-423b-add6-ac2ab83dea44" Text="[DateTime.Now.ToString(&quot;yyyyMMdd&quot;)]" Version="V5">
+                <uix:NTypeInto.Target>
+                  <uix:TargetAnchorable ContentHash="qohOnbyTiUyZlv1_eHR8CA" DesignTimeRectangle="281, 214, 132, 28" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='메리츠 화재 영업포탈' matching:title='fuzzy' fuzzylevel:title='0.0' /&gt;&lt;ctrl name='메리츠 화재 영업포탈' role='document' matching:name='fuzzy' fuzzylevel:name='0.0' /&gt;&lt;ctrl name='GA보유계약조회' role='property page' matching:name='fuzzy' fuzzylevel:name='0.0' /&gt;&lt;ctrl name='보유계약 다운로드 요청 2주일 전 1개월 전 조회 요청목록 긴급수행 자료 추출은 매일 3회 수행하며, 대상 건수에 *' role='grouping' fuzzylevel:name='0.0' /&gt;&lt;ctrl role='row' /&gt;&lt;ctrl name='2026-09-09 검색 ~ 2026-09-16 검색' role='cell' matching:name='fuzzy' fuzzylevel:name='0.0' /&gt;&lt;ctrl automationid='' role='editable text' matching:automationid='fuzzy' fuzzylevel:automationid='0.0' /&gt;" Guid="402a4dbc-98c2-495b-8019-11db23dcfaba" InformativeScreenshot="a031daf858078e62b15867e540a22ecf.jpg" IsResponsive="True" Reference="5HjwgH8OmEa1VO6GnukQ2g/t2kzac5uQk2Qmo454B9R2Q" ScopeSelectorArgument="&lt;wnd app='matrixbrowser.exe' cls='HwndWrapper*' title='메리츠 화재 영업포탈' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                    <uix:TargetAnchorable.Anchors>
+                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                        <uix:Target DesignTimeRectangle="266, 218, 11, 20" ElementType="Text" FuzzySelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='메리츠 화재 영업포탈' matching:title='fuzzy' fuzzylevel:title='0.0' /&gt;&lt;ctrl name='메리츠 화재 영업포탈' role='document' matching:name='fuzzy' fuzzylevel:name='0.0' /&gt;&lt;ctrl name='GA보유계약조회' role='property page' matching:name='fuzzy' fuzzylevel:name='0.0' /&gt;&lt;ctrl name='보유계약 다운로드 요청 2주일 전 1개월 전 조회 요청목록 긴급수행 자료 추출은 매일 3회 수행하며, 대상 건수에 *' role='grouping' fuzzylevel:name='0.0' /&gt;&lt;ctrl role='row' /&gt;&lt;ctrl name='2026-09-09 검색 ~ 2026-09-16 검색' role='cell' matching:name='fuzzy' fuzzylevel:name='0.0' /&gt;&lt;ctrl name='~' role='text' automationid='' matching:name='fuzzy' fuzzylevel:name='0.0' matching:automationid='fuzzy' fuzzylevel:automationid='0.0' check:text='~' /&gt;" Guid="5d117b98-cd2e-433d-9ec6-6b12c4d7a571" SearchSteps="FuzzySelector" />
+                      </scg:List>
+                    </uix:TargetAnchorable.Anchors>
+                  </uix:TargetAnchorable>
+                </uix:NTypeInto.Target>
+                <uix:NTypeInto.VerifyOptions>
+                  <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                    <uix:VerifyExecutionTypeIntoOptions.Retry>
+                      <InArgument x:TypeArguments="x:Boolean" />
+                    </uix:VerifyExecutionTypeIntoOptions.Retry>
+                    <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                      <InArgument x:TypeArguments="x:Double" />
+                    </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                  </uix:VerifyExecutionTypeIntoOptions>
+                </uix:NTypeInto.VerifyOptions>
+              </uix:NTypeInto>
+              <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="592,122.4" sap2010:WorkflowViewState.IdRef="Delay_18" />
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '조회'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="592,193.6" sap2010:WorkflowViewState.IdRef="NClick_9" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="36ade3cb-f5cc-423b-add6-ac2ab83dea44" Version="V5">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable ContentHash="bpAffO6ZdEGq1BICXwJbAQ" DesignTimeRectangle="1631, 211, 76, 34" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='메리츠 화재 영업포탈' /&gt;&lt;ctrl name='메리츠 화재 영업포탈' role='document' /&gt;&lt;ctrl name='GA보유계약조회' role='property page' /&gt;&lt;ctrl name='조회' role='push button' /&gt;" Guid="82f30fc6-c03c-4854-ad12-8121ce21c387" InformativeScreenshot="dd3d292d247c0a7d927eae28630cb882.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/MqWP7IWcBE2lbdVmvfvJoQ" ScopeSelectorArgument="&lt;wnd app='matrixbrowser.exe' cls='HwndWrapper*' title='메리츠 화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                </uix:NClick.Target>
+              </uix:NClick>
+              <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="592,122.4" sap2010:WorkflowViewState.IdRef="Delay_19" />
+              <uix:NCheckState DisplayName="Check App State '조회결과가 없습니다.'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="592,5147.2" sap2010:WorkflowViewState.IdRef="NCheckState_5" ScopeIdentifier="36ade3cb-f5cc-423b-add6-ac2ab83dea44" Version="V5">
+                <uix:NCheckState.IfExists>
+                  <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="590.4,24.8" sap2010:WorkflowViewState.IdRef="Sequence_43">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                  </WriteLine>
-                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Run Request File" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="python-workflow.cs">
-                    <ui:InvokeWorkflowFile.Arguments>
-                      <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "meritz_exisiting_request_file.py"]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="mode" />
-                    </ui:InvokeWorkflowFile.Arguments>
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_11" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="36ade3cb-f5cc-423b-add6-ac2ab83dea44" Version="V5">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable ContentHash="DZeGwy8YbU2HDMavfuRvpg" DesignTimeRectangle="1039, 585, 63, 33" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='메리츠 화재 영업포탈' /&gt;&lt;ctrl name='메리츠 화재 영업포탈' role='document' /&gt;&lt;ctrl name='확인' role='push button' /&gt;" Guid="a8b0248a-c547-4682-a518-04b8e55a3888" InformativeScreenshot="9ed6a46045d3aba366b4a24eb1e8e471.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/FVVoMIuRgEaxN5-v2ocvSQ" ScopeSelectorArgument="&lt;wnd app='matrixbrowser.exe' cls='HwndWrapper*' title='메리츠 화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                      </uix:NClick.Target>
+                    </uix:NClick>
+                    <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_20" />
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '신규 요청'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_10" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="36ade3cb-f5cc-423b-add6-ac2ab83dea44" Version="V5">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable ContentHash="xLmoSrl7dEKsEZq2F-QuHw" DesignTimeRectangle="1639, 963, 89, 33" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='메리츠 화재 영업포탈' /&gt;&lt;ctrl name='메리츠 화재 영업포탈' role='document' /&gt;&lt;ctrl name='GA보유계약조회' role='property page' /&gt;&lt;ctrl name='신규 요청' role='push button' /&gt;" Guid="27c755c5-d2c8-412d-8a22-10dd9020726d" InformativeScreenshot="6757345d321d6675ab319ed521e351d2.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/YkyFhN0wfUm4DoxgDr6KyA" ScopeSelectorArgument="&lt;wnd app='matrixbrowser.exe' cls='HwndWrapper*' title='메리츠 화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                      </uix:NClick.Target>
+                    </uix:NClick>
+                    <Delay Duration="00:00:00.5000000" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_21" />
+                    <uix:NCheckState DisplayName="Check App State '보유계약 신규 다운로드 요청'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_6" ScopeIdentifier="36ade3cb-f5cc-423b-add6-ac2ab83dea44" Version="V5">
+                      <uix:NCheckState.IfExists>
+                        <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="484.8,1240" sap2010:WorkflowViewState.IdRef="Sequence_45">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '만기 미포함'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_12" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="36ade3cb-f5cc-423b-add6-ac2ab83dea44" Version="V5">
+                            <uix:NClick.Target>
+                              <uix:TargetAnchorable ContentHash="CYKgP80EG0iLPGLwnWhhsA" DesignTimeRectangle="1083, 502, 93, 28" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='메리츠 화재 영업포탈' /&gt;&lt;ctrl name='메리츠 화재 영업포탈' role='document' /&gt;&lt;ctrl idx='3' role='row' /&gt;&lt;ctrl name='전체 장기 일반 자동차 만기 미포함' role='cell' /&gt;&lt;ctrl name='만기 미포함' role='push button' /&gt;" Guid="e297f68a-3f12-4157-a9eb-4ac65c1cb61c" InformativeScreenshot="bc634ffdfc4939ba4a1f38b8f2e88f11.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/KErjvrq8KEOny9u5M5FV2Q" ScopeSelectorArgument="&lt;wnd app='matrixbrowser.exe' cls='HwndWrapper*' title='메리츠 화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                            </uix:NClick.Target>
+                          </uix:NClick>
+                          <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '신청'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_13" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="36ade3cb-f5cc-423b-add6-ac2ab83dea44" Version="V5">
+                            <uix:NClick.Target>
+                              <uix:TargetAnchorable ContentHash="8ld7Pahvi0SFcgTyyVe_Mw" DesignTimeRectangle="1058, 580, 63, 34" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='메리츠 화재 영업포탈' /&gt;&lt;ctrl name='메리츠 화재 영업포탈' role='document' /&gt;&lt;ctrl name='신청' role='push button' /&gt;" Guid="cfa38187-5f09-4889-85f1-9d3121e65e2a" InformativeScreenshot="80a1034910b96551ecab64354e11ec75.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/scMsgtA9WkKzYEhXkHujnA" ScopeSelectorArgument="&lt;wnd app='matrixbrowser.exe' cls='HwndWrapper*' title='메리츠 화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                            </uix:NClick.Target>
+                          </uix:NClick>
+                          <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_22" />
+                          <uix:NCheckState DisplayName="Check App State '신청 완료했습니다.'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,670.4" sap2010:WorkflowViewState.IdRef="NCheckState_7" ScopeIdentifier="36ade3cb-f5cc-423b-add6-ac2ab83dea44" Version="V5">
+                            <uix:NCheckState.IfExists>
+                              <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_47">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_14" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="36ade3cb-f5cc-423b-add6-ac2ab83dea44" Version="V5">
+                                  <uix:NClick.Target>
+                                    <uix:TargetAnchorable ContentHash="v-LPnBXWjkKlhr7RUmVYkg" DesignTimeRectangle="1039, 585, 63, 33" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='메리츠 화재 영업포탈' /&gt;&lt;ctrl name='메리츠 화재 영업포탈' role='document' /&gt;&lt;ctrl name='확인' role='push button' /&gt;" Guid="9a89bef5-e45a-4ffa-9091-dea7828e8c9b" InformativeScreenshot="9ed6a46045d3aba366b4a24eb1e8e471.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/JfSTr-AeNkOcKln2n9bHiQ" ScopeSelectorArgument="&lt;wnd app='matrixbrowser.exe' cls='HwndWrapper*' title='메리츠 화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                                  </uix:NClick.Target>
+                                </uix:NClick>
+                              </Sequence>
+                            </uix:NCheckState.IfExists>
+                            <uix:NCheckState.IfNotExists>
+                              <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_48">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </Sequence>
+                            </uix:NCheckState.IfNotExists>
+                            <uix:NCheckState.Target>
+                              <uix:TargetAnchorable ContentHash="sU5aCiwuC0icnv5svdec1Q" DesignTimeRectangle="785, 521, 317, 26" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='메리츠 화재 영업포탈' /&gt;&lt;ctrl name='메리츠 화재 영업포탈' role='document' /&gt;&lt;ctrl name='신청 완료했습니다.' role='grouping' /&gt;" Guid="1a1665aa-619c-419e-b988-838a90c80e21" InformativeScreenshot="599f2af1a806d5ee1b0d7a7225f9762e.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/JfyDt9wUhEGC1_jhhsRwvw" ScopeSelectorArgument="&lt;wnd app='matrixbrowser.exe' cls='HwndWrapper*' title='메리츠 화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                            </uix:NCheckState.Target>
+                          </uix:NCheckState>
+                        </Sequence>
+                      </uix:NCheckState.IfExists>
+                      <uix:NCheckState.IfNotExists>
+                        <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="484.8,89.6" sap2010:WorkflowViewState.IdRef="Sequence_46">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Sequence>
+                      </uix:NCheckState.IfNotExists>
+                      <uix:NCheckState.Target>
+                        <uix:TargetAnchorable ContentHash="vDMC04mOF0-V086Jphx9MQ" DesignTimeRectangle="614, 415, 551, 24" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='메리츠 화재 영업포탈' /&gt;&lt;ctrl name='메리츠 화재 영업포탈' role='document' /&gt;&lt;ctrl name='보유계약 신규 다운로드 요청 refresh 신청 닫기 상세 메시지 열기' role='grouping' /&gt;&lt;ctrl idx='3' role='grouping' /&gt;" Guid="6bd15bbc-2a04-45cb-9b4b-151de4c40352" InformativeScreenshot="4d6023613cb300a9a356b85d55a9a239.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/Ra4I4igXuUuPqqErXriz0g" ScopeSelectorArgument="&lt;wnd app='matrixbrowser.exe' cls='HwndWrapper*' title='메리츠 화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                      </uix:NCheckState.Target>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </uix:NCheckState>
+                    <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="Delay_23" />
+                  </Sequence>
+                </uix:NCheckState.IfExists>
+                <uix:NCheckState.IfNotExists>
+                  <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="590.4,4786.4" sap2010:WorkflowViewState.IdRef="Sequence_44">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                  </ui:InvokeWorkflowFile>
-                  <ui:SetAsset TimeoutMS="{x:Null}" AssetName="MRF_REQUEST_DATE" DisplayName="Set Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="SetAsset_6" Value="[DateTime.Now.ToString(&quot;yyyy-MM-dd&quot;)]">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                  </ui:SetAsset>
-                  <ui:SetAsset TimeoutMS="{x:Null}" AssetName="MRF_REQUEST_STATUS" DisplayName="Set Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="SetAsset_7" Value="[&quot;Y&quot;]">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                  </ui:SetAsset>
-                </Sequence>
-              </If.Else>
-            </If>
-          </Sequence>
-        </If.Else>
-      </If>
-    </Sequence>
-    <Sequence DisplayName="Close Program Sequence" sap:VirtualizedContainerService.HintSize="520,1269.6" sap2010:WorkflowViewState.IdRef="Sequence_7">
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-      <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_4" />
-      <ui:InvokeCode ContinueOnError="{x:Null}" Code="Try&#xA;    Dim hasNoExtensionFile As Boolean = System.IO.Directory.GetFiles(in_DownloadFolder).Any(Function(f) String.IsNullOrEmpty(System.IO.Path.GetExtension(f)))&#xA;    io_IsExist = If(hasNoExtensionFile, &quot;True&quot;, &quot;False&quot;)&#xA;Catch ex As Exception&#xA;    io_IsExist = &quot;False&quot;&#xA;    Console.WriteLine(&quot;Error checking download folder: &quot; &amp; ex.Message)&#xA;End Try&#xA;" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="451.2,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
-        <ui:InvokeCode.Arguments>
-          <InArgument x:TypeArguments="x:String" x:Key="in_DownloadFolder ">C:\Users\RPA02\Downloads</InArgument>
-          <InArgument x:TypeArguments="x:String" x:Key="io_IsExist ">[MRF_EXT_LTR_is_exist_file]</InArgument>
-        </ui:InvokeCode.Arguments>
-      </ui:InvokeCode>
-      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="WriteLine_5" Text="[&quot;EXIST FILE:  &quot; + MRF_EXT_LTR_is_exist_file.ToString()]" />
-      <If Condition="[MRF_EXT_LTR_is_exist_file = &quot;True&quot;]" sap:VirtualizedContainerService.HintSize="451.2,455.2" sap2010:WorkflowViewState.IdRef="If_1">
-        <If.Then>
-          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,227.2" sap2010:WorkflowViewState.IdRef="Sequence_8">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Rename File" sap:VirtualizedContainerService.HintSize="416,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="python-workflow.cs">
-              <ui:InvokeWorkflowFile.Arguments>
-                <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "rename_meritz_exisiting_ltr.py"]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="mode" />
-              </ui:InvokeWorkflowFile.Arguments>
-            </ui:InvokeWorkflowFile>
-          </Sequence>
-        </If.Then>
-        <If.Else>
-          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_9">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-          </Sequence>
-        </If.Else>
-      </If>
-      <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_3" />
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Close Program" sap:VirtualizedContainerService.HintSize="451.2,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="python-workflow.cs">
-        <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "meritz_close_program.py"]</InArgument>
-          <InArgument x:TypeArguments="x:String" x:Key="mode" />
-        </ui:InvokeWorkflowFile.Arguments>
-      </ui:InvokeWorkflowFile>
+                    <uix:NGetText DisplayName="Get Text '조회기준'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="556.8,142.4" sap2010:WorkflowViewState.IdRef="NGetText_1" ScopeIdentifier="36ade3cb-f5cc-423b-add6-ac2ab83dea44" TextString="[status]" Version="V5">
+                      <uix:NGetText.Target>
+                        <uix:TargetAnchorable ContentHash="LRapk5KwI0mGExpwdPtmPg" DesignTimeRectangle="504, 380, 163, 34" ElementType="Cell" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='메리츠 화재 영업포탈' matching:title='fuzzy' fuzzylevel:title='0.0' /&gt;&lt;ctrl name='메리츠 화재 영업포탈' role='document' matching:name='fuzzy' fuzzylevel:name='0.0' /&gt;&lt;ctrl name='GA보유계약조회' role='property page' matching:name='fuzzy' fuzzylevel:name='0.0' /&gt;&lt;ctrl role='row' /&gt;&lt;ctrl role='cell' automationid='' matching:automationid='fuzzy' fuzzylevel:automationid='0.0' /&gt;" Guid="72dd4a11-e995-4d04-a6c8-689725ce5cab" InformativeScreenshot="c9a657de83330d04ba7691aa0641f727.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/TH0Wyb3oNEKIzAjEWctioA" ScopeSelectorArgument="&lt;wnd app='matrixbrowser.exe' cls='HwndWrapper*' title='메리츠 화재 영업포탈' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                          <uix:TargetAnchorable.Anchors>
+                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                              <uix:Target DesignTimeRectangle="504, 313, 163, 68" FuzzySelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='메리츠 화재 영업포탈' matching:title='fuzzy' fuzzylevel:title='0.0' /&gt;&lt;ctrl name='메리츠 화재 영업포탈' role='document' matching:name='fuzzy' fuzzylevel:name='0.0' /&gt;&lt;ctrl name='GA보유계약조회' role='property page' matching:name='fuzzy' fuzzylevel:name='0.0' /&gt;&lt;ctrl role='row' /&gt;&lt;ctrl name='조회기준' role='column header' automationid='' matching:name='fuzzy' fuzzylevel:name='0.0' matching:automationid='fuzzy' fuzzylevel:automationid='0.0' check:text='조회기준' /&gt;" Guid="76599a87-c803-4713-b07f-328fb1f4227d" SearchSteps="FuzzySelector" />
+                            </scg:List>
+                          </uix:TargetAnchorable.Anchors>
+                        </uix:TargetAnchorable>
+                      </uix:NGetText.Target>
+                    </uix:NGetText>
+                    <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="556.8,122.4" sap2010:WorkflowViewState.IdRef="Delay_24" />
+                    <If Condition="[status = &quot;대기&quot;]" sap:VirtualizedContainerService.HintSize="556.8,3490.4" sap2010:WorkflowViewState.IdRef="If_6">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <If.Then>
+                        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="555.2,225.6" sap2010:WorkflowViewState.IdRef="Sequence_49">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="521.6,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;MRF file is requested&quot;]" />
+                        </Sequence>
+                      </If.Then>
+                      <If.Else>
+                        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="555.2,3126.4" sap2010:WorkflowViewState.IdRef="Sequence_50">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="521.6,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;MRF file is ready&quot;]" />
+                          <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '다운로드'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="521.6,193.6" sap2010:WorkflowViewState.IdRef="NClick_15" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="36ade3cb-f5cc-423b-add6-ac2ab83dea44" Version="V5">
+                            <uix:NClick.Target>
+                              <uix:TargetAnchorable ContentHash="7j_cPrpjdUGWwXhDbOgFpw" DesignTimeRectangle="1641, 383, 74, 28" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='메리츠 화재 영업포탈' /&gt;&lt;ctrl name='메리츠 화재 영업포탈' role='document' /&gt;&lt;ctrl name='GA보유계약조회' role='property page' /&gt;&lt;ctrl idx='5' role='row' /&gt;&lt;ctrl name='다운로드' role='cell' /&gt;&lt;ctrl name='다운로드' role='push button' /&gt;" Guid="8fe2de1b-1cba-44ed-8f2e-803bf5aed0b8" InformativeScreenshot="c13931c5e44ac0198cf24a8c6a4f5394.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/LrjeVWxHe0GtT4sjtMp3Pg" ScopeSelectorArgument="&lt;wnd app='matrixbrowser.exe' cls='HwndWrapper*' title='메리츠 화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                            </uix:NClick.Target>
+                          </uix:NClick>
+                          <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="521.6,122.4" sap2010:WorkflowViewState.IdRef="Delay_25" />
+                          <uix:NCheckState DisplayName="Check App State '대표자 주민번호'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="521.6,2576" sap2010:WorkflowViewState.IdRef="NCheckState_9" ScopeIdentifier="36ade3cb-f5cc-423b-add6-ac2ab83dea44" Version="V5">
+                            <uix:NCheckState.IfExists>
+                              <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="520,2150.4" sap2010:WorkflowViewState.IdRef="Sequence_51">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '대표자 주민번호'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_3" InteractionMode="SameAsCard" ScopeIdentifier="36ade3cb-f5cc-423b-add6-ac2ab83dea44" Text="6412301932814" Version="V5">
+                                  <uix:NTypeInto.Target>
+                                    <uix:TargetAnchorable ContentHash="YFRxta02DUiIwYReLstdww" DesignTimeRectangle="834, 505, 273, 28" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='메리츠 화재 영업포탈' matching:title='fuzzy' fuzzylevel:title='0.0' /&gt;&lt;ctrl name='메리츠 화재 영업포탈' role='document' matching:name='fuzzy' fuzzylevel:name='0.0' /&gt;&lt;ctrl name='보유계약 다운로드 권한 확인 refresh 숫자만 입력하세요. 확인 닫기 상세 메시지 열기' role='grouping' matching:name='fuzzy' fuzzylevel:name='0.0' /&gt;&lt;ctrl role='row' /&gt;&lt;ctrl role='editable text' automationid='' matching:automationid='fuzzy' fuzzylevel:automationid='0.0' /&gt;" Guid="e7ab49d8-51be-4a06-8b9d-33ee54133556" InformativeScreenshot="4c7b6dea73b8cfb9168b63458d61a70d.jpg" IsResponsive="True" Reference="5HjwgH8OmEa1VO6GnukQ2g/ruDxJC3YJUSG0NpsWUvysA" ScopeSelectorArgument="&lt;wnd app='matrixbrowser.exe' cls='HwndWrapper*' title='메리츠 화재 영업포탈' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                                      <uix:TargetAnchorable.Anchors>
+                                        <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                          <uix:Target DesignTimeRectangle="699, 509, 105, 20" ElementType="Text" FuzzySelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='메리츠 화재 영업포탈' matching:title='fuzzy' fuzzylevel:title='0.0' /&gt;&lt;ctrl name='메리츠 화재 영업포탈' role='document' matching:name='fuzzy' fuzzylevel:name='0.0' /&gt;&lt;ctrl name='보유계약 다운로드 권한 확인 refresh 숫자만 입력하세요. 확인 닫기 상세 메시지 열기' role='grouping' matching:name='fuzzy' fuzzylevel:name='0.0' /&gt;&lt;ctrl role='row' /&gt;&lt;ctrl name='대표자 주민번호' role='row header' matching:name='fuzzy' fuzzylevel:name='0.0' /&gt;&lt;ctrl name='대표자 주민번호' role='text' automationid='' matching:name='fuzzy' fuzzylevel:name='0.0' matching:automationid='fuzzy' fuzzylevel:automationid='0.0' check:text='대표자 주민번호' /&gt;" Guid="93f531b3-421e-4390-a935-b6ee0a97e843" SearchSteps="FuzzySelector" />
+                                        </scg:List>
+                                      </uix:TargetAnchorable.Anchors>
+                                    </uix:TargetAnchorable>
+                                  </uix:NTypeInto.Target>
+                                  <uix:NTypeInto.VerifyOptions>
+                                    <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                                      <uix:VerifyExecutionTypeIntoOptions.Retry>
+                                        <InArgument x:TypeArguments="x:Boolean" />
+                                      </uix:VerifyExecutionTypeIntoOptions.Retry>
+                                      <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                                        <InArgument x:TypeArguments="x:Double" />
+                                      </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                                    </uix:VerifyExecutionTypeIntoOptions>
+                                  </uix:NTypeInto.VerifyOptions>
+                                </uix:NTypeInto>
+                                <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인(2)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_16" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="36ade3cb-f5cc-423b-add6-ac2ab83dea44" Version="V5">
+                                  <uix:NClick.Target>
+                                    <uix:TargetAnchorable ContentHash="v9QDJka_3UG-RR7rALG7Vw" DesignTimeRectangle="989, 546, 63, 33" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='메리츠 화재 영업포탈' /&gt;&lt;ctrl name='메리츠 화재 영업포탈' role='document' /&gt;&lt;ctrl name='확인' role='push button' /&gt;" Guid="876834e2-8c5c-40c8-afc2-8c4cde503991" InformativeScreenshot="74477c90da8013634a577a9261f4b128.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/pPQai-0olUu4xS2WROt7QQ" ScopeSelectorArgument="&lt;wnd app='matrixbrowser.exe' cls='HwndWrapper*' title='메리츠 화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                                  </uix:NClick.Target>
+                                </uix:NClick>
+                                <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_26" />
+                                <uix:NCheckState DisplayName="Check App State '보유계약 다운로드를 시작합니다.'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="486.4,1528.8" sap2010:WorkflowViewState.IdRef="NCheckState_10" ScopeIdentifier="36ade3cb-f5cc-423b-add6-ac2ab83dea44" Version="V5">
+                                  <uix:NCheckState.IfExists>
+                                    <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="484.8,1103.2" sap2010:WorkflowViewState.IdRef="Sequence_53">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인(3)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_17" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="36ade3cb-f5cc-423b-add6-ac2ab83dea44" Version="V5">
+                                        <uix:NClick.Target>
+                                          <uix:TargetAnchorable ContentHash="wLyJ3yPzSkGf5TKSZ1RG3w" DesignTimeRectangle="1039, 586, 63, 34" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='메리츠 화재 영업포탈' /&gt;&lt;ctrl name='메리츠 화재 영업포탈' role='document' /&gt;&lt;ctrl name='확인' role='push button' /&gt;" Guid="9201d6df-beb0-4194-b430-cb19ca3ff634" InformativeScreenshot="0f545d1119a0eaa513ffaf9653323986.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/hTtWeQyEXk6gpg_u26z1LQ" ScopeSelectorArgument="&lt;wnd app='matrixbrowser.exe' cls='HwndWrapper*' title='메리츠 화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                                        </uix:NClick.Target>
+                                      </uix:NClick>
+                                      <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_27" />
+                                      <uix:NApplicationCard AttachMode="ByInstance" DisplayName="다른 이름으로 저장" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" ScopeGuid="f6c793b1-7b53-4ecb-8ad3-9264027969ac" Version="V2">
+                                        <uix:NApplicationCard.Body>
+                                          <ActivityAction x:TypeArguments="x:Object">
+                                            <ActivityAction.Argument>
+                                              <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                                            </ActivityAction.Argument>
+                                            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,848.8" sap2010:WorkflowViewState.IdRef="Sequence_55">
+                                              <sap:WorkflowViewStateService.ViewState>
+                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                </scg:Dictionary>
+                                              </sap:WorkflowViewStateService.ViewState>
+                                              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '저장(&amp;S)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,244.8" sap2010:WorkflowViewState.IdRef="NClick_19" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="f6c793b1-7b53-4ecb-8ad3-9264027969ac" Version="V5">
+                                                <uix:NClick.Target>
+                                                  <uix:TargetAnchorable ContentHash="u8CbFExckUepjMXuMHsIgg" DesignTimeRectangle="694, 536, 110, 33" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd ctrlid='1' title='저장(&amp;amp;S)' /&gt;" Guid="d8492792-e38b-4248-b489-794a6b583740" InformativeScreenshot="92001230271f59b54c974865a7802bc3.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/8VQcgcy34kyXc_LTvhyrBg" ScopeSelectorArgument="&lt;wnd app='matrixgear.exe' cls='#32770' title='다른 이름으로 저장' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                                                </uix:NClick.Target>
+                                              </uix:NClick>
+                                              <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_29" />
+                                              <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,308" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_1" InteractionMode="HardwareEvents" ScopeIdentifier="f6c793b1-7b53-4ecb-8ad3-9264027969ac" Shortcuts="[d(hk)][k(Enter)][u(hk)]" Version="V5" />
+                                              <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="Delay_28" />
+                                            </Sequence>
+                                          </ActivityAction>
+                                        </uix:NApplicationCard.Body>
+                                        <uix:NApplicationCard.OCREngine>
+                                          <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
+                                            <ActivityFunc.Argument>
+                                              <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                                            </ActivityFunc.Argument>
+                                          </ActivityFunc>
+                                        </uix:NApplicationCard.OCREngine>
+                                        <uix:NApplicationCard.TargetApp>
+                                          <uix:TargetApp Area="0, 43, 960, 600" ContentHash="_0F5OBxPi02wJp4GQjF8xQ" FilePath="C:\NEXT_UI\MatrixGear\Application\matrixgear.exe" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAGiSURBVDhPpZPrK0NhHMf33yiUSy7FC1FIXvNOSOZaKIsk7R2WcVxmZmhuo1M25DLlMmYouRNlCauxzS1ZyTZfnd+Lne10Eu3Ft3N+v/N8Ps/znHMeSUGEIq8wUuEuilLgP+EYjpX8BpfFKynCfrBEImwGw2L3wogKxABZ1gBaC/Woz9L8LhDCJTEdsM6d4dvnA/x+uloMpyiOFhEIYS6scoPA6wM72E4zbs8dVA81LYYKxGAuDpsLHy8eSBM6qW7IGcTS8B60wQJZeh8aMlQhYEuOBlXJDPxeHy6sN9ST549CXT9P6aud5QX6uhlsM6shAtv0HpiCMdrzyaaNemv6A1o+F8+rhxf0F09CV83i3rCP9fYV2o57+RjN2QN4c77DeftMg2XZGvoS3s8v2K+cvEAap8TVxA5YmRGPC4dYbTPhctxKb9rMHtGMRpUFjblaGHq3qF4c2uUFtandOB2xoDKxC1rpFPbVZjRlqmlATZoKrruXwNK5PNw8oSqlhxcIUxrbEVJXJDHQyU0066jchPIkJvBMVMDlz79y2Icp3OP8A9KuZgbcogzpAAAAAElFTkSuQmCC" InformativeScreenshot="73664f9c8ab0406f9f8a1748ea392a1f.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/W-S-GPZvL0SEGrxzupb0Vw" Selector="&lt;wnd app='matrixgear.exe' cls='#32770' title='다른 이름으로 저장' /&gt;" Version="V3">
+                                            <uix:TargetApp.Arguments>
+                                              <InArgument x:TypeArguments="x:String" />
+                                            </uix:TargetApp.Arguments>
+                                            <uix:TargetApp.WorkingDirectory>
+                                              <InArgument x:TypeArguments="x:String" />
+                                            </uix:TargetApp.WorkingDirectory>
+                                          </uix:TargetApp>
+                                        </uix:NApplicationCard.TargetApp>
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </uix:NApplicationCard>
+                                      <uix:NCheckState DisplayName="Check App State '파일다운로드 완료하였습니다.'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,670.4" sap2010:WorkflowViewState.IdRef="NCheckState_11" ScopeIdentifier="36ade3cb-f5cc-423b-add6-ac2ab83dea44" Version="V5">
+                                        <uix:NCheckState.IfExists>
+                                          <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_56">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인(4)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_21" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="36ade3cb-f5cc-423b-add6-ac2ab83dea44" Version="V5">
+                                              <uix:NClick.Target>
+                                                <uix:TargetAnchorable ContentHash="9ro_Tm1ANUm_f-j-w_9TrA" DesignTimeRectangle="1039, 586, 63, 34" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='메리츠 화재 영업포탈' /&gt;&lt;ctrl name='메리츠 화재 영업포탈' role='document' /&gt;&lt;ctrl name='확인' role='push button' /&gt;" Guid="8408c812-85f4-497c-963c-ff5b81a56f8b" InformativeScreenshot="96b725604c285377de07a00909cdd857.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/t6lFR0MlwUGwcywD22DlCg" ScopeSelectorArgument="&lt;wnd app='matrixbrowser.exe' cls='HwndWrapper*' title='메리츠 화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                                              </uix:NClick.Target>
+                                            </uix:NClick>
+                                          </Sequence>
+                                        </uix:NCheckState.IfExists>
+                                        <uix:NCheckState.IfNotExists>
+                                          <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_57">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                          </Sequence>
+                                        </uix:NCheckState.IfNotExists>
+                                        <uix:NCheckState.Target>
+                                          <uix:TargetAnchorable ContentHash="aJCFzfnh2ESqaJNolEFdgA" DesignTimeRectangle="785, 522, 317, 26" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='메리츠 화재 영업포탈' /&gt;&lt;ctrl name='메리츠 화재 영업포탈' role='document' /&gt;&lt;ctrl role='grouping' text='파일다운로드 완료하였습니다.' /&gt;" Guid="a538b711-78e0-4f9e-9afe-6cc75e9c4ea0" InformativeScreenshot="872f7cce361cf9673137fa01a53b6c4f.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/iL-40EUtREaCJHF_Ol7rzQ" ScopeSelectorArgument="&lt;wnd app='matrixbrowser.exe' cls='HwndWrapper*' title='메리츠 화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None" />
+                                        </uix:NCheckState.Target>
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </uix:NCheckState>
+                                    </Sequence>
+                                  </uix:NCheckState.IfExists>
+                                  <uix:NCheckState.IfNotExists>
+                                    <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="484.8,89.6" sap2010:WorkflowViewState.IdRef="Sequence_54">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </Sequence>
+                                  </uix:NCheckState.IfNotExists>
+                                  <uix:NCheckState.Target>
+                                    <uix:TargetAnchorable ContentHash="wtWTxo3G80qQ4PcqSwKLMA" DesignTimeRectangle="785, 522, 317, 26" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='메리츠 화재 영업포탈' /&gt;&lt;ctrl name='메리츠 화재 영업포탈' role='document' /&gt;&lt;ctrl role='grouping' text='보유계약 다운로드를 시작합니다.' /&gt;" Guid="3baacc42-c717-4556-9010-14cbafcdfea1" InformativeScreenshot="ec004abb966dac11fc871d304b1d6722.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/HtloKvHvfUyflOXKZXWO5g" ScopeSelectorArgument="&lt;wnd app='matrixbrowser.exe' cls='HwndWrapper*' title='메리츠 화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None" />
+                                  </uix:NCheckState.Target>
+                                </uix:NCheckState>
+                              </Sequence>
+                            </uix:NCheckState.IfExists>
+                            <uix:NCheckState.IfNotExists>
+                              <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="520,89.6" sap2010:WorkflowViewState.IdRef="Sequence_52">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </Sequence>
+                            </uix:NCheckState.IfNotExists>
+                            <uix:NCheckState.Target>
+                              <uix:TargetAnchorable ContentHash="Cs3_p1z7EkyUe8H_fdaWIg" DesignTimeRectangle="699, 510, 105, 20" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='메리츠 화재 영업포탈' /&gt;&lt;ctrl name='메리츠 화재 영업포탈' role='document' /&gt;&lt;ctrl name='보유계약 다운로드 권한 확인 refresh 숫자만 입력하세요. 확인 닫기 상세 메시지 열기' role='grouping' /&gt;&lt;ctrl role='row' /&gt;&lt;ctrl name='대표자 주민번호' role='row header' /&gt;&lt;ctrl role='grouping' text='대표자 주민번호' /&gt;" Guid="7b9c205d-6e91-4dd6-96f6-95d40676d5eb" InformativeScreenshot="51cbd9fdb7c417f2c355f5e5fb3e7726.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/vI7LWWDvQEKGKIIzDAMkpQ" ScopeSelectorArgument="&lt;wnd app='matrixbrowser.exe' cls='HwndWrapper*' title='메리츠 화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                            </uix:NCheckState.Target>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </uix:NCheckState>
+                        </Sequence>
+                      </If.Else>
+                    </If>
+                    <Sequence DisplayName="Close Program Sequence" sap:VirtualizedContainerService.HintSize="556.8,971.2" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_4" />
+                      <ui:InvokeCode ContinueOnError="{x:Null}" Code="Try&#xA;    Dim hasNoExtensionFile As Boolean = System.IO.Directory.GetFiles(in_DownloadFolder).Any(Function(f) String.IsNullOrEmpty(System.IO.Path.GetExtension(f)))&#xA;    io_IsExist = If(hasNoExtensionFile, &quot;True&quot;, &quot;False&quot;)&#xA;Catch ex As Exception&#xA;    io_IsExist = &quot;False&quot;&#xA;    Console.WriteLine(&quot;Error checking download folder: &quot; &amp; ex.Message)&#xA;End Try&#xA;" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="451.2,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+                        <ui:InvokeCode.Arguments>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_DownloadFolder ">
+                            <Literal x:TypeArguments="x:String">C:\NEXT_UI\MatrixGear\Application</Literal>
+                          </InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="io_IsExist ">
+                            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="MRF_EXT_LTR_is_exist_file" />
+                          </InArgument>
+                        </ui:InvokeCode.Arguments>
+                      </ui:InvokeCode>
+                      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="WriteLine_5" Text="[&quot;EXIST FILE:  &quot; + MRF_EXT_LTR_is_exist_file.ToString()]" />
+                      <If Condition="[MRF_EXT_LTR_is_exist_file = &quot;True&quot;]" sap:VirtualizedContainerService.HintSize="451.2,446.4" sap2010:WorkflowViewState.IdRef="If_1">
+                        <If.Then>
+                          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,227.2" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Rename File" sap:VirtualizedContainerService.HintSize="416,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="python-workflow.cs">
+                              <ui:InvokeWorkflowFile.Arguments>
+                                <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "rename_meritz_exisiting_ltr.py"]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="mode" />
+                              </ui:InvokeWorkflowFile.Arguments>
+                            </ui:InvokeWorkflowFile>
+                          </Sequence>
+                        </If.Then>
+                        <If.Else>
+                          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Sequence>
+                        </If.Else>
+                      </If>
+                    </Sequence>
+                  </Sequence>
+                </uix:NCheckState.IfNotExists>
+                <uix:NCheckState.Target>
+                  <uix:TargetAnchorable ContentHash="YKdV_QUMyU27XowgIS8V0w" DesignTimeRectangle="785, 522, 317, 26" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='메리츠 화재 영업포탈' /&gt;&lt;ctrl name='메리츠 화재 영업포탈' role='document' /&gt;&lt;ctrl role='grouping' text='조회결과가 없습니다.' /&gt;" Guid="d07d1659-dc28-4a77-8d89-442cbb582f1d" InformativeScreenshot="872f7cce361cf9673137fa01a53b6c4f.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/ILUXvhpMCkeaq67JlZrWTA" ScopeSelectorArgument="&lt;wnd app='matrixbrowser.exe' cls='HwndWrapper*' title='메리츠 화재 영업포탈' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                </uix:NCheckState.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NCheckState>
+            </Sequence>
+          </ActivityAction>
+        </uix:NApplicationCard.Body>
+        <uix:NApplicationCard.OCREngine>
+          <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
+            <ActivityFunc.Argument>
+              <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+            </ActivityFunc.Argument>
+          </ActivityFunc>
+        </uix:NApplicationCard.OCREngine>
+        <uix:NApplicationCard.TargetApp>
+          <uix:TargetApp Area="0, 0, 1808, 1043" ContentHash="xSJ2N--bUU2p1kl40sWNBA" FilePath="C:\NEXT_UI\MatrixBrowser\matrixbrowser.exe" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAF/SURBVFhH7ZMxS8NQFIX7YwQXF2fRwUUXQQpOLiKI4CKOXYqbi4OLIOggiDiKk06Kg6A4SAfBwUEQobg0TZumTZNceZEE3jmIg+HW4X1wltx3ej8er5WKw/HPaE2NySiDPgQWtIM+BBa0gz4EFrSDPgQWtIM+BBa0gz4EFrSDPgQWtIM+BBa0gz4EFkz8taoMLs6KBDs18eYmpX96KMPGoxjSXiDR9aX4y/NZx5udkPBoT5Lmx/e842dnu7UN+v0/CwbbW9mSnOHTgySfTetbTtoPpbO+JPFzA0cFg6tz2lGq4K8kMX4huvVN2lO6YNr2frzJnOT9LbtVJLq/pT2lCobH+8Xc3AZi5P2VhWxu3mN0d2PNzdvEPaUJmuWt6XHrDL658OTAmvuri9bc/GlwT2mC8esLncEb6u3WrXm7OmPNnSCecYI5WDBxgk5w1IKaQR8CC9pBHwIL2kEfAgvaQR8CC9pBHwIL2kEfAgvaQR8CC9pBHwIL2kEfh2PUfAHyY4EclHwnQAAAAABJRU5ErkJggg==" InformativeScreenshot="a0d04202549110e0a99edcd076853b39.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/nb9YUt6gcU64X1dKl5hMtA" Selector="&lt;wnd app='matrixbrowser.exe' cls='HwndWrapper*' title='메리츠 화재 영업포탈' /&gt;" Version="V3">
+            <uix:TargetApp.Arguments>
+              <InArgument x:TypeArguments="x:String" />
+            </uix:TargetApp.Arguments>
+            <uix:TargetApp.WorkingDirectory>
+              <InArgument x:TypeArguments="x:String" />
+            </uix:TargetApp.WorkingDirectory>
+          </uix:TargetApp>
+        </uix:NApplicationCard.TargetApp>
+      </uix:NApplicationCard>
     </Sequence>
   </Sequence>
 </Activity>

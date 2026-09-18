@@ -17,6 +17,7 @@ PROCESS_NAMES = [
     "XPlatform.exe",
     "nexacro.exe",
     "nexacroplatform.exe",
+    "MatrixBrowser.exe",
 ]
 
 
