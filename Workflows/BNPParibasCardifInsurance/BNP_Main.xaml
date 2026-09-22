@@ -110,7 +110,7 @@
       <AssemblyReference>REF_RPA.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="BNP_Main" sap:VirtualizedContainerService.HintSize="776.4000000000001,12339.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="BNP_Main" sap:VirtualizedContainerService.HintSize="758,1526.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Default="C:\Users\RPA02\Documents\UiPath\RPA\Python_Script\SSL\" Name="PYTHON_PATH" />
       <Variable x:TypeArguments="x:String" Default="CDL" Name="COMP_CODE" />
@@ -127,793 +127,1047 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="CDL_AST_URL" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="555.2,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
-      <ui:GetRobotAsset.Value>
-        <OutArgument x:TypeArguments="x:String">[CDL_URL]</OutArgument>
-      </ui:GetRobotAsset.Value>
-    </ui:GetRobotAsset>
-    <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="CDL_AST_LOGIN" CacheStrategy="None" DisplayName="Get Credential" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="555.2,175.2" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[CDL_PW]" Username="[CDL_UID]" />
-    <ui:SetAsset TimeoutMS="{x:Null}" AssetName="CDL_NEW_PATH" DisplayName="Set Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="555.2,227.2" sap2010:WorkflowViewState.IdRef="SetAsset_1" Value="[&quot;empty&quot;]" />
-    <ui:SetAsset TimeoutMS="{x:Null}" AssetName="CDL_EXT_PATH" DisplayName="Set Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="555.2,227.2" sap2010:WorkflowViewState.IdRef="SetAsset_2" Value="[&quot;empty&quot;]">
+    <Sequence DisplayName="Sequence Pre" sap:VirtualizedContainerService.HintSize="518.4,1455.2" sap2010:WorkflowViewState.IdRef="Sequence_38">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-    </ui:SetAsset>
-    <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim files = Directory.GetFiles(&quot;C:\RPA\TempDownload&quot;, in_Prefix &amp; &quot;*&quot;)&#xA;For Each f In files&#xA;    File.Delete(f)&#xA;Next" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="555.2,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_2">
-      <ui:InvokeCode.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="in_Prefix">CDL</InArgument>
-      </ui:InvokeCode.Arguments>
-    </ui:InvokeCode>
-    <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="555.2,56.8" sap2010:WorkflowViewState.IdRef="Delay_11">
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-    </Delay>
-    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" DisplayName="Chrome BNP 파리바 카디프생명" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="555.2,11257.6" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OutUiElement="[browserInstance]" ScopeGuid="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V2" WindowResize="Maximize">
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="484.8,56.8" sap2010:WorkflowViewState.IdRef="LogMessage_17" Level="Info" Message="[&quot;Reset Variables and Assets&quot;]">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:LogMessage>
+      <ui:SetAsset TimeoutMS="{x:Null}" AssetName="SEARCH_STATUS" DisplayName="Set Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="484.8,227.2" sap2010:WorkflowViewState.IdRef="SetAsset_3" Value="[&quot;E&quot;]">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:SetAsset>
+      <ui:SetAsset TimeoutMS="{x:Null}" AssetName="DOWNLOAD_STATUS" DisplayName="Set Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="484.8,227.2" sap2010:WorkflowViewState.IdRef="SetAsset_4" Value="[&quot;E&quot;]">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:SetAsset>
+      <ui:SetAsset TimeoutMS="{x:Null}" AssetName="MODIFY_STATUS" DisplayName="Set Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="484.8,227.2" sap2010:WorkflowViewState.IdRef="SetAsset_5" Value="[&quot;E&quot;]">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:SetAsset>
+      <ui:SetAsset TimeoutMS="{x:Null}" AssetName="UPLOAD_STATUS" DisplayName="Set Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="484.8,227.2" sap2010:WorkflowViewState.IdRef="SetAsset_6" Value="[&quot;E&quot;]">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:SetAsset>
+      <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="CDL_AST_URL" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="484.8,56.8" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+        <ui:GetRobotAsset.Value>
+          <OutArgument x:TypeArguments="x:String">[CDL_URL]</OutArgument>
+        </ui:GetRobotAsset.Value>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:GetRobotAsset>
+      <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="CDL_AST_LOGIN" CacheStrategy="None" DisplayName="Get Credential" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="484.8,56.8" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[CDL_PW]" Username="[CDL_UID]">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:GetRobotCredential>
+      <ui:SetAsset TimeoutMS="{x:Null}" AssetName="CDL_NEW_PATH" DisplayName="Set Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="484.8,56.8" sap2010:WorkflowViewState.IdRef="SetAsset_1" Value="[&quot;empty&quot;]">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:SetAsset>
+      <ui:SetAsset TimeoutMS="{x:Null}" AssetName="CDL_EXT_PATH" DisplayName="Set Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="484.8,56.8" sap2010:WorkflowViewState.IdRef="SetAsset_2" Value="[&quot;empty&quot;]">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:SetAsset>
+      <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim files = Directory.GetFiles(&quot;C:\RPA\TempDownload&quot;, in_Prefix &amp; &quot;*&quot;)&#xA;For Each f In files&#xA;    File.Delete(f)&#xA;Next" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="484.8,56.8" sap2010:WorkflowViewState.IdRef="InvokeCode_2">
+        <ui:InvokeCode.Arguments>
+          <InArgument x:TypeArguments="x:String" x:Key="in_Prefix">CDL</InArgument>
+        </ui:InvokeCode.Arguments>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:InvokeCode>
+      <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="484.8,56.8" sap2010:WorkflowViewState.IdRef="Delay_11">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </Delay>
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="484.8,56.8" sap2010:WorkflowViewState.IdRef="LogMessage_18" Level="Info" Message="[&quot;Open CDL Website&quot;]">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:LogMessage>
+    </Sequence>
+    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" DisplayName="Chrome BNP 파리바 카디프생명" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="518.4,48" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OutUiElement="[browserInstance]" ScopeGuid="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V2" WindowResize="Maximize">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="553.6,11064" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="483.2,335.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="520,122.4" sap2010:WorkflowViewState.IdRef="Delay_9" />
-            <If Condition="[runType = &quot;CHECK&quot;]" DisplayName="Check Website Open Available" sap:VirtualizedContainerService.HintSize="520,2220" sap2010:WorkflowViewState.IdRef="If_3">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-              <If.Then>
-                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="484.8,1992" sap2010:WorkflowViewState.IdRef="Sequence_28">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="CHECKING_ID" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="451.2,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_4">
-                    <ui:GetRobotAsset.Value>
-                      <OutArgument x:TypeArguments="x:String">[CHECKING_ID]</OutArgument>
-                    </ui:GetRobotAsset.Value>
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                  </ui:GetRobotAsset>
-                  <uix:NCheckState DisplayName="Check App State '로그인'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,1756.8" sap2010:WorkflowViewState.IdRef="NCheckState_13" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
-                    <uix:NCheckState.IfExists>
-                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,710.4" sap2010:WorkflowViewState.IdRef="Sequence_29">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_13" Level="Info" Message="[&quot;Checking Alive - Is Openned - Y&quot;]">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                        </ui:LogMessage>
-                        <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_12">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                        </Delay>
-                        <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ====== Create JSON file path ======&#xA;Dim jsonPath As String = System.IO.Path.Combine(checkingFilePath, &quot;result_&quot; &amp; checkingId &amp; &quot;.json&quot;)&#xA;&#xA;' ====== Read current JSON file ======&#xA;Dim jsonContent As String = System.IO.File.ReadAllText(jsonPath, System.Text.Encoding.UTF8)&#xA;Dim jsonArray   As Newtonsoft.Json.Linq.JArray = Newtonsoft.Json.Linq.JArray.Parse(jsonContent)&#xA;&#xA;' ====== Find by compCode and update ======&#xA;For Each item As Newtonsoft.Json.Linq.JObject In jsonArray&#xA;    If item(&quot;compCode&quot;).ToString() = compCode Then&#xA;        item(&quot;isOpenned&quot;)   = &quot;Y&quot;&#xA;        item(&quot;processTime&quot;) = DateTime.Now.ToString(&quot;yyyyMMdd HH:mm:ss&quot;)&#xA;        Exit For&#xA;    End If&#xA;Next&#xA;&#xA;' ====== Rewrite JSON file (overwrite) ======&#xA;System.IO.File.WriteAllText(jsonPath, jsonArray.ToString(), System.Text.Encoding.UTF8)" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_3">
-                          <ui:InvokeCode.Arguments>
-                            <InArgument x:TypeArguments="x:String" x:Key="checkingId">[CHECKING_ID]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="checkingFilePath">[CHECKING_FILE_PATH]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="compCode">[COMP_CODE]</InArgument>
-                          </ui:InvokeCode.Arguments>
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                        </ui:InvokeCode>
-                        <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_14">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                        </Delay>
-                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_14" Level="Info" Message="[&quot;Checking Alive - Is Openned - Y Finish.....&quot;]">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                        </ui:LogMessage>
-                      </Sequence>
-                    </uix:NCheckState.IfExists>
-                    <uix:NCheckState.IfNotExists>
-                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,710.4" sap2010:WorkflowViewState.IdRef="Sequence_30">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_15" Level="Info" Message="[&quot;Checking Alive - Is Openned - N&quot;]">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                        </ui:LogMessage>
-                        <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_15">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                        </Delay>
-                        <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ====== Create JSON file path ======&#xA;Dim jsonPath As String = System.IO.Path.Combine(checkingFilePath, &quot;result_&quot; &amp; checkingId &amp; &quot;.json&quot;)&#xA;&#xA;' ====== Read current JSON file ======&#xA;Dim jsonContent As String = System.IO.File.ReadAllText(jsonPath, System.Text.Encoding.UTF8)&#xA;Dim jsonArray   As Newtonsoft.Json.Linq.JArray = Newtonsoft.Json.Linq.JArray.Parse(jsonContent)&#xA;&#xA;' ====== Find by compCode and update ======&#xA;For Each item As Newtonsoft.Json.Linq.JObject In jsonArray&#xA;    If item(&quot;compCode&quot;).ToString() = compCode Then&#xA;        item(&quot;isOpenned&quot;)   = &quot;N&quot;&#xA;        item(&quot;processTime&quot;) = DateTime.Now.ToString(&quot;yyyyMMdd HH:mm:ss&quot;)&#xA;        Exit For&#xA;    End If&#xA;Next&#xA;&#xA;' ====== Rewrite JSON file (overwrite) ======&#xA;System.IO.File.WriteAllText(jsonPath, jsonArray.ToString(), System.Text.Encoding.UTF8)" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_4">
-                          <ui:InvokeCode.Arguments>
-                            <InArgument x:TypeArguments="x:String" x:Key="checkingId">[CHECKING_ID]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="checkingFilePath">[CHECKING_FILE_PATH]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="compCode">[COMP_CODE]</InArgument>
-                          </ui:InvokeCode.Arguments>
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                        </ui:InvokeCode>
-                        <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_16">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                        </Delay>
-                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_16" Level="Info" Message="[&quot;Checking Alive - Is Openned - N  Finish.....&quot;]">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                        </ui:LogMessage>
-                      </Sequence>
-                    </uix:NCheckState.IfNotExists>
-                    <uix:NCheckState.Target>
-                      <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/login/loginForm.do" ContentHash="6WIGS__ZZ0mjAmWB0Y1tbQ" DesignTimeRectangle="701, 871, 525, 60" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='btnActionLogin' tag='BUTTON' /&gt;" Guid="93e09f31-1847-4f02-b7a2-47ea1bb2ac45" InformativeScreenshot="930bafce997faa823da5b9f11aa85898.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/5QQMyHLMREapxVQDj1wJUg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-                    </uix:NCheckState.Target>
-                  </uix:NCheckState>
-                </Sequence>
-              </If.Then>
-              <If.Else>
-                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="484.8,89.6" sap2010:WorkflowViewState.IdRef="Sequence_31">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                </Sequence>
-              </If.Else>
-            </If>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="python-workflow - Invoke Workflow File (python-workflow.cs)" sap:VirtualizedContainerService.HintSize="520,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="python-workflow.cs">
-              <ui:InvokeWorkflowFile.Arguments>
-                <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "active-window.py"]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="mode" />
-              </ui:InvokeWorkflowFile.Arguments>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </ui:InvokeWorkflowFile>
-            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="520,56.8" sap2010:WorkflowViewState.IdRef="Delay_10">
+            <Sequence DisplayName="Sequence Login" sap:VirtualizedContainerService.HintSize="449.6,56.8" sap2010:WorkflowViewState.IdRef="Sequence_33">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-            </Delay>
-            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="520,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Entering login credential&quot;]" />
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '당사인증'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="520,193.6" sap2010:WorkflowViewState.IdRef="NClick_7" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
-              <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/login/loginForm.do" CVScreenId="978c7443-e32e-4c15-aedc-c37491e26ff7" ContentHash="5jwEQ7rmxkKPh45FCCpPKg" CvElementArea="698, 586, 263, 58" CvTextArea="794, 605, 71, 21" CvTextArgument="BAbDIE" CvType="Button" DesignTimeRectangle="701, 587, 259, 55" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='당사인증' parentid='loginForm' tag='A' /&gt;" Guid="b324f810-f8f4-4e6f-93ac-65ea370adb9d" InformativeScreenshot="6cd17c78f0b439475e63d39c6fd6df82.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/4GaBRloBDU664SNeyKBk3A" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
-              </uix:NClick.Target>
-            </uix:NClick>
-            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'B73C'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="520,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="SameAsCard" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Text="[CDL_UID]" Version="V5">
-              <uix:NTypeInto.Target>
-                <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/login/loginForm.do" CVScreenId="b883ec22-8962-458b-9708-a15bdec3bdd4" ContentHash="hR0F3v6K90GjolmbnbOHUQ" CvElementArea="701, 654, 526, 52" CvType="InputBox" DesignTimeRectangle="701, 652, 525, 53" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='user_id' tag='INPUT' type='text' class='' placeholder='설계사코드' aaname='설계사코드' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="087a5822-b969-4728-a164-55c9cd532ebe" InformativeScreenshot="35ec5f02ff601b35dbfaa0efe4f2f695.jpg" IsResponsive="True" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/sx9f1rCULECeeIX4ibYEag" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
-                  <uix:TargetAnchorable.Anchors>
-                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                      <uix:Target CVScreenId="b883ec22-8962-458b-9708-a15bdec3bdd4" CvElementArea="698, 586, 263, 58" CvTextArea="794, 605, 71, 21" CvTextArgument="BAbDIE" CvType="Button" DesignTimeRectangle="701, 587, 259, 55" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='당사인증' parentid='loginForm' tag='A' type='' class='' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='당사인증' /&gt;" Guid="2dd51519-8ef7-4102-b4ea-9b1c044be200" SearchSteps="FuzzySelector, CV" />
-                    </scg:List>
-                  </uix:TargetAnchorable.Anchors>
-                </uix:TargetAnchorable>
-              </uix:NTypeInto.Target>
-            </uix:NTypeInto>
-            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '89W5'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="520,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="SameAsCard" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" SecureText="[CDL_PW]" Version="V5">
-              <uix:NTypeInto.Target>
-                <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/login/loginForm.do" CVScreenId="c89abdb4-2aa4-4ee1-8276-1742cfafd11e" ContentHash="1LG9lTasnkuXPi_3x0JcPA" CvTextArea="719, 726, 73, 22" CvTextArgument="8|9W5" CvType="Text" DesignTimeRectangle="701, 712, 525, 53" ElementType="InputBoxPassword" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='user_password' tag='INPUT' /&gt;" Guid="db33fa0e-b0c1-4ee3-a4dc-925376411f05" InformativeScreenshot="69b0bcc6159681e027c255de269bdb7b.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/95ssfP_kuEyTNpMqBkLiTA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
-                  <uix:TargetAnchorable.Anchors>
-                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                      <uix:Target CVScreenId="c89abdb4-2aa4-4ee1-8276-1742cfafd11e" CvTextArea="717, 666, 93, 23" CvTextArgument="B7|3C" CvType="Text" DesignTimeRectangle="701, 652, 525, 53" ElementType="InputBox" FullSelectorArgument="&lt;webctrl id='user_id' tag='INPUT' /&gt;" Guid="a331134b-f535-4194-b4e9-eea48fc79af2" SearchSteps="Selector, CV" />
-                    </scg:List>
-                  </uix:TargetAnchorable.Anchors>
-                </uix:TargetAnchorable>
-              </uix:NTypeInto.Target>
-            </uix:NTypeInto>
-            <uix:NCheck Action="Check" DisplayName="Check/Uncheck 'Checkbox'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="520,194.4" sap2010:WorkflowViewState.IdRef="NCheck_1" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
-              <uix:NCheck.Target>
-                <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/login/loginForm.do" CVScreenId="c2668123-9367-4a35-8c67-5ba479c38d43" ContentHash="MNr8H67u4E-QEH4h5r2kKg" CvElementArea="698, 653, 29, 29" CvTextArea="727, 657, 88, 20" CvTextArgument="00c AE" CvType="CheckBox" DesignTimeRectangle="701, 651, 114, 25" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl tag='LABEL' /&gt;" Guid="da5d1843-3588-427a-b20c-48cdfe2b8742" InformativeScreenshot="929d038308806511a025042284900e9c.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/bfAMRQ7smkyr1di-K04MzQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
-              </uix:NCheck.Target>
-            </uix:NCheck>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '로그인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="520,193.6" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
-              <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/login/loginForm.do" CVScreenId="26322fb9-8959-48a6-a842-487463056482" ContentHash="-7SgYSf9F0iDJCIwhtp4kg" CvElementArea="700, 700, 526, 62" CvTextArea="929, 719, 66, 26" CvTextArgument="ج1مl" CvType="Button" DesignTimeRectangle="701, 701, 525, 60" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='btnActionLogin' tag='BUTTON' /&gt;" Guid="312f8b77-48cd-4bae-b318-c9e7dac00d30" InformativeScreenshot="a95817197f519fc6458158660e0ec469.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/8pnCb9f-7kq5aZEOd6NKgg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
-              </uix:NClick.Target>
-            </uix:NClick>
-            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="520,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Logging in&quot;]" />
-            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="520,122.4" sap2010:WorkflowViewState.IdRef="Delay_1" />
-            <uix:NCheckState DisplayName="Check App State 'ga.cardif.co.kr says OT…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="520,853.6" sap2010:WorkflowViewState.IdRef="NCheckState_6" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
-              <uix:NCheckState.IfExists>
-                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,419.2" sap2010:WorkflowViewState.IdRef="Sequence_13">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'OK'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_9" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
-                    <uix:NClick.Target>
-                      <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/login/loginForm.do" ContentHash="7Quoa__gfkGh6tW-XywHEg" DesignTimeRectangle="1144, 223, 80, 49" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='ga.cardif.co.kr says' role='dialog' /&gt;&lt;ctrl name='OK' role='push button' /&gt;" Guid="4b67b7c9-da7c-4bbd-9522-b0f7bd14b044" InformativeScreenshot="676c9c0ea6558c877074e9cb65163151.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/ac954v0I8Ua3SO0JcLlYFg" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='BNP 파리바 카디프생명 - Google Chrome' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-                    </uix:NClick.Target>
-                  </uix:NClick>
-                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Close Alert Popup Successfully&quot;]" />
-                </Sequence>
-              </uix:NCheckState.IfExists>
-              <uix:NCheckState.IfNotExists>
-                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_14">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                </Sequence>
-              </uix:NCheckState.IfNotExists>
-              <uix:NCheckState.Target>
-                <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/login/loginForm.do" ContentHash="OzbE6A8fk0CNkwtQ5fatuw" DesignTimeRectangle="680, 107, 578, 201" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='ga.cardif.co.kr says' role='dialog' /&gt;&lt;ctrl idx='2' role='pane' /&gt;" Guid="7f819c85-7254-48e3-bed2-2f273e7ae88c" InformativeScreenshot="d87d29770f817c7e20b151d896700a4f.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/cJmIX_oZ802A0cEF0CsxXg" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='BNP 파리바 카디프생명 - Google Chrome' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-              </uix:NCheckState.Target>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </uix:NCheckState>
-            <uix:NCheckState DisplayName="Check App State 'ga.cardif.co.kr 내용 OTP…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="520,2372.8" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
-              <uix:NCheckState.IfExists>
-                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="484.8,1938.4" sap2010:WorkflowViewState.IdRef="Sequence_3">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
-                    <uix:NClick.Target>
-                      <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/login/loginForm.do" CVScreenId="931175b9-4d05-4dc3-b366-622f0a52e31d" ContentHash="1dsaO3p8mkeNqVrfe2SQqA" CvElementArea="1139, 220, 87, 52" CvTextArea="1165, 236, 35, 21" CvTextArgument="₪|9I" CvType="Button" DesignTimeRectangle="1144, 223, 80, 49" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='ga.cardif.co.kr 내용:' role='dialog' /&gt;&lt;ctrl name='확인' role='push button' /&gt;" Guid="dd45f239-c233-4f7f-9293-cd3a4315b76d" InformativeScreenshot="8775943e3d0b3e5212b28e621728aea0.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/NnXh4tSRw0yaYhCxBopQeg" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='BNP 파리바 카디프생명 - Chrome' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
-                    </uix:NClick.Target>
-                  </uix:NClick>
-                  <uix:NCheckState DisplayName="Check App State '닫기'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,1684.8" sap2010:WorkflowViewState.IdRef="NCheckState_2" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
-                    <uix:NCheckState.IfExists>
-                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,1259.2" sap2010:WorkflowViewState.IdRef="Sequence_5">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;Waiting for OTP .....&quot;]" />
-                        <Delay Duration="00:00:40" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_4" />
-                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Receiving OTP Successfully&quot;]" />
-                        <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="CDL_AST_OTP" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="416,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
-                          <ui:GetRobotAsset.Value>
-                            <OutArgument x:TypeArguments="x:String">[CDL_OTP]</OutArgument>
-                          </ui:GetRobotAsset.Value>
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                        </ui:GetRobotAsset>
-                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '인증번호 입력'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_3" InteractionMode="SameAsCard" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Text="[CDL_OTP]" Version="V5">
-                          <uix:NTypeInto.Target>
-                            <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/login/loginForm.do" CVScreenId="89d81ce2-886f-4d31-b69e-2d1236b8a46d" ContentHash="e7039Sh7ZEmtA7ZIYvkkVA" CvElementArea="633, 560, 226, 43" CvType="InputBox" DesignTimeRectangle="635, 561, 222, 40" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='otpAuthNum' tag='INPUT' type='text' class='otp_input' placeholder='인증번호를 입력하세요.' aaname='인증번호 입력' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="0c9f0524-c403-43cb-aa30-25b4b11c4812" InformativeScreenshot="3b707fa284e755e562170c17f4c9c6aa.jpg" IsResponsive="True" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/UVhtqvPd60eZHm-KAISFtg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
-                              <uix:TargetAnchorable.Anchors>
-                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                                  <uix:Target CVScreenId="89d81ce2-886f-4d31-b69e-2d1236b8a46d" CvTextArea="517, 566, 111, 22" CvTextArgument="99t5 82" CvType="Text" DesignTimeRectangle="520, 563, 108, 28" ElementType="Text" FuzzySelectorArgument="&lt;webctrl parentid='popup_otp' tag='LABEL' type='' class='' aaname='인증번호 입력' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='인증번호 입력' /&gt;" Guid="cb68d8ea-59ac-4df3-86cf-879355fed553" SearchSteps="FuzzySelector, CV" />
-                                </scg:List>
-                              </uix:TargetAnchorable.Anchors>
-                            </uix:TargetAnchorable>
-                          </uix:NTypeInto.Target>
-                          <uix:NTypeInto.VerifyOptions>
-                            <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
-                              <uix:VerifyExecutionTypeIntoOptions.Retry>
-                                <InArgument x:TypeArguments="x:Boolean" />
-                              </uix:VerifyExecutionTypeIntoOptions.Retry>
-                              <uix:VerifyExecutionTypeIntoOptions.Timeout>
-                                <InArgument x:TypeArguments="x:Double" />
-                              </uix:VerifyExecutionTypeIntoOptions.Timeout>
-                            </uix:VerifyExecutionTypeIntoOptions>
-                          </uix:NTypeInto.VerifyOptions>
-                        </uix:NTypeInto>
-                        <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인완료'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_8" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
-                          <uix:NClick.Target>
-                            <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/login/loginForm.do" CVScreenId="34848c4b-7ef0-4108-ae5e-a775073195e2" ContentHash="31kAoNgxFkGAZjPJda2a-Q" CvElementArea="902, 636, 133, 52" CvTextArea="931, 650, 73, 23" CvTextArgument="2283" CvType="Button" DesignTimeRectangle="905, 638, 128, 48" ElementType="Button" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='btnOtpOk' tag='BUTTON' type='button' class='default_btn green' aaname=' &amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;확인완료 &amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='확인완료' /&gt;" Guid="77ce849c-fda3-4bd4-a744-31ae30082925" InformativeScreenshot="52612c0c84b0a6e416b5e39fb376f541.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/Gvuqntqa80aWX9SCwMKbVw" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
-                              <uix:TargetAnchorable.Anchors>
-                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                                  <uix:Target CVScreenId="34848c4b-7ef0-4108-ae5e-a775073195e2" CvElementArea="902, 636, 133, 52" CvTextArea="931, 650, 73, 23" CvTextArgument="2283" CvType="Button" DesignTimeRectangle="935, 639, 69, 45" ElementType="Text" FuzzySelectorArgument="&lt;webctrl parentid='btnOtpOk' tag='SPAN' type='' class='' aaname='확인완료' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='확인완료' /&gt;" Guid="cd813283-00ad-4bde-a773-7030296ce8f2" SearchSteps="FuzzySelector, CV" />
-                                </scg:List>
-                              </uix:TargetAnchorable.Anchors>
-                            </uix:TargetAnchorable>
-                          </uix:NClick.Target>
-                        </uix:NClick>
-                        <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="Delay_2" />
-                      </Sequence>
-                    </uix:NCheckState.IfExists>
-                    <uix:NCheckState.IfNotExists>
-                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_6">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                      </Sequence>
-                    </uix:NCheckState.IfNotExists>
-                    <uix:NCheckState.Target>
-                      <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/login/loginForm.do" ContentHash="XqxCoXnqV0eM3pSJZrtCzg" DesignTimeRectangle="495, 492, 948, 219" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl type='' parentid='popup_otp' tag='DIV' class='pop_cont pass_reset_wrap' aaname=' &amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9; &amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9; &amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9; &amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="20513683-b0c0-45a1-925b-acc5944e3cf6" InformativeScreenshot="dc854b45502bcbe2de9a489b90b565d5.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/jcaZhL0fIEOpmikgcGdO9A" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
-                        <uix:TargetAnchorable.Anchors>
-                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                            <uix:Target CVScreenId="2a651da6-4a26-44f9-a24a-bcfcdf7536d8" CvElementArea="1390, 454, 34, 34" CvType="CloseButton" DesignTimeRectangle="1381, 444, 50, 50" ElementType="Text" FuzzySelectorArgument="&lt;webctrl id='btnPwdChgClose' parentid='popup_otp' tag='A' type='' class='pop_close' aaname='닫기' matching:id='fuzzy' fuzzylevel:id='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='닫기' /&gt;" Guid="099b3b52-1c2f-4fe8-b0c8-2e6e97455c90" SearchSteps="FuzzySelector, CV" />
-                          </scg:List>
-                        </uix:TargetAnchorable.Anchors>
-                      </uix:TargetAnchorable>
-                    </uix:NCheckState.Target>
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                  </uix:NCheckState>
-                </Sequence>
-              </uix:NCheckState.IfExists>
-              <uix:NCheckState.IfNotExists>
-                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="484.8,89.6" sap2010:WorkflowViewState.IdRef="Sequence_4">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                </Sequence>
-              </uix:NCheckState.IfNotExists>
-              <uix:NCheckState.Target>
-                <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/login/loginForm.do" ContentHash="kGeouemujkKsFjqWP-tFDw" DesignTimeRectangle="680, 107, 578, 201" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='ga.cardif.co.kr 내용:' role='dialog' /&gt;&lt;ctrl idx='2' role='pane' /&gt;" Guid="2ec50928-cda5-4c16-97d0-00bb35af9dce" InformativeScreenshot="aae055386e35e632c35771596222ac58.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/4BuYZH6tKUm9xQZ2CRzwXw" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='BNP 파리바 카디프생명 - Chrome' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-              </uix:NCheckState.Target>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </uix:NCheckState>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="CheckPageLoadingStatus - Invoke Workflow File (Utils\CheckPageLoadingStatus.xaml)" sap:VirtualizedContainerService.HintSize="520,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Utils\CheckPageLoadingStatus.xaml">
-              <ui:InvokeWorkflowFile.Arguments>
-                <InArgument x:TypeArguments="ui:UiElement" x:Key="in_Browser">[browserInstance]</InArgument>
-              </ui:InvokeWorkflowFile.Arguments>
-            </ui:InvokeWorkflowFile>
-            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="520,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;Trying to close popup if has&quot;]" />
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="ClosePopup - Invoke Workflow File (Utils\ClosePopup.xaml)" sap:VirtualizedContainerService.HintSize="520,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Utils\ClosePopup.xaml">
-              <ui:InvokeWorkflowFile.Arguments>
-                <InArgument x:TypeArguments="x:String" x:Key="in_PopupType">ALL</InArgument>
-                <InArgument x:TypeArguments="ui:UiElement" x:Key="in_Browser">[browserInstance]</InArgument>
-              </ui:InvokeWorkflowFile.Arguments>
-            </ui:InvokeWorkflowFile>
-            <uix:NCheckState DisplayName="Check App State '공지사항[공지] 포인트몰 상품 취소 안내이…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="520,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_8" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
-              <uix:NCheckState.IfExists>
-                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_7">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '닫기(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_4" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
-                    <uix:NClick.Target>
-                      <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/main/mainView.do" CVScreenId="d248f5bd-20a6-41f6-af09-38c386133e56" ContentHash="cvTgep_j7ESvWtj7T-Ip7A" CvElementArea="896, 147, 33, 33" CvType="CloseButton" DesignTimeRectangle="887, 137, 50, 50" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl parentid='popup_infoarea_detail_1' tag='A' /&gt;" Guid="13f37fe1-ee64-4fc0-8a44-23013fa4637c" InformativeScreenshot="45529631369b3a4db59afd50b4b7eb28.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/oi8hXt_Dn0yBm7xCAan93A" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
-                    </uix:NClick.Target>
-                  </uix:NClick>
-                </Sequence>
-              </uix:NCheckState.IfExists>
-              <uix:NCheckState.IfNotExists>
-                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_8">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                </Sequence>
-              </uix:NCheckState.IfNotExists>
-              <uix:NCheckState.Target>
-                <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/main/mainView.do" ContentHash="fnE48T9kX0ediAqj0Fzdag" DesignTimeRectangle="251, 204, 698, 440" ElementType="CheckBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='pop_cont' parentid='popup_infoarea_detail_1' tag='DIV' /&gt;" Guid="25f85851-ba2e-4a26-972f-b41a70868eb8" InformativeScreenshot="72b3d307cfa8e6ae6adbfacbe1ffbf5c.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/8dNJ5_JT6E-sROLNtHAG9Q" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-              </uix:NCheckState.Target>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </uix:NCheckState>
-            <uix:NCheckState DisplayName="Check App State '공지사항[공지] 3월 심사마감 안내 서소영…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="520,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_9" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
-              <uix:NCheckState.IfExists>
-                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_9">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '닫기(2)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_5" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
-                    <uix:NClick.Target>
-                      <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/main/mainView.do" CVScreenId="d248f5bd-20a6-41f6-af09-38c386133e56" ContentHash="aQlt0et6ekKhUaTZKExhSA" CvElementArea="1621, 147, 34, 33" CvType="CloseButton" DesignTimeRectangle="1612, 137, 50, 50" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl parentid='popup_infoarea_detail_0' tag='A' /&gt;" Guid="f56dcc3c-52bd-4a45-9c0b-5df308315b9c" InformativeScreenshot="898076fd7c29201cf899c31ae4b35a42.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/aCml34r6I0yEob4UDcfezg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
-                        <uix:TargetAnchorable.Anchors>
-                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                            <uix:Target DesignTimeRectangle="1001, 158, 648, 18" ElementType="Text" FuzzySelectorArgument="&lt;webctrl parentid='popup_infoarea_detail_0' tag='H2' type='' class='title' aaname='공지사항 상세' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='공지사항 상세' /&gt;" Guid="ef19b44b-7daf-4885-9e8b-a39c809cad99" SearchSteps="FuzzySelector" />
-                          </scg:List>
-                        </uix:TargetAnchorable.Anchors>
-                      </uix:TargetAnchorable>
-                    </uix:NClick.Target>
-                  </uix:NClick>
-                </Sequence>
-              </uix:NCheckState.IfExists>
-              <uix:NCheckState.IfNotExists>
-                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_10">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                </Sequence>
-              </uix:NCheckState.IfNotExists>
-              <uix:NCheckState.Target>
-                <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/main/mainView.do" ContentHash="GKxZ9GfPeEaWGkNxjnP_hQ" DesignTimeRectangle="976, 204, 698, 507" ElementType="CheckBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='pop_cont' parentid='popup_infoarea_detail_0' tag='DIV' /&gt;" Guid="24ad0270-eab6-4b88-acdc-8106e9e99248" InformativeScreenshot="280ff517492b2cbf0951f8b437ee7763.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/Q7O6VxPdnkeu5U_ArhwOmg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-              </uix:NCheckState.Target>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </uix:NCheckState>
-            <uix:NCheckState DisplayName="Check App State 'DIV popupActive'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="520,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_10" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
-              <uix:NCheckState.IfExists>
-                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_11">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '닫기(3)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_6" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
-                    <uix:NClick.Target>
-                      <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/main/mainView.do" CVScreenId="dc8ab21b-6045-4869-bcb0-af1d48d52f88" ContentHash="5k_ut3NunU2kUsmGbEAgcg" CvElementArea="1621, 742, 33, 32" CvType="CloseButton" DesignTimeRectangle="1612, 454, 50, 50" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl parentid='popup_infoarea_detail_2' tag='A' /&gt;" Guid="38423a59-daa2-45b4-bbfa-4705aafe8475" InformativeScreenshot="898076fd7c29201cf899c31ae4b35a42.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/sBlwHZW3nkyGGXDYH6OUlA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
-                        <uix:TargetAnchorable.Anchors>
-                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                            <uix:Target DesignTimeRectangle="1001, 476, 648, 18" ElementType="Text" FuzzySelectorArgument="&lt;webctrl parentid='popup_infoarea_detail_2' tag='H2' type='' class='title' aaname='공지사항 상세' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='공지사항 상세' /&gt;" Guid="187624bb-6f41-40af-9a66-9ac6d8a23c3a" SearchSteps="FuzzySelector" />
-                          </scg:List>
-                        </uix:TargetAnchorable.Anchors>
-                      </uix:TargetAnchorable>
-                    </uix:NClick.Target>
-                  </uix:NClick>
-                </Sequence>
-              </uix:NCheckState.IfExists>
-              <uix:NCheckState.IfNotExists>
-                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_12">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                </Sequence>
-              </uix:NCheckState.IfNotExists>
-              <uix:NCheckState.Target>
-                <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/main/mainView.do" ContentHash="BSZzNSVS1UuPz6KedFBfzA" DesignTimeRectangle="976, 521, 698, 440" ElementType="CheckBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='pop_cont' parentid='popup_infoarea_detail_2' tag='DIV' /&gt;" Guid="c1e7be55-e119-4768-9c7e-c01503035815" InformativeScreenshot="1814780586f0be21a2d734815b6b6100.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/GE1t4LGbck2p4BFjynkkLw" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-              </uix:NCheckState.Target>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </uix:NCheckState>
-            <uix:NCheckState DisplayName="Check App State '공지사항[공지] 4월 심사마감 안내서소영2…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="520,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_7" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
-              <uix:NCheckState.IfExists>
-                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_22">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '닫기'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_10" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
-                    <uix:NClick.Target>
-                      <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/main/mainView.do" ContentHash="KRmZGFe4MkeiabiMeoJPAg" DesignTimeRectangle="887, 454, 50, 50" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl parentid='popup_infoarea_detail_3' tag='A' /&gt;" Guid="14d5be2a-8100-40eb-9c22-f5b9acad6573" InformativeScreenshot="45529631369b3a4db59afd50b4b7eb28.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/SgWSq6vLv0y51YBik8c6vA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-                    </uix:NClick.Target>
-                  </uix:NClick>
-                </Sequence>
-              </uix:NCheckState.IfExists>
-              <uix:NCheckState.IfNotExists>
-                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_23">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                </Sequence>
-              </uix:NCheckState.IfNotExists>
-              <uix:NCheckState.Target>
-                <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/main/mainView.do" ContentHash="OQ2seYTAdk-fpHA4DMecOg" DesignTimeRectangle="251, 521, 698, 507" ElementType="CheckBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='pop_cont' parentid='popup_infoarea_detail_3' tag='DIV' /&gt;" Guid="12eb28d6-617a-4ffb-a210-574bd4486807" InformativeScreenshot="0bb42bb23eeca3ee1d03f6db96c21a5b.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/O_wr_Bpd7UKGdPzlocZK9Q" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-              </uix:NCheckState.Target>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </uix:NCheckState>
-            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="520,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[&quot;Close Popup Successfully&quot;]" />
-            <If Condition="[runType = &quot;CHECK&quot;]" DisplayName="Handle Check Login Available" sap:VirtualizedContainerService.HintSize="520,2185.6" sap2010:WorkflowViewState.IdRef="If_2">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-              <If.Then>
-                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="518.4,1292.8" sap2010:WorkflowViewState.IdRef="Sequence_17">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="484.8,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Info" Message="[&quot;Checking Alive.....&quot;]" />
-                  <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="484.8,56.8" sap2010:WorkflowViewState.IdRef="Delay_6">
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="LogMessage_19" Level="Info" Message="[&quot;Loading...&quot;]">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:LogMessage>
+              <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="Delay_9">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </Delay>
+              <If Condition="[runType = &quot;CHECK&quot;]" DisplayName="Check Website Open Available" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="If_3">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If.Then>
+                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_28">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                  </Delay>
-                  <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="484.8,275.2" sap2010:WorkflowViewState.IdRef="CommentOut_1">
-                    <ui:CommentOut.Body>
-                      <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="449.6,164.8" sap2010:WorkflowViewState.IdRef="Sequence_32">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="CHECKING_ID" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="GetRobotAsset_3">
-                          <ui:GetRobotAsset.Value>
-                            <OutArgument x:TypeArguments="x:String">[CHECKING_ID]</OutArgument>
-                          </ui:GetRobotAsset.Value>
+                    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="CHECKING_ID" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="451.2,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_4">
+                      <ui:GetRobotAsset.Value>
+                        <OutArgument x:TypeArguments="x:String">[CHECKING_ID]</OutArgument>
+                      </ui:GetRobotAsset.Value>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:GetRobotAsset>
+                    <uix:NCheckState DisplayName="Check App State '로그인'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,1756.8" sap2010:WorkflowViewState.IdRef="NCheckState_13" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
+                      <uix:NCheckState.IfExists>
+                        <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,710.4" sap2010:WorkflowViewState.IdRef="Sequence_29">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                        </ui:GetRobotAsset>
-                        <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="Delay_7">
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_13" Level="Info" Message="[&quot;Checking Alive - Is Openned - Y&quot;]">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:LogMessage>
+                          <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_12">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Delay>
+                          <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ====== Create JSON file path ======&#xA;Dim jsonPath As String = System.IO.Path.Combine(checkingFilePath, &quot;result_&quot; &amp; checkingId &amp; &quot;.json&quot;)&#xA;&#xA;' ====== Read current JSON file ======&#xA;Dim jsonContent As String = System.IO.File.ReadAllText(jsonPath, System.Text.Encoding.UTF8)&#xA;Dim jsonArray   As Newtonsoft.Json.Linq.JArray = Newtonsoft.Json.Linq.JArray.Parse(jsonContent)&#xA;&#xA;' ====== Find by compCode and update ======&#xA;For Each item As Newtonsoft.Json.Linq.JObject In jsonArray&#xA;    If item(&quot;compCode&quot;).ToString() = compCode Then&#xA;        item(&quot;isOpenned&quot;)   = &quot;Y&quot;&#xA;        item(&quot;processTime&quot;) = DateTime.Now.ToString(&quot;yyyyMMdd HH:mm:ss&quot;)&#xA;        Exit For&#xA;    End If&#xA;Next&#xA;&#xA;' ====== Rewrite JSON file (overwrite) ======&#xA;System.IO.File.WriteAllText(jsonPath, jsonArray.ToString(), System.Text.Encoding.UTF8)" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_3">
+                            <ui:InvokeCode.Arguments>
+                              <InArgument x:TypeArguments="x:String" x:Key="checkingId">[CHECKING_ID]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="checkingFilePath">[CHECKING_FILE_PATH]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="compCode">[COMP_CODE]</InArgument>
+                            </ui:InvokeCode.Arguments>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:InvokeCode>
+                          <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_14">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Delay>
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_14" Level="Info" Message="[&quot;Checking Alive - Is Openned - Y Finish.....&quot;]">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:LogMessage>
+                        </Sequence>
+                      </uix:NCheckState.IfExists>
+                      <uix:NCheckState.IfNotExists>
+                        <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,710.4" sap2010:WorkflowViewState.IdRef="Sequence_30">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                        </Delay>
-                      </Sequence>
-                    </ui:CommentOut.Body>
-                  </ui:CommentOut>
-                  <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ====== Create JSON file path ======&#xA;Dim jsonPath As String = System.IO.Path.Combine(checkingFilePath, &quot;result_&quot; &amp; checkingId &amp; &quot;.json&quot;)&#xA;&#xA;' ====== Read current JSON file ======&#xA;Dim jsonContent As String = System.IO.File.ReadAllText(jsonPath, System.Text.Encoding.UTF8)&#xA;Dim jsonArray   As Newtonsoft.Json.Linq.JArray = Newtonsoft.Json.Linq.JArray.Parse(jsonContent)&#xA;&#xA;' ====== Find by compCode and update ======&#xA;For Each item As Newtonsoft.Json.Linq.JObject In jsonArray&#xA;    If item(&quot;compCode&quot;).ToString() = compCode Then&#xA;        item(&quot;isLogined&quot;)   = &quot;Y&quot;&#xA;        item(&quot;processTime&quot;) = DateTime.Now.ToString(&quot;yyyyMMdd HH:mm:ss&quot;)&#xA;        Exit For&#xA;    End If&#xA;Next&#xA;&#xA;' ====== Rewrite JSON file (overwrite) ======&#xA;System.IO.File.WriteAllText(jsonPath, jsonArray.ToString(), System.Text.Encoding.UTF8)" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="484.8,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
-                    <ui:InvokeCode.Arguments>
-                      <InArgument x:TypeArguments="x:String" x:Key="checkingId">[CHECKING_ID]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="checkingFilePath">[CHECKING_FILE_PATH]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="compCode">[COMP_CODE]</InArgument>
-                    </ui:InvokeCode.Arguments>
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_15" Level="Info" Message="[&quot;Checking Alive - Is Openned - N&quot;]">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:LogMessage>
+                          <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_15">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Delay>
+                          <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ====== Create JSON file path ======&#xA;Dim jsonPath As String = System.IO.Path.Combine(checkingFilePath, &quot;result_&quot; &amp; checkingId &amp; &quot;.json&quot;)&#xA;&#xA;' ====== Read current JSON file ======&#xA;Dim jsonContent As String = System.IO.File.ReadAllText(jsonPath, System.Text.Encoding.UTF8)&#xA;Dim jsonArray   As Newtonsoft.Json.Linq.JArray = Newtonsoft.Json.Linq.JArray.Parse(jsonContent)&#xA;&#xA;' ====== Find by compCode and update ======&#xA;For Each item As Newtonsoft.Json.Linq.JObject In jsonArray&#xA;    If item(&quot;compCode&quot;).ToString() = compCode Then&#xA;        item(&quot;isOpenned&quot;)   = &quot;N&quot;&#xA;        item(&quot;processTime&quot;) = DateTime.Now.ToString(&quot;yyyyMMdd HH:mm:ss&quot;)&#xA;        Exit For&#xA;    End If&#xA;Next&#xA;&#xA;' ====== Rewrite JSON file (overwrite) ======&#xA;System.IO.File.WriteAllText(jsonPath, jsonArray.ToString(), System.Text.Encoding.UTF8)" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_4">
+                            <ui:InvokeCode.Arguments>
+                              <InArgument x:TypeArguments="x:String" x:Key="checkingId">[CHECKING_ID]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="checkingFilePath">[CHECKING_FILE_PATH]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="compCode">[COMP_CODE]</InArgument>
+                            </ui:InvokeCode.Arguments>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:InvokeCode>
+                          <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_16">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Delay>
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_16" Level="Info" Message="[&quot;Checking Alive - Is Openned - N  Finish.....&quot;]">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:LogMessage>
+                        </Sequence>
+                      </uix:NCheckState.IfNotExists>
+                      <uix:NCheckState.Target>
+                        <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/login/loginForm.do" ContentHash="6WIGS__ZZ0mjAmWB0Y1tbQ" DesignTimeRectangle="701, 871, 525, 60" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='btnActionLogin' tag='BUTTON' /&gt;" Guid="93e09f31-1847-4f02-b7a2-47ea1bb2ac45" InformativeScreenshot="930bafce997faa823da5b9f11aa85898.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/5QQMyHLMREapxVQDj1wJUg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                      </uix:NCheckState.Target>
+                    </uix:NCheckState>
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_31">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                  </ui:InvokeCode>
-                  <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="484.8,56.8" sap2010:WorkflowViewState.IdRef="Delay_8">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                  </Delay>
-                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '주연주(미래에셋금융서비스_대리점관리자)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="484.8,193.6" sap2010:WorkflowViewState.IdRef="NClick_11" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
-                    <uix:NClick.Target>
-                      <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/main/mainView.do" ContentHash="WUwbaI7SY0OWWj1jlNbUFQ" DesignTimeRectangle="1367, 170, 346, 24" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='loginUserName' tag='STRONG' /&gt;" Guid="fa4a9f39-0609-4038-8f70-af6934779529" InformativeScreenshot="a961f1a0a333099c9293392319ed9eed.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/jh2S66HxDEWhB6POnn9O7g" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive">
-                        <uix:TargetAnchorable.PointOffset>
-                          <uix:PointOffset Position="BottomRight" X="-13" Y="-8" />
-                        </uix:TargetAnchorable.PointOffset>
-                      </uix:TargetAnchorable>
-                    </uix:NClick.Target>
-                  </uix:NClick>
-                  <uix:NCheckState DisplayName="Check App State 'ga.cardif.co.kr 내용 로그아…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="484.8,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_11" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
-                    <uix:NCheckState.IfExists>
-                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_24">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_12" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
-                          <uix:NClick.Target>
-                            <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/main/mainView.do" ContentHash="GgRvB0hIqkC_LH8zt8FK6Q" DesignTimeRectangle="1054, 223, 80, 49" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='ga.cardif.co.kr 내용:' role='dialog' /&gt;&lt;ctrl name='확인' role='push button' /&gt;" Guid="6242bdad-d7f0-4dbd-9a60-6112e6919f1a" InformativeScreenshot="676c9c0ea6558c877074e9cb65163151.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/sXuHk8x0VUaFCsgeoTH4NA" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='BNP 파리바 카디프생명 - Chrome' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-                          </uix:NClick.Target>
-                        </uix:NClick>
-                      </Sequence>
-                    </uix:NCheckState.IfExists>
-                    <uix:NCheckState.IfNotExists>
-                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_25">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                      </Sequence>
-                    </uix:NCheckState.IfNotExists>
-                    <uix:NCheckState.Target>
-                      <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/main/mainView.do" ContentHash="RKOV2-HL7UGwJG4wNuQQzQ" DesignTimeRectangle="680, 107, 578, 201" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='ga.cardif.co.kr 내용:' role='dialog' /&gt;&lt;ctrl idx='2' role='pane' /&gt;" Guid="11f60a39-61b1-475c-992a-b291d351f71e" InformativeScreenshot="d87d29770f817c7e20b151d896700a4f.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/FnhFQUxWLUys3NaWTqnB4Q" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='BNP 파리바 카디프생명 - Chrome' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-                    </uix:NCheckState.Target>
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                  </uix:NCheckState>
-                  <uix:NCheckState DisplayName="Check App State 'ga.cardif.co.kr 내용 로그인…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="484.8,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_12" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
-                    <uix:NCheckState.IfExists>
-                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_26">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_13" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
-                          <uix:NClick.Target>
-                            <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/login/sessionExpire.do" ContentHash="EeNN-mNKqEGrIbbzACyEBg" DesignTimeRectangle="1144, 223, 80, 49" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='ga.cardif.co.kr 내용:' role='dialog' /&gt;&lt;ctrl name='확인' role='push button' /&gt;" Guid="310a1c85-1deb-46c4-bf11-bd1f5823ab46" InformativeScreenshot="676c9c0ea6558c877074e9cb65163151.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/YSKHLt2YO0eT3ZrGj7BpWw" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='BNP 파리바 카디프생명 - Chrome' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-                          </uix:NClick.Target>
-                        </uix:NClick>
-                      </Sequence>
-                    </uix:NCheckState.IfExists>
-                    <uix:NCheckState.IfNotExists>
-                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_27">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                      </Sequence>
-                    </uix:NCheckState.IfNotExists>
-                    <uix:NCheckState.Target>
-                      <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/login/sessionExpire.do" ContentHash="royCWS0C40OdiNkVgOK8zw" DesignTimeRectangle="680, 107, 578, 201" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='ga.cardif.co.kr 내용:' role='dialog' /&gt;&lt;ctrl idx='2' role='pane' /&gt;" Guid="797e5b53-e67f-45da-8c31-d277c62e85e2" InformativeScreenshot="d87d29770f817c7e20b151d896700a4f.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/p64X8Nkw5kKqk9stjmHXKQ" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='BNP 파리바 카디프생명 - Chrome' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-                    </uix:NCheckState.Target>
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                  </uix:NCheckState>
-                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="484.8,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[&quot;Checking Alive Finish.....&quot;]" />
-                </Sequence>
-              </If.Then>
-              <If.Else>
-                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="518.4,754.4" sap2010:WorkflowViewState.IdRef="Sequence_18">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <If Condition="[contractType = &quot;NEW&quot;]" sap:VirtualizedContainerService.HintSize="484.8,694.4" sap2010:WorkflowViewState.IdRef="If_1">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                    <If.Then>
-                      <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,282.4" sap2010:WorkflowViewState.IdRef="Sequence_15">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Info" Message="[&quot;Running Download New ConTract&quot;]" />
-                        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_NewContract - Invoke Workflow File (Workflows\BNPParibasCardifInsurance\Download\Download_NewContract.xaml)" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Workflows\BNPParibasCardifInsurance\Download\Download_NewContract.xaml">
-                          <ui:InvokeWorkflowFile.Arguments>
-                            <scg:Dictionary x:TypeArguments="x:String, Argument" />
-                          </ui:InvokeWorkflowFile.Arguments>
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                        </ui:InvokeWorkflowFile>
-                      </Sequence>
-                    </If.Then>
-                    <If.Else>
-                      <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,282.4" sap2010:WorkflowViewState.IdRef="Sequence_16">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_11" Level="Info" Message="[&quot;Running Download Existing ConTract&quot;]" />
-                        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_ExistingContract - Invoke Workflow File (Workflows\BNPParibasCardifInsurance\Download\Download_ExistingContract.xaml)" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Workflows\BNPParibasCardifInsurance\Download\Download_ExistingContract.xaml">
-                          <ui:InvokeWorkflowFile.Arguments>
-                            <scg:Dictionary x:TypeArguments="x:String, Argument" />
-                          </ui:InvokeWorkflowFile.Arguments>
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                        </ui:InvokeWorkflowFile>
-                      </Sequence>
-                    </If.Else>
-                  </If>
-                </Sequence>
-              </If.Else>
-            </If>
-            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="520,122.4" sap2010:WorkflowViewState.IdRef="Delay_5" />
-            <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts '청약청약 현황 조회수정심사진행상태조회계약…'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="520,256.8" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_1" InteractionMode="SameAsCard" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Shortcuts="[d(hk)][d(ctrl)]w[u(ctrl)][u(hk)]" Version="V5">
+                  </Sequence>
+                </If.Else>
+              </If>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="python-workflow - Invoke Workflow File (python-workflow.cs)" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="python-workflow.cs">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="scriptPath">[PYTHON_PATH + "active-window.py"]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="mode" />
+                </ui:InvokeWorkflowFile.Arguments>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:InvokeWorkflowFile>
+              <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="Delay_10">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </Delay>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Entering login credential&quot;]">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:LogMessage>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '당사인증'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NClick_7" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/login/loginForm.do" CVScreenId="978c7443-e32e-4c15-aedc-c37491e26ff7" ContentHash="5jwEQ7rmxkKPh45FCCpPKg" CvElementArea="698, 586, 263, 58" CvTextArea="794, 605, 71, 21" CvTextArgument="BAbDIE" CvType="Button" DesignTimeRectangle="701, 587, 259, 55" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='당사인증' parentid='loginForm' tag='A' /&gt;" Guid="b324f810-f8f4-4e6f-93ac-65ea370adb9d" InformativeScreenshot="6cd17c78f0b439475e63d39c6fd6df82.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/4GaBRloBDU664SNeyKBk3A" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
+                </uix:NClick.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NClick>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="LogMessage_20" Level="Info" Message="[&quot;Enter Id....&quot;]">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:LogMessage>
+              <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'B73C'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="SameAsCard" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Text="[CDL_UID]" Version="V5">
+                <uix:NTypeInto.Target>
+                  <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/login/loginForm.do" CVScreenId="b883ec22-8962-458b-9708-a15bdec3bdd4" ContentHash="hR0F3v6K90GjolmbnbOHUQ" CvElementArea="701, 654, 526, 52" CvType="InputBox" DesignTimeRectangle="701, 652, 525, 53" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='user_id' tag='INPUT' type='text' class='' placeholder='설계사코드' aaname='설계사코드' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="087a5822-b969-4728-a164-55c9cd532ebe" InformativeScreenshot="35ec5f02ff601b35dbfaa0efe4f2f695.jpg" IsResponsive="True" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/sx9f1rCULECeeIX4ibYEag" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                    <uix:TargetAnchorable.Anchors>
+                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                        <uix:Target CVScreenId="b883ec22-8962-458b-9708-a15bdec3bdd4" CvElementArea="698, 586, 263, 58" CvTextArea="794, 605, 71, 21" CvTextArgument="BAbDIE" CvType="Button" DesignTimeRectangle="701, 587, 259, 55" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='당사인증' parentid='loginForm' tag='A' type='' class='' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='당사인증' /&gt;" Guid="2dd51519-8ef7-4102-b4ea-9b1c044be200" SearchSteps="FuzzySelector, CV" />
+                      </scg:List>
+                    </uix:TargetAnchorable.Anchors>
+                  </uix:TargetAnchorable>
+                </uix:NTypeInto.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NTypeInto>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="LogMessage_21" Level="Info" Message="[&quot;Enter Password....&quot;]">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:LogMessage>
+              <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '89W5'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="SameAsCard" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" SecureText="[CDL_PW]" Version="V5">
+                <uix:NTypeInto.Target>
+                  <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/login/loginForm.do" CVScreenId="c89abdb4-2aa4-4ee1-8276-1742cfafd11e" ContentHash="1LG9lTasnkuXPi_3x0JcPA" CvTextArea="719, 726, 73, 22" CvTextArgument="8|9W5" CvType="Text" DesignTimeRectangle="701, 712, 525, 53" ElementType="InputBoxPassword" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='user_password' tag='INPUT' /&gt;" Guid="db33fa0e-b0c1-4ee3-a4dc-925376411f05" InformativeScreenshot="69b0bcc6159681e027c255de269bdb7b.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/95ssfP_kuEyTNpMqBkLiTA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                    <uix:TargetAnchorable.Anchors>
+                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                        <uix:Target CVScreenId="c89abdb4-2aa4-4ee1-8276-1742cfafd11e" CvTextArea="717, 666, 93, 23" CvTextArgument="B7|3C" CvType="Text" DesignTimeRectangle="701, 652, 525, 53" ElementType="InputBox" FullSelectorArgument="&lt;webctrl id='user_id' tag='INPUT' /&gt;" Guid="a331134b-f535-4194-b4e9-eea48fc79af2" SearchSteps="Selector, CV" />
+                      </scg:List>
+                    </uix:TargetAnchorable.Anchors>
+                  </uix:TargetAnchorable>
+                </uix:NTypeInto.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NTypeInto>
+              <uix:NCheck Action="Check" DisplayName="Check/Uncheck 'Checkbox'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NCheck_1" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
+                <uix:NCheck.Target>
+                  <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/login/loginForm.do" CVScreenId="c2668123-9367-4a35-8c67-5ba479c38d43" ContentHash="MNr8H67u4E-QEH4h5r2kKg" CvElementArea="698, 653, 29, 29" CvTextArea="727, 657, 88, 20" CvTextArgument="00c AE" CvType="CheckBox" DesignTimeRectangle="701, 651, 114, 25" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl tag='LABEL' /&gt;" Guid="da5d1843-3588-427a-b20c-48cdfe2b8742" InformativeScreenshot="929d038308806511a025042284900e9c.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/bfAMRQ7smkyr1di-K04MzQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
+                </uix:NCheck.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NCheck>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '로그인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/login/loginForm.do" CVScreenId="26322fb9-8959-48a6-a842-487463056482" ContentHash="-7SgYSf9F0iDJCIwhtp4kg" CvElementArea="700, 700, 526, 62" CvTextArea="929, 719, 66, 26" CvTextArgument="ج1مl" CvType="Button" DesignTimeRectangle="701, 701, 525, 60" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='btnActionLogin' tag='BUTTON' /&gt;" Guid="312f8b77-48cd-4bae-b318-c9e7dac00d30" InformativeScreenshot="a95817197f519fc6458158660e0ec469.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/8pnCb9f-7kq5aZEOd6NKgg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
+                </uix:NClick.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NClick>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Logging in&quot;]">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:LogMessage>
+              <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="Delay_1">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </Delay>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="LogMessage_22" Level="Info" Message="[&quot;Handle OTP ....&quot;]">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:LogMessage>
+            </Sequence>
+            <Sequence DisplayName="Sequence OTP" sap:VirtualizedContainerService.HintSize="449.6,56.8" sap2010:WorkflowViewState.IdRef="Sequence_34">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-            </uix:NKeyboardShortcuts>
-            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="520,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="Info" Message="[&quot;Close Web Successfully&quot;]" />
+              <uix:NCheckState DisplayName="Check App State 'ga.cardif.co.kr says OT…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_6" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
+                <uix:NCheckState.IfExists>
+                  <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,419.2" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'OK'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_9" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/login/loginForm.do" ContentHash="7Quoa__gfkGh6tW-XywHEg" DesignTimeRectangle="1144, 223, 80, 49" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='ga.cardif.co.kr says' role='dialog' /&gt;&lt;ctrl name='OK' role='push button' /&gt;" Guid="4b67b7c9-da7c-4bbd-9522-b0f7bd14b044" InformativeScreenshot="676c9c0ea6558c877074e9cb65163151.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/ac954v0I8Ua3SO0JcLlYFg" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='BNP 파리바 카디프생명 - Google Chrome' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                      </uix:NClick.Target>
+                    </uix:NClick>
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Close Alert Popup Successfully&quot;]" />
+                  </Sequence>
+                </uix:NCheckState.IfExists>
+                <uix:NCheckState.IfNotExists>
+                  <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Sequence>
+                </uix:NCheckState.IfNotExists>
+                <uix:NCheckState.Target>
+                  <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/login/loginForm.do" ContentHash="OzbE6A8fk0CNkwtQ5fatuw" DesignTimeRectangle="680, 107, 578, 201" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='ga.cardif.co.kr says' role='dialog' /&gt;&lt;ctrl idx='2' role='pane' /&gt;" Guid="7f819c85-7254-48e3-bed2-2f273e7ae88c" InformativeScreenshot="d87d29770f817c7e20b151d896700a4f.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/cJmIX_oZ802A0cEF0CsxXg" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='BNP 파리바 카디프생명 - Google Chrome' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                </uix:NCheckState.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NCheckState>
+              <uix:NCheckState DisplayName="Check App State 'ga.cardif.co.kr 내용 OTP…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
+                <uix:NCheckState.IfExists>
+                  <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="484.8,1938.4" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,193.6" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/login/loginForm.do" CVScreenId="931175b9-4d05-4dc3-b366-622f0a52e31d" ContentHash="1dsaO3p8mkeNqVrfe2SQqA" CvElementArea="1139, 220, 87, 52" CvTextArea="1165, 236, 35, 21" CvTextArgument="₪|9I" CvType="Button" DesignTimeRectangle="1144, 223, 80, 49" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='ga.cardif.co.kr 내용:' role='dialog' /&gt;&lt;ctrl name='확인' role='push button' /&gt;" Guid="dd45f239-c233-4f7f-9293-cd3a4315b76d" InformativeScreenshot="8775943e3d0b3e5212b28e621728aea0.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/NnXh4tSRw0yaYhCxBopQeg" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='BNP 파리바 카디프생명 - Chrome' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
+                      </uix:NClick.Target>
+                    </uix:NClick>
+                    <uix:NCheckState DisplayName="Check App State '닫기'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,1684.8" sap2010:WorkflowViewState.IdRef="NCheckState_2" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
+                      <uix:NCheckState.IfExists>
+                        <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,1259.2" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;Waiting for OTP .....&quot;]" />
+                          <Delay Duration="00:00:40" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_4" />
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Receiving OTP Successfully&quot;]" />
+                          <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="CDL_AST_OTP" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="416,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
+                            <ui:GetRobotAsset.Value>
+                              <OutArgument x:TypeArguments="x:String">[CDL_OTP]</OutArgument>
+                            </ui:GetRobotAsset.Value>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:GetRobotAsset>
+                          <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '인증번호 입력'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_3" InteractionMode="SameAsCard" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Text="[CDL_OTP]" Version="V5">
+                            <uix:NTypeInto.Target>
+                              <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/login/loginForm.do" CVScreenId="89d81ce2-886f-4d31-b69e-2d1236b8a46d" ContentHash="e7039Sh7ZEmtA7ZIYvkkVA" CvElementArea="633, 560, 226, 43" CvType="InputBox" DesignTimeRectangle="635, 561, 222, 40" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='otpAuthNum' tag='INPUT' type='text' class='otp_input' placeholder='인증번호를 입력하세요.' aaname='인증번호 입력' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="0c9f0524-c403-43cb-aa30-25b4b11c4812" InformativeScreenshot="3b707fa284e755e562170c17f4c9c6aa.jpg" IsResponsive="True" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/UVhtqvPd60eZHm-KAISFtg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                                <uix:TargetAnchorable.Anchors>
+                                  <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                    <uix:Target CVScreenId="89d81ce2-886f-4d31-b69e-2d1236b8a46d" CvTextArea="517, 566, 111, 22" CvTextArgument="99t5 82" CvType="Text" DesignTimeRectangle="520, 563, 108, 28" ElementType="Text" FuzzySelectorArgument="&lt;webctrl parentid='popup_otp' tag='LABEL' type='' class='' aaname='인증번호 입력' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='인증번호 입력' /&gt;" Guid="cb68d8ea-59ac-4df3-86cf-879355fed553" SearchSteps="FuzzySelector, CV" />
+                                  </scg:List>
+                                </uix:TargetAnchorable.Anchors>
+                              </uix:TargetAnchorable>
+                            </uix:NTypeInto.Target>
+                            <uix:NTypeInto.VerifyOptions>
+                              <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                                <uix:VerifyExecutionTypeIntoOptions.Retry>
+                                  <InArgument x:TypeArguments="x:Boolean" />
+                                </uix:VerifyExecutionTypeIntoOptions.Retry>
+                                <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                                  <InArgument x:TypeArguments="x:Double" />
+                                </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                              </uix:VerifyExecutionTypeIntoOptions>
+                            </uix:NTypeInto.VerifyOptions>
+                          </uix:NTypeInto>
+                          <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인완료'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_8" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
+                            <uix:NClick.Target>
+                              <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/login/loginForm.do" CVScreenId="34848c4b-7ef0-4108-ae5e-a775073195e2" ContentHash="31kAoNgxFkGAZjPJda2a-Q" CvElementArea="902, 636, 133, 52" CvTextArea="931, 650, 73, 23" CvTextArgument="2283" CvType="Button" DesignTimeRectangle="905, 638, 128, 48" ElementType="Button" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='btnOtpOk' tag='BUTTON' type='button' class='default_btn green' aaname=' &amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;확인완료 &amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='확인완료' /&gt;" Guid="77ce849c-fda3-4bd4-a744-31ae30082925" InformativeScreenshot="52612c0c84b0a6e416b5e39fb376f541.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/Gvuqntqa80aWX9SCwMKbVw" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                                <uix:TargetAnchorable.Anchors>
+                                  <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                    <uix:Target CVScreenId="34848c4b-7ef0-4108-ae5e-a775073195e2" CvElementArea="902, 636, 133, 52" CvTextArea="931, 650, 73, 23" CvTextArgument="2283" CvType="Button" DesignTimeRectangle="935, 639, 69, 45" ElementType="Text" FuzzySelectorArgument="&lt;webctrl parentid='btnOtpOk' tag='SPAN' type='' class='' aaname='확인완료' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='확인완료' /&gt;" Guid="cd813283-00ad-4bde-a773-7030296ce8f2" SearchSteps="FuzzySelector, CV" />
+                                  </scg:List>
+                                </uix:TargetAnchorable.Anchors>
+                              </uix:TargetAnchorable>
+                            </uix:NClick.Target>
+                          </uix:NClick>
+                          <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="Delay_2" />
+                        </Sequence>
+                      </uix:NCheckState.IfExists>
+                      <uix:NCheckState.IfNotExists>
+                        <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Sequence>
+                      </uix:NCheckState.IfNotExists>
+                      <uix:NCheckState.Target>
+                        <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/login/loginForm.do" ContentHash="XqxCoXnqV0eM3pSJZrtCzg" DesignTimeRectangle="495, 492, 948, 219" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl type='' parentid='popup_otp' tag='DIV' class='pop_cont pass_reset_wrap' aaname=' &amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9; &amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9; &amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9; &amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="20513683-b0c0-45a1-925b-acc5944e3cf6" InformativeScreenshot="dc854b45502bcbe2de9a489b90b565d5.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/jcaZhL0fIEOpmikgcGdO9A" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                          <uix:TargetAnchorable.Anchors>
+                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                              <uix:Target CVScreenId="2a651da6-4a26-44f9-a24a-bcfcdf7536d8" CvElementArea="1390, 454, 34, 34" CvType="CloseButton" DesignTimeRectangle="1381, 444, 50, 50" ElementType="Text" FuzzySelectorArgument="&lt;webctrl id='btnPwdChgClose' parentid='popup_otp' tag='A' type='' class='pop_close' aaname='닫기' matching:id='fuzzy' fuzzylevel:id='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='닫기' /&gt;" Guid="099b3b52-1c2f-4fe8-b0c8-2e6e97455c90" SearchSteps="FuzzySelector, CV" />
+                            </scg:List>
+                          </uix:TargetAnchorable.Anchors>
+                        </uix:TargetAnchorable>
+                      </uix:NCheckState.Target>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </uix:NCheckState>
+                  </Sequence>
+                </uix:NCheckState.IfExists>
+                <uix:NCheckState.IfNotExists>
+                  <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="484.8,89.6" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Sequence>
+                </uix:NCheckState.IfNotExists>
+                <uix:NCheckState.Target>
+                  <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/login/loginForm.do" ContentHash="kGeouemujkKsFjqWP-tFDw" DesignTimeRectangle="680, 107, 578, 201" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='ga.cardif.co.kr 내용:' role='dialog' /&gt;&lt;ctrl idx='2' role='pane' /&gt;" Guid="2ec50928-cda5-4c16-97d0-00bb35af9dce" InformativeScreenshot="aae055386e35e632c35771596222ac58.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/4BuYZH6tKUm9xQZ2CRzwXw" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='BNP 파리바 카디프생명 - Chrome' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                </uix:NCheckState.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NCheckState>
+            </Sequence>
+            <Sequence DisplayName="Sequence Close Popup" sap:VirtualizedContainerService.HintSize="449.6,56.8" sap2010:WorkflowViewState.IdRef="Sequence_35">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="CheckPageLoadingStatus - Invoke Workflow File (Utils\CheckPageLoadingStatus.xaml)" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Utils\CheckPageLoadingStatus.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="ui:UiElement" x:Key="in_Browser">[browserInstance]</InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:InvokeWorkflowFile>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;Trying to close popup if has&quot;]">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:LogMessage>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="ClosePopup - Invoke Workflow File (Utils\ClosePopup.xaml)" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Utils\ClosePopup.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PopupType">ALL</InArgument>
+                  <InArgument x:TypeArguments="ui:UiElement" x:Key="in_Browser">[browserInstance]</InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:InvokeWorkflowFile>
+              <uix:NCheckState DisplayName="Check App State '공지사항[공지] 포인트몰 상품 취소 안내이…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_8" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
+                <uix:NCheckState.IfExists>
+                  <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '닫기(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_4" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/main/mainView.do" CVScreenId="d248f5bd-20a6-41f6-af09-38c386133e56" ContentHash="cvTgep_j7ESvWtj7T-Ip7A" CvElementArea="896, 147, 33, 33" CvType="CloseButton" DesignTimeRectangle="887, 137, 50, 50" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl parentid='popup_infoarea_detail_1' tag='A' /&gt;" Guid="13f37fe1-ee64-4fc0-8a44-23013fa4637c" InformativeScreenshot="45529631369b3a4db59afd50b4b7eb28.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/oi8hXt_Dn0yBm7xCAan93A" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
+                      </uix:NClick.Target>
+                    </uix:NClick>
+                  </Sequence>
+                </uix:NCheckState.IfExists>
+                <uix:NCheckState.IfNotExists>
+                  <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Sequence>
+                </uix:NCheckState.IfNotExists>
+                <uix:NCheckState.Target>
+                  <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/main/mainView.do" ContentHash="fnE48T9kX0ediAqj0Fzdag" DesignTimeRectangle="251, 204, 698, 440" ElementType="CheckBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='pop_cont' parentid='popup_infoarea_detail_1' tag='DIV' /&gt;" Guid="25f85851-ba2e-4a26-972f-b41a70868eb8" InformativeScreenshot="72b3d307cfa8e6ae6adbfacbe1ffbf5c.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/8dNJ5_JT6E-sROLNtHAG9Q" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                </uix:NCheckState.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NCheckState>
+              <uix:NCheckState DisplayName="Check App State '공지사항[공지] 3월 심사마감 안내 서소영…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_9" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
+                <uix:NCheckState.IfExists>
+                  <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '닫기(2)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_5" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/main/mainView.do" CVScreenId="d248f5bd-20a6-41f6-af09-38c386133e56" ContentHash="aQlt0et6ekKhUaTZKExhSA" CvElementArea="1621, 147, 34, 33" CvType="CloseButton" DesignTimeRectangle="1612, 137, 50, 50" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl parentid='popup_infoarea_detail_0' tag='A' /&gt;" Guid="f56dcc3c-52bd-4a45-9c0b-5df308315b9c" InformativeScreenshot="898076fd7c29201cf899c31ae4b35a42.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/aCml34r6I0yEob4UDcfezg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                          <uix:TargetAnchorable.Anchors>
+                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                              <uix:Target DesignTimeRectangle="1001, 158, 648, 18" ElementType="Text" FuzzySelectorArgument="&lt;webctrl parentid='popup_infoarea_detail_0' tag='H2' type='' class='title' aaname='공지사항 상세' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='공지사항 상세' /&gt;" Guid="ef19b44b-7daf-4885-9e8b-a39c809cad99" SearchSteps="FuzzySelector" />
+                            </scg:List>
+                          </uix:TargetAnchorable.Anchors>
+                        </uix:TargetAnchorable>
+                      </uix:NClick.Target>
+                    </uix:NClick>
+                  </Sequence>
+                </uix:NCheckState.IfExists>
+                <uix:NCheckState.IfNotExists>
+                  <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Sequence>
+                </uix:NCheckState.IfNotExists>
+                <uix:NCheckState.Target>
+                  <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/main/mainView.do" ContentHash="GKxZ9GfPeEaWGkNxjnP_hQ" DesignTimeRectangle="976, 204, 698, 507" ElementType="CheckBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='pop_cont' parentid='popup_infoarea_detail_0' tag='DIV' /&gt;" Guid="24ad0270-eab6-4b88-acdc-8106e9e99248" InformativeScreenshot="280ff517492b2cbf0951f8b437ee7763.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/Q7O6VxPdnkeu5U_ArhwOmg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                </uix:NCheckState.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NCheckState>
+              <uix:NCheckState DisplayName="Check App State 'DIV popupActive'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_10" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
+                <uix:NCheckState.IfExists>
+                  <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '닫기(3)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_6" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/main/mainView.do" CVScreenId="dc8ab21b-6045-4869-bcb0-af1d48d52f88" ContentHash="5k_ut3NunU2kUsmGbEAgcg" CvElementArea="1621, 742, 33, 32" CvType="CloseButton" DesignTimeRectangle="1612, 454, 50, 50" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl parentid='popup_infoarea_detail_2' tag='A' /&gt;" Guid="38423a59-daa2-45b4-bbfa-4705aafe8475" InformativeScreenshot="898076fd7c29201cf899c31ae4b35a42.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/sBlwHZW3nkyGGXDYH6OUlA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                          <uix:TargetAnchorable.Anchors>
+                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                              <uix:Target DesignTimeRectangle="1001, 476, 648, 18" ElementType="Text" FuzzySelectorArgument="&lt;webctrl parentid='popup_infoarea_detail_2' tag='H2' type='' class='title' aaname='공지사항 상세' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='공지사항 상세' /&gt;" Guid="187624bb-6f41-40af-9a66-9ac6d8a23c3a" SearchSteps="FuzzySelector" />
+                            </scg:List>
+                          </uix:TargetAnchorable.Anchors>
+                        </uix:TargetAnchorable>
+                      </uix:NClick.Target>
+                    </uix:NClick>
+                  </Sequence>
+                </uix:NCheckState.IfExists>
+                <uix:NCheckState.IfNotExists>
+                  <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Sequence>
+                </uix:NCheckState.IfNotExists>
+                <uix:NCheckState.Target>
+                  <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/main/mainView.do" ContentHash="BSZzNSVS1UuPz6KedFBfzA" DesignTimeRectangle="976, 521, 698, 440" ElementType="CheckBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='pop_cont' parentid='popup_infoarea_detail_2' tag='DIV' /&gt;" Guid="c1e7be55-e119-4768-9c7e-c01503035815" InformativeScreenshot="1814780586f0be21a2d734815b6b6100.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/GE1t4LGbck2p4BFjynkkLw" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                </uix:NCheckState.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NCheckState>
+              <uix:NCheckState DisplayName="Check App State '공지사항[공지] 4월 심사마감 안내서소영2…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_7" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
+                <uix:NCheckState.IfExists>
+                  <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '닫기'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_10" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/main/mainView.do" ContentHash="KRmZGFe4MkeiabiMeoJPAg" DesignTimeRectangle="887, 454, 50, 50" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl parentid='popup_infoarea_detail_3' tag='A' /&gt;" Guid="14d5be2a-8100-40eb-9c22-f5b9acad6573" InformativeScreenshot="45529631369b3a4db59afd50b4b7eb28.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/SgWSq6vLv0y51YBik8c6vA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                      </uix:NClick.Target>
+                    </uix:NClick>
+                  </Sequence>
+                </uix:NCheckState.IfExists>
+                <uix:NCheckState.IfNotExists>
+                  <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Sequence>
+                </uix:NCheckState.IfNotExists>
+                <uix:NCheckState.Target>
+                  <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/main/mainView.do" ContentHash="OQ2seYTAdk-fpHA4DMecOg" DesignTimeRectangle="251, 521, 698, 507" ElementType="CheckBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='pop_cont' parentid='popup_infoarea_detail_3' tag='DIV' /&gt;" Guid="12eb28d6-617a-4ffb-a210-574bd4486807" InformativeScreenshot="0bb42bb23eeca3ee1d03f6db96c21a5b.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/O_wr_Bpd7UKGdPzlocZK9Q" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                </uix:NCheckState.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NCheckState>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[&quot;Close Popup Successfully&quot;]">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:LogMessage>
+            </Sequence>
+            <Sequence DisplayName="Sequence Download" sap:VirtualizedContainerService.HintSize="449.6,56.8" sap2010:WorkflowViewState.IdRef="Sequence_37">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If Condition="[runType = &quot;CHECK&quot;]" DisplayName="Handle Check Login Available" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="If_2">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If.Then>
+                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="484.8,24.8" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="484.8,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Info" Message="[&quot;Checking Alive.....&quot;]" />
+                    <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="484.8,56.8" sap2010:WorkflowViewState.IdRef="Delay_6">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Delay>
+                    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="484.8,275.2" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                      <ui:CommentOut.Body>
+                        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="449.6,164.8" sap2010:WorkflowViewState.IdRef="Sequence_32">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="CHECKING_ID" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="GetRobotAsset_3">
+                            <ui:GetRobotAsset.Value>
+                              <OutArgument x:TypeArguments="x:String">[CHECKING_ID]</OutArgument>
+                            </ui:GetRobotAsset.Value>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:GetRobotAsset>
+                          <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="Delay_7">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Delay>
+                        </Sequence>
+                      </ui:CommentOut.Body>
+                    </ui:CommentOut>
+                    <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ====== Create JSON file path ======&#xA;Dim jsonPath As String = System.IO.Path.Combine(checkingFilePath, &quot;result_&quot; &amp; checkingId &amp; &quot;.json&quot;)&#xA;&#xA;' ====== Read current JSON file ======&#xA;Dim jsonContent As String = System.IO.File.ReadAllText(jsonPath, System.Text.Encoding.UTF8)&#xA;Dim jsonArray   As Newtonsoft.Json.Linq.JArray = Newtonsoft.Json.Linq.JArray.Parse(jsonContent)&#xA;&#xA;' ====== Find by compCode and update ======&#xA;For Each item As Newtonsoft.Json.Linq.JObject In jsonArray&#xA;    If item(&quot;compCode&quot;).ToString() = compCode Then&#xA;        item(&quot;isLogined&quot;)   = &quot;Y&quot;&#xA;        item(&quot;processTime&quot;) = DateTime.Now.ToString(&quot;yyyyMMdd HH:mm:ss&quot;)&#xA;        Exit For&#xA;    End If&#xA;Next&#xA;&#xA;' ====== Rewrite JSON file (overwrite) ======&#xA;System.IO.File.WriteAllText(jsonPath, jsonArray.ToString(), System.Text.Encoding.UTF8)" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="484.8,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+                      <ui:InvokeCode.Arguments>
+                        <InArgument x:TypeArguments="x:String" x:Key="checkingId">[CHECKING_ID]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="checkingFilePath">[CHECKING_FILE_PATH]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="compCode">[COMP_CODE]</InArgument>
+                      </ui:InvokeCode.Arguments>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:InvokeCode>
+                    <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="484.8,56.8" sap2010:WorkflowViewState.IdRef="Delay_8">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Delay>
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '주연주(미래에셋금융서비스_대리점관리자)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="484.8,193.6" sap2010:WorkflowViewState.IdRef="NClick_11" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/main/mainView.do" ContentHash="WUwbaI7SY0OWWj1jlNbUFQ" DesignTimeRectangle="1367, 170, 346, 24" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='loginUserName' tag='STRONG' /&gt;" Guid="fa4a9f39-0609-4038-8f70-af6934779529" InformativeScreenshot="a961f1a0a333099c9293392319ed9eed.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/jh2S66HxDEWhB6POnn9O7g" ScopeSelectorArgument="&lt;html app='chrome.exe' title='BNP 파리바 카디프생명' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive">
+                          <uix:TargetAnchorable.PointOffset>
+                            <uix:PointOffset Position="BottomRight" X="-13" Y="-8" />
+                          </uix:TargetAnchorable.PointOffset>
+                        </uix:TargetAnchorable>
+                      </uix:NClick.Target>
+                    </uix:NClick>
+                    <uix:NCheckState DisplayName="Check App State 'ga.cardif.co.kr 내용 로그아…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="484.8,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_11" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
+                      <uix:NCheckState.IfExists>
+                        <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_12" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
+                            <uix:NClick.Target>
+                              <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/main/mainView.do" ContentHash="GgRvB0hIqkC_LH8zt8FK6Q" DesignTimeRectangle="1054, 223, 80, 49" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='ga.cardif.co.kr 내용:' role='dialog' /&gt;&lt;ctrl name='확인' role='push button' /&gt;" Guid="6242bdad-d7f0-4dbd-9a60-6112e6919f1a" InformativeScreenshot="676c9c0ea6558c877074e9cb65163151.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/sXuHk8x0VUaFCsgeoTH4NA" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='BNP 파리바 카디프생명 - Chrome' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                            </uix:NClick.Target>
+                          </uix:NClick>
+                        </Sequence>
+                      </uix:NCheckState.IfExists>
+                      <uix:NCheckState.IfNotExists>
+                        <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Sequence>
+                      </uix:NCheckState.IfNotExists>
+                      <uix:NCheckState.Target>
+                        <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/main/mainView.do" ContentHash="RKOV2-HL7UGwJG4wNuQQzQ" DesignTimeRectangle="680, 107, 578, 201" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='ga.cardif.co.kr 내용:' role='dialog' /&gt;&lt;ctrl idx='2' role='pane' /&gt;" Guid="11f60a39-61b1-475c-992a-b291d351f71e" InformativeScreenshot="d87d29770f817c7e20b151d896700a4f.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/FnhFQUxWLUys3NaWTqnB4Q" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='BNP 파리바 카디프생명 - Chrome' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                      </uix:NCheckState.Target>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </uix:NCheckState>
+                    <uix:NCheckState DisplayName="Check App State 'ga.cardif.co.kr 내용 로그인…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="484.8,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_12" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
+                      <uix:NCheckState.IfExists>
+                        <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,244.8" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인(1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,184.8" sap2010:WorkflowViewState.IdRef="NClick_13" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Version="V5">
+                            <uix:NClick.Target>
+                              <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/login/sessionExpire.do" ContentHash="EeNN-mNKqEGrIbbzACyEBg" DesignTimeRectangle="1144, 223, 80, 49" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='ga.cardif.co.kr 내용:' role='dialog' /&gt;&lt;ctrl name='확인' role='push button' /&gt;" Guid="310a1c85-1deb-46c4-bf11-bd1f5823ab46" InformativeScreenshot="676c9c0ea6558c877074e9cb65163151.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/YSKHLt2YO0eT3ZrGj7BpWw" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='BNP 파리바 카디프생명 - Chrome' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                            </uix:NClick.Target>
+                          </uix:NClick>
+                        </Sequence>
+                      </uix:NCheckState.IfExists>
+                      <uix:NCheckState.IfNotExists>
+                        <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_27">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Sequence>
+                      </uix:NCheckState.IfNotExists>
+                      <uix:NCheckState.Target>
+                        <uix:TargetAnchorable BrowserURL="ga.cardif.co.kr/login/sessionExpire.do" ContentHash="royCWS0C40OdiNkVgOK8zw" DesignTimeRectangle="680, 107, 578, 201" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='ga.cardif.co.kr 내용:' role='dialog' /&gt;&lt;ctrl idx='2' role='pane' /&gt;" Guid="797e5b53-e67f-45da-8c31-d277c62e85e2" InformativeScreenshot="d87d29770f817c7e20b151d896700a4f.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/p64X8Nkw5kKqk9stjmHXKQ" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='BNP 파리바 카디프생명 - Chrome' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                      </uix:NCheckState.Target>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </uix:NCheckState>
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="484.8,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[&quot;Checking Alive Finish.....&quot;]" />
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="484.8,873.6" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If Condition="[contractType = &quot;NEW&quot;]" sap:VirtualizedContainerService.HintSize="451.2,813.6" sap2010:WorkflowViewState.IdRef="If_1">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <If.Then>
+                        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,401.6" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Info" Message="[&quot;Running Download New ConTract&quot;]" />
+                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_NewContract - Invoke Workflow File (Workflows\BNPParibasCardifInsurance\Download\Download_NewContract.xaml)" sap:VirtualizedContainerService.HintSize="416,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Workflows\BNPParibasCardifInsurance\Download\Download_NewContract.xaml">
+                            <ui:InvokeWorkflowFile.Arguments>
+                              <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                            </ui:InvokeWorkflowFile.Arguments>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:InvokeWorkflowFile>
+                        </Sequence>
+                      </If.Then>
+                      <If.Else>
+                        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,282.4" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_11" Level="Info" Message="[&quot;Running Download Existing ConTract&quot;]" />
+                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Download_ExistingContract - Invoke Workflow File (Workflows\BNPParibasCardifInsurance\Download\Download_ExistingContract.xaml)" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Workflows\BNPParibasCardifInsurance\Download\Download_ExistingContract.xaml">
+                            <ui:InvokeWorkflowFile.Arguments>
+                              <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                            </ui:InvokeWorkflowFile.Arguments>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:InvokeWorkflowFile>
+                        </Sequence>
+                      </If.Else>
+                    </If>
+                  </Sequence>
+                </If.Else>
+              </If>
+            </Sequence>
+            <Sequence DisplayName="Sequence Close Web" sap:VirtualizedContainerService.HintSize="449.6,48" sap2010:WorkflowViewState.IdRef="Sequence_36">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_5">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </Delay>
+              <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts '청약청약 현황 조회수정심사진행상태조회계약…'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_1" InteractionMode="SameAsCard" ScopeIdentifier="916a1c70-a0e7-428f-9c6c-1b63d1b04bdb" Shortcuts="[d(hk)][d(ctrl)]w[u(ctrl)][u(hk)]" Version="V5">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NKeyboardShortcuts>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="Info" Message="[&quot;Close Web Successfully&quot;]">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:LogMessage>
+            </Sequence>
           </Sequence>
         </ActivityAction>
       </uix:NApplicationCard.Body>
@@ -936,7 +1190,7 @@
       </uix:NApplicationCard.TargetApp>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
