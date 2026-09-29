@@ -5,8 +5,8 @@ import time
 # List of 14 companies
 COMPANY_TITLES = [
     '삼성생명', '라이나생명', 'DB생명', '메트라이프', 'KB라이프',
-    '카디프생명', '현대해상', '메리츠화재', 'DB손보', 'KB손보',
-    '삼성화재', '한화손보', '흥국화재', '롯데손보']
+    '카디프생명', '현대해상', '메리츠화재', 'DB손보', 'KB손보','KB생명',
+    '삼성화재', '한화손보', '흥국화재', '롯데손보','한화손해','롯데손해']
 
 def get_hwnd_by_company():
     """Gets the browser hwnd that contains the name of one of the 14 companies in its title."""
@@ -65,7 +65,7 @@ print(f"Found: [{company}] {title}")
 
 # Click at coordinates (Tọa độ tương đối bên trong cửa sổ Chrome)
 time.sleep(3)
-click(hwnd, 98, 24)
+click(hwnd, 104, 6)
 print("Active Done!")
 
 time.sleep(3)

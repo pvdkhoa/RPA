@@ -451,6 +451,9 @@ def check_main_loaded_and_retry(hwnd_main, max_retry=MAX_RETRY):
     for attempt in range(1, max_retry + 1):
         log.info(f"[OCR] Checking main page (attempt {attempt}/{max_retry})...")
         time.sleep(3)
+        #  Cuộn trang lên Top bằng phím Home trước khi chụp OCR
+        scroll_to_top(hwnd_main)
+        time.sleep(1.5)
         text = run_ocr_check()
         if text:
             log.info(f"[OCR] Page loaded on attempt {attempt}. Text: '{text}'")
@@ -460,7 +463,15 @@ def check_main_loaded_and_retry(hwnd_main, max_retry=MAX_RETRY):
             reload_and_close_popups(hwnd_main)
     log.error(f"[OCR] Failed to load page after {max_retry} attempts")
     return False
-
+def scroll_to_top(hwnd):
+    log.info("[SCROLL] Scrolling web page to top (HOME)...")
+    force_foreground(hwnd)
+    click(hwnd, 1426, 328)
+    time.sleep(0.5)
+    shell.SendKeys("{HOME}")
+    time.sleep(1)
+    shell.SendKeys("{HOME}")
+    time.sleep(1)
 # ─────────────────────────────────────────
 # LOGIN FLOW
 # ─────────────────────────────────────────
