@@ -21,38 +21,80 @@ def get_hwnd_by_company():
     win32gui.EnumWindows(callback, None)
     return result
 
+import os
+import sys
+import tempfile
+from pathlib import Path
+from datetime import datetime
+from PIL import ImageGrab, ImageDraw
+
+# Thư mục lưu ảnh debug
+DEBUG_DIR = Path(tempfile.gettempdir()) / "openga_debug"
+DEBUG_DIR.mkdir(parents=True, exist_ok=True)
+
 def force_foreground(hwnd):
+    try:
+        ctypes.windll.user32.SystemParametersInfoW(0x2001, 0, 0, 0)
+    except Exception:
+        pass
     fgwin = ctypes.windll.user32.GetForegroundWindow()
     fgthread = ctypes.windll.user32.GetWindowThreadProcessId(fgwin, None)
     curthread = ctypes.windll.kernel32.GetCurrentThreadId()
-    ctypes.windll.user32.AttachThreadInput(fgthread, curthread, True)
+    if fgthread != curthread and fgthread != 0:
+        ctypes.windll.user32.AttachThreadInput(fgthread, curthread, True)
     ctypes.windll.user32.ShowWindow(hwnd, 3)
     ctypes.windll.user32.BringWindowToTop(hwnd)
     ctypes.windll.user32.SetForegroundWindow(hwnd)
-    ctypes.windll.user32.AttachThreadInput(fgthread, curthread, False)
+    if fgthread != curthread and fgthread != 0:
+        ctypes.windll.user32.AttachThreadInput(fgthread, curthread, False)
     time.sleep(0.8)
 
-def click(hwnd, x, y):
-    """Gửi lệnh click TRỰC TIẾP vào cửa sổ Chrome bằng PostMessage.
-    x, y là tọa độ TƯƠNG ĐỐI so với góc trên-trái của vùng nội dung cửa sổ (client area).
-    Không bị ảnh hưởng bởi DPI, RDP 50% hay 100%."""
-    force_foreground(hwnd)
+def capture_and_mark_click(screen_x, screen_y, label, rel_x, rel_y):
+    """Chụp màn hình và vẽ hồng tâm đỏ đánh dấu điểm click vào thư mục Temp"""
+    try:
+        # Chụp toàn màn hình
+        img = ImageGrab.grab()
+        draw = ImageDraw.Draw(img)
+        
+        # Vẽ vòng tròn đỏ tại điểm click
+        r = 15
+        draw.ellipse((screen_x - r, screen_y - r, screen_x + r, screen_y + r), outline="red", width=3)
+        # Vẽ dấu thập (crosshair)
+        draw.line((screen_x - 30, screen_y, screen_x + 30, screen_y), fill="red", width=2)
+        draw.line((screen_x, screen_y - 30, screen_x, screen_y + 30), fill="red", width=2)
+        
+        # Ghi thông tin tọa độ lên ảnh
+        text = f"[{label}] Rel: ({rel_x}, {rel_y}) -> Screen: ({screen_x}, {screen_y})"
+        draw.text((screen_x + 20, screen_y - 20), text, fill="red")
+        
+        # Lưu file vào thư mục temp
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")[:19]
+        file_path = DEBUG_DIR / f"click_{label}_{timestamp}.png"
+        img.save(file_path)
+        print(f"[DEBUG_IMAGE] Screenshot saved to: {file_path}")
+    except Exception as e:
+        print(f"[DEBUG_IMAGE] Warning: Could not save screenshot: {e}")
+
+def click(hwnd, x, y, label="click"):
+    # Chuyển tọa độ tương đối bên trong cửa sổ (client area) sang tọa độ màn hình thực tế
+    screen_x, screen_y = win32gui.ClientToScreen(hwnd, (int(x), int(y)))
+    print(f"[{label}] Rel: ({x}, {y}) -> Screen: ({screen_x}, {screen_y})")
     
-    # Tạo tọa độ dạng lParam cho Windows Message
-    lParam = win32api.MAKELONG(x, y)
+  
     
-    # Gửi lệnh click trực tiếp vào Chrome (không cần di chuyển chuột trên màn hình)
-    win32gui.PostMessage(hwnd, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, lParam)
-    time.sleep(0.1)
-    win32gui.PostMessage(hwnd, win32con.WM_LBUTTONUP, 0, lParam)
+    win32api.SetCursorPos((screen_x, screen_y))
+    time.sleep(0.3)
+    win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, screen_x, screen_y, 0, 0)
+    win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, screen_x, screen_y, 0, 0)
     time.sleep(0.5)
 
 # ── Main ──
-print("Start")
+print(f"Start (Debug Folder: {DEBUG_DIR})")
 
 # Minimize CMD
 hwnd_cmd = ctypes.windll.kernel32.GetConsoleWindow()
-ctypes.windll.user32.ShowWindow(hwnd_cmd, 6)
+if hwnd_cmd:
+    ctypes.windll.user32.ShowWindow(hwnd_cmd, 6)
 
 # Find browser
 windows = get_hwnd_by_company()
@@ -63,13 +105,17 @@ if not windows:
 hwnd, title, company = windows[0]
 print(f"Found: [{company}] {title}")
 
-# Click at coordinates (Tọa độ tương đối bên trong cửa sổ Chrome)
-time.sleep(3)
-click(hwnd, 104, 6)
+# Focus cửa sổ trước khi click
+force_foreground(hwnd)
+time.sleep(1)
+
+# Click Tab / Active
+click(hwnd, 104, 6, label="Active_Tab")
 print("Active Done!")
 
-time.sleep(3)
-click(hwnd, 230, 134)
+time.sleep(2)
+# Click Upload Icon (tọa độ tương đối bên trong cửa sổ)
+click(hwnd, 138, 131, label="Upload_Icon")
 print("Click Upload Icon!")
 
-time.sleep(3)
+time.sleep(2)

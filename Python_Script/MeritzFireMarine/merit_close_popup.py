@@ -18,7 +18,7 @@ if __name__ == "__main__":
         (908, 66),    # Tọa độ nút đóng 3
   	(808, 67),    # Tọa độ nút đóng 4
 	(666, 383),    # Tọa độ nút đóng 5
-  	
+  	(1055,390),
     ]
 
     for idx, (x, y) in enumerate(CLICK_COORDINATES, start=1):
