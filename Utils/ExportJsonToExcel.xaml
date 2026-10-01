@@ -34,9 +34,16 @@
     <sco:Collection x:TypeArguments="AssemblyReference">
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
+      <AssemblyReference>REF_RPA.Core</AssemblyReference>
       <AssemblyReference>System</AssemblyReference>
       <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
       <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
       <AssemblyReference>System.Core</AssemblyReference>
       <AssemblyReference>System.Data</AssemblyReference>
       <AssemblyReference>System.Data.Common</AssemblyReference>
@@ -45,36 +52,30 @@
       <AssemblyReference>System.Drawing.Common</AssemblyReference>
       <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
       <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
       <AssemblyReference>System.Net.Mail</AssemblyReference>
       <AssemblyReference>System.ObjectModel</AssemblyReference>
       <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
       <AssemblyReference>System.Xaml</AssemblyReference>
       <AssemblyReference>System.Xml</AssemblyReference>
       <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities</AssemblyReference>
       <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
-      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
-      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
-      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
-      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
-      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
-      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
-      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
-      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
-      <AssemblyReference>System.Memory.Data</AssemblyReference>
-      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
-      <AssemblyReference>System.Console</AssemblyReference>
-      <AssemblyReference>System.Security.Permissions</AssemblyReference>
-      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
-      <AssemblyReference>System.ComponentModel</AssemblyReference>
-      <AssemblyReference>System.Memory</AssemblyReference>
-      <AssemblyReference>System.Private.Uri</AssemblyReference>
-      <AssemblyReference>NPOI.Core</AssemblyReference>
-      <AssemblyReference>System.Linq.Async</AssemblyReference>
-      <AssemblyReference>System.Collections</AssemblyReference>
-      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
-      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
-      <AssemblyReference>REF_RPA.Core</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="ExportJsonToExcel" sap:VirtualizedContainerService.HintSize="866,631.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -94,7 +95,7 @@
     </ui:GetRobotAsset>
     <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="449.6,122.4" sap2010:WorkflowViewState.IdRef="Delay_1" />
     <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="449.6,122.4" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;CHECKING ID &quot; + CHECKING_ID]" />
-    <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ====== Input variables: outputDir, runId ======&#xD;&#xA;Dim jsonPath  As String = System.IO.Path.Combine(outputDir, &quot;result_&quot; &amp; runId &amp; &quot;.json&quot;)&#xD;&#xA;Dim excelPath As String = System.IO.Path.Combine(outputDir, &quot;Report_&quot; &amp; runId &amp; &quot;.xlsx&quot;)&#xD;&#xA;&#xD;&#xA;' ====== Read JSON file ======&#xD;&#xA;Dim jsonContent As String = System.IO.File.ReadAllText(jsonPath, System.Text.Encoding.UTF8)&#xD;&#xA;Dim jsonData As Newtonsoft.Json.Linq.JArray = Newtonsoft.Json.Linq.JArray.Parse(jsonContent)&#xD;&#xA;&#xD;&#xA;' ====== Open existing Excel file (header + border already initialized) ======&#xD;&#xA;Dim workbook As New ClosedXML.Excel.XLWorkbook(excelPath)&#xD;&#xA;Dim ws As ClosedXML.Excel.IXLWorksheet = workbook.Worksheet(&quot;Result&quot;)&#xD;&#xA;&#xD;&#xA;' ====== Write data starting from row 2 ======&#xD;&#xA;Dim rowIndex As Integer = 2&#xD;&#xA;For Each item As Newtonsoft.Json.Linq.JObject In jsonData&#xD;&#xA;    Dim companyName As String = item(&quot;companyName&quot;).ToString()&#xD;&#xA;    Dim isOpenned   As String = item(&quot;isOpenned&quot;).ToString()&#xD;&#xA;    Dim isLogined   As String = item(&quot;isLogined&quot;).ToString()&#xD;&#xA;    Dim processTime As String = item(&quot;processTime&quot;).ToString()&#xD;&#xA;&#xD;&#xA;    ' -- Column A: No --&#xD;&#xA;    ws.Cell(rowIndex, 1).Value = rowIndex - 1&#xD;&#xA;&#xD;&#xA;    ' -- Column B: Company name --&#xD;&#xA;    ws.Cell(rowIndex, 2).Value = companyName&#xD;&#xA;&#xD;&#xA;    ' -- Column C &amp; Column D: Status &amp; Login dependency --&#xD;&#xA;    If isOpenned = &quot;&quot; Then&#xD;&#xA;        ' leave blank, do nothing&#xD;&#xA;    ElseIf isOpenned = &quot;N&quot; Then&#xD;&#xA;        ' C: isOpenned&#xD;&#xA;        ws.Cell(rowIndex, 3).Value = &quot;실패&quot;&#xD;&#xA;        ws.Cell(rowIndex, 3).Style.Font.FontColor = ClosedXML.Excel.XLColor.Red&#xD;&#xA;        ' D: isLogined (Force fail if not opened)&#xD;&#xA;        ws.Cell(rowIndex, 4).Value = &quot;&quot;&#xD;&#xA;    ElseIf isOpenned = &quot;Y&quot; Then&#xD;&#xA;        ' C: isOpenned&#xD;&#xA;        ws.Cell(rowIndex, 3).Value = &quot;성공&quot;&#xD;&#xA;        ws.Cell(rowIndex, 3).Style.Font.FontColor = ClosedXML.Excel.XLColor.Black&#xD;&#xA;        &#xD;&#xA;        ' D: isLogined&#xD;&#xA;        If isLogined = &quot;Y&quot; Then&#xD;&#xA;            ws.Cell(rowIndex, 4).Value = &quot;성공&quot;&#xD;&#xA;            ws.Cell(rowIndex, 4).Style.Font.FontColor = ClosedXML.Excel.XLColor.Black&#xD;&#xA;        ElseIf isLogined = &quot;N&quot; Then&#xD;&#xA;            ws.Cell(rowIndex, 4).Value = &quot;실패&quot;&#xD;&#xA;            ws.Cell(rowIndex, 4).Style.Font.FontColor = ClosedXML.Excel.XLColor.Red&#xD;&#xA;        End If&#xD;&#xA;    End If&#xD;&#xA;&#xD;&#xA;    ' -- Column E: Confirmed datetime → format yyyy-MM-dd HH:mm:ss --&#xD;&#xA;    If Not String.IsNullOrEmpty(processTime) Then&#xD;&#xA;        Dim parsedTime As DateTime&#xD;&#xA;        If DateTime.TryParse(processTime, parsedTime) Then&#xD;&#xA;            ws.Cell(rowIndex, 5).Value = parsedTime.ToString(&quot;yyyy-MM-dd HH:mm:ss&quot;)&#xD;&#xA;        Else&#xD;&#xA;            ws.Cell(rowIndex, 5).Value = processTime&#xD;&#xA;        End If&#xD;&#xA;    Else&#xD;&#xA;        ws.Cell(rowIndex, 5).Value = &quot;&quot;&#xD;&#xA;    End If&#xD;&#xA;&#xD;&#xA;    rowIndex += 1&#xD;&#xA;Next&#xD;&#xA;&#xD;&#xA;' ====== Save and dispose workbook ======&#xD;&#xA;workbook.Save()&#xD;&#xA;workbook.Dispose()" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="449.6,188" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ====== Input variables: outputDir, runId ======&#xA;Dim jsonPath  As String = System.IO.Path.Combine(outputDir, &quot;result_&quot; &amp; runId &amp; &quot;.json&quot;)&#xA;Dim excelPath As String = System.IO.Path.Combine(outputDir, &quot;Report_&quot; &amp; runId &amp; &quot;.xlsx&quot;)&#xA;&#xA;' ====== Read JSON file ======&#xA;Dim jsonContent As String = System.IO.File.ReadAllText(jsonPath, System.Text.Encoding.UTF8)&#xA;Dim jsonData As Newtonsoft.Json.Linq.JArray = Newtonsoft.Json.Linq.JArray.Parse(jsonContent)&#xA;&#xA;' ====== Open existing Excel file (header + border already initialized) ======&#xA;Dim workbook As New ClosedXML.Excel.XLWorkbook(excelPath)&#xA;Dim ws As ClosedXML.Excel.IXLWorksheet = workbook.Worksheet(&quot;Result&quot;)&#xA;&#xA;' ====== Write data starting from row 2 ======&#xA;Dim rowIndex As Integer = 2&#xA;For Each item As Newtonsoft.Json.Linq.JObject In jsonData&#xA;    Dim companyName As String = item(&quot;companyName&quot;).ToString()&#xA;    Dim isOpenned   As String = item(&quot;isOpenned&quot;).ToString()&#xA;    Dim isLogined   As String = item(&quot;isLogined&quot;).ToString()&#xA;    Dim processTime As String = item(&quot;processTime&quot;).ToString()&#xA;&#xA;    ' -- Column A: No --&#xA;    ws.Cell(rowIndex, 1).Value = rowIndex - 1&#xA;&#xA;    ' -- Column B: Company name --&#xA;    ws.Cell(rowIndex, 2).Value = companyName&#xA;&#xA;    ' -- Column C &amp; Column D: Status &amp; Login dependency --&#xA;    If isOpenned = &quot;&quot; Then&#xA;        ' leave blank, do nothing&#xA;    ElseIf isOpenned = &quot;N&quot; Then&#xA;        ' C: isOpenned&#xA;        ws.Cell(rowIndex, 3).Value = &quot;실패&quot;&#xA;        ws.Cell(rowIndex, 3).Style.Font.FontColor = ClosedXML.Excel.XLColor.Red&#xA;        ' D: isLogined (Force fail if not opened)&#xA;        ws.Cell(rowIndex, 4).Value = &quot;&quot;&#xA;    ElseIf isOpenned = &quot;Y&quot; Then&#xA;        ' C: isOpenned&#xA;        ws.Cell(rowIndex, 3).Value = &quot;성공&quot;&#xA;        ws.Cell(rowIndex, 3).Style.Font.FontColor = ClosedXML.Excel.XLColor.Black&#xA;        &#xA;        ' D: isLogined&#xA;        If isLogined = &quot;Y&quot; Then&#xA;            ws.Cell(rowIndex, 4).Value = &quot;성공&quot;&#xA;            ws.Cell(rowIndex, 4).Style.Font.FontColor = ClosedXML.Excel.XLColor.Black&#xA;        ElseIf isLogined = &quot;N&quot; Then&#xA;            ws.Cell(rowIndex, 4).Value = &quot;실패&quot;&#xA;            ws.Cell(rowIndex, 4).Style.Font.FontColor = ClosedXML.Excel.XLColor.Red&#xA;        End If&#xA;    End If&#xA;&#xA;    ' -- Column E: Confirmed datetime → format yyyy-MM-dd HH:mm:ss --&#xA;    If Not String.IsNullOrEmpty(processTime) Then&#xA;        Dim parsedTime As DateTime&#xA;        If DateTime.TryParse(processTime, parsedTime) Then&#xA;            ws.Cell(rowIndex, 5).Value = parsedTime.ToString(&quot;yyyy-MM-dd HH:mm:ss&quot;)&#xA;        Else&#xA;            ws.Cell(rowIndex, 5).Value = processTime&#xA;        End If&#xA;    Else&#xA;        ws.Cell(rowIndex, 5).Value = &quot;&quot;&#xA;    End If&#xA;&#xA;    rowIndex += 1&#xA;Next&#xA;&#xA;' ====== Save and dispose workbook ======&#xA;workbook.Save()&#xA;workbook.Dispose()" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="449.6,188" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
       <ui:InvokeCode.Arguments>
         <InArgument x:TypeArguments="x:String" x:Key="outputDir">[outputDir]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="runId">[CHECKING_ID]</InArgument>
