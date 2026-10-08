@@ -133,7 +133,7 @@
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Upload_AI" sap:VirtualizedContainerService.HintSize="702,560.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Upload_AI" sap:VirtualizedContainerService.HintSize="740.4000000000001,1603.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="strJsonBody" />
       <Variable x:TypeArguments="x:String" Name="PROD_URL" />
@@ -145,7 +145,7 @@
       <Variable x:TypeArguments="x:String" Name="HDG_CAR_PATH" />
       <Variable x:TypeArguments="x:String" Name="URL" />
       <Variable x:TypeArguments="s:DateTime" Name="startTime" />
-      <Variable x:TypeArguments="x:Int32" Default="40" Name="timeoutMinutes" />
+      <Variable x:TypeArguments="x:Int32" Default="30" Name="timeoutMinutes" />
       <Variable x:TypeArguments="x:String" Name="strErrorDetails" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
@@ -294,13 +294,13 @@
         </If.Else>
       </If>
     </Sequence>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome 홈 - OPENGA(7)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="484.8,480.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="b5fbf5cf-128b-4df5-9038-1861fc870a84" Version="V2" WindowResize="Maximize">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome 홈 - OPENGA(7)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="484.8,1523.2" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="b5fbf5cf-128b-4df5-9038-1861fc870a84" Version="V2" WindowResize="Maximize">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="483.2,287.2" sap2010:WorkflowViewState.IdRef="Sequence_19">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="483.2,1329.6" sap2010:WorkflowViewState.IdRef="Sequence_19">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -554,7 +554,7 @@
                 </sap:WorkflowViewStateService.ViewState>
               </Delay>
             </Sequence>
-            <Sequence DisplayName="Sequence call AI" sap:VirtualizedContainerService.HintSize="449.6,56.8" sap2010:WorkflowViewState.IdRef="Sequence_20">
+            <Sequence DisplayName="Sequence call AI" sap:VirtualizedContainerService.HintSize="449.6,1164.8" sap2010:WorkflowViewState.IdRef="Sequence_20">
               <Sequence.Variables>
                 <Variable x:TypeArguments="njl:JObject" Name="jsonObj" />
                 <Variable x:TypeArguments="x:String" Name="strStatus" />
@@ -564,7 +564,7 @@
               </Sequence.Variables>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
@@ -576,7 +576,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:LogMessage>
-              <Assign sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Assign_8">
+              <Assign sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="Assign_8">
                 <Assign.To>
                   <OutArgument x:TypeArguments="x:String">[strJsonBody]</OutArgument>
                 </Assign.To>
@@ -585,15 +585,15 @@
     {"taskType", "Upload"},
     {"compCode", "HDG"},
     {"filePaths", New Dictionary(Of String, String) From {
-        {"Dài hạn (LTR - 장기)", If(String.IsNullOrWhiteSpace(CStr(HDG_LTR_PATH)), "empty", CStr(HDG_LTR_PATH))},
-        {"Ô tô (CAR - 자동차)", If(String.IsNullOrWhiteSpace(CStr(HDG_CAR_PATH)), "empty", CStr(HDG_CAR_PATH))},
-        {"Chung/Hàng hải (GEN - 일반)", If(String.IsNullOrWhiteSpace(CStr(HDG_GEN_PATH)), "empty", CStr(HDG_GEN_PATH))}
+        {"장기", If(String.IsNullOrWhiteSpace(CStr(HDG_LTR_PATH)), "empty", CStr(HDG_LTR_PATH))},
+        {"자동차", If(String.IsNullOrWhiteSpace(CStr(HDG_CAR_PATH)), "empty", CStr(HDG_CAR_PATH))},
+        {"일반", If(String.IsNullOrWhiteSpace(CStr(HDG_GEN_PATH)), "empty", CStr(HDG_GEN_PATH))}
     }}
 })]</InArgument>
                 </Assign.Value>
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
@@ -694,13 +694,33 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:LogMessage>
-              <Assign sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="Assign_10">
+              <Assign sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Assign_10">
                 <Assign.To>
                   <OutArgument x:TypeArguments="s:DateTime">[startTime]</OutArgument>
                 </Assign.To>
                 <Assign.Value>
                   <InArgument x:TypeArguments="s:DateTime">[DateTime.Now]</InArgument>
                 </Assign.Value>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </Assign>
+              <Assign sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Assign_12">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Int32">[timeoutMinutes]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Int32">[30]</InArgument>
+                </Assign.Value>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
               </Assign>
               <ui:InterruptibleWhile CurrentIndex="{x:Null}" Condition="[strStatus.Equals(&quot;running&quot;) AndAlso (DateTime.Now - startTime).TotalMinutes &lt; timeoutMinutes]" DisplayName="While" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
                 <ui:InterruptibleWhile.Body>
@@ -758,7 +778,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:LogMessage>
-              <If Condition="[strStatus.Equals(&quot;completed&quot;)]" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="If_3">
+              <If Condition="[strStatus.Equals(&quot;completed&quot;)]" sap:VirtualizedContainerService.HintSize="451.2,911.2" sap2010:WorkflowViewState.IdRef="If_3">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -772,20 +792,20 @@
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="Info" Message="[&quot;🎉 AI Upload completed successfully for company HDG!&quot;]" />
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="Info" Message="[&quot;🎉 AI Upload completed successfully!&quot;]" />
                   </Sequence>
                 </If.Then>
                 <If.Else>
-                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,461.6" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,579.2" sap2010:WorkflowViewState.IdRef="Sequence_23">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="LogMessage_13" Level="Error" Message="[&quot;❌ AI Upload failed with status: &quot; + strStatus]">
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_13" Level="Error" Message="[&quot;❌ AI Upload failed with status: &quot; + strStatus]">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
@@ -812,12 +832,19 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </ui:LogMessage>
-                    <Throw Exception="[new Exception(&quot;AI Upload Task Failed for HDG. Task ID: &quot; &amp; strTaskId &amp; &quot; | Details: &quot; &amp; strErrorDetails)]" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="Throw_1" />
+                    <Throw Exception="[new Exception(&quot;AI Upload Task Failed. Task ID: &quot; &amp; strTaskId &amp; &quot; | Details: &quot; &amp; strErrorDetails)]" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="Throw_1" />
                   </Sequence>
                 </If.Else>
               </If>
             </Sequence>
-            <Delay Duration="00:00:10" sap:VirtualizedContainerService.HintSize="449.6,113.6" sap2010:WorkflowViewState.IdRef="Delay_29" />
+            <Delay Duration="00:00:10" sap:VirtualizedContainerService.HintSize="449.6,48" sap2010:WorkflowViewState.IdRef="Delay_29">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </Delay>
           </Sequence>
         </ActivityAction>
       </uix:NApplicationCard.Body>
