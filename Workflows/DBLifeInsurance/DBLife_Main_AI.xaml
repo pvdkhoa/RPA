@@ -126,8 +126,9 @@
       <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="DBLife_Main" sap:VirtualizedContainerService.HintSize="707.6,1032.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="DBLife_Main" sap:VirtualizedContainerService.HintSize="707.6,2541.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="DBL_SMS_OTP" />
       <Variable x:TypeArguments="x:String" Name="strErrorDetails" />
       <Variable x:TypeArguments="x:String" Default="DBL" Name="COMP_CODE" />
       <Variable x:TypeArguments="x:String" Default="C:\RPA\CheckAvailableComp" Name="CHECKING_FILE_PATH" />
@@ -248,13 +249,13 @@
         </sap:WorkflowViewStateService.ViewState>
       </Delay>
     </Sequence>
-    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" DisplayName="Edge DBLIFE" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="484.8,952.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OutUiElement="[browserInstance]" ScopeGuid="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V2" WindowResize="Maximize">
+    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" DisplayName="Edge DBLIFE" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="484.8,2461.6" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OutUiElement="[browserInstance]" ScopeGuid="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V2" WindowResize="Maximize">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="483.2,759.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="483.2,2268" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Default="C:\Users\RPA02\Documents\UiPath\RPA\Python_Script\Utils\" Name="PYTHON_PATH" />
             </Sequence.Variables>
@@ -522,19 +523,84 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </uix:NClick>
-              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="ClosePopup - Invoke Workflow File (Utils\ClosePopup.xaml)" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Utils\ClosePopup.xaml">
-                <ui:InvokeWorkflowFile.Arguments>
-                  <InArgument x:TypeArguments="x:String" x:Key="in_PopupType">ALL</InArgument>
-                  <InArgument x:TypeArguments="ui:UiElement" x:Key="in_Browser">[browserInstance]</InArgument>
-                </ui:InvokeWorkflowFile.Arguments>
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-              </ui:InvokeWorkflowFile>
+              <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="Delay_21" />
             </Sequence>
+            <Sequence DisplayName="Sequence input otp" sap:VirtualizedContainerService.HintSize="449.6,1452" sap2010:WorkflowViewState.IdRef="Sequence_35">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '인증번호 발송'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V5">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable BrowserURL="etopia.idblife.com/index.html" ContentHash="7XkfMmIrfUmF6wE7mq35dw" DesignTimeRectangle="1097, 498, 125, 51" ElementType="Button" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='uuid-bc' matching:id='fuzzy' fuzzylevel:id='0.0' tag='DIV' type='' class='cl-control cl-button cl-unselectable cl-even-column cl-last-column cl-odd-row cl-first-row cl-last-row btn orange' matching:class='fuzzy' fuzzylevel:class='0.0' aaname='' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' innertext='인증번호 발송' visibleinnertext='인증번호 발송' check:innerText='인증번호 발송' /&gt;" Guid="f36a0c0a-68cf-4423-aa60-9df073b9d54d" InformativeScreenshot="26e0e91d3eca48a362a339d4c4ab8a25.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/l6bYBEYWq0mwYG-ygWPxkw" ScopeSelectorArgument="&lt;html app='chrome.exe' title='eTopia' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
+                    <uix:TargetAnchorable.Anchors>
+                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                        <uix:Target DesignTimeRectangle="1097, 514, 125, 19" ElementType="Text" FuzzySelectorArgument="&lt;webctrl class='cl-text' parentid='uuid-bc' tag='DIV' type='' aaname='인증번호 발송' matching:class='fuzzy' fuzzylevel:class='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='인증번호 발송' /&gt;" Guid="191a3c65-c2e1-41f2-815e-0d59bce21852" SearchSteps="FuzzySelector" />
+                      </scg:List>
+                    </uix:TargetAnchorable.Anchors>
+                  </uix:TargetAnchorable>
+                </uix:NClick.Target>
+              </uix:NClick>
+              <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_22" />
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_3" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V5">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable BrowserURL="etopia.idblife.com/index.html" ContentHash="WIbIcWS3DEeEKOxSiTJgIw" DesignTimeRectangle="950, 656, 106, 43" ElementType="Button" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl aria-role='button' matching:aria-role='fuzzy' fuzzylevel:aria-role='0.0' parentid='uuid-eb' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' tag='DIV' type='' class='cl-control cl-button cl-unselectable cl-first btn orange' matching:class='fuzzy' fuzzylevel:class='0.0' aaname='' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' innertext='확인' visibleinnertext='확인' check:innerText='확인' /&gt;" Guid="6b29f317-a52d-4a12-af68-6f1781e733d0" InformativeScreenshot="4bef472983e8b932b1db9af6c8cd2e75.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/acQ003SLj02ZeL9W1Rr29w" ScopeSelectorArgument="&lt;html app='chrome.exe' title='eTopia' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="None">
+                    <uix:TargetAnchorable.Anchors>
+                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                        <uix:Target DesignTimeRectangle="950, 668, 106, 19" ElementType="Text" FuzzySelectorArgument="&lt;webctrl class='cl-text' parentid='uuid-eb' tag='DIV' type='' aaname='확인' matching:class='fuzzy' fuzzylevel:class='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='확인' /&gt;" Guid="34d9df4d-fcff-43e7-affe-86d3fe128d54" SearchSteps="FuzzySelector" />
+                      </scg:List>
+                    </uix:TargetAnchorable.Anchors>
+                  </uix:TargetAnchorable>
+                </uix:NClick.Target>
+              </uix:NClick>
+              <Delay Duration="00:00:40" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_23" />
+              <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="DBL_SMS_OTP" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="416,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_5">
+                <ui:GetRobotAsset.Value>
+                  <OutArgument x:TypeArguments="x:String" />
+                </ui:GetRobotAsset.Value>
+              </ui:GetRobotAsset>
+              <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '인증번호'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_3" InteractionMode="SameAsCard" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Text="[DBL_SMS_OTP]" Version="V5">
+                <uix:NTypeInto.Target>
+                  <uix:TargetAnchorable BrowserURL="etopia.idblife.com/index.html" ContentHash="W4MFFAufW0mLjmRlLcOkdA" DesignTimeRectangle="727, 513, 249, 21" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='인증번호' parentid='uuid-ba' tag='DIV' /&gt;" Guid="c538a73b-8ecc-4108-9036-71c988effb78" InformativeScreenshot="5bb5b30a6a1de8ef5a8ca3d4dbab2ead.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/yd1-4a1E3UaE8rLddgsuCQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='eTopia' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                </uix:NTypeInto.Target>
+                <uix:NTypeInto.VerifyOptions>
+                  <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                    <uix:VerifyExecutionTypeIntoOptions.Retry>
+                      <InArgument x:TypeArguments="x:Boolean" />
+                    </uix:VerifyExecutionTypeIntoOptions.Retry>
+                    <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                      <InArgument x:TypeArguments="x:Double" />
+                    </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                  </uix:VerifyExecutionTypeIntoOptions>
+                </uix:NTypeInto.VerifyOptions>
+              </uix:NTypeInto>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '인증번호 확인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_4" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e189417f-b7d2-416d-9f8b-41a7fe48d21d" Version="V5">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable BrowserURL="etopia.idblife.com/index.html" ContentHash="oI44fSmqmEu93RHac54Arw" DesignTimeRectangle="1097, 498, 125, 51" ElementType="Button" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='uuid-bc' matching:id='fuzzy' fuzzylevel:id='0.0' tag='DIV' type='' class='cl-control cl-button cl-unselectable cl-even-column cl-last-column cl-odd-row cl-first-row cl-last-row cl-focus btn orange' matching:class='fuzzy' fuzzylevel:class='0.0' aaname='' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' innertext='인증번호 확인' visibleinnertext='인증번호 확인' check:innerText='인증번호 확인' /&gt;" Guid="2128ab8e-b977-4456-a756-c708ff99b69a" InformativeScreenshot="1029348f861698137bef69405b6c3f91.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/ZuJMUDJJrUubaTz4l1FEiw" ScopeSelectorArgument="&lt;html app='chrome.exe' title='eTopia' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="None">
+                    <uix:TargetAnchorable.Anchors>
+                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                        <uix:Target DesignTimeRectangle="1097, 514, 125, 19" ElementType="Text" FuzzySelectorArgument="&lt;webctrl class='cl-text' parentid='uuid-bc' tag='DIV' type='' aaname='인증번호 확인' matching:class='fuzzy' fuzzylevel:class='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='인증번호 확인' /&gt;" Guid="eea376be-a533-4da1-841b-3fd04b940469" SearchSteps="FuzzySelector" />
+                      </scg:List>
+                    </uix:TargetAnchorable.Anchors>
+                  </uix:TargetAnchorable>
+                </uix:NClick.Target>
+              </uix:NClick>
+              <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="Delay_24" />
+            </Sequence>
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="ClosePopup - Invoke Workflow File (Utils\ClosePopup.xaml)" sap:VirtualizedContainerService.HintSize="449.6,56.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Utils\ClosePopup.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InArgument x:TypeArguments="x:String" x:Key="in_PopupType">ALL</InArgument>
+                <InArgument x:TypeArguments="ui:UiElement" x:Key="in_Browser">[browserInstance]</InArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:InvokeWorkflowFile>
             <If Condition="[runType = &quot;CHECK&quot;]" DisplayName="Handle Check Login Available" sap:VirtualizedContainerService.HintSize="449.6,56.8" sap2010:WorkflowViewState.IdRef="If_1">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">

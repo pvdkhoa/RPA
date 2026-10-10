@@ -1,5 +1,6 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="Upload_Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
+    <x:Property Name="out_AIUploadResult" Type="OutArgument(x:String)" />
     <x:Property Name="in_AIEnhanced" Type="InArgument(x:String)" />
     <x:Property Name="in_RunType" Type="InArgument(x:String)" />
     <x:Property Name="io_LastRunType" Type="InOutArgument(x:String)" />
@@ -94,21 +95,21 @@
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Upload_Main" sap:VirtualizedContainerService.HintSize="707.6,4196.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Upload_Main" sap:VirtualizedContainerService.HintSize="707.6,11164.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence sap:VirtualizedContainerService.HintSize="555.2,4173.6" sap2010:WorkflowViewState.IdRef="Sequence_17">
+    <Sequence sap:VirtualizedContainerService.HintSize="555.2,11141.6" sap2010:WorkflowViewState.IdRef="Sequence_17">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="521.6,4090.4" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="521.6,11058.4" sap2010:WorkflowViewState.IdRef="TryCatch_1">
         <TryCatch.Try>
-          <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="520,2961.6" sap2010:WorkflowViewState.IdRef="Sequence_18">
+          <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="520,9929.6" sap2010:WorkflowViewState.IdRef="Sequence_18">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -122,7 +123,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </Delay>
-            <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[in_CompCode]" sap:VirtualizedContainerService.HintSize="486.4,2844.8" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+            <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[in_CompCode]" sap:VirtualizedContainerService.HintSize="486.4,9812.8" sap2010:WorkflowViewState.IdRef="Switch`1_1">
               <Switch.Default>
                 <Sequence DisplayName="Default" sap:VirtualizedContainerService.HintSize="484.8,89.6" sap2010:WorkflowViewState.IdRef="Sequence_16">
                   <sap:WorkflowViewStateService.ViewState>
@@ -138,16 +139,16 @@
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Sequence x:Key="SSL" DisplayName="Body" sap:VirtualizedContainerService.HintSize="484.8,108" sap2010:WorkflowViewState.IdRef="Sequence_2">
+              <Sequence x:Key="SSL" DisplayName="Body" sap:VirtualizedContainerService.HintSize="484.8,644" sap2010:WorkflowViewState.IdRef="Sequence_2">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <If Condition="[in_AIEnhanced = &quot;ON&quot;]" sap:VirtualizedContainerService.HintSize="451.2,48" sap2010:WorkflowViewState.IdRef="If_1">
+                <If Condition="[in_AIEnhanced = &quot;ON&quot;]" sap:VirtualizedContainerService.HintSize="451.2,584" sap2010:WorkflowViewState.IdRef="If_1">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
@@ -162,6 +163,7 @@
                         <ui:InvokeWorkflowFile.Arguments>
                           <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
                           <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
+                          <OutArgument x:TypeArguments="x:String" x:Key="out_AIUploadResult">[out_AIUploadResult]</OutArgument>
                         </ui:InvokeWorkflowFile.Arguments>
                       </ui:InvokeWorkflowFile>
                     </Sequence>
@@ -183,16 +185,16 @@
                   </If.Else>
                 </If>
               </Sequence>
-              <Sequence x:Key="LNF" DisplayName="Body" sap:VirtualizedContainerService.HintSize="484.8,108" sap2010:WorkflowViewState.IdRef="Sequence_3">
+              <Sequence x:Key="LNF" DisplayName="Body" sap:VirtualizedContainerService.HintSize="484.8,644" sap2010:WorkflowViewState.IdRef="Sequence_3">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <If Condition="[in_AIEnhanced = &quot;ON&quot;]" sap:VirtualizedContainerService.HintSize="451.2,48" sap2010:WorkflowViewState.IdRef="If_2">
+                <If Condition="[in_AIEnhanced = &quot;ON&quot;]" sap:VirtualizedContainerService.HintSize="451.2,584" sap2010:WorkflowViewState.IdRef="If_2">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
@@ -207,6 +209,7 @@
                         <ui:InvokeWorkflowFile.Arguments>
                           <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
                           <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
+                          <OutArgument x:TypeArguments="x:String" x:Key="out_AIUploadResult">[out_AIUploadResult]</OutArgument>
                         </ui:InvokeWorkflowFile.Arguments>
                       </ui:InvokeWorkflowFile>
                     </Sequence>
@@ -228,16 +231,16 @@
                   </If.Else>
                 </If>
               </Sequence>
-              <Sequence x:Key="DBL" DisplayName="Body" sap:VirtualizedContainerService.HintSize="484.8,108" sap2010:WorkflowViewState.IdRef="Sequence_4">
+              <Sequence x:Key="DBL" DisplayName="Body" sap:VirtualizedContainerService.HintSize="484.8,644" sap2010:WorkflowViewState.IdRef="Sequence_4">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <If Condition="[in_AIEnhanced = &quot;ON&quot;]" sap:VirtualizedContainerService.HintSize="451.2,48" sap2010:WorkflowViewState.IdRef="If_3">
+                <If Condition="[in_AIEnhanced = &quot;ON&quot;]" sap:VirtualizedContainerService.HintSize="451.2,584" sap2010:WorkflowViewState.IdRef="If_3">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
@@ -252,6 +255,7 @@
                         <ui:InvokeWorkflowFile.Arguments>
                           <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
                           <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
+                          <OutArgument x:TypeArguments="x:String" x:Key="out_AIUploadResult">[out_AIUploadResult]</OutArgument>
                         </ui:InvokeWorkflowFile.Arguments>
                       </ui:InvokeWorkflowFile>
                     </Sequence>
@@ -273,16 +277,16 @@
                   </If.Else>
                 </If>
               </Sequence>
-              <Sequence x:Key="MTL" DisplayName="Body" sap:VirtualizedContainerService.HintSize="484.8,108" sap2010:WorkflowViewState.IdRef="Sequence_5">
+              <Sequence x:Key="MTL" DisplayName="Body" sap:VirtualizedContainerService.HintSize="484.8,644" sap2010:WorkflowViewState.IdRef="Sequence_5">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <If Condition="[in_AIEnhanced = &quot;ON&quot;]" sap:VirtualizedContainerService.HintSize="451.2,48" sap2010:WorkflowViewState.IdRef="If_4">
+                <If Condition="[in_AIEnhanced = &quot;ON&quot;]" sap:VirtualizedContainerService.HintSize="451.2,584" sap2010:WorkflowViewState.IdRef="If_4">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
@@ -297,6 +301,7 @@
                         <ui:InvokeWorkflowFile.Arguments>
                           <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
                           <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
+                          <OutArgument x:TypeArguments="x:String" x:Key="out_AIUploadResult">[out_AIUploadResult]</OutArgument>
                         </ui:InvokeWorkflowFile.Arguments>
                       </ui:InvokeWorkflowFile>
                     </Sequence>
@@ -318,16 +323,16 @@
                   </If.Else>
                 </If>
               </Sequence>
-              <Sequence x:Key="KBL" DisplayName="Body" sap:VirtualizedContainerService.HintSize="484.8,108" sap2010:WorkflowViewState.IdRef="Sequence_6">
+              <Sequence x:Key="KBL" DisplayName="Body" sap:VirtualizedContainerService.HintSize="484.8,644" sap2010:WorkflowViewState.IdRef="Sequence_6">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <If Condition="[in_AIEnhanced = &quot;ON&quot;]" sap:VirtualizedContainerService.HintSize="451.2,48" sap2010:WorkflowViewState.IdRef="If_5">
+                <If Condition="[in_AIEnhanced = &quot;ON&quot;]" sap:VirtualizedContainerService.HintSize="451.2,584" sap2010:WorkflowViewState.IdRef="If_5">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
@@ -342,6 +347,7 @@
                         <ui:InvokeWorkflowFile.Arguments>
                           <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
                           <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
+                          <OutArgument x:TypeArguments="x:String" x:Key="out_AIUploadResult">[out_AIUploadResult]</OutArgument>
                         </ui:InvokeWorkflowFile.Arguments>
                       </ui:InvokeWorkflowFile>
                     </Sequence>
@@ -363,16 +369,16 @@
                   </If.Else>
                 </If>
               </Sequence>
-              <Sequence x:Key="CDL" DisplayName="Body" sap:VirtualizedContainerService.HintSize="484.8,108" sap2010:WorkflowViewState.IdRef="Sequence_7">
+              <Sequence x:Key="CDL" DisplayName="Body" sap:VirtualizedContainerService.HintSize="484.8,644" sap2010:WorkflowViewState.IdRef="Sequence_7">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <If Condition="[in_AIEnhanced = &quot;ON&quot;]" sap:VirtualizedContainerService.HintSize="451.2,48" sap2010:WorkflowViewState.IdRef="If_6">
+                <If Condition="[in_AIEnhanced = &quot;ON&quot;]" sap:VirtualizedContainerService.HintSize="451.2,584" sap2010:WorkflowViewState.IdRef="If_6">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
@@ -387,6 +393,7 @@
                         <ui:InvokeWorkflowFile.Arguments>
                           <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
                           <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
+                          <OutArgument x:TypeArguments="x:String" x:Key="out_AIUploadResult">[out_AIUploadResult]</OutArgument>
                         </ui:InvokeWorkflowFile.Arguments>
                       </ui:InvokeWorkflowFile>
                     </Sequence>
@@ -408,16 +415,16 @@
                   </If.Else>
                 </If>
               </Sequence>
-              <Sequence x:Key="SSF" DisplayName="Body" sap:VirtualizedContainerService.HintSize="484.8,108" sap2010:WorkflowViewState.IdRef="Sequence_8">
+              <Sequence x:Key="SSF" DisplayName="Body" sap:VirtualizedContainerService.HintSize="484.8,644" sap2010:WorkflowViewState.IdRef="Sequence_8">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <If Condition="[in_AIEnhanced = &quot;ON&quot;]" sap:VirtualizedContainerService.HintSize="451.2,48" sap2010:WorkflowViewState.IdRef="If_7">
+                <If Condition="[in_AIEnhanced = &quot;ON&quot;]" sap:VirtualizedContainerService.HintSize="451.2,584" sap2010:WorkflowViewState.IdRef="If_7">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
@@ -432,6 +439,7 @@
                         <ui:InvokeWorkflowFile.Arguments>
                           <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
                           <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
+                          <OutArgument x:TypeArguments="x:String" x:Key="out_AIUploadResult">[out_AIUploadResult]</OutArgument>
                         </ui:InvokeWorkflowFile.Arguments>
                       </ui:InvokeWorkflowFile>
                     </Sequence>
@@ -453,16 +461,16 @@
                   </If.Else>
                 </If>
               </Sequence>
-              <Sequence x:Key="MRF" DisplayName="Body" sap:VirtualizedContainerService.HintSize="484.8,108" sap2010:WorkflowViewState.IdRef="Sequence_9">
+              <Sequence x:Key="MRF" DisplayName="Body" sap:VirtualizedContainerService.HintSize="484.8,644" sap2010:WorkflowViewState.IdRef="Sequence_9">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <If Condition="[in_AIEnhanced = &quot;ON&quot;]" sap:VirtualizedContainerService.HintSize="451.2,48" sap2010:WorkflowViewState.IdRef="If_8">
+                <If Condition="[in_AIEnhanced = &quot;ON&quot;]" sap:VirtualizedContainerService.HintSize="451.2,584" sap2010:WorkflowViewState.IdRef="If_8">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
@@ -477,6 +485,7 @@
                         <ui:InvokeWorkflowFile.Arguments>
                           <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
                           <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
+                          <OutArgument x:TypeArguments="x:String" x:Key="out_AIUploadResult">[out_AIUploadResult]</OutArgument>
                         </ui:InvokeWorkflowFile.Arguments>
                       </ui:InvokeWorkflowFile>
                     </Sequence>
@@ -498,16 +507,16 @@
                   </If.Else>
                 </If>
               </Sequence>
-              <Sequence x:Key="HDG" DisplayName="Body" sap:VirtualizedContainerService.HintSize="484.8,108" sap2010:WorkflowViewState.IdRef="Sequence_10">
+              <Sequence x:Key="HDG" DisplayName="Body" sap:VirtualizedContainerService.HintSize="484.8,644" sap2010:WorkflowViewState.IdRef="Sequence_10">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <If Condition="[in_AIEnhanced = &quot;ON&quot;]" sap:VirtualizedContainerService.HintSize="451.2,48" sap2010:WorkflowViewState.IdRef="If_9">
+                <If Condition="[in_AIEnhanced = &quot;ON&quot;]" sap:VirtualizedContainerService.HintSize="451.2,584" sap2010:WorkflowViewState.IdRef="If_9">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
@@ -522,6 +531,7 @@
                         <ui:InvokeWorkflowFile.Arguments>
                           <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
                           <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
+                          <OutArgument x:TypeArguments="x:String" x:Key="out_AIUploadResult">[out_AIUploadResult]</OutArgument>
                         </ui:InvokeWorkflowFile.Arguments>
                       </ui:InvokeWorkflowFile>
                     </Sequence>
@@ -543,16 +553,16 @@
                   </If.Else>
                 </If>
               </Sequence>
-              <Sequence x:Key="HWG" DisplayName="Body" sap:VirtualizedContainerService.HintSize="484.8,108" sap2010:WorkflowViewState.IdRef="Sequence_11">
+              <Sequence x:Key="HWG" DisplayName="Body" sap:VirtualizedContainerService.HintSize="484.8,644" sap2010:WorkflowViewState.IdRef="Sequence_11">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <If Condition="[in_AIEnhanced = &quot;ON&quot;]" sap:VirtualizedContainerService.HintSize="451.2,48" sap2010:WorkflowViewState.IdRef="If_10">
+                <If Condition="[in_AIEnhanced = &quot;ON&quot;]" sap:VirtualizedContainerService.HintSize="451.2,584" sap2010:WorkflowViewState.IdRef="If_10">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
@@ -567,6 +577,7 @@
                         <ui:InvokeWorkflowFile.Arguments>
                           <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
                           <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
+                          <OutArgument x:TypeArguments="x:String" x:Key="out_AIUploadResult">[out_AIUploadResult]</OutArgument>
                         </ui:InvokeWorkflowFile.Arguments>
                       </ui:InvokeWorkflowFile>
                     </Sequence>
@@ -588,16 +599,16 @@
                   </If.Else>
                 </If>
               </Sequence>
-              <Sequence x:Key="DBG" DisplayName="Body" sap:VirtualizedContainerService.HintSize="484.8,108" sap2010:WorkflowViewState.IdRef="Sequence_12">
+              <Sequence x:Key="DBG" DisplayName="Body" sap:VirtualizedContainerService.HintSize="484.8,644" sap2010:WorkflowViewState.IdRef="Sequence_12">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <If Condition="[in_AIEnhanced = &quot;ON&quot;]" sap:VirtualizedContainerService.HintSize="451.2,48" sap2010:WorkflowViewState.IdRef="If_11">
+                <If Condition="[in_AIEnhanced = &quot;ON&quot;]" sap:VirtualizedContainerService.HintSize="451.2,584" sap2010:WorkflowViewState.IdRef="If_11">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
@@ -612,6 +623,7 @@
                         <ui:InvokeWorkflowFile.Arguments>
                           <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
                           <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
+                          <OutArgument x:TypeArguments="x:String" x:Key="out_AIUploadResult">[out_AIUploadResult]</OutArgument>
                         </ui:InvokeWorkflowFile.Arguments>
                       </ui:InvokeWorkflowFile>
                     </Sequence>
@@ -633,16 +645,16 @@
                   </If.Else>
                 </If>
               </Sequence>
-              <Sequence x:Key="KBG" DisplayName="Body" sap:VirtualizedContainerService.HintSize="484.8,108" sap2010:WorkflowViewState.IdRef="Sequence_13">
+              <Sequence x:Key="KBG" DisplayName="Body" sap:VirtualizedContainerService.HintSize="484.8,644" sap2010:WorkflowViewState.IdRef="Sequence_13">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <If Condition="[in_AIEnhanced = &quot;ON&quot;]" sap:VirtualizedContainerService.HintSize="451.2,48" sap2010:WorkflowViewState.IdRef="If_12">
+                <If Condition="[in_AIEnhanced = &quot;ON&quot;]" sap:VirtualizedContainerService.HintSize="451.2,584" sap2010:WorkflowViewState.IdRef="If_12">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
@@ -657,6 +669,7 @@
                         <ui:InvokeWorkflowFile.Arguments>
                           <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
                           <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
+                          <OutArgument x:TypeArguments="x:String" x:Key="out_AIUploadResult">[out_AIUploadResult]</OutArgument>
                         </ui:InvokeWorkflowFile.Arguments>
                       </ui:InvokeWorkflowFile>
                     </Sequence>
@@ -678,16 +691,16 @@
                   </If.Else>
                 </If>
               </Sequence>
-              <Sequence x:Key="LTG" DisplayName="Body" sap:VirtualizedContainerService.HintSize="484.8,108" sap2010:WorkflowViewState.IdRef="Sequence_14">
+              <Sequence x:Key="LTG" DisplayName="Body" sap:VirtualizedContainerService.HintSize="484.8,644" sap2010:WorkflowViewState.IdRef="Sequence_14">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <If Condition="[in_AIEnhanced = &quot;ON&quot;]" sap:VirtualizedContainerService.HintSize="451.2,48" sap2010:WorkflowViewState.IdRef="If_13">
+                <If Condition="[in_AIEnhanced = &quot;ON&quot;]" sap:VirtualizedContainerService.HintSize="451.2,584" sap2010:WorkflowViewState.IdRef="If_13">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
@@ -702,6 +715,7 @@
                         <ui:InvokeWorkflowFile.Arguments>
                           <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
                           <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
+                          <OutArgument x:TypeArguments="x:String" x:Key="out_AIUploadResult">[out_AIUploadResult]</OutArgument>
                         </ui:InvokeWorkflowFile.Arguments>
                       </ui:InvokeWorkflowFile>
                     </Sequence>
@@ -747,6 +761,7 @@
                         <ui:InvokeWorkflowFile.Arguments>
                           <InArgument x:TypeArguments="x:String" x:Key="contractType">[in_ContractType]</InArgument>
                           <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
+                          <OutArgument x:TypeArguments="x:String" x:Key="out_AIUploadResult">[out_AIUploadResult]</OutArgument>
                         </ui:InvokeWorkflowFile.Arguments>
                       </ui:InvokeWorkflowFile>
                     </Sequence>
