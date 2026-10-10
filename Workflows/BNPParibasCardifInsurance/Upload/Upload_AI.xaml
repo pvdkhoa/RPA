@@ -525,7 +525,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:LogMessage>
-              <ui:InvokeCode ContinueOnError="{x:Null}" Code="Try&#xD;&#xA;    If System.IO.File.Exists(&quot;C:\RPA\AI_Upload_Result.json&quot;) Then&#xD;&#xA;        System.IO.File.Delete(&quot;C:\RPA\AI_Upload_Result.json&quot;)&#xD;&#xA;    End If&#xD;&#xA;Catch ex As Exception&#xD;&#xA;End Try&#xD;&#xA;" DisplayName="Invoke Code - remove json" sap:VirtualizedContainerService.HintSize="416,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_2">
+              <ui:InvokeCode ContinueOnError="{x:Null}" Code="Try&#xA;    If System.IO.File.Exists(&quot;C:\RPA\AI_Upload_Result.json&quot;) Then&#xA;        System.IO.File.Delete(&quot;C:\RPA\AI_Upload_Result.json&quot;)&#xA;    End If&#xA;Catch ex As Exception&#xA;End Try&#xA;" DisplayName="Invoke Code - remove json" sap:VirtualizedContainerService.HintSize="416,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_2">
                 <ui:InvokeCode.Arguments>
                   <scg:Dictionary x:TypeArguments="x:String, Argument" />
                 </ui:InvokeCode.Arguments>
@@ -674,9 +674,9 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </Assign>
-              <ui:InterruptibleWhile CurrentIndex="{x:Null}" Condition="[strStatus.Equals(&quot;running&quot;) AndAlso (DateTime.Now - startTime).TotalMinutes &lt; timeoutMinutes]" DisplayName="While" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
+              <ui:InterruptibleWhile CurrentIndex="{x:Null}" Condition="[strStatus.Equals(&quot;running&quot;) AndAlso (DateTime.Now - startTime).TotalMinutes &lt; timeoutMinutes]" DisplayName="While" sap:VirtualizedContainerService.HintSize="451.2,123.19999999999999" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
                 <ui:InterruptibleWhile.Body>
-                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="449.6,1453.6" sap2010:WorkflowViewState.IdRef="Sequence_21">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -685,7 +685,7 @@
                     </sap:WorkflowViewStateService.ViewState>
                     <Delay Duration="00:01:00" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_25" />
                     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Info" Message="[&quot;AI Running...&quot;]" />
-                    <ui:InvokePowerShell x:TypeArguments="x:String" ContinueOnError="{x:Null}" CommandText="[&quot;curl.exe -s -X GET &quot;&quot;http://10.200.20.14:8080/ai/status?taskId=&quot; + strTaskId + &quot;&quot;&quot;&quot;]" DisplayName="Invoke Power Shell" sap:VirtualizedContainerService.HintSize="416,112" sap2010:WorkflowViewState.IdRef="InvokePowerShell`1_2" IsScript="True" Output="[psOutput]" PowerShellProcess="PowerShellCore">
+                    <ui:InvokePowerShell x:TypeArguments="x:String" ContinueOnError="{x:Null}" CommandText="[&quot;(Invoke-RestMethod -Uri 'http://10.200.20.14:8080/ai/status?taskId=&quot; + strTaskId + &quot;') | ConvertTo-Json -Depth 10 -Compress&quot;]" DisplayName="Invoke Power Shell" sap:VirtualizedContainerService.HintSize="416,112" sap2010:WorkflowViewState.IdRef="InvokePowerShell`1_2" IsScript="True" Output="[psOutput]" PowerShellProcess="PowerShellCore">
                       <ui:InvokePowerShell.Parameters>
                         <scg:Dictionary x:TypeArguments="x:String, InArgument" />
                       </ui:InvokePowerShell.Parameters>

@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="tesst" VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="tesst_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:sd2="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:umae="clr-namespace:UiPath.Mail.Activities.Enums;assembly=UiPath.Mail.Activities" xmlns:umame="clr-namespace:UiPath.MicrosoftOffice365.Activities.Mail.Enums;assembly=UiPath.Mail.Activities" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="tesst" VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="tesst_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:sd2="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:umae="clr-namespace:UiPath.Mail.Activities.Enums;assembly=UiPath.Mail.Activities" xmlns:umame="clr-namespace:UiPath.MicrosoftOffice365.Activities.Mail.Enums;assembly=UiPath.Mail.Activities" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -61,6 +61,11 @@
       <x:String>UiPath.Excel.Activities.Business</x:String>
       <x:String>System.Xml.Serialization</x:String>
       <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>UiPath.Web.Activities.JSON.Models</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>System.Collections.Specialized</x:String>
+      <x:String>UiPath.Web.Activities</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -130,9 +135,12 @@
       <AssemblyReference>REF_RPA.Core</AssemblyReference>
       <AssemblyReference>UiPath.Excel</AssemblyReference>
       <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System.Collections.Specialized</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="tesst" sap:VirtualizedContainerService.HintSize="707.6,892.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="tesst" sap:VirtualizedContainerService.HintSize="705.2,1824" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Default="C:\Users\RPA02\Documents\UiPath\RPA\Python_Script\MeritzFireMarine\" Name="PYTHON_PATH" />
     </Sequence.Variables>
@@ -141,8 +149,16 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence sap:VirtualizedContainerService.HintSize="518.4,869.6" sap2010:WorkflowViewState.IdRef="Sequence_16">
+    <Sequence sap:VirtualizedContainerService.HintSize="518.4,1800.8" sap2010:WorkflowViewState.IdRef="Sequence_16">
       <Sequence.Variables>
+        <Variable x:TypeArguments="njl:JObject" Name="jsonObj" />
+        <Variable x:TypeArguments="x:String" Name="strRawResponse" />
+        <Variable x:TypeArguments="x:String" Name="strTaskId">
+          <Variable.Default>
+            <Literal x:TypeArguments="x:String">b96eb328-5f78-4a12-82ca-2c3667d0a21a</Literal>
+          </Variable.Default>
+        </Variable>
+        <Variable x:TypeArguments="sco:Collection(x:String)" Name="psOutput" />
         <Variable x:TypeArguments="sd2:DataTable" Name="HKF_NEW_LTR_raw_table" />
       </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
@@ -151,6 +167,26 @@
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
+      <ui:InvokePowerShell x:TypeArguments="x:String" ContinueOnError="{x:Null}" CommandText="[&quot;(Invoke-RestMethod -Uri 'http://10.200.20.14:8080/ai/status?taskId=&quot; + strTaskId + &quot;') | ConvertTo-Json -Depth 10 -Compress&quot;]" DisplayName="Invoke Power Shell" sap:VirtualizedContainerService.HintSize="484.8,112" sap2010:WorkflowViewState.IdRef="InvokePowerShell`1_6" IsScript="True" Output="[psOutput]" PowerShellProcess="PowerShellCore">
+        <ui:InvokePowerShell.Parameters>
+          <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+        </ui:InvokePowerShell.Parameters>
+        <ui:InvokePowerShell.PowerShellVariables>
+          <scg:Dictionary x:TypeArguments="x:String, Argument" />
+        </ui:InvokePowerShell.PowerShellVariables>
+      </ui:InvokePowerShell>
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="484.8,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Uipath check AI status...&quot;]" />
+      <Delay Duration="00:00:10" sap:VirtualizedContainerService.HintSize="484.8,122.4" sap2010:WorkflowViewState.IdRef="Delay_7" />
+      <Assign sap:VirtualizedContainerService.HintSize="484.8,174.4" sap2010:WorkflowViewState.IdRef="Assign_1">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[strRawResponse]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[String.Join("", psOutput)]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" Settings="{x:Null}" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="484.8,173.6" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[jsonObj]" JsonString="[strRawResponse]" />
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="484.8,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[strRawResponse]" />
       <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="484.8,56.8" sap2010:WorkflowViewState.IdRef="CommentOut_15">
         <ui:CommentOut.Body>
           <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="449.6,277.6" sap2010:WorkflowViewState.IdRef="Sequence_23">
