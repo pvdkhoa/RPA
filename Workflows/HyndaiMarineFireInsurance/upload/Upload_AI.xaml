@@ -140,7 +140,7 @@
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Upload_AI" sap:VirtualizedContainerService.HintSize="707.6,1777.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Upload_AI" sap:VirtualizedContainerService.HintSize="705.2,2031.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="strJsonBody" />
       <Variable x:TypeArguments="x:String" Name="PROD_URL" />
@@ -301,13 +301,13 @@
         </If.Else>
       </If>
     </Sequence>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome 홈 - OPENGA(7)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="484.8,1697.6" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="b5fbf5cf-128b-4df5-9038-1861fc870a84" Version="V2" WindowResize="Maximize">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome 홈 - OPENGA(7)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="484.8,1951.2" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="b5fbf5cf-128b-4df5-9038-1861fc870a84" Version="V2" WindowResize="Maximize">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="483.2,1504" sap2010:WorkflowViewState.IdRef="Sequence_19">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="483.2,1757.6" sap2010:WorkflowViewState.IdRef="Sequence_19">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -561,7 +561,7 @@
                 </sap:WorkflowViewStateService.ViewState>
               </Delay>
             </Sequence>
-            <Sequence DisplayName="Sequence call AI" sap:VirtualizedContainerService.HintSize="449.6,1339.2" sap2010:WorkflowViewState.IdRef="Sequence_20">
+            <Sequence DisplayName="Sequence call AI" sap:VirtualizedContainerService.HintSize="449.6,1592.8" sap2010:WorkflowViewState.IdRef="Sequence_20">
               <Sequence.Variables>
                 <Variable x:TypeArguments="njl:JObject" Name="jsonObj" />
                 <Variable x:TypeArguments="x:String" Name="strStatus" />
@@ -583,6 +583,11 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:LogMessage>
+              <ui:InvokeCode ContinueOnError="{x:Null}" Code="Try&#xA;    If System.IO.File.Exists(&quot;C:\RPA\AI_Upload_Result.json&quot;) Then&#xA;        System.IO.File.Delete(&quot;C:\RPA\AI_Upload_Result.json&quot;)&#xA;    End If&#xA;Catch ex As Exception&#xA;End Try&#xA;" DisplayName="Invoke Code - remove json" sap:VirtualizedContainerService.HintSize="416,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_2">
+                <ui:InvokeCode.Arguments>
+                  <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                </ui:InvokeCode.Arguments>
+              </ui:InvokeCode>
               <Assign sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="Assign_8">
                 <Assign.To>
                   <OutArgument x:TypeArguments="x:String">[strJsonBody]</OutArgument>
@@ -785,6 +790,17 @@
                   <InArgument x:TypeArguments="x:String">[strRawResponse]</InArgument>
                 </Assign.Value>
               </Assign>
+              <ui:InvokeCode ContinueOnError="{x:Null}" Code="Try&#xA;    If Not String.IsNullOrWhiteSpace(strRawResponse) Then&#xA;        System.IO.File.WriteAllText(&quot;C:\RPA\AI_Upload_Result.json&quot;, strRawResponse)&#xA;    End If&#xA;Catch ex As Exception&#xA;End Try&#xA;" DisplayName="Invoke Code - save json" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+                <ui:InvokeCode.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="strRawResponse">[strRawResponse]</InArgument>
+                </ui:InvokeCode.Arguments>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:InvokeCode>
               <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[&quot;AI finishing ....&quot;]">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
