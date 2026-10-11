@@ -737,7 +737,7 @@
                     </sap:WorkflowViewStateService.ViewState>
                     <Delay Duration="00:01:00" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_13" />
                     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;AI Running...&quot;]" />
-                    <ui:InvokePowerShell x:TypeArguments="x:String" ContinueOnError="{x:Null}" CommandText="[&quot;curl.exe -s -X GET &quot;&quot;http://10.200.20.14:8080/ai/status?taskId=&quot; + strTaskId + &quot;&quot;&quot;&quot;]" DisplayName="Invoke Power Shell" sap:VirtualizedContainerService.HintSize="416,112" sap2010:WorkflowViewState.IdRef="InvokePowerShell`1_2" IsScript="True" Output="[psOutput]" PowerShellProcess="PowerShellCore">
+                    <ui:InvokePowerShell x:TypeArguments="x:String" ContinueOnError="{x:Null}" CommandText="[&quot;(Invoke-RestMethod -Uri 'http://10.200.20.14:8080/ai/status?taskId=&quot; + strTaskId + &quot;') | ConvertTo-Json -Depth 10 -Compress&quot;]" DisplayName="Invoke Power Shell" sap:VirtualizedContainerService.HintSize="416,112" sap2010:WorkflowViewState.IdRef="InvokePowerShell`1_2" IsScript="True" Output="[psOutput]" PowerShellProcess="PowerShellCore">
                       <ui:InvokePowerShell.Parameters>
                         <scg:Dictionary x:TypeArguments="x:String, InArgument" />
                       </ui:InvokePowerShell.Parameters>
