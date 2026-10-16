@@ -118,16 +118,8 @@
   <Sequence DisplayName="Download_ExistingContract" sap:VirtualizedContainerService.HintSize="962,2840.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="searchStatus" />
-      <Variable x:TypeArguments="x:Boolean" Name="isDownloadSuccess">
-        <Variable.Default>
-          <Literal x:TypeArguments="x:Boolean" />
-        </Variable.Default>
-      </Variable>
-      <Variable x:TypeArguments="x:Int32" Name="retryDownloadCount">
-        <Variable.Default>
-          <Literal x:TypeArguments="x:Int32" />
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="x:Boolean" Default="False" Name="isDownloadSuccess" />
+      <Variable x:TypeArguments="x:Int32" Default="0" Name="retryDownloadCount" />
       <Variable x:TypeArguments="ui:UiElement" Name="browserInstance" />
       <Variable x:TypeArguments="x:String" Name="END_PERIOD" />
       <Variable x:TypeArguments="x:String" Name="START_PERIOD" />
@@ -228,7 +220,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </Delay>
-            <ui:InterruptibleDoWhile CurrentIndex="{x:Null}" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="484.8,2118.4" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_2">
+            <ui:InterruptibleDoWhile CurrentIndex="{x:Null}" Condition="[(Not isDownloadSuccess) AndAlso retryDownloadCount &lt; 5]" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="484.8,2118.4" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_2">
               <ui:InterruptibleDoWhile.Body>
                 <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="483.2,1988" sap2010:WorkflowViewState.IdRef="Sequence_22">
                   <sap:WorkflowViewStateService.ViewState>
@@ -802,7 +794,7 @@
                   <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Check_Download_File - Invoke Workflow File (Utils\Check_Download_File.xaml)" sap:VirtualizedContainerService.HintSize="449.6,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Utils\Check_Download_File.xaml">
                     <ui:InvokeWorkflowFile.Arguments>
                       <OutArgument x:TypeArguments="x:Boolean" x:Key="out_IsSuccess">[isDownloadSuccess]</OutArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_Prefix">LTG_EXT_LIF</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_Prefix">LTG_EXT_LTR</InArgument>
                       <InArgument x:TypeArguments="x:String" x:Key="in_SearchStatus">[searchStatus]</InArgument>
                     </ui:InvokeWorkflowFile.Arguments>
                     <sap:WorkflowViewStateService.ViewState>
@@ -814,9 +806,6 @@
                   </ui:InvokeWorkflowFile>
                 </Sequence>
               </ui:InterruptibleDoWhile.Body>
-              <ui:InterruptibleDoWhile.Condition>
-                <VisualBasicValue x:TypeArguments="x:Boolean" DisplayName="Visual basic value" ExpressionText="(Not isDownloadSuccess) AndAlso retryDownloadCount &lt; 5" />
-              </ui:InterruptibleDoWhile.Condition>
             </ui:InterruptibleDoWhile>
             <If Condition="[Not isDownloadSuccess]" sap:VirtualizedContainerService.HintSize="484.8,48" sap2010:WorkflowViewState.IdRef="If_2">
               <sap:WorkflowViewStateService.ViewState>
