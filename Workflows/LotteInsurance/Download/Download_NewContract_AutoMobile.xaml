@@ -116,19 +116,10 @@
       <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Download_NewContract_AutoMobile" sap:VirtualizedContainerService.HintSize="705.2,2307.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Download_NewContract_AutoMobile" sap:VirtualizedContainerService.HintSize="962,3381.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="searchStatus" />
-      <Variable x:TypeArguments="x:Boolean" Name="isDownloadSuccess">
-        <Variable.Default>
-          <Literal x:TypeArguments="x:Boolean" />
-        </Variable.Default>
-      </Variable>
-      <Variable x:TypeArguments="x:Int32" Name="retryDownloadCount">
-        <Variable.Default>
-          <Literal x:TypeArguments="x:Int32" />
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="x:Boolean" Default="False" Name="isDownloadSuccess" />
       <Variable x:TypeArguments="s:DateTime" Name="dt_timeout" />
       <Variable x:TypeArguments="ui:UiElement" Name="browserInstance" />
       <Variable x:TypeArguments="x:String" Name="END_PERIOD" />
@@ -136,6 +127,7 @@
       <Variable x:TypeArguments="x:String" Default="False" Name="IS_MANUAL" />
       <Variable x:TypeArguments="x:String" Name="newFilePath" />
       <Variable x:TypeArguments="x:String" Name="latestFilePath" />
+      <Variable x:TypeArguments="x:Int32" Default="0" Name="retryDownloadCount" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -175,7 +167,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:GetRobotAsset>
-    <Sequence DisplayName="Download_NewContract_General" sap:VirtualizedContainerService.HintSize="520,2113.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence DisplayName="Download_NewContract_General" sap:VirtualizedContainerService.HintSize="520,3188" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="search_Text" />
       </Sequence.Variables>
@@ -185,13 +177,13 @@
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Edge NGS - 영업지원 시스템(1)(2)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="486.4,2030.4" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="Simulate" OutUiElement="[browserInstance]" ScopeGuid="c6188149-66ec-4687-993f-31fb3e11ec14" Version="V2">
+      <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Edge NGS - 영업지원 시스템(1)(2)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="486.4,3104.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="Simulate" OutUiElement="[browserInstance]" ScopeGuid="c6188149-66ec-4687-993f-31fb3e11ec14" Version="V2">
         <uix:NApplicationCard.Body>
           <ActivityAction x:TypeArguments="x:Object">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="484.8,1836.8" sap2010:WorkflowViewState.IdRef="Sequence_5">
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="484.8,2911.2" sap2010:WorkflowViewState.IdRef="Sequence_5">
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:String" Name="str_Script" />
                 <Variable x:TypeArguments="x:String" Name="str_URL" />
@@ -203,18 +195,65 @@
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Sequence sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="Sequence_35">
+              <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_33" />
+              <Sequence DisplayName="Sequence navigate to menu" sap:VirtualizedContainerService.HintSize="451.2,447.2" sap2010:WorkflowViewState.IdRef="Sequence_38">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <uix:NCheck Action="Check" DisplayName="Check/Uncheck 'car'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NCheck_1" ScopeIdentifier="c6188149-66ec-4687-993f-31fb3e11ec14" Version="V5">
+                <uix:NClick ActivateBefore="True" ClickType="[UiPath.UIAutomationNext.Enums.NClickType.Single]" DisplayName="Click '영업관리'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NClick_24" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="c6188149-66ec-4687-993f-31fb3e11ec14" Version="V5">
+                  <uix:NClick.Target>
+                    <uix:TargetAnchorable BrowserURL="lottero.lotteins.co.kr/ncrmwebroot/webfw/html/nawmain.html" ContentHash="e_FBtGkaZ0-3i1gsOMuT-Q" DesignTimeRectangle="1144, 135, 85, 40" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='SAM' tag='A' /&gt;" Guid="39855587-abe3-4c93-b20b-41000995ac7f" InformativeScreenshot="f8193584877144e7de32df1016a3428f.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/uoT5ircgxEOGaoKGPN9UVg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='NGS - 영업지원 시스템' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                  </uix:NClick.Target>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </uix:NClick>
+                <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_31">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Delay>
+                <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '실적 건별 조회'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,193.6" sap2010:WorkflowViewState.IdRef="NClick_25" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="c6188149-66ec-4687-993f-31fb3e11ec14" Version="V5">
+                  <uix:NClick.Target>
+                    <uix:TargetAnchorable BrowserURL="lottero.lotteins.co.kr/ncrmwebroot/webfw/html/nawmain.html" ContentHash="6bppz63ER0OPfo_HlJTGEQ" DesignTimeRectangle="792, 354, 94, 18" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='SAMF510' parentid='sub-menu' tag='A' /&gt;" Guid="bc3dc5a3-4135-4442-aa14-9d4d7065657a" InformativeScreenshot="3874a8377f59a968a7fbc7661ded82c5.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/0CVS9q2Ru0iRIbw3gmh6WQ" ScopeSelectorArgument="&lt;html app='msedge.exe' title='NGS - 영업지원 시스템' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                  </uix:NClick.Target>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </uix:NClick>
+                <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="Delay_32">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Delay>
+              </Sequence>
+              <Sequence sap:VirtualizedContainerService.HintSize="451.2,561.6" sap2010:WorkflowViewState.IdRef="Sequence_35">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <uix:NCheck Action="Check" DisplayName="Check/Uncheck 'car'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,194.4" sap2010:WorkflowViewState.IdRef="NCheck_1" ScopeIdentifier="c6188149-66ec-4687-993f-31fb3e11ec14" Version="V5">
                   <uix:NCheck.Target>
                     <uix:TargetAnchorable BrowserURL="lottero.lotteins.co.kr/ncrmwebroot/webfw/html/nawmain.html" DesignTimeRectangle="365, 247, 16, 17" ElementType="RadioButton" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='inqItmFlgcd_4' type='radio' class='' tag='INPUT' aaname='자동차' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="b82e7fe7-2166-4738-80f0-0de158f49374" InformativeScreenshot="efa850d92a7c61a99c12a701c8935cff.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='NGS - 영업지원 시스템' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Interactive">
                       <uix:TargetAnchorable.Anchors>
-                        <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                        <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
                           <uix:Target DesignTimeRectangle="386, 250, 44, 19" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='자동차' type='' class='' tag='LABEL' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='자동차' /&gt;" Guid="169122c7-cd89-4b1f-aa44-5ec5c2f7a9e6" SearchSteps="FuzzySelector" />
                         </scg:List>
                       </uix:TargetAnchorable.Anchors>
@@ -222,7 +261,7 @@
                   </uix:NCheck.Target>
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
@@ -340,7 +379,7 @@
                   </If.Else>
                 </If>
               </Sequence>
-              <ui:InterruptibleDoWhile CurrentIndex="{x:Null}" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="451.2,1048" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_2">
+              <ui:InterruptibleDoWhile CurrentIndex="{x:Null}" Condition="[(Not isDownloadSuccess) AndAlso retryDownloadCount &lt; 5]" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="451.2,1048" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_2">
                 <ui:InterruptibleDoWhile.Body>
                   <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="449.6,917.6" sap2010:WorkflowViewState.IdRef="Sequence_34">
                     <sap:WorkflowViewStateService.ViewState>
@@ -853,9 +892,6 @@
                     </ui:InvokeWorkflowFile>
                   </Sequence>
                 </ui:InterruptibleDoWhile.Body>
-                <ui:InterruptibleDoWhile.Condition>
-                  <VisualBasicValue x:TypeArguments="x:Boolean" DisplayName="Visual basic value" ExpressionText="(Not isDownloadSuccess) AndAlso retryDownloadCount &lt; 5" />
-                </ui:InterruptibleDoWhile.Condition>
               </ui:InterruptibleDoWhile>
               <If Condition="[Not isDownloadSuccess]" sap:VirtualizedContainerService.HintSize="451.2,672" sap2010:WorkflowViewState.IdRef="If_4">
                 <If.Then>

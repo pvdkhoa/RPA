@@ -114,8 +114,19 @@
       <AssemblyReference>REF_RPA.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Download_ExistingContract" sap:VirtualizedContainerService.HintSize="705.2,5372.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Download_ExistingContract" sap:VirtualizedContainerService.HintSize="962,2497.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="searchStatus" />
+      <Variable x:TypeArguments="x:Boolean" Name="isDownloadSuccess">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:Boolean" />
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="x:Int32" Name="retryDownloadCount">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:Int32" />
+        </Variable.Default>
+      </Variable>
       <Variable x:TypeArguments="x:String" Name="START_PERIOD" />
       <Variable x:TypeArguments="x:String" Name="END_PERIOD" />
       <Variable x:TypeArguments="x:String" Name="IS_MANUAL" />
@@ -131,7 +142,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="START_DATE_DOWNLOAD" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="521.6,56.8" sap2010:WorkflowViewState.IdRef="GetRobotAsset_3">
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="START_DATE_DOWNLOAD" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="GetRobotAsset_3">
       <ui:GetRobotAsset.Value>
         <OutArgument x:TypeArguments="x:String">[START_PERIOD]</OutArgument>
       </ui:GetRobotAsset.Value>
@@ -142,7 +153,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:GetRobotAsset>
-    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="END_DATE_DOWNLOAD" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="521.6,56.8" sap2010:WorkflowViewState.IdRef="GetRobotAsset_4">
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="END_DATE_DOWNLOAD" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="GetRobotAsset_4">
       <ui:GetRobotAsset.Value>
         <OutArgument x:TypeArguments="x:String">[END_PERIOD]</OutArgument>
       </ui:GetRobotAsset.Value>
@@ -153,7 +164,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:GetRobotAsset>
-    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="TOGGLE_MANUAL_DOWNLOAD" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="521.6,56.8" sap2010:WorkflowViewState.IdRef="GetRobotAsset_5">
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="TOGGLE_MANUAL_DOWNLOAD" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="GetRobotAsset_5">
       <ui:GetRobotAsset.Value>
         <OutArgument x:TypeArguments="x:String">[IS_MANUAL]</OutArgument>
       </ui:GetRobotAsset.Value>
@@ -164,13 +175,13 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:GetRobotAsset>
-    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" DisplayName="Edge KB라이프(2)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="521.6,5179.2" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" InUiElement="[browserInstance]" InteractionMode="DebuggerApi" OutUiElement="[browserInstance]" ScopeGuid="ae474a51-aae4-4bad-ad4c-4d5a8e7a6c93" Version="V2" WindowResize="Maximize">
+    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" DisplayName="Edge KB라이프(2)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="486.4,2304" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" InUiElement="[browserInstance]" InteractionMode="DebuggerApi" OutUiElement="[browserInstance]" ScopeGuid="ae474a51-aae4-4bad-ad4c-4d5a8e7a6c93" Version="V2" WindowResize="Maximize">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="520,5057.6" sap2010:WorkflowViewState.IdRef="Sequence_40">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="484.8,2182.4" sap2010:WorkflowViewState.IdRef="Sequence_40">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Name="otp6" />
               <Variable x:TypeArguments="x:String" Name="otp5" />
@@ -185,19 +196,7 @@
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Delay Duration="00:00:10" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_33" />
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '계약관리'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_25" InteractionMode="WindowMessages" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="ae474a51-aae4-4bad-ad4c-4d5a8e7a6c93" Version="V5">
-              <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="sfa.kblife.co.kr/scr/m/main" CVScreenId="bc98541f-f773-465a-90d3-da7fe1a42627" ContentHash="qgh19QxaMEOjxb8Q8r8oNw" CvTextArea="1165, 177, 61, 21" CvTextArgument="ןןQ122[" CvType="Text" DesignTimeRectangle="1166, 177, 62, 26" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl parentid='SFA_PC_3040-2' tag='A' /&gt;" Guid="ba241474-4b41-4b08-a71f-0679deeba2ba" InformativeScreenshot="6542a783948b2f5278550a3e8eeb45d3.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/HSlg2CQST0We0Qv1lugyUQ" ScopeSelectorArgument="&lt;html app='msedge.exe' title='KB라이프생명 가입설계시스템 LiPS' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
-              </uix:NClick.Target>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </uix:NClick>
-            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="Delay_21">
+            <Delay Duration="00:00:10" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="Delay_33">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -205,7 +204,26 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </Delay>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '수금관리'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NClick_26" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="ae474a51-aae4-4bad-ad4c-4d5a8e7a6c93" Version="V5">
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '계약관리'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NClick_25" InteractionMode="WindowMessages" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="ae474a51-aae4-4bad-ad4c-4d5a8e7a6c93" Version="V5">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="sfa.kblife.co.kr/scr/m/main" CVScreenId="bc98541f-f773-465a-90d3-da7fe1a42627" ContentHash="qgh19QxaMEOjxb8Q8r8oNw" CvTextArea="1165, 177, 61, 21" CvTextArgument="ןןQ122[" CvType="Text" DesignTimeRectangle="1166, 177, 62, 26" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl parentid='SFA_PC_3040-2' tag='A' /&gt;" Guid="ba241474-4b41-4b08-a71f-0679deeba2ba" InformativeScreenshot="6542a783948b2f5278550a3e8eeb45d3.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/HSlg2CQST0We0Qv1lugyUQ" ScopeSelectorArgument="&lt;html app='msedge.exe' title='KB라이프생명 가입설계시스템 LiPS' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
+              </uix:NClick.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </uix:NClick>
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="Delay_21">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </Delay>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '수금관리'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NClick_26" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="ae474a51-aae4-4bad-ad4c-4d5a8e7a6c93" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="sfa.kblife.co.kr/scr/m/main" CVScreenId="f8bed83e-bdea-441d-83d1-dd6023f1851b" ContentHash="mHQOF_wIJ0uc9E_d1l_OkQ" CvTextArea="1347, 340, 75, 23" CvTextArgument="+822" CvType="Text" DesignTimeRectangle="1322, 318, 352, 70" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl parentid='SFA_PC_304060-3' tag='A' /&gt;" Guid="19552ce1-20af-4ccb-bfae-03385029c567" InformativeScreenshot="69634cd238ee0f54d6a8fdd512c20df2.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/u3ouopr5b0Sjop9F3rxZ6w" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='ch_index_ok' title='KB라이프생명 가입설계시스템 LiPS' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
@@ -216,7 +234,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </uix:NClick>
-            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="Delay_22">
+            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="Delay_22">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -224,7 +242,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </Delay>
-            <uix:NCheck Action="[UiPath.UIAutomationNext.Enums.NCheckType.Uncheck]" DisplayName="Check/Uncheck 'Checkbox'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NCheck_2" ScopeIdentifier="ae474a51-aae4-4bad-ad4c-4d5a8e7a6c93" Version="V5">
+            <uix:NCheck Action="[UiPath.UIAutomationNext.Enums.NCheckType.Uncheck]" DisplayName="Check/Uncheck 'Checkbox'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NCheck_2" ScopeIdentifier="ae474a51-aae4-4bad-ad4c-4d5a8e7a6c93" Version="V5">
               <uix:NCheck.Target>
                 <uix:TargetAnchorable BrowserURL="sfa.kblife.co.kr/scr/m/main" CVScreenId="3a0c1991-734e-4b99-9716-125679feb18f" ContentHash="QnBFclN2Akm0S9hyOY145g" CvElementArea="691, 593, 30, 29" CvTextArea="726, 594, 65, 21" CvTextArgument="SPe*t" CvType="CheckBox" DesignTimeRectangle="694, 594, 96, 26" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='tab-screen-SFA_PC_30406000' tag='IFRAME' /&gt;&lt;webctrl aaname='확정회차' parentid='content' tag='LABEL' /&gt;" Guid="9ec47fdf-7288-4e98-b7ad-f44180448b41" InformativeScreenshot="622c293c851faf3d1ee59e4864d5fb04.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/r2IfxCNg902WmpvYqMEoRQ" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='ch_index_ok' title='KB라이프생명 가입설계시스템 LiPS' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NCheck.Target>
@@ -235,7 +253,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </uix:NCheck>
-            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '계약년월'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_15" InteractionMode="SameAsCard" ScopeIdentifier="ae474a51-aae4-4bad-ad4c-4d5a8e7a6c93" Text="2000-01" Version="V5">
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '계약년월'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_15" InteractionMode="SameAsCard" ScopeIdentifier="ae474a51-aae4-4bad-ad4c-4d5a8e7a6c93" Text="2000-01" Version="V5">
               <uix:NTypeInto.Target>
                 <uix:TargetAnchorable BrowserURL="sfa.kblife.co.kr/scr/m/main" CVScreenId="bad7b368-9afc-4100-962a-ee11e7b920ce" ContentHash="BGEFBl5JGESwpMgs-jXNIA" CvElementArea="423, 443, 137, 42" CvType="InputBox" DesignTimeRectangle="425, 445, 135, 40" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='tab-screen-SFA_PC_30406000' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl id='txtSDate' tag='INPUT' type='text' class='ipt month uiAct month-year-input' placeholder='YYYY-MM' aaname='날짜 입력' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="4812bd18-6f76-4dbb-8f45-2318586c8b78" InformativeScreenshot="97959c328528f0aa4d92e1b4211fb087.jpg" IsResponsive="True" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/F4JVAPqRIkWE1eO2X00bnA" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='ch_index_ok' title='KB라이프생명 가입설계시스템 LiPS' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
                   <uix:TargetAnchorable.Anchors>
@@ -262,7 +280,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </uix:NTypeInto>
-            <If Condition="[IS_MANUAL = &quot;ON&quot;]" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="If_6">
+            <If Condition="[IS_MANUAL = &quot;ON&quot;]" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="If_6">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -315,106 +333,32 @@
                 </Sequence>
               </If.Else>
             </If>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '조회'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_27" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="ae474a51-aae4-4bad-ad4c-4d5a8e7a6c93" Version="V5">
-              <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="sfa.kblife.co.kr/scr/m/main" CVScreenId="4c8e5a5c-1318-421b-9de0-c58057170422" ContentHash="sUAtyO4OgEiYQYFUFvzZeg" CvElementArea="1558, 585, 84, 44" CvTextArea="1582, 596, 32, 18" CvTextArgument="25" CvType="Button" DesignTimeRectangle="1560, 587, 80, 40" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='tab-screen-SFA_PC_30406000' tag='IFRAME' /&gt;&lt;webctrl id='searchBtn' tag='BUTTON' /&gt;" Guid="029f8d89-ddc0-400c-9a42-329da3e36c94" InformativeScreenshot="da0fda92c872aea5c14b0150e4e2f487.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/k09jJoQt_0q_fmlFSYTQsQ" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='ch_index_ok' title='KB라이프생명 가입설계시스템 LiPS' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
-                  <uix:TargetAnchorable.Anchors>
-                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                      <uix:Target DesignTimeRectangle="1475, 587, 80, 40" ElementType="Button" FuzzySelectorArgument="&lt;webctrl id='tab-screen-SFA_PC_30406000' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl id='resetBtn' tag='BUTTON' type='button' class='btn_s m' aaname='초기화' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='초기화' /&gt;" Guid="14f80942-42e4-48aa-ab10-d1f6e3184cd7" SearchSteps="FuzzySelector" />
-                    </scg:List>
-                  </uix:TargetAnchorable.Anchors>
-                </uix:TargetAnchorable>
-              </uix:NClick.Target>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </uix:NClick>
-            <Delay Duration="00:00:50" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_37" />
-            <ui:SetAsset TimeoutMS="{x:Null}" AssetName="SEARCH_STATUS" DisplayName="Set Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="SetAsset_3" Value="[&quot;N&quot;]">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </ui:SetAsset>
-            <ui:SetAsset TimeoutMS="{x:Null}" AssetName="DOWNLOAD_STATUS" DisplayName="Set Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="SetAsset_4" Value="[&quot;S&quot;]">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </ui:SetAsset>
-            <Delay Duration="00:00:40" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_35" />
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '엑셀다운로드'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NClick_28" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="ae474a51-aae4-4bad-ad4c-4d5a8e7a6c93" Version="V5">
-              <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="sfa.kblife.co.kr/scr/m/main" CVScreenId="cc4cef8d-607f-440f-a8af-225c5fec2b62" ContentHash="7pyJyNOgeEG89S3g9fRJ0g" CvElementArea="1403, 645, 115, 39" CvTextArea="1419, 655, 82, 17" CvTextArgument="9#c225" CvType="Button" DesignTimeRectangle="1406, 646, 111, 35" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='tab-screen-SFA_PC_30406000' tag='IFRAME' /&gt;&lt;webctrl id='excelBtn' tag='BUTTON' /&gt;" Guid="352f8198-12b6-48df-87db-982bf8f0cab8" InformativeScreenshot="c77f6d36b7142561fcd63e79e948a183.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/GvmhK9Z7q0yxBgbXc4-OlA" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='ch_index_ok' title='KB라이프생명 가입설계시스템 LiPS' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
-              </uix:NClick.Target>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </uix:NClick>
-            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_24">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </Delay>
-            <uix:NCheckState DisplayName="Check App State '0200자 취소 확인'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="486.4,712.8" sap2010:WorkflowViewState.IdRef="NCheckState_26" ScopeIdentifier="ae474a51-aae4-4bad-ad4c-4d5a8e7a6c93" Version="V5">
-              <uix:NCheckState.IfExists>
-                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,278.4" sap2010:WorkflowViewState.IdRef="Sequence_57">
+            <ui:InterruptibleDoWhile CurrentIndex="{x:Null}" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="451.2,1620" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1">
+              <ui:InterruptibleDoWhile.Body>
+                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="449.6,1489.6" sap2010:WorkflowViewState.IdRef="Sequence_83">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:SetAsset TimeoutMS="{x:Null}" AssetName="SEARCH_STATUS" DisplayName="Set Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="SetAsset_1" Value="[&quot;Y&quot;]">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                  </ui:SetAsset>
-                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'TEXTAREA reqReason'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_16" InteractionMode="SameAsCard" ScopeIdentifier="ae474a51-aae4-4bad-ad4c-4d5a8e7a6c93" Text="보유계약확인" Version="V5">
-                    <uix:NTypeInto.Target>
-                      <uix:TargetAnchorable BrowserURL="sfa.kblife.co.kr/scr/m/main" CVScreenId="05860e4a-7064-4fdd-9ad7-b7396cf18ab8" ContentHash="i3Nxug6Y-k2Yk53-CEKL2Q" CvElementArea="773, 602, 390, 154" CvType="InputBox" DesignTimeRectangle="750, 611, 429, 165" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='tab-screen-SFA_PC_30406000' tag='IFRAME' /&gt;&lt;webctrl tag='IFRAME' /&gt;&lt;webctrl id='reqReason' tag='TEXTAREA' /&gt;" Guid="94a7a0e7-88b5-4d67-b14a-4e4e7752dfaa" InformativeScreenshot="ccf99d1ad18c2450f84e2274d98cffec.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/5rq4Sgj6XUKl7ZRfSbmwCQ" ScopeSelectorArgument="&lt;html app='msedge.exe' title='KB라이프생명 가입설계시스템 LiPS' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                  <Assign sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="Assign_16">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Int32">[retryDownloadCount]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Int32">[retryDownloadCount + 1]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_38" />
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '조회'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NClick_27" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="ae474a51-aae4-4bad-ad4c-4d5a8e7a6c93" Version="V5">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable BrowserURL="sfa.kblife.co.kr/scr/m/main" CVScreenId="4c8e5a5c-1318-421b-9de0-c58057170422" ContentHash="sUAtyO4OgEiYQYFUFvzZeg" CvElementArea="1558, 585, 84, 44" CvTextArea="1582, 596, 32, 18" CvTextArgument="25" CvType="Button" DesignTimeRectangle="1560, 587, 80, 40" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='tab-screen-SFA_PC_30406000' tag='IFRAME' /&gt;&lt;webctrl id='searchBtn' tag='BUTTON' /&gt;" Guid="029f8d89-ddc0-400c-9a42-329da3e36c94" InformativeScreenshot="da0fda92c872aea5c14b0150e4e2f487.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/k09jJoQt_0q_fmlFSYTQsQ" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='ch_index_ok' title='KB라이프생명 가입설계시스템 LiPS' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
                         <uix:TargetAnchorable.Anchors>
                           <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                            <uix:Target CVScreenId="05860e4a-7064-4fdd-9ad7-b7396cf18ab8" CvTextArea="1061, 818, 35, 21" CvTextArgument="2F9I" CvType="Text" DesignTimeRectangle="964, 834, 248, 55" ElementType="Button" FuzzySelectorArgument="&lt;webctrl id='tab-screen-SFA_PC_30406000' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl tag='IFRAME' /&gt;&lt;webctrl id='btnSave' tag='BUTTON' type='button' class='btn_p' aaname='확인' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='확인' /&gt;" Guid="2bafa118-8c14-415d-9386-847aee0c3d06" SearchSteps="FuzzySelector, CV" />
+                            <uix:Target DesignTimeRectangle="1475, 587, 80, 40" ElementType="Button" FuzzySelectorArgument="&lt;webctrl id='tab-screen-SFA_PC_30406000' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl id='resetBtn' tag='BUTTON' type='button' class='btn_s m' aaname='초기화' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='초기화' /&gt;" Guid="14f80942-42e4-48aa-ab10-d1f6e3184cd7" SearchSteps="FuzzySelector" />
                           </scg:List>
                         </uix:TargetAnchorable.Anchors>
                       </uix:TargetAnchorable>
-                    </uix:NTypeInto.Target>
-                    <uix:NTypeInto.VerifyOptions>
-                      <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
-                        <uix:VerifyExecutionTypeIntoOptions.Retry>
-                          <InArgument x:TypeArguments="x:Boolean" />
-                        </uix:VerifyExecutionTypeIntoOptions.Retry>
-                        <uix:VerifyExecutionTypeIntoOptions.Timeout>
-                          <InArgument x:TypeArguments="x:Double" />
-                        </uix:VerifyExecutionTypeIntoOptions.Timeout>
-                      </uix:VerifyExecutionTypeIntoOptions>
-                    </uix:NTypeInto.VerifyOptions>
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                  </uix:NTypeInto>
-                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NClick_35" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="ae474a51-aae4-4bad-ad4c-4d5a8e7a6c93" Version="V5">
-                    <uix:NClick.Target>
-                      <uix:TargetAnchorable BrowserURL="sfa.kblife.co.kr/scr/m/main" CVScreenId="4e882e34-567c-4d54-b861-6a99260aed92" ContentHash="LCDm1VKIu0WFis7E8XQbSA" CvTextArea="1059, 796, 35, 21" CvTextArgument="2P91" CvType="Text" DesignTimeRectangle="964, 834, 248, 55" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='tab-screen-SFA_PC_30406000' tag='IFRAME' /&gt;&lt;webctrl tag='IFRAME' /&gt;&lt;webctrl id='btnSave' tag='BUTTON' /&gt;" Guid="d3bc0359-c87b-4d4e-8774-cd44d0886eb4" InformativeScreenshot="80c708dbdffe127fd7ba22b0636285b6.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/yytH12QOkUCmKP5v6Qg2cg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='ch_index_ok' title='KB라이프생명 가입설계시스템 LiPS' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
                     </uix:NClick.Target>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -423,7 +367,7 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </uix:NClick>
-                  <Delay Duration="00:00:30" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="Delay_26">
+                  <Delay Duration="00:00:50" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_37">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -431,163 +375,372 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </Delay>
-                </Sequence>
-              </uix:NCheckState.IfExists>
-              <uix:NCheckState.IfNotExists>
-                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_58">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                </Sequence>
-              </uix:NCheckState.IfNotExists>
-              <uix:NCheckState.Target>
-                <uix:TargetAnchorable BrowserURL="sfa.kblife.co.kr/scr/m/main" DesignTimeRectangle="964, 834, 248, 55" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='tab-screen-SFA_PC_30406000' tag='IFRAME' /&gt;&lt;webctrl tag='IFRAME' /&gt;&lt;webctrl id='btnSave' tag='BUTTON' /&gt;" Guid="b2e1a551-343b-4df4-8da2-dfe01cf03dc2" InformativeScreenshot="1de5484ef96c6f66fba441460a3cb945.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='KB라이프생명 가입설계시스템 LiPS' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-              </uix:NCheckState.Target>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </uix:NCheckState>
-            <Delay Duration="00:00:50" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_32">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </Delay>
-            <uix:NCheckState DisplayName="Check App State 'edgedownloads-hub'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="486.4,1822.4" sap2010:WorkflowViewState.IdRef="NCheckState_40" ScopeIdentifier="ae474a51-aae4-4bad-ad4c-4d5a8e7a6c93" Version="V5">
-              <uix:NCheckState.IfExists>
-                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="484.8,1388" sap2010:WorkflowViewState.IdRef="Sequence_81">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_36" />
-                  <Assign sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="Assign_14">
-                    <Assign.To>
-                      <OutArgument x:TypeArguments="x:String">[latestFilePath]</OutArgument>
-                    </Assign.To>
-                    <Assign.Value>
-                      <InArgument x:TypeArguments="x:String">[Directory.GetFiles("C:\RPA\TempDownload", "*.xlsx").OrderByDescending(Function(f) New FileInfo(f).LastWriteTime).FirstOrDefault()]</InArgument>
-                    </Assign.Value>
+                  <ui:SetAsset TimeoutMS="{x:Null}" AssetName="SEARCH_STATUS" DisplayName="Set Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="SetAsset_3" Value="[&quot;N&quot;]">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                  </Assign>
-                  <If Condition="[String.IsNullOrEmpty(latestFilePath)]" sap:VirtualizedContainerService.HintSize="451.2,1148.8" sap2010:WorkflowViewState.IdRef="If_5">
+                  </ui:SetAsset>
+                  <ui:SetAsset TimeoutMS="{x:Null}" AssetName="DOWNLOAD_STATUS" DisplayName="Set Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="SetAsset_4" Value="[&quot;S&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:SetAsset>
+                  <Delay Duration="00:00:40" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_35">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Delay>
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '엑셀다운로드'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NClick_28" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="ae474a51-aae4-4bad-ad4c-4d5a8e7a6c93" Version="V5">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable BrowserURL="sfa.kblife.co.kr/scr/m/main" CVScreenId="cc4cef8d-607f-440f-a8af-225c5fec2b62" ContentHash="7pyJyNOgeEG89S3g9fRJ0g" CvElementArea="1403, 645, 115, 39" CvTextArea="1419, 655, 82, 17" CvTextArgument="9#c225" CvType="Button" DesignTimeRectangle="1406, 646, 111, 35" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='tab-screen-SFA_PC_30406000' tag='IFRAME' /&gt;&lt;webctrl id='excelBtn' tag='BUTTON' /&gt;" Guid="352f8198-12b6-48df-87db-982bf8f0cab8" InformativeScreenshot="c77f6d36b7142561fcd63e79e948a183.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/GvmhK9Z7q0yxBgbXc4-OlA" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='ch_index_ok' title='KB라이프생명 가입설계시스템 LiPS' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
+                    </uix:NClick.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uix:NClick>
+                  <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_24">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Delay>
+                  <uix:NCheckState DisplayName="Check App State '0200자 취소 확인'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_26" ScopeIdentifier="ae474a51-aae4-4bad-ad4c-4d5a8e7a6c93" Version="V5">
+                    <uix:NCheckState.IfExists>
+                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,278.4" sap2010:WorkflowViewState.IdRef="Sequence_57">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:SetAsset TimeoutMS="{x:Null}" AssetName="SEARCH_STATUS" DisplayName="Set Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="SetAsset_1" Value="[&quot;Y&quot;]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:SetAsset>
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'TEXTAREA reqReason'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_16" InteractionMode="SameAsCard" ScopeIdentifier="ae474a51-aae4-4bad-ad4c-4d5a8e7a6c93" Text="보유계약확인" Version="V5">
+                          <uix:NTypeInto.Target>
+                            <uix:TargetAnchorable BrowserURL="sfa.kblife.co.kr/scr/m/main" CVScreenId="05860e4a-7064-4fdd-9ad7-b7396cf18ab8" ContentHash="i3Nxug6Y-k2Yk53-CEKL2Q" CvElementArea="773, 602, 390, 154" CvType="InputBox" DesignTimeRectangle="750, 611, 429, 165" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='tab-screen-SFA_PC_30406000' tag='IFRAME' /&gt;&lt;webctrl tag='IFRAME' /&gt;&lt;webctrl id='reqReason' tag='TEXTAREA' /&gt;" Guid="94a7a0e7-88b5-4d67-b14a-4e4e7752dfaa" InformativeScreenshot="ccf99d1ad18c2450f84e2274d98cffec.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/5rq4Sgj6XUKl7ZRfSbmwCQ" ScopeSelectorArgument="&lt;html app='msedge.exe' title='KB라이프생명 가입설계시스템 LiPS' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target CVScreenId="05860e4a-7064-4fdd-9ad7-b7396cf18ab8" CvTextArea="1061, 818, 35, 21" CvTextArgument="2F9I" CvType="Text" DesignTimeRectangle="964, 834, 248, 55" ElementType="Button" FuzzySelectorArgument="&lt;webctrl id='tab-screen-SFA_PC_30406000' tag='IFRAME' matching:id='fuzzy' fuzzylevel:id='0.0' /&gt;&lt;webctrl tag='IFRAME' /&gt;&lt;webctrl id='btnSave' tag='BUTTON' type='button' class='btn_p' aaname='확인' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='확인' /&gt;" Guid="2bafa118-8c14-415d-9386-847aee0c3d06" SearchSteps="FuzzySelector, CV" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NTypeInto.Target>
+                          <uix:NTypeInto.VerifyOptions>
+                            <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                              <uix:VerifyExecutionTypeIntoOptions.Retry>
+                                <InArgument x:TypeArguments="x:Boolean" />
+                              </uix:VerifyExecutionTypeIntoOptions.Retry>
+                              <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                                <InArgument x:TypeArguments="x:Double" />
+                              </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                            </uix:VerifyExecutionTypeIntoOptions>
+                          </uix:NTypeInto.VerifyOptions>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </uix:NTypeInto>
+                        <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NClick_35" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="ae474a51-aae4-4bad-ad4c-4d5a8e7a6c93" Version="V5">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable BrowserURL="sfa.kblife.co.kr/scr/m/main" CVScreenId="4e882e34-567c-4d54-b861-6a99260aed92" ContentHash="LCDm1VKIu0WFis7E8XQbSA" CvTextArea="1059, 796, 35, 21" CvTextArgument="2P91" CvType="Text" DesignTimeRectangle="964, 834, 248, 55" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='tab-screen-SFA_PC_30406000' tag='IFRAME' /&gt;&lt;webctrl tag='IFRAME' /&gt;&lt;webctrl id='btnSave' tag='BUTTON' /&gt;" Guid="d3bc0359-c87b-4d4e-8774-cd44d0886eb4" InformativeScreenshot="80c708dbdffe127fd7ba22b0636285b6.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/yytH12QOkUCmKP5v6Qg2cg" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='ch_index_ok' title='KB라이프생명 가입설계시스템 LiPS' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
+                          </uix:NClick.Target>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </uix:NClick>
+                        <Delay Duration="00:00:30" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="Delay_26">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Delay>
+                      </Sequence>
+                    </uix:NCheckState.IfExists>
+                    <uix:NCheckState.IfNotExists>
+                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_58">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </Sequence>
+                    </uix:NCheckState.IfNotExists>
+                    <uix:NCheckState.Target>
+                      <uix:TargetAnchorable BrowserURL="sfa.kblife.co.kr/scr/m/main" DesignTimeRectangle="964, 834, 248, 55" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='tab-screen-SFA_PC_30406000' tag='IFRAME' /&gt;&lt;webctrl tag='IFRAME' /&gt;&lt;webctrl id='btnSave' tag='BUTTON' /&gt;" Guid="b2e1a551-343b-4df4-8da2-dfe01cf03dc2" InformativeScreenshot="1de5484ef96c6f66fba441460a3cb945.jpg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='KB라이프생명 가입설계시스템 LiPS' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                    </uix:NCheckState.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uix:NCheckState>
+                  <Delay Duration="00:00:50" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_32">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Delay>
+                  <uix:NCheckState DisplayName="Check App State 'edgedownloads-hub'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_40" ScopeIdentifier="ae474a51-aae4-4bad-ad4c-4d5a8e7a6c93" Version="V5">
+                    <uix:NCheckState.IfExists>
+                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="484.8,1388" sap2010:WorkflowViewState.IdRef="Sequence_81">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_36" />
+                        <Assign sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="Assign_14">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[latestFilePath]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">[Directory.GetFiles("C:\RPA\TempDownload", "*.xlsx").OrderByDescending(Function(f) New FileInfo(f).LastWriteTime).FirstOrDefault()]</InArgument>
+                          </Assign.Value>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Assign>
+                        <If Condition="[String.IsNullOrEmpty(latestFilePath)]" sap:VirtualizedContainerService.HintSize="451.2,1148.8" sap2010:WorkflowViewState.IdRef="If_5">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <If.Then>
+                            <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,452.8" sap2010:WorkflowViewState.IdRef="Sequence_73">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Not Found FileName&quot;]" />
+                              <ui:SetAsset TimeoutMS="{x:Null}" AssetName="DOWNLOAD_STATUS" DisplayName="Set Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="416,218.4" sap2010:WorkflowViewState.IdRef="SetAsset_5" Value="[&quot;N&quot;]">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:SetAsset>
+                            </Sequence>
+                          </If.Then>
+                          <If.Else>
+                            <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,566.4" sap2010:WorkflowViewState.IdRef="Sequence_74">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <Assign sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="Assign_15">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[newFilePath]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">[Path.Combine("C:\RPA\TempDownload", "KBL_EXT_LIF_" &amp; DateTime.Now.ToString("yyyyMMdd_HHmmss") &amp; "_" &amp; Path.GetFileName(latestFilePath))]</InArgument>
+                                </Assign.Value>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </Assign>
+                              <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[newFilePath]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="MoveFile_4" Path="[latestFilePath]">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:MoveFile>
+                              <ui:SetAsset TimeoutMS="{x:Null}" AssetName="DOWNLOAD_STATUS" DisplayName="Set Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="SetAsset_6" Value="[&quot;E&quot;]">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:SetAsset>
+                              <ui:SetAsset TimeoutMS="{x:Null}" AssetName="DOWNLOAD_STATUS" DisplayName="Set Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="416,218.4" sap2010:WorkflowViewState.IdRef="SetAsset_7" Value="[&quot;Y&quot;]">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:SetAsset>
+                            </Sequence>
+                          </If.Else>
+                        </If>
+                      </Sequence>
+                    </uix:NCheckState.IfExists>
+                    <uix:NCheckState.IfNotExists>
+                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="484.8,89.6" sap2010:WorkflowViewState.IdRef="Sequence_82">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </Sequence>
+                    </uix:NCheckState.IfNotExists>
+                    <uix:NCheckState.Target>
+                      <uix:TargetAnchorable BrowserURL="sfa.kblife.co.kr/scr/m/main" ContentHash="R-bmBEAgjkSgkK-cf7q4pg" DesignTimeRectangle="17, 5, 450, 200" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='Downloads' role='document' /&gt;" Guid="39259295-88a3-4ec2-95d9-56b7e22a463e" InformativeScreenshot="f6d004f8059405f941c695ef89a5fe90.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/pxdu3qcVI0OvIFPLwfb03A" ScopeSelectorArgument="&lt;wnd app='msedge.exe' cls='Chrome_WidgetWin_1' idx='*' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                    </uix:NCheckState.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uix:NCheckState>
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '로그아웃'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NClick_36" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="ae474a51-aae4-4bad-ad4c-4d5a8e7a6c93" Version="V5">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable BrowserURL="sfa.kblife.co.kr/scr/m/main" CVScreenId="d562424e-8c31-45cc-a818-e4ca521b6fe5" ContentHash="jPCTY_TZFEC1iNDNuis3vQ" CvElementArea="1572, 120, 88, 34" CvTextArea="1587, 129, 56, 18" CvTextArgument="27012" CvType="Button" DesignTimeRectangle="1574, 124, 85, 30" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='로그아웃' tag='BUTTON' /&gt;" Guid="56bb9e11-cd94-4c09-851f-e124d5c90868" InformativeScreenshot="7510e155dd341edfe08e325379502f26.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/LJ10f086_k6CrcGRGndnXg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='KB라이프생명 가입설계시스템 LiPS' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
+                    </uix:NClick.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uix:NClick>
+                  <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_30">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Delay>
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NClick_37" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="ae474a51-aae4-4bad-ad4c-4d5a8e7a6c93" Version="V5">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable BrowserURL="sfa.kblife.co.kr/scr/m/main" CVScreenId="4d1dee69-235a-4aa6-bff6-8b26c9e79bd6" ContentHash="Ys5OmDa4LEa-IhZBDTytBg" CvElementArea="967, 622, 226, 52" CvTextArea="1064, 635, 35, 21" CvTextArgument="2191" CvType="Button" DesignTimeRectangle="968, 623, 226, 50" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='                     확인                   ' tag='BUTTON' /&gt;" Guid="e14aa6a2-912b-4ff3-a5d2-c8b125a4a542" InformativeScreenshot="9fb6aa62ba9e878e96584360b3085cfe.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/h8VjRreye0aDUerF6sJATA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='KB라이프생명 가입설계시스템 LiPS' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
+                    </uix:NClick.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uix:NClick>
+                  <Delay Duration="00:00:10" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_31">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Delay>
+                  <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts 'IDPW 로그인 간편인증 공동인증서 반갑…'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_7" InteractionMode="SameAsCard" ScopeIdentifier="ae474a51-aae4-4bad-ad4c-4d5a8e7a6c93" Shortcuts="[d(hk)][d(ctrl)]w[u(ctrl)][u(hk)]" Version="V5">
+                    <uix:NKeyboardShortcuts.Target>
+                      <uix:TargetAnchorable BrowserURL="sfa.kblife.co.kr/scr/m/sfa-login" ContentHash="dAOPiue710GvINFuDDHGfw" DesignTimeRectangle="369, 167, 495, 800" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='login-area' tag='DIV' /&gt;" Guid="87d9f853-8b34-48e6-baaa-3cac61191055" InformativeScreenshot="274164a12b4e455e1efef2f4a20fbcc5.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/7cAY8klClkaW_3RtgD4NdA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='KB라이프' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                    </uix:NKeyboardShortcuts.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uix:NKeyboardShortcuts>
+                  <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="Delay_39">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Delay>
+                  <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="SEARCH_STATUS" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="GetRobotAsset_6">
+                    <ui:GetRobotAsset.Value>
+                      <OutArgument x:TypeArguments="x:String">[searchStatus]</OutArgument>
+                    </ui:GetRobotAsset.Value>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:GetRobotAsset>
+                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Check_Download_File - Invoke Workflow File (Utils\Check_Download_File.xaml)" sap:VirtualizedContainerService.HintSize="416,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Utils\Check_Download_File.xaml">
+                    <ui:InvokeWorkflowFile.Arguments>
+                      <OutArgument x:TypeArguments="x:Boolean" x:Key="out_IsSuccess">[isDownloadSuccess]</OutArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_Prefix">KBL_EXT_LIF</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_SearchStatus">[searchStatus]</InArgument>
+                    </ui:InvokeWorkflowFile.Arguments>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <If.Then>
-                      <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,452.8" sap2010:WorkflowViewState.IdRef="Sequence_73">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Not Found FileName&quot;]" />
-                        <ui:SetAsset TimeoutMS="{x:Null}" AssetName="DOWNLOAD_STATUS" DisplayName="Set Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="416,218.4" sap2010:WorkflowViewState.IdRef="SetAsset_5" Value="[&quot;N&quot;]">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                        </ui:SetAsset>
-                      </Sequence>
-                    </If.Then>
-                    <If.Else>
-                      <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,566.4" sap2010:WorkflowViewState.IdRef="Sequence_74">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <Assign sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="Assign_15">
-                          <Assign.To>
-                            <OutArgument x:TypeArguments="x:String">[newFilePath]</OutArgument>
-                          </Assign.To>
-                          <Assign.Value>
-                            <InArgument x:TypeArguments="x:String">[Path.Combine("C:\RPA\TempDownload", "KBL_EXT_LIF_" &amp; DateTime.Now.ToString("yyyyMMdd_HHmmss") &amp; "_" &amp; Path.GetFileName(latestFilePath))]</InArgument>
-                          </Assign.Value>
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                        </Assign>
-                        <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[newFilePath]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="MoveFile_4" Path="[latestFilePath]">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                        </ui:MoveFile>
-                        <ui:SetAsset TimeoutMS="{x:Null}" AssetName="DOWNLOAD_STATUS" DisplayName="Set Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="SetAsset_6" Value="[&quot;E&quot;]">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                        </ui:SetAsset>
-                        <ui:SetAsset TimeoutMS="{x:Null}" AssetName="DOWNLOAD_STATUS" DisplayName="Set Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="416,218.4" sap2010:WorkflowViewState.IdRef="SetAsset_7" Value="[&quot;Y&quot;]">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                        </ui:SetAsset>
-                      </Sequence>
-                    </If.Else>
-                  </If>
+                  </ui:InvokeWorkflowFile>
                 </Sequence>
-              </uix:NCheckState.IfExists>
-              <uix:NCheckState.IfNotExists>
-                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="484.8,89.6" sap2010:WorkflowViewState.IdRef="Sequence_82">
+              </ui:InterruptibleDoWhile.Body>
+              <ui:InterruptibleDoWhile.Condition>
+                <VisualBasicValue x:TypeArguments="x:Boolean" DisplayName="Visual basic value" ExpressionText="(Not isDownloadSuccess) AndAlso retryDownloadCount &lt; 5" />
+              </ui:InterruptibleDoWhile.Condition>
+            </ui:InterruptibleDoWhile>
+            <If Condition="[Not isDownloadSuccess]" sap:VirtualizedContainerService.HintSize="451.2,48" sap2010:WorkflowViewState.IdRef="If_7">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,452.8" sap2010:WorkflowViewState.IdRef="Sequence_84">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:SetAsset TimeoutMS="{x:Null}" AssetName="DOWNLOAD_STATUS" DisplayName="Set Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="416,227.2" sap2010:WorkflowViewState.IdRef="SetAsset_8" Value="[&quot;N&quot;]" />
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Error" Message="[New Exception(&quot;Download failed after 5 retries. No valid file found in TempDownload.&quot;)]" />
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_85">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                 </Sequence>
-              </uix:NCheckState.IfNotExists>
-              <uix:NCheckState.Target>
-                <uix:TargetAnchorable BrowserURL="sfa.kblife.co.kr/scr/m/main" ContentHash="R-bmBEAgjkSgkK-cf7q4pg" DesignTimeRectangle="17, 5, 450, 200" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='Downloads' role='document' /&gt;" Guid="39259295-88a3-4ec2-95d9-56b7e22a463e" InformativeScreenshot="f6d004f8059405f941c695ef89a5fe90.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/pxdu3qcVI0OvIFPLwfb03A" ScopeSelectorArgument="&lt;wnd app='msedge.exe' cls='Chrome_WidgetWin_1' idx='*' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-              </uix:NCheckState.Target>
-            </uix:NCheckState>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '로그아웃'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_36" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="ae474a51-aae4-4bad-ad4c-4d5a8e7a6c93" Version="V5">
-              <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="sfa.kblife.co.kr/scr/m/main" CVScreenId="d562424e-8c31-45cc-a818-e4ca521b6fe5" ContentHash="jPCTY_TZFEC1iNDNuis3vQ" CvElementArea="1572, 120, 88, 34" CvTextArea="1587, 129, 56, 18" CvTextArgument="27012" CvType="Button" DesignTimeRectangle="1574, 124, 85, 30" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='로그아웃' tag='BUTTON' /&gt;" Guid="56bb9e11-cd94-4c09-851f-e124d5c90868" InformativeScreenshot="7510e155dd341edfe08e325379502f26.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/LJ10f086_k6CrcGRGndnXg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='KB라이프생명 가입설계시스템 LiPS' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
-              </uix:NClick.Target>
-            </uix:NClick>
-            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="484.8,122.4" sap2010:WorkflowViewState.IdRef="Delay_30" />
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '확인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="484.8,193.6" sap2010:WorkflowViewState.IdRef="NClick_37" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="ae474a51-aae4-4bad-ad4c-4d5a8e7a6c93" Version="V5">
-              <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="sfa.kblife.co.kr/scr/m/main" CVScreenId="4d1dee69-235a-4aa6-bff6-8b26c9e79bd6" ContentHash="Ys5OmDa4LEa-IhZBDTytBg" CvElementArea="967, 622, 226, 52" CvTextArea="1064, 635, 35, 21" CvTextArgument="2191" CvType="Button" DesignTimeRectangle="968, 623, 226, 50" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='                     확인                   ' tag='BUTTON' /&gt;" Guid="e14aa6a2-912b-4ff3-a5d2-c8b125a4a542" InformativeScreenshot="9fb6aa62ba9e878e96584360b3085cfe.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/h8VjRreye0aDUerF6sJATA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='KB라이프생명 가입설계시스템 LiPS' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
-              </uix:NClick.Target>
-            </uix:NClick>
-            <Delay Duration="00:00:10" sap:VirtualizedContainerService.HintSize="484.8,122.4" sap2010:WorkflowViewState.IdRef="Delay_31" />
-            <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts 'IDPW 로그인 간편인증 공동인증서 반갑…'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="484.8,320" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_7" InteractionMode="SameAsCard" ScopeIdentifier="ae474a51-aae4-4bad-ad4c-4d5a8e7a6c93" Shortcuts="[d(hk)][d(ctrl)]w[u(ctrl)][u(hk)]" Version="V5">
-              <uix:NKeyboardShortcuts.Target>
-                <uix:TargetAnchorable BrowserURL="sfa.kblife.co.kr/scr/m/sfa-login" ContentHash="dAOPiue710GvINFuDDHGfw" DesignTimeRectangle="369, 167, 495, 800" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl class='login-area' tag='DIV' /&gt;" Guid="87d9f853-8b34-48e6-baaa-3cac61191055" InformativeScreenshot="274164a12b4e455e1efef2f4a20fbcc5.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/7cAY8klClkaW_3RtgD4NdA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='KB라이프' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-              </uix:NKeyboardShortcuts.Target>
-            </uix:NKeyboardShortcuts>
+              </If.Else>
+            </If>
           </Sequence>
         </ActivityAction>
       </uix:NApplicationCard.Body>

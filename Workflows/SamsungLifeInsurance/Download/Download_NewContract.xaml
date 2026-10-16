@@ -130,24 +130,16 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="Download_NewContrast" sap:VirtualizedContainerService.HintSize="705.2,2290.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Download_NewContrast" sap:VirtualizedContainerService.HintSize="962,2412.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="x:Boolean" Name="isDownloadSuccess">
-        <Variable.Default>
-          <Literal x:TypeArguments="x:Boolean" />
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="x:Boolean" Default="False" Name="isDownloadSuccess" />
       <Variable x:TypeArguments="x:String" Name="resultStart" />
       <Variable x:TypeArguments="s:DateTime" Name="dt" />
       <Variable x:TypeArguments="x:String" Default="OFF" Name="IS_MANUAL" />
       <Variable x:TypeArguments="x:String" Name="END_PERIOD" />
       <Variable x:TypeArguments="x:String" Name="START_PERIOD" />
       <Variable x:TypeArguments="ui:UiElement" Name="browser_instance" />
-      <Variable x:TypeArguments="x:Int32" Name="retryDownloadCount">
-        <Variable.Default>
-          <Literal x:TypeArguments="x:Int32" />
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="x:Int32" Default="0" Name="retryDownloadCount" />
       <Variable x:TypeArguments="x:String" Name="searchStatus" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
@@ -188,13 +180,13 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:GetRobotAsset>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Edge 삼성생명 - GA영업포탈시스템　　　　　　　　　　　　　　　_WebDRM[w" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="533.6,2096.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OpenMode="[UiPath.UIAutomationNext.Enums.NAppOpenMode.IfNotOpen]" OutUiElement="[browser_instance]" ScopeGuid="dc009fad-d27f-42be-a16a-4614ab10c7b6" Version="V2">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Edge 삼성생명 - GA영업포탈시스템　　　　　　　　　　　　　　　_WebDRM[w" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="533.6,2219.2" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OpenMode="[UiPath.UIAutomationNext.Enums.NAppOpenMode.IfNotOpen]" OutUiElement="[browser_instance]" ScopeGuid="dc009fad-d27f-42be-a16a-4614ab10c7b6" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="532,1903.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="532,2025.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Name="newFilelPath" />
               <Variable x:TypeArguments="x:String" Name="latestFilePath" />
@@ -437,14 +429,15 @@
                 </sap:WorkflowViewStateService.ViewState>
               </uix:NCheckState>
             </Sequence>
-            <ui:InterruptibleDoWhile CurrentIndex="{x:Null}" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="498.4,1738.4" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1">
+            <ui:InterruptibleDoWhile CurrentIndex="{x:Null}" Condition="[(Not isDownloadSuccess) AndAlso retryDownloadCount &lt; 5]" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="498.4,1860.8" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1">
               <ui:InterruptibleDoWhile.Body>
-                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="449.6,1608" sap2010:WorkflowViewState.IdRef="Sequence_38">
+                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="449.6,1730.4" sap2010:WorkflowViewState.IdRef="Sequence_38">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
+                  <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="416,122.4" sap2010:WorkflowViewState.IdRef="Delay_15" />
                   <Assign sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="Assign_5">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:Int32">[retryDownloadCount]</OutArgument>
@@ -1170,9 +1163,6 @@
                   </ui:InvokeWorkflowFile>
                 </Sequence>
               </ui:InterruptibleDoWhile.Body>
-              <ui:InterruptibleDoWhile.Condition>
-                <VisualBasicValue x:TypeArguments="x:Boolean" DisplayName="Visual basic value" ExpressionText="(Not isDownloadSuccess) AndAlso retryDownloadCount &lt; 5" />
-              </ui:InterruptibleDoWhile.Condition>
             </ui:InterruptibleDoWhile>
             <If Condition="[Not isDownloadSuccess]" sap:VirtualizedContainerService.HintSize="498.4,48" sap2010:WorkflowViewState.IdRef="If_3">
               <sap:WorkflowViewStateService.ViewState>

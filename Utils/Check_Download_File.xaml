@@ -95,14 +95,10 @@
       <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Check_Download_File" sap:VirtualizedContainerService.HintSize="705.2,2496.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Check_Download_File" sap:VirtualizedContainerService.HintSize="962,2496.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Int32" Default="[0]" Name="checkCount" />
-      <Variable x:TypeArguments="x:String" Name="in_DownloadFolder">
-        <Variable.Default>
-          <Literal x:TypeArguments="x:String">C:\RPA\TempDownload</Literal>
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="x:String" Default="C:\RPA\TempDownload" Name="in_DownloadFolder" />
       <Variable x:TypeArguments="x:Int32" Name="elapsedSeconds" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
@@ -177,7 +173,7 @@
                       <OutArgument x:TypeArguments="x:Boolean">[out_IsSuccess]</OutArgument>
                     </Assign.To>
                     <Assign.Value>
-                      <InArgument x:TypeArguments="x:Boolean">[Directory.GetFiles(in_DownloadFolder, in_Prefix &amp; "*").Any(Function(f) (f.EndsWith(".xlsx", StringComparison.OrdinalIgnoreCase) OrElse f.EndsWith(".xls", StringComparison.OrdinalIgnoreCase)) AndAlso New FileInfo(f).Length &gt; 0)]</InArgument>
+                      <InArgument x:TypeArguments="x:Boolean">[Directory.GetFiles(in_DownloadFolder, in_Prefix &amp; "*").Any()]</InArgument>
                     </Assign.Value>
                   </Assign>
                   <If Condition="[out_IsSuccess]" sap:VirtualizedContainerService.HintSize="451.2,760" sap2010:WorkflowViewState.IdRef="If_2">
