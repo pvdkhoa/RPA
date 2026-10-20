@@ -30,15 +30,10 @@ def clear_and_type(x, y, text):
 print("Bắt đầu thực hiện...")
 
 # 1. Chờ popup xuất hiện ổn định trên màn hình
-time.sleep(2)
-
-# 2. Click vào ô nhập và điền thông tin
-print("Đang nhập thông tin: 1208810829")
-clear_and_type(390, 189, "1208810829")
-time.sleep(1)
-
-# 3. Click nút xác nhận / Đăng nhập
-print("Đang click nút xác nhận...")
-click(464, 183)
-
+time.sleep(5)
+# click button sms
+click(374, 181)
+# click button ok
+time.sleep(5)
+click(430, 194)
 print("DONE!")
