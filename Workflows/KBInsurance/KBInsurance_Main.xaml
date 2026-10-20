@@ -124,7 +124,7 @@
       <AssemblyReference>REF_RPA.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Login_KB" sap:VirtualizedContainerService.HintSize="758,5525.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Login_KB" sap:VirtualizedContainerService.HintSize="957.2,5480" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Default="KBG" Name="COMP_CODE" />
       <Variable x:TypeArguments="x:String" Default="C:\RPA\CheckAvailableComp" Name="CHECKING_FILE_PATH" />
@@ -135,16 +135,17 @@
       <Variable x:TypeArguments="x:String" Name="KBG_URL" />
       <Variable x:TypeArguments="x:String" Name="CHECKING_ID" />
       <Variable x:TypeArguments="x:String" Default="C:\Users\RPA02\Documents\UiPath\RPA\Python_Script\KBG" Name="path" />
+      <Variable x:TypeArguments="x:String" Name="KBG_SMS_OTP" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence sap:VirtualizedContainerService.HintSize="555.2,1455.2" sap2010:WorkflowViewState.IdRef="Sequence_39">
+    <Sequence sap:VirtualizedContainerService.HintSize="521.6,56.8" sap2010:WorkflowViewState.IdRef="Sequence_39">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
@@ -326,20 +327,26 @@
         </sap:WorkflowViewStateService.ViewState>
       </Delay>
     </Sequence>
-    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" DisplayName="Edge KB스마트비서 GA교차 전용" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="555.2,4047.2" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OutUiElement="[browserInstance]" ScopeGuid="426fabea-5de9-4538-bbe2-be43432d2441" Version="V2" WindowResize="Maximize">
+    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" DisplayName="Edge KB스마트비서 GA교차 전용" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="521.6,5400" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OutUiElement="[browserInstance]" ScopeGuid="426fabea-5de9-4538-bbe2-be43432d2441" Version="V2" WindowResize="Maximize">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="520,3853.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="520,5206.4" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_14" />
-            <If Condition="[runType = &quot;CHECK&quot;]" DisplayName="Handle Check Open Website Available" sap:VirtualizedContainerService.HintSize="486.4,252.8" sap2010:WorkflowViewState.IdRef="If_2">
+            <Delay Duration="00:00:10" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_14" />
+            <If Condition="[runType = &quot;CHECK&quot;]" DisplayName="Handle Check Open Website Available" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="If_2">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
               <If.Then>
                 <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_32">
                   <sap:WorkflowViewStateService.ViewState>
@@ -484,8 +491,15 @@
                 </Sequence>
               </If.Else>
             </If>
-            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_21" />
-            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '비밀번호'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="SameAsCard" ScopeIdentifier="426fabea-5de9-4538-bbe2-be43432d2441" Text="[new System.Net.NetworkCredential(string.Empty, KBG_PW).Password]" Version="V5">
+            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="Delay_21">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </Delay>
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into '비밀번호'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="SameAsCard" ScopeIdentifier="426fabea-5de9-4538-bbe2-be43432d2441" Text="[new System.Net.NetworkCredential(string.Empty, KBG_PW).Password]" Version="V5">
               <uix:NTypeInto.Target>
                 <uix:TargetAnchorable BrowserURL="nsales.kbinsure.co.kr/eus/ch/ch_index.jsp" CVScreenId="db251b94-7c5a-4d57-af42-bd9bf4eede2f" ContentHash="oG-E9-I4CEmUVVitcdlF3w" CvElementArea="694, 586, 538, 70" CvType="InputBox" DesignTimeRectangle="697, 588, 533, 67" ElementType="InputBoxPassword" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='pwd' tag='INPUT' type='password' class='' aaname='' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="5cec3dd8-ada3-4835-9c0e-325aa9edaa28" InformativeScreenshot="7118ecdce3576290bb56f82abfe23bf1.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/ccIeanPsd0O60vfTFqqHNg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='KB스마트비서 GA/교차 전용' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
                   <uix:TargetAnchorable.Anchors>
@@ -505,8 +519,14 @@
                   </uix:VerifyExecutionTypeIntoOptions.Timeout>
                 </uix:VerifyExecutionTypeIntoOptions>
               </uix:NTypeInto.VerifyOptions>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
             </uix:NTypeInto>
-            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'INPUT resNo'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,245.6" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="SameAsCard" ScopeIdentifier="426fabea-5de9-4538-bbe2-be43432d2441" Text="[KBG_OTP]" Version="V5">
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'INPUT resNo'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="SameAsCard" ScopeIdentifier="426fabea-5de9-4538-bbe2-be43432d2441" Text="[KBG_OTP]" Version="V5">
               <uix:NTypeInto.Target>
                 <uix:TargetAnchorable BrowserURL="nsales.kbinsure.co.kr/eus/ch/ch_index.jsp" CVScreenId="db251b94-7c5a-4d57-af42-bd9bf4eede2f" ContentHash="sEp8LQRJKU6MuuVPbbeMxg" CvElementArea="694, 666, 537, 70" CvType="InputBox" DesignTimeRectangle="697, 668, 533, 67" ElementType="InputBoxPassword" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='resNo' tag='INPUT' /&gt;" Guid="12444289-969c-4155-b271-d46b88aae4f9" InformativeScreenshot="15568fcc4de718e1cd5f48c3647b94b0.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/4vOxvBEseEmInv8O0SgIOw" ScopeSelectorArgument="&lt;html app='msedge.exe' title='KB스마트비서 GA/교차 전용' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NTypeInto.Target>
@@ -520,12 +540,134 @@
                   </uix:VerifyExecutionTypeIntoOptions.Timeout>
                 </uix:VerifyExecutionTypeIntoOptions>
               </uix:NTypeInto.VerifyOptions>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
             </uix:NTypeInto>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '로그인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,193.6" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="426fabea-5de9-4538-bbe2-be43432d2441" Version="V5">
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '로그인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="426fabea-5de9-4538-bbe2-be43432d2441" Version="V5">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="nsales.kbinsure.co.kr/eus/ch/ch_index.jsp" CVScreenId="db251b94-7c5a-4d57-af42-bd9bf4eede2f" ContentHash="xk8ndFIzl0a5plUglq246g" CvElementArea="695, 766, 537, 82" CvTextArea="919, 791, 86, 31" CvTextArgument="2וوב" CvType="Button" DesignTimeRectangle="697, 770, 533, 75" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl tag='A' /&gt;" Guid="ff70c1f9-1ed2-4d33-b1cb-f6313347e1c9" InformativeScreenshot="29cc2494f24564e660ce4fa6615083b2.jpg" Reference="XOYcfFqZ6E-bqaAwD4K5Nw/7ktammO45UyPkuNcuknh5A" ScopeSelectorArgument="&lt;html app='msedge.exe' title='KB스마트비서 GA/교차 전용' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
               </uix:NClick.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
             </uix:NClick>
+            <Delay Duration="00:00:15" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_27" />
+            <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Edge 인증방법 선택" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="486.4,2006.4" sap2010:WorkflowViewState.IdRef="NApplicationCard_5" InteractionMode="DebuggerApi" ScopeGuid="71154b89-d63c-46f3-bcfc-e6ec8f47b24f" Version="V2">
+              <uix:NApplicationCard.Body>
+                <ActivityAction x:TypeArguments="x:Object">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="484.8,1804" sap2010:WorkflowViewState.IdRef="Sequence_40">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_28" />
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '(포털등록) 휴대폰인증'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,244.8" sap2010:WorkflowViewState.IdRef="NClick_15" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="71154b89-d63c-46f3-bcfc-e6ec8f47b24f" Version="V5">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable BrowserURL="nsales.kbinsure.co.kr/eus/ch/member/ch_mobile2track.jsp" ContentHash="aBhBZ-5x8Uqn-Y_21QeYDw" DesignTimeRectangle="28, 195, 623, 88" ElementType="Button" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl tag='BUTTON' type='button' class='img_item e_img3' matching:class='fuzzy' fuzzylevel:class='0.0' aaname=' &amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;(포털등록) 휴대폰인증 &amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' visibleinnertext='(포털등록) 휴대폰인증' check:innerText='(포털등록) 휴대폰인증' /&gt;" Guid="04b63ff5-b42b-4f5d-b956-7c1463c7f672" InformativeScreenshot="9bdf9d06216f2610d00dc0cc64e9983a.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/_aWeSPpFsUaf356hxmNdbQ" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='ch_mobile2track' title='인증방법 선택' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="None">
+                          <uix:TargetAnchorable.Anchors>
+                            <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                              <uix:Target DesignTimeRectangle="122, 229, 486, 20" ElementType="Text" FuzzySelectorArgument="&lt;webctrl class='tit' tag='SPAN' type='' aaname='(포털등록) 휴대폰인증' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='(포털등록) 휴대폰인증' /&gt;" Guid="8eeeb70d-b104-4955-8c98-8272adb8be9f" SearchSteps="FuzzySelector" />
+                            </scg:List>
+                          </uix:TargetAnchorable.Anchors>
+                        </uix:TargetAnchorable>
+                      </uix:NClick.Target>
+                    </uix:NClick>
+                    <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_29" />
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '인증요청'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,244.8" sap2010:WorkflowViewState.IdRef="NClick_16" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="71154b89-d63c-46f3-bcfc-e6ec8f47b24f" Version="V5">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable BrowserURL="nsales.kbinsure.co.kr/eus/ch/member/ch_mobileLoginRegHP.jstl" ContentHash="xQuJze6apUuCG_Nu1r1n7w" DesignTimeRectangle="303, 199, 82, 30" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='aHpAuthReq' tag='A' /&gt;" Guid="4000ff83-d17a-4b5d-87d1-00ca9e2485cc" InformativeScreenshot="916adf1736a4d54f956efeb8a9044790.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/f04iDnlfOEOfWs1A1YOAdQ" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='siteAuth' title='등록된 휴대폰정보로 인증' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                      </uix:NClick.Target>
+                    </uix:NClick>
+                    <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_31" />
+                    <uix:NCheckState DisplayName="Check App State 'nsales.kbinsure.co.kr s…'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="451.2,56.8" sap2010:WorkflowViewState.IdRef="NCheckState_10" ScopeIdentifier="71154b89-d63c-46f3-bcfc-e6ec8f47b24f" Version="V5">
+                      <uix:NCheckState.IfExists>
+                        <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_41">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,299.2" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_1" InteractionMode="HardwareEvents" ScopeIdentifier="71154b89-d63c-46f3-bcfc-e6ec8f47b24f" Shortcuts="[d(hk)][k(Enter)][u(hk)]" Version="V5" />
+                        </Sequence>
+                      </uix:NCheckState.IfExists>
+                      <uix:NCheckState.IfNotExists>
+                        <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_42">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Sequence>
+                      </uix:NCheckState.IfNotExists>
+                      <uix:NCheckState.Target>
+                        <uix:TargetAnchorable BrowserURL="nsales.kbinsure.co.kr/eus/ch/member/ch_mobileLoginRegHP.jstl" ContentHash="Bc4pv5OoMk6NMp0tG2K3dw" DesignTimeRectangle="64, 74, 560, 235" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='nsales.kbinsure.co.kr says' role='dialog' /&gt;" Guid="cc3c6783-f792-4285-8d79-a065552234bc" InformativeScreenshot="9f66ba604e939c5a94b3ac0ff9c9eff4.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/t_NyeFuRd0-vyaXqaoqiZw" ScopeSelectorArgument="&lt;wnd app='msedge.exe' cls='Chrome_WidgetWin_1' title='등록된 휴대폰정보로 인증 - Profile 1 - Microsoft​ Edge' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                      </uix:NCheckState.Target>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </uix:NCheckState>
+                    <Delay Duration="00:00:55" sap:VirtualizedContainerService.HintSize="451.2,122.4" sap2010:WorkflowViewState.IdRef="Delay_30" />
+                    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="KBG_SMS_OTP" CacheStrategy="None" DisplayName="Get Asset" FolderPath="RPA" sap:VirtualizedContainerService.HintSize="451.2,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_6">
+                      <ui:GetRobotAsset.Value>
+                        <OutArgument x:TypeArguments="x:String">[KBG_SMS_OTP]</OutArgument>
+                      </ui:GetRobotAsset.Value>
+                    </ui:GetRobotAsset>
+                    <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'INPUT inpAuthNo'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,296.8" sap2010:WorkflowViewState.IdRef="NTypeInto_3" InteractionMode="Simulate" ScopeIdentifier="71154b89-d63c-46f3-bcfc-e6ec8f47b24f" Text="[KBG_SMS_OTP]" Version="V5">
+                      <uix:NTypeInto.Target>
+                        <uix:TargetAnchorable BrowserURL="nsales.kbinsure.co.kr/eus/ch/member/ch_mobileLoginRegHP.jstl" ContentHash="_LDQXrYQ7kGXHELmi_zmlQ" DesignTimeRectangle="146, 333, 409, 30" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='inpAuthNo' tableRow='1' tag='INPUT' /&gt;" Guid="88b59c6f-5968-4105-bdc0-a64ad2d5b06b" InformativeScreenshot="61b96d834c7b1cee3b2bb54e74e9de87.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/scEWATS_fEugyRojAbs1TQ" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='siteAuth' title='등록된 휴대폰정보로 인증' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None" />
+                      </uix:NTypeInto.Target>
+                      <uix:NTypeInto.VerifyOptions>
+                        <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+                          <uix:VerifyExecutionTypeIntoOptions.Retry>
+                            <InArgument x:TypeArguments="x:Boolean" />
+                          </uix:VerifyExecutionTypeIntoOptions.Retry>
+                          <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                            <InArgument x:TypeArguments="x:Double" />
+                          </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                        </uix:VerifyExecutionTypeIntoOptions>
+                      </uix:NTypeInto.VerifyOptions>
+                    </uix:NTypeInto>
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '인증확인'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="451.2,236" sap2010:WorkflowViewState.IdRef="NClick_17" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="71154b89-d63c-46f3-bcfc-e6ec8f47b24f" Version="V5">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable BrowserURL="nsales.kbinsure.co.kr/eus/ch/member/ch_mobileLoginRegHP.jstl" ContentHash="BCnwi0XlMUCBPAZ-nuHI8A" DesignTimeRectangle="560, 278, 82, 30" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='aHpEmailCnfm' tableRow='1' tag='BUTTON' /&gt;" Guid="01e3c306-3c72-4e52-a400-5a685e220d2c" InformativeScreenshot="c39cc5ba13babf8a840985f3095db9af.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/ztF88p1iWkWXA1cgwZ_jSw" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='siteAuth' title='등록된 휴대폰정보로 인증' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="None" />
+                      </uix:NClick.Target>
+                    </uix:NClick>
+                  </Sequence>
+                </ActivityAction>
+              </uix:NApplicationCard.Body>
+              <uix:NApplicationCard.OCREngine>
+                <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
+                  <ActivityFunc.Argument>
+                    <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                  </ActivityFunc.Argument>
+                </ActivityFunc>
+              </uix:NApplicationCard.OCREngine>
+              <uix:NApplicationCard.TargetApp>
+                <uix:TargetApp Area="611, 155, 698, 600" BrowserType="Edge" ContentHash="oV9-X5e2iEiK1B1-czY2uQ" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAG9SURBVDhPYxAREvB0dTD/Tw42MjIyYgAx8jNi/uemRv7PSgr7nx4f9D8l2u9/QoTX/9gQt/9Rgc7/I/wc/od62/4P9rL+H+xphYLBBuTANMcF/U8GaQ5HaA73s4doRtOIYkBmYuj/tLjA/8lRvhDNwW7/owKc/of7gjTbYGjCMCAtFqI5Pszzf0yw6//IAKf//y8xoGjeNkPy/755YtgNSIry/V+Q7AjV7Pg/PcoCbABIQUKI6f9/Fxn+n1ohhKEZbkB8mMf/y+uFwZpmNan+n9uiBGbf3c7z//0x1v9h3pb/I/0s/mdEGWM3IDrI5X+kv+P/KH/b/x+OsYI1g3BunCFc4eapUv+n1SljNyDC3+F/mI/t/3Afq/+/zjH9f3WQHWzA9U18cIVXN/CBxXbMkvh/cS0/mA83AKR563RJuOD6ydL/7+/g/r92ogxYU0uB1v9L6/j/75otDpZf3CH//+EuLoQBIWgJZFq98v+n+zjh/HdH2f5/PM76f36r4v8nezn/P92LkAMbgKwZhEEh/+MMM4pYuI/l/45iDQy1WA0A4d/nGTHEsGGcBhCLKTfA1sroGbogsdjfzfI/AD6Q+kPzbPpcAAAAAElFTkSuQmCC" InformativeScreenshot="58c039307a441533001fe7818323468b.jpg" Reference="5HjwgH8OmEa1VO6GnukQ2g/FPv17R4zzkekpNoyHfOPxw" Selector="&lt;html app='msedge.exe' htmlwindowname='ch_mobile2track' title='인증방법 선택' /&gt;" Url="https://nsales.kbinsure.co.kr/eus/ch/member/ch_mobile2track.jsp" Version="V3">
+                  <uix:TargetApp.Arguments>
+                    <InArgument x:TypeArguments="x:String" />
+                  </uix:TargetApp.Arguments>
+                  <uix:TargetApp.WorkingDirectory>
+                    <InArgument x:TypeArguments="x:String" />
+                  </uix:TargetApp.WorkingDirectory>
+                </uix:TargetApp>
+              </uix:NApplicationCard.TargetApp>
+            </uix:NApplicationCard>
             <Delay Duration="00:01:10" sap:VirtualizedContainerService.HintSize="486.4,122.4" sap2010:WorkflowViewState.IdRef="Delay_13" />
             <Sequence DisplayName="Handle Login KBG" sap:VirtualizedContainerService.HintSize="486.4,56.8" sap2010:WorkflowViewState.IdRef="Sequence_36">
               <sap:WorkflowViewStateService.ViewState>
